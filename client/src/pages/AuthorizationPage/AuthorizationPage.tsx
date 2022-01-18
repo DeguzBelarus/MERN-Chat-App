@@ -80,6 +80,7 @@ const AuthorizationPage = () => {
         <div className="authorization-wrapper">
 
             <form className="authorization-form">
+                <h1 className="authorization-header">Авторизация:</h1>
                 <label htmlFor="emailInput">Введите email:</label>
                 <input id="emailInput" type="email" name="email" onChange={changeHandler} />
                 <label htmlFor="passworInput">Введите пароль:</label>

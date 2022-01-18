@@ -88,7 +88,9 @@ authorizationRouter.post(
 
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (!passwordMatch) {
-        return response.status(400).json({ message: "Неверный пароль" });
+        return response
+          .status(400)
+          .json({ message: "Введённый пароль неверный" });
       }
 
       const token = jwt.sign({ userId: user.id }, config.get("jwtSecret"), {

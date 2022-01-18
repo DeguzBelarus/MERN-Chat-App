@@ -31,6 +31,7 @@ const RegistrationPage = () => {
         <div className="registration-wrapper">
 
             <form className="registration-form">
+                <h1 className="registration-header">Регистрация:</h1>
                 <label htmlFor="nicknameInput">Введите Ник:</label>
                 <input id="nicknameInput" type="text" name="nickname" onChange={changeHandler} />
                 <label htmlFor="emailInput">Введите email:</label>

@@ -7,13 +7,22 @@
 
   .registration-form {
     width: 280px;
-    height: 200px;
+    height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    padding-top: 20px;
+    padding: 5px;
     border: 1px solid black;
+
+    .registration-header {
+      margin: 0;
+      margin-bottom: 5px;
+      font-size: 25px;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
     #emailInput {
       margin-bottom: 2px;
