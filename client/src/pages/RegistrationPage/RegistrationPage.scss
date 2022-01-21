@@ -25,25 +25,49 @@
       user-select: none;
     }
 
-    #emailInput {
-      margin-bottom: 2px;
+    #nicknameInput {
+      margin-bottom: 15px;
+
+      &::placeholder {
+        opacity: 0.7;
+      }
 
       &:focus {
         outline: none;
+
+        &::placeholder {
+          opacity: 0.2;
+        }
+      }
+    }
+
+    #emailInput {
+      margin-bottom: 2px;
+
+      &::placeholder {
+        opacity: 0.7;
+      }
+
+      &:focus {
+        outline: none;
+
+        &::placeholder {
+          opacity: 0.2;
+        }
       }
     }
 
     #passworInput {
-      &:focus {
-        outline: none;
+      &::placeholder {
+        opacity: 0.7;
       }
-    }
-
-    #nicknameInput {
-      margin-bottom: 15px;
 
       &:focus {
         outline: none;
+
+        &::placeholder {
+          opacity: 0.2;
+        }
       }
     }
 

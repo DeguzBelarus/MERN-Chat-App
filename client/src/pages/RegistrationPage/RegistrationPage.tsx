@@ -49,11 +49,11 @@ const RegistrationPage = () => {
                 <form className="registration-form">
                     <h1 className="registration-header">Регистрация:</h1>
                     <label htmlFor="nicknameInput">Введите Ник:</label>
-                    <input id="nicknameInput" type="text" name="nickname" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+                    <input id="nicknameInput" type="text" placeholder="Минимум 2 символа" name="nickname" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
                     <label htmlFor="emailInput">Введите email:</label>
-                    <input id="emailInput" type="email" name="email" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+                    <input id="emailInput" type="email" placeholder="Формата mail@mail.domen" name="email" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
                     <label htmlFor="passworInput">Введите пароль:</label>
-                    <input id="passworInput" type="password" name="password" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+                    <input id="passworInput" type="password" placeholder="Минимум 8 символов" name="password" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
                     <div className="authorization-buttons">
                         <Link to={"/"}><button type="button" className="returnButton" disabled={loading}>Назад</button></Link>
                         <button type="button" className="registrationButton" disabled={loading} onClick={registerHandler}>Зарегистрироваться</button>
