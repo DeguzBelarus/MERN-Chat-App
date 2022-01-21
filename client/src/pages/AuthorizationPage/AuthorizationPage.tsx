@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { userTokenSave, userIdSave, userNicknameSave, selectToken } from "../../app/userSlice";
 import { useForm } from "../../hooks/useForm.hook";
+import Loader from "../components/Loader/Loader";
 import "./AuthorizationPage.scss"
 
 const AuthorizationPage = () => {
@@ -76,23 +77,27 @@ const AuthorizationPage = () => {
         } catch (e) { }
     }
 
+
     return (
-        <div className="authorization-wrapper">
+        <>
+            <div className="authorization-wrapper">
 
-            <form className="authorization-form">
-                <h1 className="authorization-header">Авторизация:</h1>
-                <label htmlFor="emailInput">Введите email:</label>
-                <input id="emailInput" type="email" name="email" onChange={changeHandler} />
-                <label htmlFor="passworInput">Введите пароль:</label>
-                <input id="passworInput" type="password" name="password" onChange={changeHandler} />
-                <div className="authorization-buttons">
-                    <button className="loginButton" disabled={loading} onClick={loginHandler}>Войти</button>
-                    <Link to={"/registration"}><button className="registrationButton" disabled={loading}>Регистрация</button></Link>
-                </div>
-                <div className="message-box">{`${message !== null && signedMessage === "" ? message : ""}${signedMessage !== "" ? signedMessage : ""}`}</div>
-            </form>
+                <form className="authorization-form">
+                    <h1 className="authorization-header">Авторизация:</h1>
+                    <label htmlFor="emailInput">Введите email:</label>
+                    <input id="emailInput" type="email" name="email" onChange={changeHandler} />
+                    <label htmlFor="passworInput">Введите пароль:</label>
+                    <input id="passworInput" type="password" name="password" onChange={changeHandler} />
+                    <div className="authorization-buttons">
+                        <button className="loginButton" disabled={loading} onClick={loginHandler}>Войти</button>
+                        <Link to={"/registration"}><button className="registrationButton" disabled={loading}>Регистрация</button></Link>
+                    </div>
+                    {!loading && <div className="message-box">{`${message !== null && signedMessage === "" ? message : ""}${signedMessage !== "" ? signedMessage : ""}`}</div>}
+                    {loading && <Loader />}
+                </form>
 
-        </div>
+            </div>
+        </>
     )
 }
 

@@ -1,0 +1,58 @@
+.loader-container {
+  width: 40px;
+  height: 40px;
+  margin-top: 8px;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid slategrey;
+  animation-name: loading-manifestation;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+
+  .loading-triangle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    box-sizing: border-box;
+    border-top: 10px solid slategrey;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    animation-name: loading-rotation, loading-flicking, loading-manifestation;
+    animation-delay: 0s, 1.2s, 0s;
+    animation-duration: 1s, 0.5s, 1.2s;
+    animation-iteration-count: infinite, infinite, 1;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes loading-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-flicking {
+  0% {
+    opacity: 1.6;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1.6;
+  }
+}
+
+@keyframes loading-manifestation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}

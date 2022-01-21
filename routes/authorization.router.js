@@ -18,8 +18,8 @@ authorizationRouter.post(
   async (request, response) => {
     try {
       const errors = validationResult(request);
-      if (!errors.isEmpty) {
-        response.status(400).json({
+      if (!errors.isEmpty()) {
+        return response.status(400).json({
           errors: errors.array(),
           message: "Некорректные данные при регистрации",
         });
@@ -27,18 +27,18 @@ authorizationRouter.post(
 
       const { email, password, nickname } = request.body;
 
-      const newUserCandidateEmailCeck = await User.findOne({ email });
-      if (newUserCandidateEmailCeck) {
-        return response
-          .status(400)
-          .json({ message: "Данный email уже используется" });
-      }
-
       const newUserCandidateNickCheck = await User.findOne({ nickname });
       if (newUserCandidateNickCheck) {
         return response
           .status(400)
           .json({ message: "Данный Ник уже используется" });
+      }
+
+      const newUserCandidateEmailCeck = await User.findOne({ email });
+      if (newUserCandidateEmailCeck) {
+        return response
+          .status(400)
+          .json({ message: "Данный email уже используется" });
       }
 
       const cryptedPassword = await bcrypt.hash(password, 15);
@@ -56,7 +56,7 @@ authorizationRouter.post(
     } catch (error) {
       response
         .status(500)
-        .json({ message: "Возникла ошибка, попробуйте ещё раз." });
+        .json({ message: "Возникла ошибка, попробуйте ещё раз" });
     }
   }
 );
@@ -70,8 +70,8 @@ authorizationRouter.post(
   async (request, response) => {
     try {
       const errors = validationResult(request);
-      if (!errors.isEmpty) {
-        response.status(400).json({
+      if (!errors.isEmpty()) {
+        return response.status(400).json({
           errors: errors.array(),
           message: "Некорректные данные при входе в систему",
         });

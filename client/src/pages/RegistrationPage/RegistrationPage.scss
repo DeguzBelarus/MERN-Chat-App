@@ -2,12 +2,13 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   .registration-form {
     width: 280px;
-    height: 220px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: start;

@@ -1,12 +1,15 @@
 import React from "react";
+import io from "socket.io-client";
+import { useSocket } from "../../hooks/useSocket.hook"
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
 import "./UserRoom.scss"
 
 const UserRoom = () => {
-    const dispatch = useAppDispatch()
+    const { chatEnter } = useSocket()
 
+    const dispatch = useAppDispatch()
     const nickname = useAppSelector(selectUserNickname)
     const userId = useAppSelector(selectUserId)
 
@@ -25,7 +28,7 @@ const UserRoom = () => {
                 <p className="user-id-paragraph">{`Ваш id пользователя: `}<strong>{userId}</strong></p>
                 <div className="user-room-buttons">
                     <button type="button" className="logout-button" onClick={logout}>Выйти из системы</button>
-                    <Link to={"/chat"}><button type="button" className="enter-button">Войти в Чат</button></Link>
+                    <Link to={"/chat"}><button type="button" className="enter-button" onClick={chatEnter}>Войти в Чат</button></Link>
                 </div>
             </div>
         </div>
