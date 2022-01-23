@@ -1,4 +1,3 @@
-import React from "react";
 import { useAppSelector } from "../app/hooks";
 import { selectUserNickname, selectUserId } from "../app/userSlice";
 import io from "socket.io-client";
