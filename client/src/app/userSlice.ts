@@ -4,13 +4,13 @@ import { RootState } from "./store";
 interface UserState {
     userId: string | null,
     token: string | null,
-    nickname: string | null,
+    nickname: string | null
 }
 
 const initialState = {
     userId: null,
     token: null,
-    nickname: null
+    nickname: null,
 } as UserState
 
 export const userSlice = createSlice({
