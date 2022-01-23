@@ -14,7 +14,7 @@
     align-items: center;
 
     .userslist-box {
-      width: 15%;
+      width: 20vw;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -35,6 +35,20 @@
         padding-left: 5px;
         background: #eee;
         color: brown;
+        font-weight: bolder;
+      }
+
+      .user-box-moder {
+        width: 100%;
+        height: 25px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        box-sizing: border-box;
+        margin-bottom: 2px;
+        padding-left: 5px;
+        background: #eee;
+        color: blueviolet;
         font-weight: bolder;
       }
 
