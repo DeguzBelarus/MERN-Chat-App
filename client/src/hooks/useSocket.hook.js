@@ -28,7 +28,12 @@ export const useSocket = () => {
         newUsersInRoom.sort().map((user) => {
           let userBox = document.createElement("div");
           userBox.setAttribute("class", "user-box");
-          userBox.innerText = user;
+          if (user === "Deguz") {
+            userBox.innerText = user + " (админ)";
+            userBox.setAttribute("class", "user-box-admin");
+          } else {
+            userBox.innerText = user;
+          }
 
           usersContainer.appendChild(userBox);
         });
@@ -48,7 +53,12 @@ export const useSocket = () => {
       newUsersInRoom.sort().map((user) => {
         let userBox = document.createElement("div");
         userBox.setAttribute("class", "user-box");
-        userBox.innerText = user;
+        if (user === "Deguz") {
+          userBox.innerText = user + " (админ)";
+          userBox.setAttribute("class", "user-box-admin");
+        } else {
+          userBox.innerText = user;
+        }
 
         usersContainer.appendChild(userBox);
       });
