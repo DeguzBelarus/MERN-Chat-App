@@ -17,6 +17,7 @@ io.on("connection", (socket) => {
   console.log(`user connected on socket id: ${socket.id}`);
 
   socket.on("user connected", (data) => {
+    console.log(`connection data: ${data.nickname}`);
     const connectedUser = data.nickname;
 
     if (!usersInRoom.includes(data.nickname)) {
