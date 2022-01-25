@@ -5,7 +5,10 @@ import BottomPanel from "../components/chat/BottomPanel";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId } from "../../app/userSlice";
-import { messageFunctionSave } from "../../app/chatSlice";
+import {
+  privateRecipientSave,
+  selectPrivateRecipient,
+} from "../../app/chatSlice";
 import io from "socket.io-client";
 
 import "./ChatMainPage.scss";
@@ -14,6 +17,7 @@ const ChatMainPage = () => {
   const dispatch = useAppDispatch();
   const nickname = useAppSelector(selectUserNickname);
   const userId = useAppSelector(selectUserId);
+  const privateRecipient = useAppSelector(selectPrivateRecipient);
 
   const socket = io();
 
@@ -38,14 +42,41 @@ const ChatMainPage = () => {
         let userBox = document.createElement("div");
         userBox.setAttribute("class", "user-box");
 
-        if (user === "Deguz") {
-          userBox.innerText = user + " (админ)";
+        if (user[0] === "Deguz") {
+          userBox.innerHTML = `${user[0]} (админ) <div class="socket-box">${user[1]}</div>`;
           userBox.setAttribute("class", "user-box-admin");
-        } else if (user === "NightOwl") {
-          userBox.innerText = user + " (ментор)";
+        } else if (user[0] === "NightOwl") {
+          userBox.innerHTML = `${user[0]} (ментор) <div class="socket-box">${user[1]}</div>`;
           userBox.setAttribute("class", "user-box-mentor");
         } else {
-          userBox.innerText = user;
+          userBox.innerHTML = `${user[0]} <div class="socket-box">${user[1]}</div>`;
+        }
+
+        if (user[0] !== nickname) {
+          let privateButton = document.createElement("button");
+          privateButton.innerText = "Лично";
+          privateButton.setAttribute("class", "private-button");
+          privateButton.onclick = function privateModeHandle(event) {
+            if (!privateRecipient) {
+              dispatch(
+                privateRecipientSave(
+                  event.target.previousElementSibling.innerText
+                )
+              );
+              console.log("пр получатель создан");
+            } else if (
+              privateRecipient == event.target.previousElementSibling.innerText
+            ) {
+              dispatch(privateRecipientSave());
+              console.log("пр получатель обнулён");
+            } else {
+              privateRecipientSave(
+                event.target.previousElementSibling.innerText
+              );
+              console.log("пр получатель заменён");
+            }
+          };
+          userBox.appendChild(privateButton);
         }
 
         usersContainer.appendChild(userBox);
@@ -63,14 +94,41 @@ const ChatMainPage = () => {
         let userBox = document.createElement("div");
         userBox.setAttribute("class", "user-box");
 
-        if (user === "Deguz") {
-          userBox.innerText = user + " (админ)";
+        if (user[0] === "Deguz") {
+          userBox.innerHTML = `${user[0]} (админ) <div class="socket-box">${user[1]}</div>`;
           userBox.setAttribute("class", "user-box-admin");
-        } else if (user === "NightOwl") {
-          userBox.innerText = user + " (ментор)";
+        } else if (user[0] === "NightOwl") {
+          userBox.innerHTML = `${user[0]} (ментор) <div class="socket-box">${user[1]}</div>`;
           userBox.setAttribute("class", "user-box-mentor");
         } else {
-          userBox.innerText = user;
+          userBox.innerHTML = `${user[0]} <div class="socket-box">${user[1]}</div>`;
+        }
+
+        if (user[0] !== nickname) {
+          let privateButton = document.createElement("button");
+          privateButton.innerText = "Лично";
+          privateButton.setAttribute("class", "private-button");
+          privateButton.onclick = function privateModeHandle(event) {
+            if (!privateRecipient) {
+              dispatch(
+                privateRecipientSave(
+                  event.target.previousElementSibling.innerText
+                )
+              );
+              console.log("пр получатель создан");
+            } else if (
+              privateRecipient == event.target.previousElementSibling.innerText
+            ) {
+              dispatch(privateRecipientSave());
+              console.log("пр получатель обнулён");
+            } else {
+              privateRecipientSave(
+                event.target.previousElementSibling.innerText
+              );
+              console.log("пр получатель заменён");
+            }
+          };
+          userBox.appendChild(privateButton);
         }
 
         usersContainer.appendChild(userBox);

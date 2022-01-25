@@ -21,7 +21,9 @@ io.on("connection", (socket) => {
     const connectedUser = data.nickname;
 
     if (!usersInRoom.includes(data.nickname)) {
-      usersInRoom.push(connectedUser);
+      let userSocketId = socket.id;
+      console.log("entered user socket: ", userSocketId);
+      usersInRoom.push([connectedUser, userSocketId]);
       socket.emit("connected user info", data);
       socket.broadcast.emit("connected user info", data);
     }
@@ -32,7 +34,7 @@ io.on("connection", (socket) => {
     socket.on("disconnecting", (data) => {
       console.log("disconnection data:", connectedUser, typeof connectedUser);
       usersInRoom = usersInRoom.filter((element) => {
-        return element !== connectedUser;
+        return element[0] !== connectedUser;
       });
 
       socket.broadcast.emit("user disconnected", connectedUser, usersInRoom);

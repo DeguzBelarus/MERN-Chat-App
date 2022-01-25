@@ -2,28 +2,28 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
 interface chatState {
-    sendMessageFunction: any | null
+    privateRecipient: any | null
 }
 
 const initialState = {
-    sendMessageFunction: null
+    privateRecipient: null
 } as chatState
 
 export const chatSlice = createSlice({
     name: "chat",
     initialState,
     reducers: {
-        messageFunctionSave(state: any, action: PayloadAction<any>) {
+        privateRecipientSave(state: any, action: PayloadAction<any>) {
             if (action.payload) {
-                state.sendMessageFunction = action.payload
+                state.privateRecipient = action.payload
             } else {
-                state.sendMessageFunction = null
+                state.privateRecipient = null
             }
         }
     }
 })
 
-export const { messageFunctionSave } = chatSlice.actions
-export const selectMessageFunction = (state: RootState) => state.chat.sendMessageFunction
+export const { privateRecipientSave } = chatSlice.actions
+export const selectPrivateRecipient = (state: RootState) => state.chat.privateRecipient
 
 export default chatSlice.reducer

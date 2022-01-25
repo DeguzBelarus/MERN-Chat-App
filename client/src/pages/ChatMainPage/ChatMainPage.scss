@@ -38,6 +38,21 @@
         background: #eee;
         color: brown;
         font-weight: bolder;
+
+        .socket-box {
+          width: 0;
+          height: 0;
+          color: goldenrod;
+          overflow: hidden;
+          opacity: 0.5;
+          -ms-user-select: none;
+          -webkit-user-select: none;
+          user-select: none;
+        }
+
+        .private-button {
+          margin-left: 2px;
+        }
       }
 
       .user-box-mentor {
@@ -52,6 +67,21 @@
         background: #eee;
         color: blueviolet;
         font-weight: bolder;
+
+        .socket-box {
+          width: 0;
+          height: 0;
+          color: goldenrod;
+          overflow: hidden;
+          opacity: 0.5;
+          -ms-user-select: none;
+          -webkit-user-select: none;
+          user-select: none;
+        }
+
+        .private-button {
+          margin-left: 2px;
+        }
       }
 
       .user-box {
@@ -66,6 +96,21 @@
         background: #eee;
         color: black;
         font-weight: bold;
+
+        .socket-box {
+          width: 0;
+          height: 0;
+          color: goldenrod;
+          overflow: hidden;
+          opacity: 0.5;
+          -ms-user-select: none;
+          -webkit-user-select: none;
+          user-select: none;
+        }
+
+        .private-button {
+          margin-left: 2px;
+        }
       }
     }
 
@@ -109,9 +154,11 @@
         margin: 0;
         margin-bottom: 5px;
         font-size: 20px;
+        font-weight: bold;
+        color: black;
 
         span {
-          color: rebeccapurple;
+          color: fuchsia;
           font-weight: bolder;
         }
       }
