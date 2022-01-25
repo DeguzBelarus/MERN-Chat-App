@@ -8,6 +8,9 @@ import { selectUserNickname, selectUserId } from "../../app/userSlice";
 import {
   privateRecipientSave,
   selectPrivateRecipient,
+  privateRecipientNicknameSave,
+  selectPrivateRecipientNickname,
+  usersInChatCountSave,
 } from "../../app/chatSlice";
 import io from "socket.io-client";
 
@@ -18,6 +21,9 @@ const ChatMainPage = () => {
   const nickname = useAppSelector(selectUserNickname);
   const userId = useAppSelector(selectUserId);
   const privateRecipient = useAppSelector(selectPrivateRecipient);
+  const privateRecipientNickname = useAppSelector(
+    selectPrivateRecipientNickname
+  );
 
   const socket = io();
 
@@ -43,13 +49,13 @@ const ChatMainPage = () => {
         userBox.setAttribute("class", "user-box");
 
         if (user[0] === "Deguz") {
-          userBox.innerHTML = `${user[0]} (админ) <div class="socket-box">${user[1]}</div>`;
+          userBox.innerHTML = `<div>${user[0]} (админ)</div> <div class="socket-box">${user[1]}</div>`;
           userBox.setAttribute("class", "user-box-admin");
         } else if (user[0] === "NightOwl") {
-          userBox.innerHTML = `${user[0]} (ментор) <div class="socket-box">${user[1]}</div>`;
+          userBox.innerHTML = `<div>${user[0]} (ментор)</div> <div class="socket-box">${user[1]}</div>`;
           userBox.setAttribute("class", "user-box-mentor");
         } else {
-          userBox.innerHTML = `${user[0]} <div class="socket-box">${user[1]}</div>`;
+          userBox.innerHTML = `<div>${user[0]}</div> <div class="socket-box">${user[1]}</div>`;
         }
 
         if (user[0] !== nickname) {
@@ -63,15 +69,28 @@ const ChatMainPage = () => {
                   event.target.previousElementSibling.innerText
                 )
               );
+              dispatch(
+                privateRecipientNicknameSave(
+                  event.target.parentElement.firstElementChild.innerText
+                )
+              );
               console.log("пр получатель создан");
             } else if (
               privateRecipient == event.target.previousElementSibling.innerText
             ) {
               dispatch(privateRecipientSave());
+              dispatch(privateRecipientNicknameSave());
               console.log("пр получатель обнулён");
             } else {
-              privateRecipientSave(
-                event.target.previousElementSibling.innerText
+              dispatch(
+                privateRecipientSave(
+                  event.target.previousElementSibling.innerText
+                )
+              );
+              dispatch(
+                privateRecipientNicknameSave(
+                  event.target.parentElement.firstElementChild.innerText
+                )
               );
               console.log("пр получатель заменён");
             }
@@ -95,13 +114,13 @@ const ChatMainPage = () => {
         userBox.setAttribute("class", "user-box");
 
         if (user[0] === "Deguz") {
-          userBox.innerHTML = `${user[0]} (админ) <div class="socket-box">${user[1]}</div>`;
+          userBox.innerHTML = `<div>${user[0]} (админ)</div> <div class="socket-box">${user[1]}</div>`;
           userBox.setAttribute("class", "user-box-admin");
         } else if (user[0] === "NightOwl") {
-          userBox.innerHTML = `${user[0]} (ментор) <div class="socket-box">${user[1]}</div>`;
+          userBox.innerHTML = `<div>${user[0]} (ментор)</div> <div class="socket-box">${user[1]}</div>`;
           userBox.setAttribute("class", "user-box-mentor");
         } else {
-          userBox.innerHTML = `${user[0]} <div class="socket-box">${user[1]}</div>`;
+          userBox.innerHTML = `<div>${user[0]}</div> <div class="socket-box">${user[1]}</div>`;
         }
 
         if (user[0] !== nickname) {
@@ -115,15 +134,28 @@ const ChatMainPage = () => {
                   event.target.previousElementSibling.innerText
                 )
               );
+              dispatch(
+                privateRecipientNicknameSave(
+                  event.target.parentElement.firstElementChild.innerText
+                )
+              );
               console.log("пр получатель создан");
             } else if (
               privateRecipient == event.target.previousElementSibling.innerText
             ) {
               dispatch(privateRecipientSave());
+              dispatch(privateRecipientNicknameSave());
               console.log("пр получатель обнулён");
             } else {
-              privateRecipientSave(
-                event.target.previousElementSibling.innerText
+              dispatch(
+                privateRecipientSave(
+                  event.target.previousElementSibling.innerText
+                )
+              );
+              dispatch(
+                privateRecipientNicknameSave(
+                  event.target.parentElement.firstElementChild.innerText
+                )
               );
               console.log("пр получатель заменён");
             }
