@@ -176,6 +176,14 @@
     border: 1px solid slategrey;
     border-top: 0px;
 
+    .private-info {
+      background: rgba(100, 100, 100, 0.5);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     .message-input {
       width: 50%;
       &:focus {
