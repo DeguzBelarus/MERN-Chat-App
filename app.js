@@ -37,6 +37,12 @@ io.on("connection", (socket) => {
 
       socket.broadcast.emit("user disconnected", connectedUser, usersInRoom);
     });
+
+    socket.on("user send message", (nickname, message) => {
+      console.log(nickname, message);
+      socket.emit("message from user", nickname, message);
+      socket.broadcast.emit("message from user", nickname, message);
+    });
   });
 });
 

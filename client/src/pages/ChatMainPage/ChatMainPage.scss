@@ -8,7 +8,8 @@
 
   .chat-upper-wrapper {
     width: 100%;
-    height: 100%;
+    height: 90vh;
+    max-height: 100vh;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -16,6 +17,7 @@
     .userslist-box {
       width: 20vw;
       height: 100%;
+      padding-top: 5px;
       display: flex;
       flex-direction: column;
       justify-content: start;
@@ -38,7 +40,7 @@
         font-weight: bolder;
       }
 
-      .user-box-moder {
+      .user-box-mentor {
         width: 100%;
         height: 25px;
         display: flex;
@@ -76,6 +78,8 @@
       align-items: flex-start;
       box-sizing: border-box;
       border: 1px solid slategrey;
+      overflow-y: visible;
+      overflow: auto;
 
       .entering-notification {
         width: 100%;
@@ -95,6 +99,19 @@
 
         span {
           color: chocolate;
+          font-weight: bolder;
+        }
+      }
+
+      .user-message {
+        width: 100%;
+        height: 16px;
+        margin: 0;
+        margin-bottom: 5px;
+        font-size: 20px;
+
+        span {
+          color: rebeccapurple;
           font-weight: bolder;
         }
       }

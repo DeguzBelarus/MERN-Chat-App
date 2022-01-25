@@ -70,6 +70,16 @@ export const useSocket = () => {
         usersContainer.appendChild(userBox);
       });
     });
+
+    const userSendMessage = (event) => {
+      if (event.key === "Enter") {
+        let message = event.target.value;
+
+        socket.emit("user send message", nickname, message);
+
+        event.target.value = "";
+      }
+    };
   };
 
   return { chatEnter };

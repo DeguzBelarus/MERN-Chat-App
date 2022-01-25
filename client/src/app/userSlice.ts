@@ -10,7 +10,7 @@ interface UserState {
 const initialState = {
     userId: null,
     token: null,
-    nickname: null,
+    nickname: null
 } as UserState
 
 export const userSlice = createSlice({
