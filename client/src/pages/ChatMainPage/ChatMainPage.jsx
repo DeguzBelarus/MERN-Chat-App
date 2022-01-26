@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ChatMessages from "../components/chat/ChatMessages";
 import UsersList from "../components/chat/UsersList";
 import BottomPanel from "../components/chat/BottomPanel";
@@ -18,10 +18,6 @@ const ChatMainPage = () => {
   const dispatch = useAppDispatch();
   const nickname = useAppSelector(selectUserNickname);
   const userId = useAppSelector(selectUserId);
-  // const privateRecipient = useAppSelector(selectPrivateRecipient);
-  // const privateRecipientNickname = useAppSelector(
-  //   selectPrivateRecipientNickname
-  // );
 
   const socket = io();
 
