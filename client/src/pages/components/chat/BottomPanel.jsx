@@ -2,17 +2,12 @@ import React, { useRef } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
   selectPrivateRecipient,
-  selectPrivateRecipientNickname,
   privateRecipientSave,
-  privateRecipientNicknameSave,
 } from "../../../app/chatSlice";
 
 const BottomPanel = ({ userSendMessage, sendMessageOnButton }) => {
   const dispatch = useAppDispatch();
   const privateRecipient = useAppSelector(selectPrivateRecipient);
-  const privateRecipientNickname = useAppSelector(
-    selectPrivateRecipientNickname
-  );
 
   const messageInput = useRef();
 
@@ -27,16 +22,15 @@ const BottomPanel = ({ userSendMessage, sendMessageOnButton }) => {
 
   const privateModeOff = () => {
     dispatch(privateRecipientSave());
-    dispatch(privateRecipientNicknameSave());
   };
 
   return (
     <div className="bottom-panel">
-      {privateRecipient && privateRecipientNickname && (
+      {privateRecipient && (
         <div
           className="private-info"
           onClick={privateModeOff}
-        >{`Лично для ${privateRecipientNickname}: `}</div>
+        >{`Лично для ${privateRecipient[0]}: `}</div>
       )}
       <input
         type="text"

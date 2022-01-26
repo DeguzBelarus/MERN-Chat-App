@@ -3,14 +3,12 @@ import { RootState } from "./store";
 
 interface chatState {
     privateRecipient: any | null,
-    privateRecipientNickname: any | null,
-    usersInChatCount: 0
+    usersInChat: object
 }
 
 const initialState = {
     privateRecipient: null,
-    privateRecipientNickname: null,
-    usersInChatCount: 0
+    usersInChat: []
 } as chatState
 
 export const chatSlice = createSlice({
@@ -24,27 +22,18 @@ export const chatSlice = createSlice({
                 state.privateRecipient = null
             }
         },
-        privateRecipientNicknameSave(state: any, action: PayloadAction<any>) {
+        usersInChatSave(state: any, action: PayloadAction<any>) {
             if (action.payload) {
-                state.privateRecipientNickname = action.payload
+                state.usersInChat = action.payload
             } else {
-                state.privateRecipientNickname = null
-            }
-        },
-        usersInChatCountSave(state: any, action: PayloadAction<any>) {
-            if (action.payload) {
-                state.usersInChatCount = action.payload
-            } else {
-                state.usersInChatCount = 0
+                state.usersInChat = []
             }
         }
     }
 })
 
-export const { privateRecipientSave, privateRecipientNicknameSave, usersInChatCountSave } = chatSlice.actions
+export const { privateRecipientSave, usersInChatSave } = chatSlice.actions
 export const selectPrivateRecipient = (state: RootState) => state.chat.privateRecipient
-export const selectPrivateRecipientNickname = (state: RootState) => state.chat.privateRecipientNickname
-export const selectUsersInChatCount = (state: RootState) => state.chat.usersInChatCount
-
+export const selectUsersInChat = (state: RootState) => state.chat.usersInChat
 
 export default chatSlice.reducer

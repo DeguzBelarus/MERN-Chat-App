@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ChatMessages from "../components/chat/ChatMessages";
 import UsersList from "../components/chat/UsersList";
 import BottomPanel from "../components/chat/BottomPanel";
@@ -8,9 +8,7 @@ import { selectUserNickname, selectUserId } from "../../app/userSlice";
 import {
   privateRecipientSave,
   selectPrivateRecipient,
-  privateRecipientNicknameSave,
-  selectPrivateRecipientNickname,
-  usersInChatCountSave,
+  usersInChatSave,
 } from "../../app/chatSlice";
 import io from "socket.io-client";
 
@@ -20,16 +18,15 @@ const ChatMainPage = () => {
   const dispatch = useAppDispatch();
   const nickname = useAppSelector(selectUserNickname);
   const userId = useAppSelector(selectUserId);
-  const privateRecipient = useAppSelector(selectPrivateRecipient);
-  const privateRecipientNickname = useAppSelector(
-    selectPrivateRecipientNickname
-  );
+  // const privateRecipient = useAppSelector(selectPrivateRecipient);
+  // const privateRecipientNickname = useAppSelector(
+  //   selectPrivateRecipientNickname
+  // );
 
   const socket = io();
 
   useEffect(() => {
     let messagesContainer = document.querySelector(".chat-messages-box");
-    let usersContainer = document.querySelector(".userslist-box");
 
     socket.on("connect", () => {
       socket.emit("user connected", { nickname, userId });
@@ -43,63 +40,7 @@ const ChatMainPage = () => {
     });
 
     socket.on("users in room info", (newUsersInRoom) => {
-      usersContainer.innerHTML = "";
-      newUsersInRoom.sort().map((user) => {
-        let userBox = document.createElement("div");
-        userBox.setAttribute("class", "user-box");
-
-        if (user[0] === "Deguz") {
-          userBox.innerHTML = `<div>${user[0]} (админ)</div> <div class="socket-box">${user[1]}</div>`;
-          userBox.setAttribute("class", "user-box-admin");
-        } else if (user[0] === "NightOwl") {
-          userBox.innerHTML = `<div>${user[0]} (ментор)</div> <div class="socket-box">${user[1]}</div>`;
-          userBox.setAttribute("class", "user-box-mentor");
-        } else {
-          userBox.innerHTML = `<div>${user[0]}</div> <div class="socket-box">${user[1]}</div>`;
-        }
-
-        if (user[0] !== nickname) {
-          let privateButton = document.createElement("button");
-          privateButton.innerText = "Лично";
-          privateButton.setAttribute("class", "private-button");
-          privateButton.onclick = function privateModeHandle(event) {
-            if (!privateRecipient) {
-              dispatch(
-                privateRecipientSave(
-                  event.target.previousElementSibling.innerText
-                )
-              );
-              dispatch(
-                privateRecipientNicknameSave(
-                  event.target.parentElement.firstElementChild.innerText
-                )
-              );
-              console.log("пр получатель создан");
-            } else if (
-              privateRecipient == event.target.previousElementSibling.innerText
-            ) {
-              dispatch(privateRecipientSave());
-              dispatch(privateRecipientNicknameSave());
-              console.log("пр получатель обнулён");
-            } else {
-              dispatch(
-                privateRecipientSave(
-                  event.target.previousElementSibling.innerText
-                )
-              );
-              dispatch(
-                privateRecipientNicknameSave(
-                  event.target.parentElement.firstElementChild.innerText
-                )
-              );
-              console.log("пр получатель заменён");
-            }
-          };
-          userBox.appendChild(privateButton);
-        }
-
-        usersContainer.appendChild(userBox);
-      });
+      dispatch(usersInChatSave(newUsersInRoom));
     });
 
     socket.on("user disconnected", (disconnectedUser, newUsersInRoom) => {
@@ -108,63 +49,7 @@ const ChatMainPage = () => {
       exitingNotification.innerHTML = `Пользователь <span>${disconnectedUser}</span> вышел из чата.`;
       messagesContainer.appendChild(exitingNotification);
 
-      usersContainer.innerHTML = "";
-      newUsersInRoom.sort().map((user) => {
-        let userBox = document.createElement("div");
-        userBox.setAttribute("class", "user-box");
-
-        if (user[0] === "Deguz") {
-          userBox.innerHTML = `<div>${user[0]} (админ)</div> <div class="socket-box">${user[1]}</div>`;
-          userBox.setAttribute("class", "user-box-admin");
-        } else if (user[0] === "NightOwl") {
-          userBox.innerHTML = `<div>${user[0]} (ментор)</div> <div class="socket-box">${user[1]}</div>`;
-          userBox.setAttribute("class", "user-box-mentor");
-        } else {
-          userBox.innerHTML = `<div>${user[0]}</div> <div class="socket-box">${user[1]}</div>`;
-        }
-
-        if (user[0] !== nickname) {
-          let privateButton = document.createElement("button");
-          privateButton.innerText = "Лично";
-          privateButton.setAttribute("class", "private-button");
-          privateButton.onclick = function privateModeHandle(event) {
-            if (!privateRecipient) {
-              dispatch(
-                privateRecipientSave(
-                  event.target.previousElementSibling.innerText
-                )
-              );
-              dispatch(
-                privateRecipientNicknameSave(
-                  event.target.parentElement.firstElementChild.innerText
-                )
-              );
-              console.log("пр получатель создан");
-            } else if (
-              privateRecipient == event.target.previousElementSibling.innerText
-            ) {
-              dispatch(privateRecipientSave());
-              dispatch(privateRecipientNicknameSave());
-              console.log("пр получатель обнулён");
-            } else {
-              dispatch(
-                privateRecipientSave(
-                  event.target.previousElementSibling.innerText
-                )
-              );
-              dispatch(
-                privateRecipientNicknameSave(
-                  event.target.parentElement.firstElementChild.innerText
-                )
-              );
-              console.log("пр получатель заменён");
-            }
-          };
-          userBox.appendChild(privateButton);
-        }
-
-        usersContainer.appendChild(userBox);
-      });
+      dispatch(usersInChatSave(newUsersInRoom));
     });
 
     socket.on("message from user", (nickname, message) => {
@@ -172,6 +57,10 @@ const ChatMainPage = () => {
       userMessage.setAttribute("class", "user-message");
       userMessage.innerHTML = `<span>${nickname}:</span> ${message}`;
       messagesContainer.appendChild(userMessage);
+    });
+
+    socket.on("getting private user data", (targetUser) => {
+      dispatch(privateRecipientSave(targetUser[0]));
     });
   }, []);
 
@@ -190,10 +79,15 @@ const ChatMainPage = () => {
     socket.emit("user send message", nickname, message);
   };
 
+  const privateModeSet = (nickname) => {
+    console.log(nickname);
+    socket.emit("getting users socketid", nickname);
+  };
+
   return (
     <div className="chat-wrapper">
       <div className="chat-upper-wrapper">
-        <UsersList />
+        <UsersList privateModeSet={privateModeSet} />
         <ChatMessages />
       </div>
       <BottomPanel

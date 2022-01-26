@@ -24,6 +24,7 @@ io.on("connection", (socket) => {
       let userSocketId = socket.id;
       console.log("entered user socket: ", userSocketId);
       usersInRoom.push([connectedUser, userSocketId]);
+      usersInRoom = usersInRoom.sort();
       socket.emit("connected user info", data);
       socket.broadcast.emit("connected user info", data);
     }
@@ -36,6 +37,7 @@ io.on("connection", (socket) => {
       usersInRoom = usersInRoom.filter((element) => {
         return element[0] !== connectedUser;
       });
+      usersInRoom = usersInRoom.sort();
 
       socket.broadcast.emit("user disconnected", connectedUser, usersInRoom);
     });
@@ -44,6 +46,15 @@ io.on("connection", (socket) => {
       console.log(nickname, message);
       socket.emit("message from user", nickname, message);
       socket.broadcast.emit("message from user", nickname, message);
+    });
+
+    socket.on("getting users socketid", (nickname) => {
+      const targetUser = usersInRoom.filter((element) => {
+        return element[0] === nickname;
+      });
+      console.log("Targeted user: ", targetUser);
+
+      socket.emit("getting private user data", targetUser);
     });
   });
 });
