@@ -54,7 +54,7 @@ const ChatMainPage = () => {
     socket.on("private message from user", (nickname, privatemessage) => {
       let privateUserMessage = document.createElement("p");
       privateUserMessage.setAttribute("class", "user-message-private");
-      privateUserMessage.innerHTML = `Лично от <span>${nickname}:</span> ${privatemessage}`;
+      privateUserMessage.innerHTML = `<span>Лично от ${nickname}:</span> ${privatemessage}`;
       messagesContainer.appendChild(privateUserMessage);
     });
 
@@ -63,7 +63,7 @@ const ChatMainPage = () => {
       (privateUserNick, privatemessage) => {
         let privateNotification = document.createElement("p");
         privateNotification.setAttribute("class", "private-notification");
-        privateNotification.innerHTML = `Лично для <span>${privateUserNick}:</span> ${privatemessage}`;
+        privateNotification.innerHTML = `<span>Лично для ${privateUserNick}:</span> ${privatemessage}`;
         messagesContainer.appendChild(privateNotification);
       }
     );
