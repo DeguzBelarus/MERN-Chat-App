@@ -73,10 +73,9 @@ const BottomPanel = ({
   return (
     <div className="bottom-panel">
       {privateRecipient && (
-        <div
-          className="private-info"
-          onClick={privateModeOff}
-        >{`Лично для ${privateRecipient[0]}: `}</div>
+        <div className="private-info" onClick={privateModeOff}>
+          <span>{`Лично для: ${privateRecipient[0]}`}</span>
+        </div>
       )}
       <input
         type="text"

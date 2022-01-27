@@ -4,7 +4,6 @@ import { selectUsersInChat } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 
 const UsersList = ({ privateModeSet }) => {
-  const usersListContainer = useRef();
   const privateButton = useRef();
 
   const usersInChat = useAppSelector(selectUsersInChat);
@@ -18,7 +17,10 @@ const UsersList = ({ privateModeSet }) => {
   };
 
   return (
-    <div className="userslist-box" ref={usersListContainer}>
+    <div className="userslist-box">
+      <div className="users-count-box">
+        Пользователей:<span>{`${usersInChat.length}`}</span>
+      </div>
       {usersInChat.map((user) => {
         if (user[0] === nickname) {
           if (user[0] === "Deguz") {
