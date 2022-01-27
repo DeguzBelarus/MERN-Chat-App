@@ -5,11 +5,7 @@ import BottomPanel from "../components/chat/BottomPanel";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId } from "../../app/userSlice";
-import {
-  privateRecipientSave,
-  selectPrivateRecipient,
-  usersInChatSave,
-} from "../../app/chatSlice";
+import { privateRecipientSave, usersInChatSave } from "../../app/chatSlice";
 import io from "socket.io-client";
 
 import "./ChatMainPage.scss";
@@ -55,24 +51,62 @@ const ChatMainPage = () => {
       messagesContainer.appendChild(userMessage);
     });
 
+    socket.on("private message from user", (nickname, privatemessage) => {
+      let privateUserMessage = document.createElement("p");
+      privateUserMessage.setAttribute("class", "user-message-private");
+      privateUserMessage.innerHTML = `Лично от <span>${nickname}:</span> ${privatemessage}`;
+      messagesContainer.appendChild(privateUserMessage);
+    });
+
+    socket.on(
+      "private message notification",
+      (privateUserNick, privatemessage) => {
+        let privateNotification = document.createElement("p");
+        privateNotification.setAttribute("class", "private-notification");
+        privateNotification.innerHTML = `Лично для <span>${privateUserNick}:</span> ${privatemessage}`;
+        messagesContainer.appendChild(privateNotification);
+      }
+    );
+
     socket.on("getting private user data", (targetUser) => {
       dispatch(privateRecipientSave(targetUser[0]));
     });
   }, []);
 
-  const userSendMessage = (event) => {
-    if (event.key === "Enter") {
-      if (event.target.value === "") return;
+  const userSendMessage = (message) => {
+    socket.emit("user send message", nickname, message);
+  };
 
-      let message = event.target.value;
-      socket.emit("user send message", nickname, message);
-
-      event.target.value = "";
-    }
+  const userSendPrivateMessage = (
+    privatemessage,
+    privateUserNick,
+    privateUserSocket
+  ) => {
+    socket.emit(
+      "user send private message",
+      nickname,
+      privatemessage,
+      privateUserNick,
+      privateUserSocket
+    );
   };
 
   const sendMessageOnButton = (message) => {
     socket.emit("user send message", nickname, message);
+  };
+
+  const sendPrivateMessageOnButton = (
+    privatemessage,
+    privateUserNick,
+    privateUserSocket
+  ) => {
+    socket.emit(
+      "user send private message",
+      nickname,
+      privatemessage,
+      privateUserNick,
+      privateUserSocket
+    );
   };
 
   const privateModeSet = (nickname) => {
@@ -89,6 +123,8 @@ const ChatMainPage = () => {
       <BottomPanel
         userSendMessage={userSendMessage}
         sendMessageOnButton={sendMessageOnButton}
+        userSendPrivateMessage={userSendPrivateMessage}
+        sendPrivateMessageOnButton={sendPrivateMessageOnButton}
       />
     </div>
   );

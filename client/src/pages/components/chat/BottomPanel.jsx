@@ -5,19 +5,65 @@ import {
   privateRecipientSave,
 } from "../../../app/chatSlice";
 
-const BottomPanel = ({ userSendMessage, sendMessageOnButton }) => {
+const BottomPanel = ({
+  userSendMessage,
+  sendMessageOnButton,
+  userSendPrivateMessage,
+  sendPrivateMessageOnButton,
+}) => {
   const dispatch = useAppDispatch();
   const privateRecipient = useAppSelector(selectPrivateRecipient);
 
   const messageInput = useRef();
 
+  const handleSendMessage = (event) => {
+    if (event.key === "Enter") {
+      if (!privateRecipient) {
+        if (event.target.value === "") return;
+
+        let message = event.target.value;
+        userSendMessage(message);
+
+        event.target.value = "";
+      } else {
+        if (event.target.value === "") return;
+
+        let privatemessage = event.target.value;
+        let privateUserNick = privateRecipient[0];
+        let privateUserSocket = privateRecipient[1];
+        userSendPrivateMessage(
+          privatemessage,
+          privateUserNick,
+          privateUserSocket
+        );
+
+        event.target.value = "";
+      }
+    }
+  };
+
   const handleSendMessageOnButton = () => {
-    let message = messageInput.current.value;
-    if (message === "") return;
+    if (!privateRecipient) {
+      let message = messageInput.current.value;
+      if (message === "") return;
 
-    sendMessageOnButton(message);
+      sendMessageOnButton(message);
 
-    messageInput.current.value = "";
+      messageInput.current.value = "";
+    } else {
+      let privatemessage = messageInput.current.value;
+      if (privatemessage === "") return;
+
+      let privateUserNick = privateRecipient[0];
+      let privateUserSocket = privateRecipient[1];
+      sendPrivateMessageOnButton(
+        privatemessage,
+        privateUserNick,
+        privateUserSocket
+      );
+
+      messageInput.current.value = "";
+    }
   };
 
   const privateModeOff = () => {
@@ -36,7 +82,7 @@ const BottomPanel = ({ userSendMessage, sendMessageOnButton }) => {
         type="text"
         className="message-input"
         placeholder="Введите сообщение..."
-        onKeyPress={userSendMessage}
+        onKeyPress={handleSendMessage}
         ref={messageInput}
       />
       <button

@@ -56,6 +56,30 @@ io.on("connection", (socket) => {
 
       socket.emit("getting private user data", targetUser);
     });
+
+    socket.on(
+      "user send private message",
+      (nickname, privatemessage, privateUserNick, privateUserSocket) => {
+        console.log(
+          nickname,
+          privatemessage,
+          privateUserNick,
+          privateUserSocket
+        );
+
+        socket.emit(
+          "private message notification",
+          privateUserNick,
+          privatemessage
+        );
+
+        io.to(privateUserSocket).emit(
+          "private message from user",
+          nickname,
+          privatemessage
+        );
+      }
+    );
   });
 });
 
