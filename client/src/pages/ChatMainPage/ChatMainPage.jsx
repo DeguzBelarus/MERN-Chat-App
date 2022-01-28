@@ -110,7 +110,6 @@ const ChatMainPage = () => {
   };
 
   const privateModeSet = (nickname) => {
-    console.log(nickname);
     socket.emit("getting users socketid", nickname);
   };
 
