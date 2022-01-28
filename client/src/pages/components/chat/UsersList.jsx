@@ -93,19 +93,19 @@ const UsersList = ({ privateModeSet }) => {
           if (user[0] !== nickname && user[0] === privateRecipient[0]) {
             if (user[0] === "Deguz") {
               return (
-                <div className="user-box-admin" key={user[0]}>
+                <div className="user-box-private" key={user[0]}>
                   <span>{user[0]}</span>
                 </div>
               );
             } else if (user[0] === "NightOwl") {
               return (
-                <div className="user-box-mentor" key={user[0]}>
+                <div className="user-box-private" key={user[0]}>
                   <span>{user[0]}</span>
                 </div>
               );
             } else {
               return (
-                <div className="user-box" key={user[0]}>
+                <div className="user-box-private" key={user[0]}>
                   <span>{user[0]}</span>
                 </div>
               );
