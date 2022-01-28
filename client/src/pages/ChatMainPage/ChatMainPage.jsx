@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import ChatMessages from "../components/chat/ChatMessages";
 import UsersList from "../components/chat/UsersList";
 import BottomPanel from "../components/chat/BottomPanel";
-
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId } from "../../app/userSlice";
-import { privateRecipientSave, usersInChatSave } from "../../app/chatSlice";
+import { privateRecipientSave } from "../../app/chatSlice";
 import io from "socket.io-client";
-
 import "./ChatMainPage.scss";
 
 const ChatMainPage = () => {
@@ -22,26 +20,6 @@ const ChatMainPage = () => {
 
     socket.on("connect", () => {
       socket.emit("user connected", { nickname, userId });
-    });
-
-    socket.on("connected user info", (data) => {
-      let enteringNotification = document.createElement("p");
-      enteringNotification.setAttribute("class", "entering-notification");
-      enteringNotification.innerHTML = `Пользователь <span>${data.nickname}</span> вошёл в чат.`;
-      messagesContainer.appendChild(enteringNotification);
-    });
-
-    socket.on("users in room info", (newUsersInRoom) => {
-      dispatch(usersInChatSave(newUsersInRoom));
-    });
-
-    socket.on("user disconnected", (disconnectedUser, newUsersInRoom) => {
-      let exitingNotification = document.createElement("p");
-      exitingNotification.setAttribute("class", "exiting-notification");
-      exitingNotification.innerHTML = `Пользователь <span>${disconnectedUser}</span> вышел из чата.`;
-      messagesContainer.appendChild(exitingNotification);
-
-      dispatch(usersInChatSave(newUsersInRoom));
     });
 
     socket.on("message from user", (nickname, message) => {
@@ -116,8 +94,8 @@ const ChatMainPage = () => {
   return (
     <div className="chat-wrapper">
       <div className="chat-upper-wrapper">
-        <UsersList privateModeSet={privateModeSet} />
-        <ChatMessages />
+        <UsersList privateModeSet={privateModeSet} socket={socket} />
+        <ChatMessages socket={socket} />
       </div>
       <BottomPanel
         userSendMessage={userSendMessage}

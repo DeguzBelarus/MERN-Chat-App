@@ -1,12 +1,14 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
   selectUsersInChat,
   selectPrivateRecipient,
+  usersInChatSave,
 } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 
-const UsersList = ({ privateModeSet }) => {
+const UsersList = ({ socket, privateModeSet }) => {
+  const dispatch = useAppDispatch();
   const privateButton = useRef();
 
   const usersInChat = useAppSelector(selectUsersInChat);
@@ -19,6 +21,16 @@ const UsersList = ({ privateModeSet }) => {
 
     privateModeSet(privateRecipientNickname);
   };
+
+  useEffect(() => {
+    socket.on("users in room info", (newUsersInRoom) => {
+      dispatch(usersInChatSave(newUsersInRoom));
+    });
+
+    socket.on("user disconnected", (disconnectedUser, newUsersInRoom) => {
+      dispatch(usersInChatSave(newUsersInRoom));
+    });
+  }, []);
 
   return (
     <div className="userslist-box">
