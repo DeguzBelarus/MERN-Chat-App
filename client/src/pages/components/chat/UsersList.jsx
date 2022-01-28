@@ -31,19 +31,19 @@ const UsersList = ({ privateModeSet }) => {
             if (user[0] === "Deguz") {
               return (
                 <div className="user-box-admin" key={user[0]}>
-                  <span>{user[0]}</span>
+                  <span>{`${user[0]} (Вы)`}</span>
                 </div>
               );
             } else if (user[0] === "NightOwl") {
               return (
                 <div className="user-box-mentor" key={user[0]}>
-                  <span>{user[0]}</span>
+                  <span>{`${user[0]} (Вы)`}</span>
                 </div>
               );
             } else {
               return (
                 <div className="user-box" key={user[0]}>
-                  <span>{user[0]}</span>
+                  <span>{`${user[0]} (Вы)`}</span>
                 </div>
               );
             }
@@ -90,7 +90,7 @@ const UsersList = ({ privateModeSet }) => {
             }
           }
         } else {
-          if (user[0] === nickname || user[0] === privateRecipient[0]) {
+          if (user[0] !== nickname && user[0] === privateRecipient[0]) {
             if (user[0] === "Deguz") {
               return (
                 <div className="user-box-admin" key={user[0]}>
@@ -107,6 +107,26 @@ const UsersList = ({ privateModeSet }) => {
               return (
                 <div className="user-box" key={user[0]}>
                   <span>{user[0]}</span>
+                </div>
+              );
+            }
+          } else if (user[0] === nickname) {
+            if (user[0] === "Deguz") {
+              return (
+                <div className="user-box-admin" key={user[0]}>
+                  <span>{`${user[0]} (Вы)`}</span>
+                </div>
+              );
+            } else if (user[0] === "NightOwl") {
+              return (
+                <div className="user-box-mentor" key={user[0]}>
+                  <span>{`${user[0]} (Вы)`}</span>
+                </div>
+              );
+            } else {
+              return (
+                <div className="user-box" key={user[0]}>
+                  <span>{`${user[0]} (Вы)`}</span>
                 </div>
               );
             }
