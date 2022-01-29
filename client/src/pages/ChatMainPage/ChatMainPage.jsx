@@ -19,54 +19,13 @@ const ChatMainPage = () => {
     });
   }, []);
 
-  const userSendMessage = (message) => {
-    socket.emit("user send message", nickname, message);
-  };
-
-  const userSendPrivateMessage = (
-    privatemessage,
-    privateUserNick,
-    privateUserSocket
-  ) => {
-    socket.emit(
-      "user send private message",
-      nickname,
-      privatemessage,
-      privateUserNick,
-      privateUserSocket
-    );
-  };
-
-  const sendMessageOnButton = (message) => {
-    socket.emit("user send message", nickname, message);
-  };
-
-  const sendPrivateMessageOnButton = (
-    privatemessage,
-    privateUserNick,
-    privateUserSocket
-  ) => {
-    socket.emit(
-      "user send private message",
-      nickname,
-      privatemessage,
-      privateUserNick,
-      privateUserSocket
-    );
-  };
-
   return (
     <div className="chat-wrapper">
       <div className="chat-upper-wrapper">
         <UsersList socket={socket} />
         <ChatMessages socket={socket} />
       </div>
-      <BottomPanel
-        userSendMessage={userSendMessage}
-        sendMessageOnButton={sendMessageOnButton}
-        userSendPrivateMessage={userSendPrivateMessage}
-        sendPrivateMessageOnButton={sendPrivateMessageOnButton}
-      />
+      <BottomPanel socket={socket} />
     </div>
   );
 };

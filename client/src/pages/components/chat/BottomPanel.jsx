@@ -4,24 +4,21 @@ import {
   selectPrivateRecipient,
   privateRecipientSave,
 } from "../../../app/chatSlice";
+import { selectUserNickname } from "../../../app/userSlice";
 
-const BottomPanel = ({
-  userSendMessage,
-  sendMessageOnButton,
-  userSendPrivateMessage,
-  sendPrivateMessageOnButton,
-}) => {
+const BottomPanel = ({ socket }) => {
   const messageInput = useRef();
   const dispatch = useAppDispatch();
   const privateRecipient = useAppSelector(selectPrivateRecipient);
+  const nickname = useAppSelector(selectUserNickname);
 
-  const handleSendMessage = (event) => {
+  const userSendMessage = (event) => {
     if (event.key === "Enter") {
       if (!privateRecipient) {
         if (event.target.value === "") return;
 
         let message = event.target.value;
-        userSendMessage(message);
+        socket.emit("user send message", nickname, message);
 
         event.target.value = "";
       } else {
@@ -30,7 +27,10 @@ const BottomPanel = ({
         let privatemessage = event.target.value;
         let privateUserNick = privateRecipient[0];
         let privateUserSocket = privateRecipient[1];
-        userSendPrivateMessage(
+
+        socket.emit(
+          "user send private message",
+          nickname,
           privatemessage,
           privateUserNick,
           privateUserSocket
@@ -41,12 +41,12 @@ const BottomPanel = ({
     }
   };
 
-  const handleSendMessageOnButton = () => {
+  const sendMessageOnButton = () => {
     if (!privateRecipient) {
       let message = messageInput.current.value;
       if (message === "") return;
 
-      sendMessageOnButton(message);
+      socket.emit("user send message", nickname, message);
 
       messageInput.current.value = "";
     } else {
@@ -55,7 +55,10 @@ const BottomPanel = ({
 
       let privateUserNick = privateRecipient[0];
       let privateUserSocket = privateRecipient[1];
-      sendPrivateMessageOnButton(
+
+      socket.emit(
+        "user send private message",
+        nickname,
         privatemessage,
         privateUserNick,
         privateUserSocket
@@ -80,13 +83,10 @@ const BottomPanel = ({
         type="text"
         className="message-input"
         placeholder="Введите сообщение..."
-        onKeyPress={handleSendMessage}
+        onKeyPress={userSendMessage}
         ref={messageInput}
       />
-      <button
-        className="button-sendmessage"
-        onClick={handleSendMessageOnButton}
-      >
+      <button className="button-sendmessage" onClick={sendMessageOnButton}>
         Отправить
       </button>
     </div>
