@@ -4,23 +4,21 @@ import {
   selectUsersInChat,
   selectPrivateRecipient,
   usersInChatSave,
-  privateRecipientSave
+  privateRecipientSave,
 } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 
-const UsersList = ({ socket, privateModeSet }) => {
-  const dispatch = useAppDispatch();
+const UsersList = ({ socket }) => {
   const privateButton = useRef();
-
+  const dispatch = useAppDispatch();
   const usersInChat = useAppSelector(selectUsersInChat);
   const nickname = useAppSelector(selectUserNickname);
   const privateRecipient = useAppSelector(selectPrivateRecipient);
 
-  const privateModeHandle = (event) => {
+  const privateModeSet = (event) => {
     const privateRecipientNickname =
       event.target.parentElement.firstChild.innerText;
-
-    privateModeSet(privateRecipientNickname);
+    socket.emit("getting users socketid", privateRecipientNickname);
   };
 
   useEffect(() => {
@@ -72,7 +70,7 @@ const UsersList = ({ socket, privateModeSet }) => {
                   <button
                     className="private-button"
                     ref={privateButton}
-                    onClick={privateModeHandle}
+                    onClick={privateModeSet}
                   >
                     Лично
                   </button>
@@ -85,7 +83,7 @@ const UsersList = ({ socket, privateModeSet }) => {
                   <button
                     className="private-button"
                     ref={privateButton}
-                    onClick={privateModeHandle}
+                    onClick={privateModeSet}
                   >
                     Лично
                   </button>
@@ -98,7 +96,7 @@ const UsersList = ({ socket, privateModeSet }) => {
                   <button
                     className="private-button"
                     ref={privateButton}
-                    onClick={privateModeHandle}
+                    onClick={privateModeSet}
                   >
                     Лично
                   </button>
@@ -155,7 +153,7 @@ const UsersList = ({ socket, privateModeSet }) => {
                   <button
                     className="private-button"
                     ref={privateButton}
-                    onClick={privateModeHandle}
+                    onClick={privateModeSet}
                   >
                     Лично
                   </button>
@@ -168,7 +166,7 @@ const UsersList = ({ socket, privateModeSet }) => {
                   <button
                     className="private-button"
                     ref={privateButton}
-                    onClick={privateModeHandle}
+                    onClick={privateModeSet}
                   >
                     Лично
                   </button>
@@ -181,7 +179,7 @@ const UsersList = ({ socket, privateModeSet }) => {
                   <button
                     className="private-button"
                     ref={privateButton}
-                    onClick={privateModeHandle}
+                    onClick={privateModeSet}
                   >
                     Лично
                   </button>
@@ -194,4 +192,5 @@ const UsersList = ({ socket, privateModeSet }) => {
     </div>
   );
 };
+
 export default UsersList;

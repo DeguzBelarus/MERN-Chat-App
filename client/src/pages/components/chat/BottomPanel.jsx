@@ -11,10 +11,9 @@ const BottomPanel = ({
   userSendPrivateMessage,
   sendPrivateMessageOnButton,
 }) => {
+  const messageInput = useRef();
   const dispatch = useAppDispatch();
   const privateRecipient = useAppSelector(selectPrivateRecipient);
-
-  const messageInput = useRef();
 
   const handleSendMessage = (event) => {
     if (event.key === "Enter") {

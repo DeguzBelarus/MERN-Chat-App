@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ChatMessages from "../components/chat/ChatMessages";
 import UsersList from "../components/chat/UsersList";
 import BottomPanel from "../components/chat/BottomPanel";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import { selectUserNickname, selectUserId } from "../../app/userSlice";
 import io from "socket.io-client";
 import "./ChatMainPage.scss";
@@ -55,14 +55,10 @@ const ChatMainPage = () => {
     );
   };
 
-  const privateModeSet = (nickname) => {
-    socket.emit("getting users socketid", nickname);
-  };
-
   return (
     <div className="chat-wrapper">
       <div className="chat-upper-wrapper">
-        <UsersList privateModeSet={privateModeSet} socket={socket} />
+        <UsersList socket={socket} />
         <ChatMessages socket={socket} />
       </div>
       <BottomPanel
