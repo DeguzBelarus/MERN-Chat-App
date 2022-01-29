@@ -14,15 +14,41 @@ const ChatMessages = ({ socket }) => {
       const enteringNotification = ["enn", data.nickname];
       messagesInChat = [...messagesInChat, enteringNotification];
       dispatch(messagesInChatSave(messagesInChat));
-      console.log(messagesInChat);
     });
 
     socket.on("user disconnected", (disconnectedUser) => {
       const exitingNotification = ["exn", disconnectedUser];
       messagesInChat = [...messagesInChat, exitingNotification];
       dispatch(messagesInChatSave(messagesInChat));
+    });
+
+    socket.on("message from user", (nickname, message) => {
+      const userMessage = ["um", nickname, message];
+      messagesInChat = [...messagesInChat, userMessage];
+      dispatch(messagesInChatSave(messagesInChat));
       console.log(messagesInChat);
     });
+
+    socket.on("private message from user", (nickname, privatemessage) => {
+      const userMessagePrivate = ["ump", nickname, privatemessage];
+      messagesInChat = [...messagesInChat, userMessagePrivate];
+      dispatch(messagesInChatSave(messagesInChat));
+      console.log(messagesInChat);
+    });
+
+    socket.on(
+      "private message notification",
+      (privateUserNick, privatemessage) => {
+        const privateMessageNotification = [
+          "pmn",
+          privateUserNick,
+          privatemessage,
+        ];
+        messagesInChat = [...messagesInChat, privateMessageNotification];
+        dispatch(messagesInChatSave(messagesInChat));
+        console.log(messagesInChat);
+      }
+    );
   }, []);
 
   return (
@@ -38,6 +64,24 @@ const ChatMessages = ({ socket }) => {
           return (
             <p className="exiting-notification" key={index}>
               Пользователь <span>{message[1]}</span> вышел из чата
+            </p>
+          );
+        } else if (message[0] === "um") {
+          return (
+            <p className="user-message" key={index}>
+              <span>{message[1]}</span> {message[2]}
+            </p>
+          );
+        } else if (message[0] === "ump") {
+          return (
+            <p className="user-message-private" key={index}>
+              <span>{`Лично от ${message[1]}: `}</span> {message[2]}
+            </p>
+          );
+        } else if (message[0] === "pmn") {
+          return (
+            <p className="private-notification" key={index}>
+              <span>{`Лично для ${message[1]}: `}</span> {message[2]}
             </p>
           );
         }

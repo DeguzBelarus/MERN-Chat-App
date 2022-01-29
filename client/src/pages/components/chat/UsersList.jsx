@@ -4,6 +4,7 @@ import {
   selectUsersInChat,
   selectPrivateRecipient,
   usersInChatSave,
+  privateRecipientSave
 } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 
@@ -29,6 +30,10 @@ const UsersList = ({ socket, privateModeSet }) => {
 
     socket.on("user disconnected", (disconnectedUser, newUsersInRoom) => {
       dispatch(usersInChatSave(newUsersInRoom));
+    });
+
+    socket.on("getting private user data", (targetUser) => {
+      dispatch(privateRecipientSave(targetUser[0]));
     });
   }, []);
 
