@@ -115,8 +115,7 @@
 
     .chat-messages-box {
       height: 100%;
-      padding-top: 3px;
-      padding-bottom: 3px;
+      padding: 3px;
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
@@ -126,6 +125,7 @@
       .entering-notification {
         width: 100%;
         margin: 0;
+        margin-bottom: 5px;
 
         span {
           color: cadetblue;
@@ -136,6 +136,7 @@
       .exiting-notification {
         width: 100%;
         margin: 0;
+        margin-bottom: 5px;
 
         span {
           color: chocolate;
@@ -150,41 +151,43 @@
         margin-bottom: 5px;
         font-weight: bold;
         color: black;
+        word-break: break-all;
 
         span {
           margin-right: 2px;
-          color: fuchsia;
           font-weight: bolder;
+          color: fuchsia;
+          word-break: keep-all;
         }
       }
 
       .private-notification {
         width: 100%;
-        height: 16px;
         margin: 0;
         margin-bottom: 5px;
-        font-size: 20px;
         font-weight: bold;
         color: black;
+        word-break: break-all;
 
         span {
-          color: green;
           font-weight: bolder;
+          color: green;
+          word-break: keep-all;
         }
       }
 
       .user-message-private {
         width: 100%;
-        height: 16px;
         margin: 0;
         margin-bottom: 5px;
-        font-size: 20px;
         font-weight: bold;
         color: black;
+        word-break: break-all;
 
         span {
           color: green;
           font-weight: bolder;
+          word-break: keep-all;
         }
       }
     }
@@ -204,14 +207,17 @@
 
     .message-input {
       width: 100%;
-      height: 30px;
+      height: 35px;
       margin-bottom: 6px;
       box-sizing: border-box;
       border: 3px double gray;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
+      transition: 1s;
 
       &::placeholder {
+        opacity: 1;
+        transition: 1s;
       }
 
       &:focus {
@@ -236,7 +242,7 @@
         border: 1px dashed wheat;
         border-radius: 5px;
         animation-name: private-box-moving;
-        animation-duration: 0.7s;
+        animation-duration: 1.5s;
         animation-fill-mode: forwards;
         overflow: hidden;
 
@@ -326,7 +332,6 @@
       font-size: 14px;
 
       .private-button {
-        width: 100%;
         font-size: 10px;
       }
     }
@@ -338,7 +343,10 @@
 
   .message-input {
     &:focus {
-      outline: none;
+      &::placeholder {
+        font-size: 8px;
+        transform: translateY(-12px);
+      }
     }
   }
 
@@ -376,35 +384,11 @@
     }
 
     .private-notification {
-      width: 100%;
-      height: 16px;
-      margin: 0;
-      margin-top: 2px;
-      margin-bottom: 2px;
-      font-size: 20px;
-      font-weight: bold;
-      color: black;
-
-      span {
-        color: green;
-        font-weight: bolder;
-      }
+      font-size: 14px;
     }
 
     .user-message-private {
-      width: 100%;
-      height: 16px;
-      margin: 0;
-      margin-top: 2px;
-      margin-bottom: 2px;
-      font-size: 20px;
-      font-weight: bold;
-      color: black;
-
-      span {
-        color: green;
-        font-weight: bolder;
-      }
+      font-size: 14px;
     }
   }
 }
