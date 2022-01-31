@@ -72,7 +72,7 @@ const UsersList = ({ socket }) => {
                     ref={privateButton}
                     onClick={privateModeSet}
                   >
-                    Лично
+                    ЛС
                   </button>
                 </div>
               );
@@ -85,7 +85,7 @@ const UsersList = ({ socket }) => {
                     ref={privateButton}
                     onClick={privateModeSet}
                   >
-                    Лично
+                    ЛС
                   </button>
                 </div>
               );
@@ -98,7 +98,7 @@ const UsersList = ({ socket }) => {
                     ref={privateButton}
                     onClick={privateModeSet}
                   >
-                    Лично
+                    ЛС
                   </button>
                 </div>
               );
@@ -155,7 +155,7 @@ const UsersList = ({ socket }) => {
                     ref={privateButton}
                     onClick={privateModeSet}
                   >
-                    Лично
+                    ЛС
                   </button>
                 </div>
               );
@@ -168,7 +168,7 @@ const UsersList = ({ socket }) => {
                     ref={privateButton}
                     onClick={privateModeSet}
                   >
-                    Лично
+                    ЛС
                   </button>
                 </div>
               );
@@ -181,7 +181,7 @@ const UsersList = ({ socket }) => {
                     ref={privateButton}
                     onClick={privateModeSet}
                   >
-                    Лично
+                    ЛС
                   </button>
                 </div>
               );

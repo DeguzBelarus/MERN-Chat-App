@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
   selectMessagesInChat,
@@ -6,6 +6,7 @@ import {
 } from "../../../app/chatSlice";
 
 const ChatMessages = ({ socket }) => {
+  const messagesBox = useRef(null);
   const dispatch = useAppDispatch();
   let messagesInChat = useAppSelector(selectMessagesInChat);
 
@@ -51,8 +52,12 @@ const ChatMessages = ({ socket }) => {
     );
   }, []);
 
+  useEffect(() => {
+    messagesBox.current.scrollTo(0, 9999);
+  }, [messagesInChat]);
+
   return (
-    <div className="chat-messages-box">
+    <div className="chat-messages-box" ref={messagesBox}>
       {messagesInChat.map((message, index) => {
         if (message[0] === "enn") {
           return (
@@ -69,7 +74,7 @@ const ChatMessages = ({ socket }) => {
         } else if (message[0] === "um") {
           return (
             <p className="user-message" key={index}>
-              <span>{message[1]}</span> {message[2]}
+              <span>{message[1]}:</span> {message[2]}
             </p>
           );
         } else if (message[0] === "ump") {

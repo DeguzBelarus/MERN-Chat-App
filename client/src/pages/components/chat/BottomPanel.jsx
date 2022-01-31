@@ -74,11 +74,6 @@ const BottomPanel = ({ socket }) => {
 
   return (
     <div className="bottom-panel">
-      {privateRecipient && (
-        <div className="private-info" onClick={privateModeOff}>
-          <span>{`Лично для: ${privateRecipient[0]}`}</span>
-        </div>
-      )}
       <input
         type="text"
         className="message-input"
@@ -86,9 +81,17 @@ const BottomPanel = ({ socket }) => {
         onKeyPress={userSendMessage}
         ref={messageInput}
       />
-      <button className="button-sendmessage" onClick={sendMessageOnButton}>
-        Отправить
-      </button>
+      <div className="bottom-buttons">
+        {privateRecipient && (
+          <div className="private-info" onClick={privateModeOff}>
+            <span>{`Лично для: ${privateRecipient[0]}`}</span>
+          </div>
+        )}
+        <button className="button-sendmessage" onClick={sendMessageOnButton}>
+          Отправить
+        </button>
+        <button className="bottom-return-button">Выйти</button>
+      </div>
     </div>
   );
 };
