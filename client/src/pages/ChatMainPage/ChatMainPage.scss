@@ -304,7 +304,100 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 319px) {
+  .userslist-box {
+    width: 38%;
+
+    .users-count-box {
+      font-size: 12px;
+    }
+
+    .user-box-admin {
+      font-size: 12px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 12px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box {
+      font-size: 12px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 12px;
+    }
+  }
+
+  .chat-messages-box {
+    width: 62%;
+  }
+
+  .message-input {
+    &:focus {
+      &::placeholder {
+        font-size: 8px;
+        transform: translateY(-12px);
+      }
+    }
+  }
+
+  .bottom-buttons {
+    .private-info {
+      font-size: 11px;
+
+      &::after {
+        font-size: 11px;
+      }
+    }
+  }
+
+  .button-sendmessage {
+    width: 72px;
+    font-size: 10px;
+  }
+
+  .bottom-return-button {
+    width: 60px;
+    font-size: 10px;
+  }
+
+  .chat-messages-box {
+    .entering-notification {
+      font-size: 12px;
+    }
+
+    .exiting-notification {
+      font-size: 12px;
+    }
+
+    .user-message {
+      font-size: 13px;
+    }
+
+    .private-notification {
+      font-size: 13px;
+    }
+
+    .user-message-private {
+      font-size: 13px;
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
   .userslist-box {
     width: 33%;
 
@@ -334,6 +427,10 @@
       .private-button {
         font-size: 10px;
       }
+    }
+
+    .user-box-private {
+      font-size: 14px;
     }
   }
 
@@ -389,6 +486,471 @@
 
     .user-message-private {
       font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .userslist-box {
+    width: 33%;
+
+    .users-count-box {
+      font-size: 12px;
+    }
+
+    .user-box-admin {
+      font-size: 14px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 14px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box {
+      font-size: 14px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 14px;
+    }
+  }
+
+  .chat-messages-box {
+    width: 67%;
+  }
+
+  .message-input {
+    &:focus {
+      &::placeholder {
+        font-size: 8px;
+        transform: translateY(-12px);
+      }
+    }
+  }
+
+  .bottom-buttons {
+    .private-info {
+      font-size: 13px;
+
+      &::after {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .button-sendmessage {
+    width: 75px;
+    font-size: 12px;
+  }
+
+  .bottom-return-button {
+    width: 65px;
+    font-size: 12px;
+  }
+
+  .chat-messages-box {
+    .entering-notification {
+      font-size: 12px;
+    }
+
+    .exiting-notification {
+      font-size: 12px;
+    }
+
+    .user-message {
+      font-size: 14px;
+    }
+
+    .private-notification {
+      font-size: 14px;
+    }
+
+    .user-message-private {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .userslist-box {
+    width: 25%;
+
+    .users-count-box {
+      font-size: 14px;
+    }
+
+    .user-box-admin {
+      font-size: 16px;
+
+      .private-button {
+        font-size: 12px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 16px;
+
+      .private-button {
+        font-size: 12px;
+      }
+    }
+
+    .user-box {
+      font-size: 16px;
+
+      .private-button {
+        font-size: 12px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 16px;
+    }
+  }
+
+  .chat-messages-box {
+    width: 75%;
+  }
+
+  .message-input {
+    &:focus {
+      &::placeholder {
+        font-size: 10px;
+        transform: translateY(-10px);
+      }
+    }
+  }
+
+  .bottom-buttons {
+    .private-info {
+      font-size: 14px;
+
+      &::after {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .button-sendmessage {
+    width: 85px;
+    font-size: 14px;
+  }
+
+  .bottom-return-button {
+    width: 70px;
+    font-size: 14px;
+  }
+
+  .chat-messages-box {
+    .entering-notification {
+      font-size: 14px;
+    }
+
+    .exiting-notification {
+      font-size: 14px;
+    }
+
+    .user-message {
+      font-size: 16px;
+    }
+
+    .private-notification {
+      font-size: 16px;
+    }
+
+    .user-message-private {
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .userslist-box {
+    width: 20%;
+
+    .users-count-box {
+      font-size: 16px;
+    }
+
+    .user-box-admin {
+      font-size: 18px;
+
+      .private-button {
+        font-size: 13px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 18px;
+
+      .private-button {
+        font-size: 13px;
+      }
+    }
+
+    .user-box {
+      font-size: 18px;
+
+      .private-button {
+        font-size: 13px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 18px;
+    }
+  }
+
+  .chat-messages-box {
+    width: 80%;
+  }
+
+  .message-input {
+    &:focus {
+      &::placeholder {
+        font-size: 10px;
+        transform: translateY(-10px);
+      }
+    }
+  }
+
+  .bottom-buttons {
+    .private-info {
+      font-size: 16px;
+
+      &::after {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .button-sendmessage {
+    width: 90px;
+    font-size: 15px;
+  }
+
+  .bottom-return-button {
+    width: 75px;
+    font-size: 15px;
+  }
+
+  .chat-messages-box {
+    .entering-notification {
+      font-size: 16px;
+    }
+
+    .exiting-notification {
+      font-size: 16px;
+    }
+
+    .user-message {
+      font-size: 18px;
+    }
+
+    .private-notification {
+      font-size: 18px;
+    }
+
+    .user-message-private {
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .userslist-box {
+    width: 16%;
+
+    .users-count-box {
+      font-size: 18px;
+    }
+
+    .user-box-admin {
+      font-size: 20px;
+
+      .private-button {
+        font-size: 14px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 20px;
+
+      .private-button {
+        font-size: 14px;
+      }
+    }
+
+    .user-box {
+      font-size: 20px;
+
+      .private-button {
+        font-size: 14px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 20px;
+    }
+  }
+
+  .chat-messages-box {
+    width: 84%;
+  }
+
+  .message-input {
+    &:focus {
+      &::placeholder {
+        font-size: 11px;
+        transform: translateY(-9px);
+      }
+    }
+  }
+
+  .bottom-buttons {
+    .private-info {
+      font-size: 17px;
+
+      &::after {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .button-sendmessage {
+    width: 100px;
+    font-size: 17px;
+  }
+
+  .bottom-return-button {
+    width: 85px;
+    font-size: 17px;
+  }
+
+  .chat-messages-box {
+    .entering-notification {
+      font-size: 18px;
+    }
+
+    .exiting-notification {
+      font-size: 18px;
+    }
+
+    .user-message {
+      font-size: 20px;
+    }
+
+    .private-notification {
+      font-size: 20px;
+    }
+
+    .user-message-private {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .userslist-box {
+    width: 13%;
+
+    .users-count-box {
+      font-size: 22px;
+    }
+
+    .user-box-admin {
+      font-size: 23px;
+
+      .private-button {
+        font-size: 16px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 23px;
+
+      .private-button {
+        font-size: 16px;
+      }
+    }
+
+    .user-box {
+      font-size: 23px;
+
+      .private-button {
+        font-size: 16px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 23px;
+    }
+  }
+
+  .chat-messages-box {
+    width: 87%;
+  }
+
+  .message-input {
+    &:focus {
+      &::placeholder {
+        font-size: 12px;
+        transform: translateY(-8px);
+      }
+    }
+  }
+
+  .bottom-buttons {
+    .private-info {
+      font-size: 18px;
+
+      &::after {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .button-sendmessage {
+    width: 125px;
+    font-size: 22px;
+  }
+
+  .bottom-return-button {
+    width: 100px;
+    font-size: 22px;
+  }
+
+  .chat-messages-box {
+    .entering-notification {
+      font-size: 24px;
+    }
+
+    .exiting-notification {
+      font-size: 24px;
+    }
+
+    .user-message {
+      font-size: 28px;
+    }
+
+    .private-notification {
+      font-size: 28px;
+    }
+
+    .user-message-private {
+      font-size: 28px;
     }
   }
 }
