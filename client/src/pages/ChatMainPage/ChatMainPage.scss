@@ -244,6 +244,7 @@
         animation-name: private-box-moving;
         animation-duration: 1.5s;
         animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
         overflow: hidden;
 
         &::after {
@@ -280,6 +281,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .bottom-return-button {
@@ -291,6 +296,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
