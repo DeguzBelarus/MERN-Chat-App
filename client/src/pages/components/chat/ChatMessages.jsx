@@ -54,6 +54,11 @@ const ChatMessages = ({ socket }) => {
 
   useEffect(() => {
     messagesBox.current.scrollTo(0, 9999);
+
+    if (messagesInChat.length > 1300) {
+      messagesInChat = messagesInChat.slice(300, messagesInChat.length);
+      dispatch(messagesInChatSave(messagesInChat));
+    }
   }, [messagesInChat]);
 
   return (
