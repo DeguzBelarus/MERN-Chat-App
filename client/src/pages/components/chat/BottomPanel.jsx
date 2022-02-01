@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
   selectPrivateRecipient,
@@ -75,8 +74,8 @@ const BottomPanel = ({ socket }) => {
   };
 
   const disconnection = () => {
-    socket.disconnect();
     dispatch(messagesInChatSave());
+    window.location.reload();
   };
 
   return (
@@ -97,11 +96,9 @@ const BottomPanel = ({ socket }) => {
         <button className="button-sendmessage" onClick={sendMessageOnButton}>
           Отправить
         </button>
-        <Link to={`/usersroom/${nickname}`}>
-          <button className="bottom-return-button" onClick={disconnection}>
-            Выйти
-          </button>
-        </Link>
+        <button className="bottom-return-button" onClick={disconnection}>
+          Выйти
+        </button>
       </div>
     </div>
   );
