@@ -13,7 +13,10 @@ authorizationRouter.post(
     check("password", "Минимальная длина пароля 8 символов").isLength({
       min: 8,
     }),
-    check("nickname", "Минимальная длина Ника 2 символа").isLength({ min: 2 }),
+    check("nickname", "Максимальная длина ника 10 символа").isLength({
+      max: 10,
+      min: 2,
+    }),
   ],
   async (request, response) => {
     try {
