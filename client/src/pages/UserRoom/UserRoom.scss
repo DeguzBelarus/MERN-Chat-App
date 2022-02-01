@@ -7,7 +7,6 @@
   padding-top: 10px;
 
   .user-info-box {
-    height: 250px;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -31,11 +30,183 @@
     }
 
     .user-room-buttons {
-      .enter-button {
-      }
-
       .logout-button {
         margin-right: 20px;
+      }
+
+      .enter-button {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 319px) {
+  .user-info-box {
+    width: 100%;
+    height: 250px;
+
+    .user-welcome-header {
+      font-size: 20px;
+    }
+
+    .user-id-paragraph {
+    }
+
+    .user-room-buttons {
+      .logout-button {
+        font-size: 14px;
+      }
+
+      .enter-button {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .user-info-box {
+    width: 100%;
+    height: 260px;
+
+    .user-welcome-header {
+      font-size: 22px;
+    }
+
+    .user-id-paragraph {
+    }
+
+    .user-room-buttons {
+      .logout-button {
+        font-size: 15px;
+      }
+
+      .enter-button {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .user-info-box {
+    width: 400px;
+    height: 270px;
+
+    .user-welcome-header {
+      font-size: 25px;
+    }
+
+    .user-id-paragraph {
+    }
+
+    .user-room-buttons {
+      .logout-button {
+        font-size: 16px;
+      }
+
+      .enter-button {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .user-info-box {
+    width: 700px;
+    height: 310px;
+
+    .user-welcome-header {
+      font-size: 28px;
+    }
+
+    .user-id-paragraph {
+      font-size: 18px;
+    }
+
+    .user-room-buttons {
+      .logout-button {
+        font-size: 20px;
+      }
+
+      .enter-button {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .user-info-box {
+    width: 870px;
+    height: 350px;
+
+    .user-welcome-header {
+      font-size: 32px;
+    }
+
+    .user-id-paragraph {
+      font-size: 20px;
+    }
+
+    .user-room-buttons {
+      .logout-button {
+        font-size: 22px;
+      }
+
+      .enter-button {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .user-info-box {
+    width: 1150px;
+    height: 400px;
+
+    .user-welcome-header {
+      font-size: 36px;
+    }
+
+    .user-id-paragraph {
+      font-size: 22px;
+    }
+
+    .user-room-buttons {
+      .logout-button {
+        font-size: 24px;
+      }
+
+      .enter-button {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .user-info-box {
+    width: 1800px;
+    height: 600px;
+
+    .user-welcome-header {
+      font-size: 58px;
+    }
+
+    .user-id-paragraph {
+      font-size: 36px;
+    }
+
+    .user-room-buttons {
+      .logout-button {
+        font-size: 40px;
+      }
+
+      .enter-button {
+        font-size: 40px;
       }
     }
   }

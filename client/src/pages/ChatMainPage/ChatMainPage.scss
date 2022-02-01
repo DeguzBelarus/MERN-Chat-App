@@ -244,7 +244,7 @@
         animation-name: private-box-moving;
         animation-duration: 1.5s;
         animation-fill-mode: forwards;
-        animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in;
         overflow: hidden;
 
         &::after {

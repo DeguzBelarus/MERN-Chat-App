@@ -85,7 +85,7 @@ const AuthorizationPage = () => {
                 <form className="authorization-form">
                     <h1 className="authorization-header">Авторизация:</h1>
                     <label htmlFor="emailInput">Введите email:</label>
-                    <input id="emailInput" type="email" name="email" onChange={changeHandler} />
+                    <input id="emailInput" type="email" name="email" autoFocus onChange={changeHandler} />
                     <label htmlFor="passworInput">Введите пароль:</label>
                     <input id="passworInput" type="password" name="password" onChange={changeHandler} />
                     <div className="authorization-buttons">

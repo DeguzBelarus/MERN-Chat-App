@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
   selectPrivateRecipient,
   privateRecipientSave,
+  messagesInChatSave,
 } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 
@@ -72,6 +74,11 @@ const BottomPanel = ({ socket }) => {
     dispatch(privateRecipientSave());
   };
 
+  const disconnection = () => {
+    socket.disconnect();
+    dispatch(messagesInChatSave());
+  };
+
   return (
     <div className="bottom-panel">
       <input
@@ -90,7 +97,11 @@ const BottomPanel = ({ socket }) => {
         <button className="button-sendmessage" onClick={sendMessageOnButton}>
           Отправить
         </button>
-        <button className="bottom-return-button">Выйти</button>
+        <Link to={`/usersroom/${nickname}`}>
+          <button className="bottom-return-button" onClick={disconnection}>
+            Выйти
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -49,7 +49,7 @@ const RegistrationPage = () => {
                 <form className="registration-form">
                     <h1 className="registration-header">Регистрация:</h1>
                     <label htmlFor="nicknameInput">Введите Ник:</label>
-                    <input id="nicknameInput" type="text" placeholder="Минимум 2 символа" name="nickname" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+                    <input id="nicknameInput" type="text" placeholder="Минимум 2 символа" name="nickname" autoFocus onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
                     <label htmlFor="emailInput">Введите email:</label>
                     <input id="emailInput" type="email" placeholder="Формата mail@mail.domen" name="email" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
                     <label htmlFor="passworInput">Введите пароль:</label>

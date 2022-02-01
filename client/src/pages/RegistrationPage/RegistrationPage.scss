@@ -1,5 +1,5 @@
 .registration-wrapper {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -7,19 +7,17 @@
   align-items: center;
 
   .registration-form {
-    width: 280px;
-    height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     padding: 5px;
+    box-sizing: border-box;
     border: 1px solid black;
 
     .registration-header {
       margin: 0;
       margin-bottom: 5px;
-      font-size: 25px;
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
@@ -97,6 +95,344 @@
       -ms-user-select: none;
       -webkit-user-select: none;
       user-select: none;
+    }
+  }
+}
+
+@media screen and (max-width: 319px) {
+  .registration-form {
+    width: 100%;
+    height: 275px;
+
+    .registration-header {
+      font-size: 25px;
+    }
+
+    label {
+    }
+
+    #nicknameInput {
+      width: 170px;
+      height: 18px;
+      &:focus {
+      }
+    }
+
+    #emailInput {
+      width: 170px;
+      height: 18px;
+      &:focus {
+      }
+    }
+
+    #passworInput {
+      width: 170px;
+      height: 18px;
+      &:focus {
+      }
+    }
+
+    .authorization-buttons {
+      .returnButton {
+      }
+
+      .registrationButton {
+      }
+    }
+
+    .message-box {
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .registration-form {
+    width: 100%;
+    height: 285px;
+
+    .registration-header {
+      font-size: 25px;
+    }
+
+    label {
+    }
+
+    #nicknameInput {
+      width: 190px;
+      height: 18px;
+      &:focus {
+      }
+    }
+
+    #emailInput {
+      width: 190px;
+      height: 18px;
+      &:focus {
+      }
+    }
+
+    #passworInput {
+      width: 190px;
+      height: 18px;
+      &:focus {
+      }
+    }
+
+    .authorization-buttons {
+      .returnButton {
+        font-size: 15px;
+      }
+
+      .registrationButton {
+        font-size: 15px;
+      }
+    }
+
+    .message-box {
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .registration-form {
+    width: 350px;
+    height: 290px;
+
+    .registration-header {
+      font-size: 27px;
+    }
+
+    label {
+    }
+
+    #nicknameInput {
+      width: 200px;
+      height: 19px;
+      &:focus {
+      }
+    }
+
+    #emailInput {
+      width: 200px;
+      height: 19px;
+      &:focus {
+      }
+    }
+
+    #passworInput {
+      width: 200px;
+      height: 19px;
+      &:focus {
+      }
+    }
+
+    .authorization-buttons {
+      .returnButton {
+        font-size: 16px;
+      }
+
+      .registrationButton {
+        font-size: 16px;
+      }
+    }
+
+    .message-box {
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .registration-form {
+    width: 380px;
+    height: 300px;
+
+    .registration-header {
+      font-size: 29px;
+    }
+
+    label {
+    }
+
+    #nicknameInput {
+      width: 220px;
+      height: 20px;
+      &:focus {
+      }
+    }
+
+    #emailInput {
+      width: 220px;
+      height: 20px;
+      &:focus {
+      }
+    }
+
+    #passworInput {
+      width: 220px;
+      height: 20px;
+      &:focus {
+      }
+    }
+
+    .authorization-buttons {
+      .returnButton {
+        font-size: 17px;
+      }
+
+      .registrationButton {
+        font-size: 17px;
+      }
+    }
+
+    .message-box {
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .registration-form {
+    width: 440px;
+    height: 340px;
+
+    .registration-header {
+      font-size: 32px;
+    }
+
+    label {
+      font-size: 18px;
+    }
+
+    #nicknameInput {
+      width: 250px;
+      height: 21px;
+      &:focus {
+      }
+    }
+
+    #emailInput {
+      width: 250px;
+      height: 21px;
+      &:focus {
+      }
+    }
+
+    #passworInput {
+      width: 250px;
+      height: 21px;
+      &:focus {
+      }
+    }
+
+    .authorization-buttons {
+      .returnButton {
+        font-size: 18px;
+      }
+
+      .registrationButton {
+        font-size: 18px;
+      }
+    }
+
+    .message-box {
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .registration-form {
+    width: 470px;
+    height: 355px;
+
+    .registration-header {
+      font-size: 34px;
+    }
+
+    label {
+      font-size: 19px;
+    }
+
+    #nicknameInput {
+      width: 250px;
+      height: 24px;
+      &:focus {
+      }
+    }
+
+    #emailInput {
+      width: 250px;
+      height: 24px;
+      &:focus {
+      }
+    }
+
+    #passworInput {
+      width: 250px;
+      height: 24px;
+      &:focus {
+      }
+    }
+
+    .authorization-buttons {
+      .returnButton {
+        font-size: 20px;
+      }
+
+      .registrationButton {
+        font-size: 20px;
+      }
+    }
+
+    .message-box {
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .registration-form {
+    width: 700px;
+    height: 500px;
+
+    .registration-header {
+      font-size: 52px;
+    }
+
+    label {
+      font-size: 30px;
+    }
+
+    #nicknameInput {
+      width: 410px;
+      height: 48px;
+      &:focus {
+      }
+    }
+
+    #emailInput {
+      width: 410px;
+      height: 48px;
+      &:focus {
+      }
+    }
+
+    #passworInput {
+      width: 250px;
+      width: 410px;
+      height: 48px;
+      &:focus {
+      }
+    }
+
+    .authorization-buttons {
+      .returnButton {
+        font-size: 32px;
+      }
+
+      .registrationButton {
+        font-size: 32px;
+      }
+    }
+
+    .message-box {
     }
   }
 }
