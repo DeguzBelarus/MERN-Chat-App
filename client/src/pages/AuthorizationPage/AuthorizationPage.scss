@@ -17,7 +17,7 @@
 
     .authorization-header {
       margin: 0;
-      margin-bottom: 5px;
+      margin-bottom: 15px;
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
@@ -25,15 +25,75 @@
 
     #emailInput {
       margin-bottom: 2px;
+      box-sizing: border-box;
+      border: 1px solid #111;
+
+      &::placeholder {
+        opacity: 0;
+      }
+
+      + label {
+        display: block;
+        background: white;
+        opacity: 0.5;
+        transition: 0.8s;
+        z-index: 1;
+      }
+
+      &:not(:placeholder-shown) {
+        border: 1px solid peru;
+        padding-left: 5px;
+      }
+
+      &:not(:placeholder-shown) + label {
+        color: deeppink;
+        opacity: 1;
+      }
 
       &:focus {
         outline: none;
+
+        + label {
+          color: deeppink;
+          opacity: 1;
+        }
       }
     }
 
     #passworInput {
+      box-sizing: border-box;
+      border: 1px solid #111;
+      color: green;
+
+      &::placeholder {
+        opacity: 0;
+      }
+
+      + label {
+        display: block;
+        background: white;
+        opacity: 0.5;
+        transition: 0.8s;
+        z-index: 1;
+      }
+
+      &:not(:placeholder-shown) {
+        border: 1px solid peru;
+        padding-left: 5px;
+      }
+
+      &:not(:placeholder-shown) + label {
+        color: deeppink;
+        opacity: 1;
+      }
+
       &:focus {
         outline: none;
+
+        + label {
+          color: deeppink;
+          opacity: 1;
+        }
       }
     }
 
@@ -78,20 +138,47 @@
         font-size: 25px;
       }
 
-      label {
-      }
-
       #emailInput {
         width: 170px;
-        height: 18px;
+        height: 25px;
+        border-radius: 5px;
+        font-size: 10px;
+
+        + label {
+          font-size: 10px;
+          transform: translateY(-20px) translateX(-49px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-33px) translateX(-49px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-33px) translateX(-49px);
+          }
         }
       }
 
       #passworInput {
         width: 170px;
-        height: 18px;
+        height: 25px;
+        border-radius: 5px;
+        font-size: 10px;
+
+        + label {
+          font-size: 10px;
+          transform: translateY(-17px) translateX(-45px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-30px) translateX(-45px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-30px) translateX(-45px);
+          }
         }
       }
 
@@ -119,20 +206,47 @@
         font-size: 25px;
       }
 
-      label {
-      }
-
       #emailInput {
-        width: 190px;
-        height: 18px;
+        width: 170px;
+        height: 25px;
+        border-radius: 5px;
+        font-size: 10px;
+
+        + label {
+          font-size: 10px;
+          transform: translateY(-20px) translateX(-49px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-33px) translateX(-49px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-33px) translateX(-49px);
+          }
         }
       }
 
       #passworInput {
-        width: 190px;
-        height: 18px;
+        width: 170px;
+        height: 25px;
+        border-radius: 5px;
+        font-size: 10px;
+
+        + label {
+          font-size: 10px;
+          transform: translateY(-17px) translateX(-45px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-30px) translateX(-45px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-30px) translateX(-45px);
+          }
         }
       }
 
@@ -162,20 +276,47 @@
         font-size: 27px;
       }
 
-      label {
-      }
-
       #emailInput {
         width: 200px;
-        height: 19px;
+        height: 28px;
+        border-radius: 5px;
+        font-size: 12px;
+
+        + label {
+          font-size: 12px;
+          transform: translateY(-22px) translateX(-54px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-37px) translateX(-54px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-37px) translateX(-54px);
+          }
         }
       }
 
       #passworInput {
         width: 200px;
-        height: 19px;
+        height: 28px;
+        border-radius: 5px;
+        font-size: 12px;
+
+        + label {
+          font-size: 12px;
+          transform: translateY(-20px) translateX(-50px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-35px) translateX(-50px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-35px) translateX(-50px);
+          }
         }
       }
 
@@ -205,20 +346,47 @@
         font-size: 29px;
       }
 
-      label {
-      }
-
       #emailInput {
         width: 220px;
-        height: 20px;
+        height: 30px;
+        border-radius: 5px;
+        font-size: 13px;
+
+        + label {
+          font-size: 13px;
+          transform: translateY(-24px) translateX(-60px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-40px) translateX(-60px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-40px) translateX(-60px);
+          }
         }
       }
 
       #passworInput {
         width: 220px;
-        height: 20px;
+        height: 30px;
+        border-radius: 5px;
+        font-size: 13px;
+
+        + label {
+          font-size: 13px;
+          transform: translateY(-22px) translateX(-56px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-38px) translateX(-56px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-38px) translateX(-56px);
+          }
         }
       }
 
@@ -248,21 +416,47 @@
         font-size: 32px;
       }
 
-      label {
-        font-size: 18px;
-      }
-
       #emailInput {
-        width: 250px;
-        height: 21px;
+        width: 240px;
+        height: 32px;
+        border-radius: 5px;
+        font-size: 14px;
+
+        + label {
+          font-size: 14px;
+          transform: translateY(-24px) translateX(-66px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-42px) translateX(-66px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-42px) translateX(-66px);
+          }
         }
       }
 
       #passworInput {
-        width: 250px;
-        height: 21px;
+        width: 240px;
+        height: 32px;
+        border-radius: 5px;
+        font-size: 14px;
+
+        + label {
+          font-size: 14px;
+          transform: translateY(-22px) translateX(-61px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-40px) translateX(-61px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-40px) translateX(-61px);
+          }
         }
       }
 
@@ -292,21 +486,47 @@
         font-size: 34px;
       }
 
-      label {
-        font-size: 19px;
-      }
-
       #emailInput {
-        width: 250px;
-        height: 24px;
+        width: 260px;
+        height: 34px;
+        border-radius: 5px;
+        font-size: 15px;
+
+        + label {
+          font-size: 15px;
+          transform: translateY(-27px) translateX(-72px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-45px) translateX(-72px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-45px) translateX(-72px);
+          }
         }
       }
 
       #passworInput {
-        width: 250px;
-        height: 24px;
+        width: 260px;
+        height: 34px;
+        border-radius: 5px;
+        font-size: 15px;
+
+        + label {
+          font-size: 15px;
+          transform: translateY(-25px) translateX(-67px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-43px) translateX(-67px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-43px) translateX(-67px);
+          }
         }
       }
 
@@ -336,21 +556,48 @@
         font-size: 52px;
       }
 
-      label {
-        font-size: 30px;
-      }
-
       #emailInput {
-        width: 410px;
-        height: 48px;
+        width: 350px;
+        height: 45px;
+        margin-top: 10px;
+        border-radius: 5px;
+        font-size: 20px;
+
+        + label {
+          font-size: 20px;
+          transform: translateY(-35px) translateX(-98px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-60px) translateX(-98px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-60px) translateX(-98px);
+          }
         }
       }
 
       #passworInput {
-        width: 410px;
-        height: 48px;
+        width: 350px;
+        height: 45px;
+        border-radius: 5px;
+        font-size: 20px;
+
+        + label {
+          font-size: 20px;
+          transform: translateY(-33px) translateX(-92px);
+        }
+
+        &:not(:placeholder-shown) + label {
+          transform: translateY(-58px) translateX(-92px);
+        }
+
         &:focus {
+          + label {
+            transform: translateY(-58px) translateX(-92px);
+          }
         }
       }
 

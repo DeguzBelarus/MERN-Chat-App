@@ -84,10 +84,10 @@ const AuthorizationPage = () => {
 
                 <form className="authorization-form">
                     <h1 className="authorization-header">Авторизация:</h1>
-                    <label htmlFor="emailInput">Введите email:</label>
-                    <input id="emailInput" type="email" name="email" autoFocus onChange={changeHandler} />
-                    <label htmlFor="passworInput">Введите пароль:</label>
-                    <input id="passworInput" type="password" name="password" onChange={changeHandler} />
+                    <input id="emailInput" type="email" placeholder="Введите email" name="email" autoFocus onChange={changeHandler} />
+                    <label htmlFor="emailInput">Введите email</label>
+                    <input id="passworInput" type="password" placeholder="Введите пароль" name="password" onChange={changeHandler} />
+                    <label htmlFor="passworInput">Введите пароль</label>
                     <div className="authorization-buttons">
                         <button className="loginButton" disabled={loading} onClick={loginHandler}>Войти</button>
                         <Link to={"/registration"}><button className="registrationButton" disabled={loading}>Регистрация</button></Link>
