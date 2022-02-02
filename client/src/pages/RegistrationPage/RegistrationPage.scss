@@ -461,27 +461,69 @@
       font-size: 29px;
     }
 
-    label {
-    }
-
     #nicknameInput {
       width: 220px;
-      height: 20px;
+      height: 30px;
+      border-radius: 5px;
+      font-size: 13px;
+
+      + label {
+        font-size: 13px;
+        transform: translateY(-37px) translateX(-50px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-53px) translateX(-50px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-53px) translateX(-50px);
+        }
       }
     }
 
     #emailInput {
       width: 220px;
-      height: 20px;
+      height: 30px;
+      border-radius: 5px;
+      font-size: 13px;
+
+      + label {
+        font-size: 13px;
+        transform: translateY(-24px) translateX(-60px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-40px) translateX(-60px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-40px) translateX(-60px);
+        }
       }
     }
 
     #passworInput {
       width: 220px;
-      height: 20px;
+      height: 30px;
+      border-radius: 5px;
+      font-size: 13px;
+
+      + label {
+        font-size: 13px;
+        transform: translateY(-22px) translateX(-56px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-38px) translateX(-56px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-38px) translateX(-56px);
+        }
       }
     }
 
@@ -509,28 +551,69 @@
       font-size: 32px;
     }
 
-    label {
-      font-size: 18px;
-    }
-
     #nicknameInput {
-      width: 250px;
-      height: 21px;
+      width: 240px;
+      height: 32px;
+      border-radius: 5px;
+      font-size: 14px;
+
+      + label {
+        font-size: 14px;
+        transform: translateY(-39px) translateX(-56px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-55px) translateX(-56px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-55px) translateX(-56px);
+        }
       }
     }
 
     #emailInput {
-      width: 250px;
-      height: 21px;
+      width: 240px;
+      height: 32px;
+      border-radius: 5px;
+      font-size: 14px;
+
+      + label {
+        font-size: 14px;
+        transform: translateY(-25px) translateX(-66px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-42px) translateX(-66px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-42px) translateX(-66px);
+        }
       }
     }
 
     #passworInput {
-      width: 250px;
-      height: 21px;
+      width: 240px;
+      height: 32px;
+      border-radius: 5px;
+      font-size: 14px;
+
+      + label {
+        font-size: 14px;
+        transform: translateY(-24px) translateX(-62px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-40px) translateX(-62px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-40px) translateX(-62px);
+        }
       }
     }
 
@@ -558,28 +641,69 @@
       font-size: 34px;
     }
 
-    label {
-      font-size: 19px;
-    }
-
     #nicknameInput {
-      width: 250px;
-      height: 24px;
+      width: 260px;
+      height: 34px;
+      border-radius: 5px;
+      font-size: 15px;
+
+      + label {
+        font-size: 14px;
+        transform: translateY(-39px) translateX(-65px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-57px) translateX(-65px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-57px) translateX(-65px);
+        }
       }
     }
 
     #emailInput {
-      width: 250px;
-      height: 24px;
+      width: 260px;
+      height: 34px;
+      border-radius: 5px;
+      font-size: 15px;
+
+      + label {
+        font-size: 15px;
+        transform: translateY(-27px) translateX(-75px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-45px) translateX(-75px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-45px) translateX(-75px);
+        }
       }
     }
 
     #passworInput {
-      width: 250px;
-      height: 24px;
+      width: 260px;
+      height: 34px;
+      border-radius: 5px;
+      font-size: 15px;
+
+      + label {
+        font-size: 15px;
+        transform: translateY(-25px) translateX(-70px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-43px) translateX(-70px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-43px) translateX(-70px);
+        }
       }
     }
 
