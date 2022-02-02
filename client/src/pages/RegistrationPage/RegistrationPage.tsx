@@ -46,6 +46,8 @@ const RegistrationPage = () => {
         <>
             <div className="registration-wrapper">
 
+                <p className="logo-text">Magic Chat</p>
+
                 <form className="registration-form">
                     <h1 className="registration-header">Регистрация:</h1>
                     <input id="nicknameInput" type="text" placeholder="От 2 до 10 символов" name="nickname" autoFocus minLength={2} maxLength={10} onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
