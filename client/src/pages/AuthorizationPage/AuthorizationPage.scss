@@ -6,22 +6,30 @@
   justify-content: center;
   align-items: center;
 
-  .logo-text {
-    font-size: 25px;
-    font-weight: bolder;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
   .authorization-form {
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    position: relative;
     padding: 5px;
     box-sizing: border-box;
-    border: 1px solid black;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    border-top-right-radius: 10%;
+    box-shadow: 0 0 5px 1px deeppink;
+
+    .logo-text {
+      position: absolute;
+      top: -88px;
+      left: -1px;
+      font-size: 45px;
+      font-weight: bolder;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      color: cadetblue;
+    }
 
     .authorization-header {
       margin: 0;
@@ -44,7 +52,7 @@
       + label {
         display: block;
         background: white;
-        opacity: 0.5;
+        opacity: 0.6;
         transition: 0.8s;
         z-index: 1;
       }
@@ -81,7 +89,7 @@
       + label {
         display: block;
         background: white;
-        opacity: 0.5;
+        opacity: 0.6;
         transition: 0.8s;
         z-index: 1;
       }

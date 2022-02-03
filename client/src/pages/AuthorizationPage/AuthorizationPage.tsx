@@ -82,9 +82,8 @@ const AuthorizationPage = () => {
         <>
             <div className="authorization-wrapper">
 
-                <p className="logo-text">Magic Chat</p>
-
                 <form className="authorization-form">
+                <p className="logo-text">Magic Chat</p>
                     <h1 className="authorization-header">Авторизация:</h1>
                     <input id="emailInput" type="email" placeholder="Введите email" name="email" autoFocus onChange={changeHandler} />
                     <label htmlFor="emailInput">Введите email</label>
