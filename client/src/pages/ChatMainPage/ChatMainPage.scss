@@ -203,7 +203,7 @@
     align-items: flex-start;
     box-sizing: border-box;
     border-top: 0px;
-    background: steelblue;
+    background-color: #131616;
 
     .message-input {
       width: 100%;
@@ -211,8 +211,8 @@
       margin-bottom: 6px;
       box-sizing: border-box;
       border: 3px double gray;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
       transition: 1s;
 
       &::placeholder {
