@@ -78,6 +78,14 @@ const BottomPanel = ({ socket }) => {
     window.location.reload();
   };
 
+  const buttonMouseOver = (event) => {
+    event.target.style.boxShadow = "0 0 10px 1px deeppink";
+  };
+
+  const buttonMouseOut = (event) => {
+    event.target.style.boxShadow = "none";
+  };
+
   return (
     <div className="bottom-panel">
       <input
@@ -93,10 +101,20 @@ const BottomPanel = ({ socket }) => {
             <span>{`Лично для: ${privateRecipient[0]}`}</span>
           </div>
         )}
-        <button className="button-sendmessage" onClick={sendMessageOnButton}>
+        <button
+          className="button-sendmessage"
+          onClick={sendMessageOnButton}
+          onMouseOver={buttonMouseOver}
+          onMouseOut={buttonMouseOut}
+        >
           Отправить
         </button>
-        <button className="bottom-return-button" onClick={disconnection}>
+        <button
+          className="bottom-return-button"
+          onClick={disconnection}
+          onMouseOver={buttonMouseOver}
+          onMouseOut={buttonMouseOut}
+        >
           Выйти
         </button>
       </div>
