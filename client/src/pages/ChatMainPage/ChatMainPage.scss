@@ -23,6 +23,7 @@
       align-items: center;
       box-sizing: border-box;
       border: 1px solid slategrey;
+      border-bottom: 2px solid slategrey;
 
       .users-count-box {
         width: 100%;
@@ -119,6 +120,7 @@
       flex-direction: column;
       box-sizing: border-box;
       border: 1px solid slategrey;
+      border-bottom: 2px solid slategrey;
       overflow-y: scroll;
 
       .entering-notification {
