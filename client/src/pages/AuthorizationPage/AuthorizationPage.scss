@@ -12,7 +12,7 @@
     position: absolute;
     bottom: 2px;
     right: 2px;
-    color: white;
+    color: #b0bec5;
   }
 
   .authorization-form {
@@ -132,11 +132,11 @@
       margin-top: 10px;
 
       .loginButton {
-        margin-right: 5px;
-        border: none;
+        margin-right: 15px;
+        box-sizing: border-box;
+        border: 2px solid deeppink;
         border-radius: 5px;
-        box-shadow: 0 0 15px 1px darkslategrey;
-        transition: 0.8s;
+        transition: 1s;
 
         &:hover {
           cursor: pointer;
@@ -144,10 +144,10 @@
       }
 
       .registrationButton {
-        border: none;
+        box-sizing: border-box;
+        border: 2px solid deeppink;
         border-radius: 5px;
-        box-shadow: 0 0 15px 1px darkslategrey;
-        transition: 0.8s;
+        transition: 1s;
 
         &:hover {
           cursor: pointer;
@@ -231,9 +231,11 @@
 
       .authorization-buttons {
         .loginButton {
+          font-size: 12px;
         }
 
         .registrationButton {
+          font-size: 12px;
         }
       }
 
@@ -303,11 +305,11 @@
 
       .authorization-buttons {
         .loginButton {
-          font-size: 15px;
+          font-size: 13px;
         }
 
         .registrationButton {
-          font-size: 15px;
+          font-size: 13px;
         }
       }
 
@@ -377,11 +379,11 @@
 
       .authorization-buttons {
         .loginButton {
-          font-size: 16px;
+          font-size: 14px;
         }
 
         .registrationButton {
-          font-size: 16px;
+          font-size: 14px;
         }
       }
 
@@ -451,11 +453,11 @@
 
       .authorization-buttons {
         .loginButton {
-          font-size: 17px;
+          font-size: 15px;
         }
 
         .registrationButton {
-          font-size: 17px;
+          font-size: 15px;
         }
       }
 
@@ -525,11 +527,11 @@
 
       .authorization-buttons {
         .loginButton {
-          font-size: 18px;
+          font-size: 16px;
         }
 
         .registrationButton {
-          font-size: 18px;
+          font-size: 16px;
         }
       }
 
@@ -599,11 +601,11 @@
 
       .authorization-buttons {
         .loginButton {
-          font-size: 20px;
+          font-size: 18px;
         }
 
         .registrationButton {
-          font-size: 20px;
+          font-size: 18px;
         }
       }
 
@@ -674,11 +676,11 @@
 
       .authorization-buttons {
         .loginButton {
-          font-size: 32px;
+          font-size: 28px;
         }
 
         .registrationButton {
-          font-size: 32px;
+          font-size: 28px;
         }
       }
 

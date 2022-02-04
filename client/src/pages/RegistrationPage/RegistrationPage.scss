@@ -12,7 +12,7 @@
     position: absolute;
     bottom: 2px;
     right: 2px;
-    color: white;
+    color: #b0bec5;
   }
 
   .registration-form {
@@ -189,10 +189,10 @@
       margin-top: 10px;
 
       .returnButton {
-        margin-right: 5px;
-        border: none;
+        margin-right: 15px;
+        box-sizing: border-box;
+        border: 2px solid deeppink;
         border-radius: 5px;
-        box-shadow: 0 0 15px 1px darkslategrey;
         transition: 0.8s;
 
         &:hover {
@@ -201,9 +201,9 @@
       }
 
       .registrationButton {
-        border: none;
+        box-sizing: border-box;
+        border: 2px solid deeppink;
         border-radius: 5px;
-        box-shadow: 0 0 15px 1px darkslategrey;
         transition: 0.8s;
 
         &:hover {
@@ -308,9 +308,11 @@
 
     .authorization-buttons {
       .returnButton {
+        font-size: 12px;
       }
 
       .registrationButton {
+        font-size: 12px;
       }
     }
 
@@ -400,11 +402,11 @@
 
     .authorization-buttons {
       .returnButton {
-        font-size: 15px;
+        font-size: 13px;
       }
 
       .registrationButton {
-        font-size: 15px;
+        font-size: 13px;
       }
     }
 
@@ -494,11 +496,11 @@
 
     .authorization-buttons {
       .returnButton {
-        font-size: 16px;
+        font-size: 14px;
       }
 
       .registrationButton {
-        font-size: 16px;
+        font-size: 14px;
       }
     }
 
@@ -588,11 +590,11 @@
 
     .authorization-buttons {
       .returnButton {
-        font-size: 17px;
+        font-size: 15px;
       }
 
       .registrationButton {
-        font-size: 17px;
+        font-size: 15px;
       }
     }
 
@@ -682,11 +684,11 @@
 
     .authorization-buttons {
       .returnButton {
-        font-size: 18px;
+        font-size: 16px;
       }
 
       .registrationButton {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
 
@@ -776,11 +778,11 @@
 
     .authorization-buttons {
       .returnButton {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .registrationButton {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
 
@@ -802,39 +804,76 @@
       font-size: 52px;
     }
 
-    label {
-      font-size: 30px;
-    }
-
     #nicknameInput {
-      width: 410px;
-      height: 48px;
+      width: 350px;
+      height: 45px;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-size: 20px;
+
+      + label {
+        font-size: 20px;
+        transform: translateY(-48px) translateX(-85px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-72px) translateX(-85px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-72px) translateX(-85px);
+        }
       }
     }
 
     #emailInput {
-      width: 410px;
-      height: 48px;
+      width: 350px;
+      height: 45px;
+
+      + label {
+        font-size: 20px;
+        transform: translateY(-36px) translateX(-98px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-59px) translateX(-98px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-59px) translateX(-98px);
+        }
       }
     }
 
     #passworInput {
-      width: 250px;
-      width: 410px;
-      height: 48px;
+      width: 350px;
+      height: 45px;
+
+      + label {
+        font-size: 20px;
+        transform: translateY(-35px) translateX(-90px);
+      }
+
+      &:not(:placeholder-shown) + label {
+        transform: translateY(-57px) translateX(-90px);
+      }
+
       &:focus {
+        + label {
+          transform: translateY(-57px) translateX(-90px);
+        }
       }
     }
 
     .authorization-buttons {
       .returnButton {
-        font-size: 32px;
+        font-size: 28px;
       }
 
       .registrationButton {
-        font-size: 32px;
+        font-size: 28px;
       }
     }
 

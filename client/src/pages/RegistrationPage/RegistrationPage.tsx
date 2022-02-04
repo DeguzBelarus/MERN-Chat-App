@@ -47,7 +47,7 @@ const RegistrationPage = () => {
     }
 
     const buttonMouseOut = (event: any) => {
-        event.target.style.boxShadow = "0 0 15px 1px darkslategrey"
+        event.target.style.boxShadow = "none"
     }
 
     return (
