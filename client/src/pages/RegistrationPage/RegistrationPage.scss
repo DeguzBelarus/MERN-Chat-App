@@ -223,7 +223,7 @@
       justify-content: center;
       align-items: center;
       margin-top: 12px;
-      color: cadetblue;
+      color: deeppink;
       -ms-user-select: none;
       -webkit-user-select: none;
       user-select: none;
@@ -321,6 +321,7 @@
     }
 
     .message-box {
+      font-size: 10px;
     }
   }
 }
@@ -415,6 +416,7 @@
     }
 
     .message-box {
+      font-size: 11px;
     }
   }
 }
@@ -426,7 +428,7 @@
 
   .registration-form {
     width: 350px;
-    height: 290px;
+    height: 300px;
 
     .registration-header {
       font-size: 27px;
@@ -509,6 +511,7 @@
     }
 
     .message-box {
+      font-size: 12px;
     }
   }
 }
@@ -520,7 +523,7 @@
 
   .registration-form {
     width: 380px;
-    height: 300px;
+    height: 320px;
 
     .registration-header {
       font-size: 29px;
@@ -603,6 +606,7 @@
     }
 
     .message-box {
+      font-size: 14px;
     }
   }
 }
@@ -697,6 +701,7 @@
     }
 
     .message-box {
+      font-size: 15px;
     }
   }
 }
@@ -791,6 +796,7 @@
     }
 
     .message-box {
+      font-size: 16px;
     }
   }
 }
@@ -872,6 +878,8 @@
     }
 
     .authorization-buttons {
+      margin-bottom: 10px;
+
       .returnButton {
         font-size: 28px;
       }
@@ -882,6 +890,7 @@
     }
 
     .message-box {
+      font-size: 22px;
     }
   }
 }
