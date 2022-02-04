@@ -59,7 +59,7 @@ const RegistrationPage = () => {
                     <h1 className="registration-header">Регистрация:</h1>
                     <input id="nicknameInput" type="text" placeholder="От 2 до 10 символов" name="nickname" autoFocus minLength={2} maxLength={10} onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
                     <label htmlFor="nicknameInput">Введите никнэйм</label>
-                    <input id="emailInput" type="email" placeholder="Формата mail@mail.domen" name="email" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+                    <input id="emailInput" type="email" placeholder="В формате: mail@mail.domen" name="email" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
                     <label htmlFor="emailInput">Введите email</label>
                     <input id="passworInput" type="password" placeholder="Минимум 8 символов" name="password" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
                     <label htmlFor="passworInput">Введите пароль</label>
