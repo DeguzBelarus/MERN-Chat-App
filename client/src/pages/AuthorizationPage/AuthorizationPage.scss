@@ -143,6 +143,10 @@
         &:hover {
           cursor: pointer;
         }
+
+        &:focus {
+          outline: white;
+        }
       }
 
       .registrationButton {
@@ -155,6 +159,10 @@
 
         &:hover {
           cursor: pointer;
+        }
+
+        &:focus {
+          outline: white;
         }
       }
     }
