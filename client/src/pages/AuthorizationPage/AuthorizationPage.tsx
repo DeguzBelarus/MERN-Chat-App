@@ -78,24 +78,34 @@ const AuthorizationPage = () => {
     }
 
 
+    const buttonMouseOver = (event: any) => {
+        event.target.style.boxShadow = "0 0 10px 1px deeppink"
+    }
+
+    const buttonMouseOut = (event: any) => {
+        event.target.style.boxShadow = "0 0 15px 1px darkslategrey"
+    }
+
     return (
         <>
             <div className="authorization-wrapper">
 
                 <form className="authorization-form">
-                <p className="logo-text">Magic Chat</p>
+                    <p className="logo-text">Magic Chat</p>
                     <h1 className="authorization-header">Авторизация:</h1>
                     <input id="emailInput" type="email" placeholder="Введите email" name="email" autoFocus onChange={changeHandler} />
                     <label htmlFor="emailInput">Введите email</label>
                     <input id="passworInput" type="password" placeholder="Введите пароль" name="password" onChange={changeHandler} />
                     <label htmlFor="passworInput">Введите пароль</label>
                     <div className="authorization-buttons">
-                        <button className="loginButton" disabled={loading} onClick={loginHandler}>Войти</button>
-                        <Link to={"/registration"}><button className="registrationButton" disabled={loading}>Регистрация</button></Link>
+                        <button className="loginButton" disabled={loading} onClick={loginHandler} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Войти</button>
+                        <Link to={"/registration"}><button className="registrationButton" disabled={loading} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Регистрация</button></Link>
                     </div>
                     {!loading && <div className="message-box">{`${message !== null && signedMessage === "" ? message : ""}${signedMessage !== "" ? signedMessage : ""}`}</div>}
                     {loading && <Loader />}
                 </form>
+
+                <span className="copyright">© Deguz, 2022</span>
 
             </div>
         </>

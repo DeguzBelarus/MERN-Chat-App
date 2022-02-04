@@ -5,7 +5,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   background-color: #263238;
+
+  .copyright {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    color: white;
+  }
 
   .registration-form {
     display: flex;
@@ -182,13 +190,25 @@
 
       .returnButton {
         margin-right: 5px;
-        border-radius: 8px;
-        box-shadow: 0 0 5px 1px darkslategrey;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 15px 1px darkslategrey;
+        transition: 0.8s;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       .registrationButton {
-        border-radius: 8px;
-        box-shadow: 0 0 5px 1px darkslategrey;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 15px 1px darkslategrey;
+        transition: 0.8s;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 
@@ -208,6 +228,10 @@
 }
 
 @media screen and (max-width: 319px) {
+  .copyright {
+    font-size: 10px;
+  }
+
   .registration-form {
     width: 100%;
     height: 275px;
@@ -296,6 +320,10 @@
 }
 
 @media screen and (min-width: 320px) {
+  .copyright {
+    font-size: 11px;
+  }
+
   .registration-form {
     width: 100%;
     height: 285px;
@@ -386,6 +414,10 @@
 }
 
 @media screen and (min-width: 425px) {
+  .copyright {
+    font-size: 12px;
+  }
+
   .registration-form {
     width: 350px;
     height: 290px;
@@ -476,6 +508,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .copyright {
+    font-size: 14px;
+  }
+
   .registration-form {
     width: 380px;
     height: 300px;
@@ -566,6 +602,10 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .copyright {
+    font-size: 15px;
+  }
+
   .registration-form {
     width: 440px;
     height: 340px;
@@ -656,6 +696,10 @@
 }
 
 @media screen and (min-width: 1440px) {
+  .copyright {
+    font-size: 15px;
+  }
+
   .registration-form {
     width: 470px;
     height: 355px;
@@ -746,6 +790,10 @@
 }
 
 @media screen and (min-width: 2560px) {
+  .copyright {
+    font-size: 20px;
+  }
+
   .registration-form {
     width: 700px;
     height: 500px;
