@@ -5,7 +5,7 @@ import Loader from "../components/Loader/Loader";
 import "./RegistrationPage.scss"
 
 const RegistrationPage = () => {
-    const { loading, message, request, clearMessage } = useForm()
+    const { loading, message, request, clearMessage, setMessage } = useForm()
     const [formData, setFormData] = useState({ nickname: "", email: "", password: "" })
 
     useEffect(() => {
@@ -20,6 +20,7 @@ const RegistrationPage = () => {
         try {
             if (formData.email === "" || formData.password === "" || formData.nickname === "") {
                 event.preventDefault()
+                setMessage("Введите данные для регистрации")
                 return
             }
 

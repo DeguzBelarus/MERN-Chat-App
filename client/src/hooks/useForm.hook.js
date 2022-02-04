@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 
 export const useForm = () => {
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState("");
 
   const request = useCallback(
     async (url, method = "GET", body = null, headers = {}) => {
