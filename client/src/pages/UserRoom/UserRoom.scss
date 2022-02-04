@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: flex-start;
   padding-top: 10px;
+  background-color: #131616;
 
   .user-info-box {
     padding: 5px;
@@ -14,6 +15,10 @@
     align-items: center;
     box-sizing: border-box;
     border: 1px solid black;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    box-shadow: inset 0 0 20px 1px deeppink;
+    background-color: white;
 
     .user-welcome-header {
       margin: 0;
@@ -21,20 +26,42 @@
       -ms-user-select: none;
       -webkit-user-select: none;
       user-select: none;
+      color: #131616;
     }
 
     .user-id-paragraph {
       -ms-user-select: none;
       -webkit-user-select: none;
       user-select: none;
+      color: #131616;
     }
 
     .user-room-buttons {
       .logout-button {
-        margin-right: 20px;
+        margin-right: 22px;
+        box-sizing: border-box;
+        border: 2px solid deeppink;
+        border-radius: 5px;
+        background: #000;
+        color: white;
+        transition: 0.8s;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       .enter-button {
+        box-sizing: border-box;
+        border: 2px solid deeppink;
+        border-radius: 5px;
+        background: #000;
+        color: white;
+        transition: 0.8s;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
