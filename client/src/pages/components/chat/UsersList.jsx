@@ -49,7 +49,7 @@ const UsersList = ({ socket }) => {
                   <span>{`${user[0]} (Вы)`}</span>
                 </div>
               );
-            } else if (user[0] === "NightOwl") {
+            } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
               return (
                 <div className="user-box-mentor" key={user[0]}>
                   <span>{`${user[0]} (Вы)`}</span>
@@ -76,7 +76,7 @@ const UsersList = ({ socket }) => {
                   </button>
                 </div>
               );
-            } else if (user[0] === "NightOwl") {
+            } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
               return (
                 <div className="user-box-mentor" key={user[0]}>
                   <span>{user[0]}</span>
@@ -112,7 +112,7 @@ const UsersList = ({ socket }) => {
                   <span>{user[0]}</span>
                 </div>
               );
-            } else if (user[0] === "NightOwl") {
+            } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
               return (
                 <div className="user-box-private" key={user[0]}>
                   <span>{user[0]}</span>
@@ -132,7 +132,7 @@ const UsersList = ({ socket }) => {
                   <span>{`${user[0]} (Вы)`}</span>
                 </div>
               );
-            } else if (user[0] === "NightOwl") {
+            } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
               return (
                 <div className="user-box-mentor" key={user[0]}>
                   <span>{`${user[0]} (Вы)`}</span>
@@ -159,7 +159,7 @@ const UsersList = ({ socket }) => {
                   </button>
                 </div>
               );
-            } else if (user[0] === "NightOwl") {
+            } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
               return (
                 <div className="user-box-mentor" key={user[0]}>
                   <span>{user[0]}</span>
