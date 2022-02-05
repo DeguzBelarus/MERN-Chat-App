@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import ChatMessages from "../components/chat/ChatMessages";
 import UsersList from "../components/chat/UsersList";
 import BottomPanel from "../components/chat/BottomPanel";
@@ -17,6 +17,7 @@ const ChatMainPage = () => {
     socket.on("connect", () => {
       socket.emit("user connected", { nickname, userId });
     });
+    
   }, []);
 
   return (

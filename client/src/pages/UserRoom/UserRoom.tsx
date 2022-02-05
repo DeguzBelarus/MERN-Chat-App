@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import io from "socket.io-client"
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";

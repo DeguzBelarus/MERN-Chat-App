@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
   selectPrivateRecipient,
@@ -111,14 +112,16 @@ const BottomPanel = ({ socket }) => {
         >
           Отправить
         </button>
-        <button
-          className="bottom-return-button"
-          onClick={disconnection}
-          onMouseOver={buttonMouseOver}
-          onMouseOut={buttonMouseOut}
-        >
-          Выйти
-        </button>
+        <Link to={"/usersroom"}>
+          <button
+            className="bottom-return-button"
+            onClick={disconnection}
+            onMouseOver={buttonMouseOver}
+            onMouseOut={buttonMouseOut}
+          >
+            Выйти
+          </button>
+        </Link>
       </div>
     </div>
   );
