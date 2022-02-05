@@ -17,6 +17,7 @@
     .userslist-box {
       height: 100%;
       padding-top: 5px;
+      padding-left: 5px;
       display: flex;
       flex-direction: column;
       justify-content: start;
@@ -26,6 +27,7 @@
       border-top: 2px solid slategrey;
       border-bottom: 2px solid slategrey;
       border-left: 2px solid slategrey;
+      overflow-y: scroll;
 
       .users-count-box {
         width: 100%;
@@ -34,7 +36,6 @@
         justify-content: start;
         align-items: center;
         margin-bottom: 5px;
-        padding-left: 10px;
         -ms-user-select: none;
         -webkit-user-select: none;
         user-select: none;
@@ -54,7 +55,6 @@
         align-items: center;
         box-sizing: border-box;
         margin-bottom: 2px;
-        padding-left: 5px;
         background: #eee;
         color: #a59263;
         font-weight: bolder;
@@ -83,7 +83,6 @@
         align-items: center;
         box-sizing: border-box;
         margin-bottom: 2px;
-        padding-left: 5px;
         background: #eee;
         color: blueviolet;
         font-weight: bolder;
@@ -112,7 +111,6 @@
         align-items: center;
         box-sizing: border-box;
         margin-bottom: 2px;
-        padding-left: 5px;
         background: #eee;
         color: black;
         font-weight: bold;
