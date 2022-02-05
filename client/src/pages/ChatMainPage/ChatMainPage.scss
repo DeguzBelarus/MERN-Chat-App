@@ -58,6 +58,9 @@
         background: #eee;
         color: #a59263;
         font-weight: bolder;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
         animation-name: manifestation;
         animation-duration: 0.7s;
 
@@ -86,6 +89,9 @@
         background: #eee;
         color: blueviolet;
         font-weight: bolder;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
         animation-name: manifestation;
         animation-duration: 0.7s;
 
@@ -114,6 +120,9 @@
         background: #eee;
         color: black;
         font-weight: bold;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
         animation-name: manifestation;
         animation-duration: 0.7s;
 
