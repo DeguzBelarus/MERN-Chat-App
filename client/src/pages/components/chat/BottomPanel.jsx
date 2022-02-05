@@ -90,11 +90,12 @@ const BottomPanel = ({ socket }) => {
     <div className="bottom-panel">
       <input
         type="text"
-        className="message-input"
+        id="message-input"
         placeholder="Введите сообщение..."
         onKeyPress={userSendMessage}
         ref={messageInput}
       />
+      <label htmlFor="message-input">Введите сообщение</label>
       <div className="bottom-buttons">
         {privateRecipient && (
           <div className="private-info" onClick={privateModeOff}>
