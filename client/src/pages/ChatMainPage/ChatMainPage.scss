@@ -34,6 +34,8 @@
         justify-content: start;
         align-items: center;
         margin-bottom: 5px;
+        box-sizing: border-box;
+        border-bottom: 1px solid slategrey;
         -ms-user-select: none;
         -webkit-user-select: none;
         user-select: none;
