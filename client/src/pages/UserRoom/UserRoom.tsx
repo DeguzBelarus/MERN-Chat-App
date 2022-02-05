@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import io from "socket.io-client"
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
@@ -24,6 +25,16 @@ const UserRoom = () => {
     const buttonMouseOut = (event: any) => {
         event.target.style.boxShadow = "none"
     }
+
+    const refreshCount = Number(sessionStorage.getItem('refreshCount')) || 0;
+    useEffect(() => {
+        if (refreshCount < 2) {
+            sessionStorage.setItem('refreshCount', String(refreshCount + 1));
+            window.location.reload();
+        } else {
+            sessionStorage.removeItem('refreshCount');
+        }
+    }, []);
 
     return (
         <div className="user-room-wrapper">

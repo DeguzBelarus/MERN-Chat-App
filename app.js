@@ -19,23 +19,21 @@ io.on("connection", (socket) => {
   socket.on("user connected", (data) => {
     console.log(`connection data: ${data.nickname}`);
     const connectedUser = data.nickname;
+    const userSocketId = socket.id;
 
-    if (!usersInRoom.includes(data.nickname)) {
-      let userSocketId = socket.id;
-      console.log("entered user socket: ", userSocketId);
-      usersInRoom.push([connectedUser, userSocketId]);
-      usersInRoom = usersInRoom.sort();
-      socket.emit("connected user info", data);
-      socket.broadcast.emit("connected user info", data);
-    }
+    console.log("entered user socket: ", userSocketId);
+    usersInRoom.push([connectedUser, userSocketId]);
+    usersInRoom = usersInRoom.sort();
+    socket.emit("connected user info", data);
+    socket.broadcast.emit("connected user info", data);
 
     socket.emit("users in room info", usersInRoom);
     socket.broadcast.emit("users in room info", usersInRoom);
 
     socket.on("disconnecting", (data) => {
-      console.log("disconnection data:", connectedUser, typeof connectedUser);
-      usersInRoom = usersInRoom.filter((element) => {
-        return element[0] !== connectedUser;
+      console.log("disconnection data:", connectedUser);
+      usersInRoom = usersInRoom.filter((user) => {
+        return user[0] !== connectedUser;
       });
       usersInRoom = usersInRoom.sort();
 
