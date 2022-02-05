@@ -42,6 +42,7 @@
         span {
           padding-left: 2px;
           font-weight: bolder;
+          color: deeppink;
         }
       }
 
@@ -57,9 +58,20 @@
         background: #eee;
         color: brown;
         font-weight: bolder;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
 
         .private-button {
           margin-left: 5px;
+          box-sizing: border-box;
+          border: 2px solid deeppink;
+          border-radius: 20%;
+          background-color: black;
+          color: wheat;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
 
@@ -75,9 +87,20 @@
         background: #eee;
         color: blueviolet;
         font-weight: bolder;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
 
         .private-button {
           margin-left: 5px;
+          box-sizing: border-box;
+          border: 2px solid deeppink;
+          border-radius: 20%;
+          background-color: black;
+          color: wheat;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
 
@@ -93,9 +116,20 @@
         background: #eee;
         color: black;
         font-weight: bold;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
 
         .private-button {
           margin-left: 5px;
+          box-sizing: border-box;
+          border: 2px solid deeppink;
+          border-radius: 20%;
+          background-color: black;
+          color: wheat;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
 
@@ -130,6 +164,8 @@
         width: 100%;
         margin: 0;
         margin-bottom: 5px;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
 
         span {
           color: cadetblue;
@@ -141,6 +177,8 @@
         width: 100%;
         margin: 0;
         margin-bottom: 5px;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
 
         span {
           color: chocolate;
@@ -156,11 +194,13 @@
         font-weight: bold;
         color: black;
         word-break: break-all;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
 
         span {
           margin-right: 2px;
           font-weight: bolder;
-          color: fuchsia;
+          color: deeppink;
           word-break: keep-all;
         }
       }
@@ -172,6 +212,8 @@
         font-weight: bold;
         color: black;
         word-break: break-all;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
 
         span {
           font-weight: bolder;
@@ -187,6 +229,8 @@
         font-weight: bold;
         color: black;
         word-break: break-all;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
 
         span {
           color: green;
@@ -246,8 +290,8 @@
         position: relative;
         padding-top: 2px;
         margin-right: 5px;
-        background: rgba(150, 150, 150, 0.5);
-        border: 1px dashed wheat;
+        background: deeppink;
+        border: 1px dashed white;
         border-radius: 5px;
         animation-name: private-box-moving;
         animation-duration: 1s;
@@ -261,7 +305,7 @@
           top: 0;
           right: 5px;
           font-weight: bolder;
-          color: red;
+          color: white;
           z-index: 5;
         }
 
@@ -288,9 +332,10 @@
       box-sizing: border-box;
       border: 2px solid deeppink;
       border-radius: 5px;
-      background: darkgreen;
-      color: white;
+      background: white;
+      color: black;
       font-weight: bold;
+      padding: 4px;
       transition: 0.5s;
 
       &:hover {
@@ -309,6 +354,7 @@
       background: black;
       color: white;
       font-weight: bold;
+      padding: 4px;
       transition: 0.5s;
 
       &:hover {
@@ -324,6 +370,15 @@
   }
   100% {
     width: 100%;
+  }
+}
+
+@keyframes manifestation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
