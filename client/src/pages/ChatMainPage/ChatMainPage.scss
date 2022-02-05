@@ -8,8 +8,6 @@
 
   .chat-upper-wrapper {
     width: 100%;
-    height: calc(100vh - 80px);
-    max-height: 100vh;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -402,6 +400,14 @@
 }
 
 @media screen and (max-width: 319px) {
+  .chat-upper-wrapper {
+    height: calc(100vh - 80px);
+  }
+
+  .bottom-panel {
+    height: 80px;
+  }
+
   .userslist-box {
     width: 38%;
 
@@ -506,6 +512,14 @@
 }
 
 @media screen and (min-width: 320px) {
+  .chat-upper-wrapper {
+    height: calc(100vh - 80px);
+  }
+
+  .bottom-panel {
+    height: 80px;
+  }
+
   .userslist-box {
     width: 33%;
 
@@ -610,6 +624,14 @@
 }
 
 @media screen and (min-width: 425px) {
+  .chat-upper-wrapper {
+    height: calc(100vh - 80px);
+  }
+
+  .bottom-panel {
+    height: 80px;
+  }
+
   .userslist-box {
     width: 33%;
 
@@ -714,6 +736,14 @@
 }
 
 @media screen and (min-width: 768px) {
+  .chat-upper-wrapper {
+    height: calc(100vh - 90px);
+  }
+
+  .bottom-panel {
+    height: 90px;
+  }
+
   .userslist-box {
     width: 25%;
 
@@ -819,6 +849,14 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .chat-upper-wrapper {
+    height: calc(100vh - 90px);
+  }
+
+  .bottom-panel {
+    height: 90px;
+  }
+
   .userslist-box {
     width: 20%;
 
@@ -924,6 +962,14 @@
 }
 
 @media screen and (min-width: 1440px) {
+  .chat-upper-wrapper {
+    height: calc(100vh - 100px);
+  }
+
+  .bottom-panel {
+    height: 100px;
+  }
+
   .userslist-box {
     width: 16%;
 
@@ -1029,6 +1075,14 @@
 }
 
 @media screen and (min-width: 2560px) {
+  .chat-upper-wrapper {
+    height: calc(100vh - 150px);
+  }
+
+  .bottom-panel {
+    height: 150px;
+  }
+
   .userslist-box {
     width: 13%;
 
