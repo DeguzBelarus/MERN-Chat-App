@@ -92,6 +92,7 @@ const BottomPanel = ({ socket }) => {
         type="text"
         id="message-input"
         placeholder="Введите сообщение..."
+        autoComplete="off"
         onKeyPress={userSendMessage}
         ref={messageInput}
       />
