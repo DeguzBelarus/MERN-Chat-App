@@ -3,7 +3,7 @@ const config = require("config");
 const mongoose = require("mongoose");
 const path = require("path");
 
-const PORT = config.get("port") || 80;
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 const server = require("http").Server(app);
