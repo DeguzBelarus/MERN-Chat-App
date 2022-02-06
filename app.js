@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const path = require("path");
 
 const PORT = config.get("port") || 5000;
-const HOST = "0.0.0.0";
 
 const app = express();
 const server = require("http").Server(app);
@@ -103,7 +102,7 @@ const start = async () => {
     process.exit(1);
   }
 
-  server.listen(PORT, HOST, () => {
+  server.listen(PORT, () => {
     console.log(`Server has been started on port ${PORT}...`);
   });
 };
