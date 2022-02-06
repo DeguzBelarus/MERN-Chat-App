@@ -12,7 +12,7 @@ const io = require("socket.io")(server);
 app.use(express.json({ extended: true }));
 app.use("/api/authorization", require("./routes/authorization.router"));
 
-if ((process.env.NODE_ENV = "production")) {
+if ((process.env.NODE_ENV === "production")) {
   app.use("/", express.static(path.join(__dirname, "client", "build")));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
