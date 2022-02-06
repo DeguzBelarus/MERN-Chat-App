@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 
 const PORT = config.get("port") || 5000;
+const HOST = "0.0.0.0";
 
 const app = express();
 const server = require("http").Server(app);
@@ -12,7 +13,7 @@ const io = require("socket.io")(server);
 app.use(express.json({ extended: true }));
 app.use("/api/authorization", require("./routes/authorization.router"));
 
-if ((process.env.NODE_ENV === "production")) {
+if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(path.join(__dirname, "client", "build")));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
@@ -102,7 +103,7 @@ const start = async () => {
     process.exit(1);
   }
 
-  server.listen(5000, () => {
+  server.listen(PORT, HOST, () => {
     console.log(`Server has been started on port ${PORT}...`);
   });
 };
