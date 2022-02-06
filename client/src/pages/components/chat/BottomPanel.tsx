@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, FC } from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
@@ -8,13 +8,17 @@ import {
 } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 
-const BottomPanel = ({ socket }) => {
-  const messageInput = useRef();
+interface Props {
+  socket: any
+}
+
+const BottomPanel: FC<Props> = ({ socket }) => {
+  const messageInput: any = useRef(null);
   const dispatch = useAppDispatch();
   const privateRecipient = useAppSelector(selectPrivateRecipient);
   const nickname = useAppSelector(selectUserNickname);
 
-  const userSendMessage = (event) => {
+  const userSendMessage = (event: any) => {
     if (event.key === "Enter") {
       if (!privateRecipient) {
         if (event.target.value === "") return;
@@ -71,19 +75,19 @@ const BottomPanel = ({ socket }) => {
   };
 
   const privateModeOff = () => {
-    dispatch(privateRecipientSave());
+    dispatch(privateRecipientSave(null));
   };
 
   const disconnection = () => {
-    dispatch(messagesInChatSave());
+    dispatch(messagesInChatSave([]));
     window.location.reload();
   };
 
-  const buttonMouseOver = (event) => {
+  const buttonMouseOver = (event: any) => {
     event.target.style.boxShadow = "0 0 10px 1px deeppink";
   };
 
-  const buttonMouseOut = (event) => {
+  const buttonMouseOut = (event: any) => {
     event.target.style.boxShadow = "none";
   };
 

@@ -1,36 +1,40 @@
-import { useEffect, useRef } from "react";
+import { useEffect, FC, useRef } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
   selectMessagesInChat,
   messagesInChatSave,
 } from "../../../app/chatSlice";
 
-const ChatMessages = ({ socket }) => {
-  const messagesBox = useRef(null);
+interface Props {
+  socket: any
+}
+
+const ChatMessages: FC<Props> = ({ socket }) => {
+  const messagesBox: any = useRef(null);
   const dispatch = useAppDispatch();
   let messagesInChat = useAppSelector(selectMessagesInChat);
 
   useEffect(() => {
-    socket.on("connected user info", (data) => {
+    socket.on("connected user info", (data: any) => {
       const enteringNotification = ["enn", data.nickname];
       messagesInChat = [...messagesInChat, enteringNotification];
       dispatch(messagesInChatSave(messagesInChat));
     });
 
-    socket.on("user disconnected", (disconnectedUser) => {
+    socket.on("user disconnected", (disconnectedUser: string) => {
       const exitingNotification = ["exn", disconnectedUser];
       messagesInChat = [...messagesInChat, exitingNotification];
       dispatch(messagesInChatSave(messagesInChat));
     });
 
-    socket.on("message from user", (nickname, message) => {
+    socket.on("message from user", (nickname: string, message: string) => {
       const userMessage = ["um", nickname, message];
       messagesInChat = [...messagesInChat, userMessage];
       dispatch(messagesInChatSave(messagesInChat));
       console.log(messagesInChat);
     });
 
-    socket.on("private message from user", (nickname, privatemessage) => {
+    socket.on("private message from user", (nickname: string, privatemessage: string) => {
       const userMessagePrivate = ["ump", nickname, privatemessage];
       messagesInChat = [...messagesInChat, userMessagePrivate];
       dispatch(messagesInChatSave(messagesInChat));
@@ -39,7 +43,7 @@ const ChatMessages = ({ socket }) => {
 
     socket.on(
       "private message notification",
-      (privateUserNick, privatemessage) => {
+      (privateUserNick: string, privatemessage: string) => {
         const privateMessageNotification = [
           "pmn",
           privateUserNick,
@@ -53,7 +57,7 @@ const ChatMessages = ({ socket }) => {
   }, []);
 
   useEffect(() => {
-    messagesBox.current.scrollTo(0, 9999);
+    messagesBox.current?.scrollTo(0, 9999);
 
     if (messagesInChat.length > 1300) {
       messagesInChat = messagesInChat.slice(300, messagesInChat.length);

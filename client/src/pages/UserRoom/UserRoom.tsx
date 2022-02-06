@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
 import "./UserRoom.scss"
 
-const UserRoom = () => {
+const UserRoom: FC = () => {
     const dispatch = useAppDispatch()
     const nickname = useAppSelector(selectUserNickname)
     const userId = useAppSelector(selectUserId)

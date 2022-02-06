@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 import ChatMessages from "../components/chat/ChatMessages";
 import UsersList from "../components/chat/UsersList";
 import BottomPanel from "../components/chat/BottomPanel";
@@ -7,17 +7,17 @@ import { selectUserNickname, selectUserId } from "../../app/userSlice";
 import io from "socket.io-client";
 import "./ChatMainPage.scss";
 
-const ChatMainPage = () => {
+const ChatMainPage: FC = () => {
   const nickname = useAppSelector(selectUserNickname);
   const userId = useAppSelector(selectUserId);
 
-  const socket = io();
+  const socket: any = io();
 
   useEffect(() => {
     socket.on("connect", () => {
       socket.emit("user connected", { nickname, userId });
     });
-    
+
   }, []);
 
   return (

@@ -3,8 +3,8 @@ import { RootState } from "./store";
 
 interface chatState {
     privateRecipient: any | null,
-    usersInChat: object,
-    messagesInChat: object
+    usersInChat: any[],
+    messagesInChat: any[]
 }
 
 const initialState = {

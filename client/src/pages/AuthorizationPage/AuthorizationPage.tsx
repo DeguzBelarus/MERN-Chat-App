@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { userTokenSave, userIdSave, userNicknameSave, selectToken } from "../../app/userSlice";
@@ -6,7 +6,7 @@ import { useForm } from "../../hooks/useForm.hook";
 import Loader from "../components/Loader/Loader";
 import "./AuthorizationPage.scss"
 
-const AuthorizationPage = () => {
+const AuthorizationPage: FC = () => {
     const dispatch = useAppDispatch()
     const history = useNavigate()
 

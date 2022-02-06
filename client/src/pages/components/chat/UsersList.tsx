@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, FC, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
   selectUsersInChat,
@@ -8,29 +8,33 @@ import {
 } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 
-const UsersList = ({ socket }) => {
-  const privateButton = useRef();
+interface Props {
+  socket: any
+}
+
+const UsersList: FC<Props> = ({ socket }) => {
+  const privateButton: any = useRef();
   const dispatch = useAppDispatch();
   const usersInChat = useAppSelector(selectUsersInChat);
   const nickname = useAppSelector(selectUserNickname);
   const privateRecipient = useAppSelector(selectPrivateRecipient);
 
-  const privateModeSet = (event) => {
+  const privateModeSet = (event: any) => {
     const privateRecipientNickname =
       event.target.parentElement.firstChild.innerText;
     socket.emit("getting users socketid", privateRecipientNickname);
   };
 
   useEffect(() => {
-    socket.on("users in room info", (newUsersInRoom) => {
+    socket.on("users in room info", (newUsersInRoom: any[]) => {
       dispatch(usersInChatSave(newUsersInRoom));
     });
 
-    socket.on("user disconnected", (disconnectedUser, newUsersInRoom) => {
+    socket.on("user disconnected", (disconnectedUser: string, newUsersInRoom: any[]) => {
       dispatch(usersInChatSave(newUsersInRoom));
     });
 
-    socket.on("getting private user data", (targetUser) => {
+    socket.on("getting private user data", (targetUser: string) => {
       dispatch(privateRecipientSave(targetUser[0]));
     });
   }, []);

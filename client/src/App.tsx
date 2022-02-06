@@ -1,5 +1,5 @@
-import './App.scss';
 import { useRoutes } from './routes';
+import './App.scss';
 
 function App() {
   const routes = useRoutes()

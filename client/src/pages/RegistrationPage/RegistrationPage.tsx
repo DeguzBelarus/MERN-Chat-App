@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { Link } from "react-router-dom"
 import { useForm } from "../../hooks/useForm.hook";
 import Loader from "../components/Loader/Loader";
 import "./RegistrationPage.scss"
 
-const RegistrationPage = () => {
+const RegistrationPage: FC = () => {
     const { loading, message, request, clearMessage, setMessage } = useForm()
     const [formData, setFormData] = useState({ nickname: "", email: "", password: "" })
 
