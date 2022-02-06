@@ -4,16 +4,19 @@
   "description": "Deguz's MERN chat",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "cross-env NODE_ENV=production node app.js",
     "server": "nodemon app.js",
     "client": "yarn --cwd client run start",
-    "dev": "concurrently \"yarn server\" \"yarn client\""
+    "client:install": "yarn --cwd client add",
+    "client:build": "yarn --cwd client run build",
+    "dev": "cross-env NODE_ENV=development concurrently \"yarn server\" \"yarn client\""
   },
   "author": "Deguz <deguz@mail.ru>",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.7",
+    "cross-env": "^7.0.3",
     "express": "^4.17.2",
     "express-validator": "^6.14.0",
     "jsonwebtoken": "^8.5.1",
