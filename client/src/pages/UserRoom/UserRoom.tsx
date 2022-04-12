@@ -1,52 +1,50 @@
-import { useEffect, FC } from "react";
-import { Link } from "react-router-dom";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
+
 import "./UserRoom.scss"
+interface Props {
+}
 
-const UserRoom: FC = () => {
-    const dispatch = useAppDispatch()
-    const nickname = useAppSelector(selectUserNickname)
-    const userId = useAppSelector(selectUserId)
+const UserRoom: FC<Props> = () => {
+   const dispatch = useAppDispatch()
+   const nickname = useAppSelector(selectUserNickname)
+   const userId = useAppSelector(selectUserId)
+   const navigate = useNavigate()
 
-    const logout = () => {
-        localStorage.removeItem("saveChat")
+   const chatEnter = () => {
+      navigate("/chat")
+   }
 
-        dispatch(userTokenSave(null))
-        dispatch(userIdSave(null))
-        dispatch(userNicknameSave(null))
-    }
+   const logout = () => {
+      localStorage.removeItem("saveChat")
 
-    const buttonMouseOver = (event: any) => {
-        event.target.style.boxShadow = "0 0 10px 1px deeppink"
-    }
+      dispatch(userTokenSave(null))
+      dispatch(userIdSave(null))
+      dispatch(userNicknameSave(null))
+   }
 
-    const buttonMouseOut = (event: any) => {
-        event.target.style.boxShadow = "none"
-    }
+   const buttonMouseOver = (event: any) => {
+      event.target.style.boxShadow = "0 0 10px 1px deeppink"
+   }
 
-    const refreshCount = Number(sessionStorage.getItem('refreshCount')) || 0;
-    useEffect(() => {
-        if (refreshCount < 2) {
-            sessionStorage.setItem('refreshCount', String(refreshCount + 1));
-            window.location.reload();
-        } else {
-            sessionStorage.removeItem('refreshCount');
-        }
-    }, []);
+   const buttonMouseOut = (event: any) => {
+      event.target.style.boxShadow = "none"
+   }
 
-    return (
-        <div className="user-room-wrapper">
-            <div className="user-info-box">
-                <h1 className="user-welcome-header">{`Добро пожаловать в свою комнату, ${nickname}`}</h1>
-                <p className="user-id-paragraph">{`Ваш id пользователя: `}<strong>{userId}</strong></p>
-                <div className="user-room-buttons">
-                    <button type="button" className="logout-button" onClick={logout} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Выйти из системы</button>
-                    <Link to={"/chat"}><button type="button" className="enter-button" onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Войти в Чат</button></Link>
-                </div>
+   return (
+      <div className="user-room-wrapper">
+         <div className="user-info-box">
+            <h1 className="user-welcome-header">{`Добро пожаловать в свою комнату, ${nickname}`}</h1>
+            <p className="user-id-paragraph">{`Ваш id пользователя: `}<strong>{userId}</strong></p>
+            <div className="user-room-buttons">
+               <button type="button" className="logout-button" onClick={logout} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Выйти из системы</button>
+               <button type="button" className="enter-button" onClick={chatEnter} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Войти в Чат</button>
             </div>
-        </div>
-    )
+         </div>
+      </div>
+   )
 }
 
 export default UserRoom

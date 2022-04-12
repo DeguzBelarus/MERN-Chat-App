@@ -1,11 +1,12 @@
 import { useRoutes } from './routes';
-import './App.scss';
 
 function App() {
-  const routes = useRoutes()
-  return (
-    <div>{routes}</div>
-  );
+   const routes = useRoutes()
+   return (
+      <>
+         {routes}
+      </>
+   );
 }
 
 export default App;

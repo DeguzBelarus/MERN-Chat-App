@@ -1,107 +1,59 @@
 import { useEffect, FC, useRef } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
-import {
-  selectMessagesInChat,
-  messagesInChatSave,
-} from "../../../app/chatSlice";
+import { selectMessagesInChat, messagesInChatSave } from "../../../app/chatSlice";
 
-interface Props {
-  socket: any
-}
+const ChatMessages: FC = () => {
+   const messagesBox: any = useRef(null);
 
-const ChatMessages: FC<Props> = ({ socket }) => {
-  const messagesBox: any = useRef(null);
-  const dispatch = useAppDispatch();
-  let messagesInChat = useAppSelector(selectMessagesInChat);
+   const dispatch = useAppDispatch();
+   let messagesInChat = useAppSelector(selectMessagesInChat);
 
-  useEffect(() => {
-    socket.on("connected user info", (data: any) => {
-      const enteringNotification = ["enn", data.nickname];
-      messagesInChat = [...messagesInChat, enteringNotification];
-      dispatch(messagesInChatSave(messagesInChat));
-    });
+   useEffect(() => {
+      messagesBox.current.scrollTo(0, 9999);
 
-    socket.on("user disconnected", (disconnectedUser: string) => {
-      const exitingNotification = ["exn", disconnectedUser];
-      messagesInChat = [...messagesInChat, exitingNotification];
-      dispatch(messagesInChatSave(messagesInChat));
-    });
-
-    socket.on("message from user", (nickname: string, message: string) => {
-      const userMessage = ["um", nickname, message];
-      messagesInChat = [...messagesInChat, userMessage];
-      dispatch(messagesInChatSave(messagesInChat));
-      console.log(messagesInChat);
-    });
-
-    socket.on("private message from user", (nickname: string, privatemessage: string) => {
-      const userMessagePrivate = ["ump", nickname, privatemessage];
-      messagesInChat = [...messagesInChat, userMessagePrivate];
-      dispatch(messagesInChatSave(messagesInChat));
-      console.log(messagesInChat);
-    });
-
-    socket.on(
-      "private message notification",
-      (privateUserNick: string, privatemessage: string) => {
-        const privateMessageNotification = [
-          "pmn",
-          privateUserNick,
-          privatemessage,
-        ];
-        messagesInChat = [...messagesInChat, privateMessageNotification];
-        dispatch(messagesInChatSave(messagesInChat));
-        console.log(messagesInChat);
+      if (messagesInChat.length > 1300) {
+         messagesInChat = messagesInChat.slice(300, messagesInChat.length);
+         dispatch(messagesInChatSave(messagesInChat));
       }
-    );
-  }, []);
+   }, [messagesInChat]);
 
-  useEffect(() => {
-    messagesBox.current?.scrollTo(0, 9999);
-
-    if (messagesInChat.length > 1300) {
-      messagesInChat = messagesInChat.slice(300, messagesInChat.length);
-      dispatch(messagesInChatSave(messagesInChat));
-    }
-  }, [messagesInChat]);
-
-  return (
-    <div className="chat-messages-box" ref={messagesBox}>
-      {messagesInChat.map((message, index) => {
-        if (message[0] === "enn") {
-          return (
-            <p className="entering-notification" key={index}>
-              Пользователь <span>{message[1]}</span> вошёл в чат
-            </p>
-          );
-        } else if (message[0] === "exn") {
-          return (
-            <p className="exiting-notification" key={index}>
-              Пользователь <span>{message[1]}</span> вышел из чата
-            </p>
-          );
-        } else if (message[0] === "um") {
-          return (
-            <p className="user-message" key={index}>
-              <span>{message[1]}:</span> {message[2]}
-            </p>
-          );
-        } else if (message[0] === "ump") {
-          return (
-            <p className="user-message-private" key={index}>
-              <span>{`Лично от ${message[1]}: `}</span> {message[2]}
-            </p>
-          );
-        } else if (message[0] === "pmn") {
-          return (
-            <p className="private-notification" key={index}>
-              <span>{`Лично для ${message[1]}: `}</span> {message[2]}
-            </p>
-          );
-        }
-      })}
-    </div>
-  );
+   return (
+      <div className="chat-messages-box" ref={messagesBox}>
+         {messagesInChat.map((message, index) => {
+            if (message[0] === "enn") {
+               return (
+                  <p className="entering-notification" key={index}>
+                     Пользователь <span>{message[1]}</span> вошёл в чат
+                  </p>
+               );
+            } else if (message[0] === "exn") {
+               return (
+                  <p className="exiting-notification" key={index}>
+                     Пользователь <span>{message[1]}</span> вышел из чата
+                  </p>
+               );
+            } else if (message[0] === "um") {
+               return (
+                  <p className="user-message" key={index}>
+                     <span>{message[1]}:</span> {message[2]}
+                  </p>
+               );
+            } else if (message[0] === "ump") {
+               return (
+                  <p className="user-message-private" key={index}>
+                     <span>{`Лично от ${message[1]}: `}</span> {message[2]}
+                  </p>
+               );
+            } else if (message[0] === "pmn") {
+               return (
+                  <p className="private-notification" key={index}>
+                     <span>{`Лично для ${message[1]}: `}</span> {message[2]}
+                  </p>
+               );
+            }
+         })}
+      </div>
+   );
 };
 
 export default ChatMessages;
