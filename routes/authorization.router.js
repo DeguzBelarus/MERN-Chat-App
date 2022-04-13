@@ -9,12 +9,14 @@ const authorizationRouter = Router();
 authorizationRouter.post(
   "/registration",
   [
-    check("email", "Введённый email некорректный").isEmail(),
-    check("password", "Минимальная длина пароля 8 символов").isLength({
+    check("email", "Введённый Вами email некорректный.").isEmail(),
+    check("password", "Минимальная длина пароля - 8 символов.").isLength({
       min: 8,
     }),
-    check("nickname", "Максимальная длина ника 10 символа").isLength({
+    check("nickname", "Максимальная длина никнейма - 10 символов.").isLength({
       max: 10,
+    }),
+    check("nickname", "Минимальная длина никнейма - 2 символа.").isLength({
       min: 2,
     }),
   ],
@@ -24,7 +26,7 @@ authorizationRouter.post(
       if (!errors.isEmpty()) {
         return response.status(400).json({
           errors: errors.array(),
-          message: "Некорректные данные при регистрации",
+          message: "Некорректные данные при регистрации.",
         });
       }
 
@@ -34,17 +36,17 @@ authorizationRouter.post(
       if (newUserCandidateNickCheck) {
         return response
           .status(400)
-          .json({ message: "Данный Ник уже используется" });
+          .json({ message: "Данный никнейм уже используется." });
       }
 
       const newUserCandidateEmailCeck = await User.findOne({ email });
       if (newUserCandidateEmailCeck) {
         return response
           .status(400)
-          .json({ message: "Данный email уже используется" });
+          .json({ message: "Данный email уже используется." });
       }
 
-      const cryptedPassword = await bcrypt.hash(password, 15);
+      const cryptedPassword = await bcrypt.hash(password, 10);
 
       const user = new User({
         email: email,
@@ -53,13 +55,11 @@ authorizationRouter.post(
       });
 
       await user.save();
-      response
-        .status(201)
-        .json({ message: "Поздравляем, Вы зарегистрированы!" });
+      response.status(201).json({ message: "Вы успешно зарегистриваны!" });
     } catch (error) {
       response
         .status(500)
-        .json({ message: "Возникла ошибка, попробуйте ещё раз" });
+        .json({ message: "Возникла ошибка, попробуйте ещё раз." });
     }
   }
 );
@@ -67,8 +67,8 @@ authorizationRouter.post(
 authorizationRouter.post(
   "/login",
   [
-    check("email", "Введите корректный email").normalizeEmail().isEmail(),
-    check("password", "Введите пароль").exists(),
+    check("email", "Введите корректный email.").normalizeEmail().isEmail(),
+    check("password", "Введите пароль.").exists(),
   ],
   async (request, response) => {
     try {
@@ -76,7 +76,7 @@ authorizationRouter.post(
       if (!errors.isEmpty()) {
         return response.status(400).json({
           errors: errors.array(),
-          message: "Некорректные данные при входе в систему",
+          message: "Некорректные данные при входе в систему.",
         });
       }
 
@@ -86,14 +86,14 @@ authorizationRouter.post(
       if (!user) {
         return response
           .status(400)
-          .json({ message: "Пользователь с такими данными не найден" });
+          .json({ message: "Неверные данные для входа в систему." });
       }
 
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (!passwordMatch) {
         return response
           .status(400)
-          .json({ message: "Введённый пароль неверный" });
+          .json({ message: "Неверные данные для входа в систему." });
       }
 
       const token = jwt.sign({ userId: user.id }, config.get("jwtSecret"), {
@@ -104,7 +104,7 @@ authorizationRouter.post(
         token,
         userId: user.id,
         nickname: user.nickname,
-        message: "Вы успешно вошли в систему",
+        message: "Вы успешно вошли в систему!",
       });
     } catch (error) {
       response

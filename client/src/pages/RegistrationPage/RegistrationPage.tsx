@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { useForm } from "../../hooks/useForm.hook";
 
 import Loader from "../components/Loader/Loader";
+
 import "./RegistrationPage.scss"
 
 const RegistrationPage: FC = () => {
@@ -58,16 +59,21 @@ const RegistrationPage: FC = () => {
          <form className="registration-form">
             <p className="logo-text">Magic Chat</p>
             <h1 className="registration-header">Регистрация:</h1>
-            <input id="nicknameInput" type="text" placeholder="От 2 до 10 символов" name="nickname" autoFocus minLength={2} maxLength={10} onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+
+            <input id="nicknameInput" type="text" placeholder="От 2 до 10 символов" name="nickname" autoFocus required minLength={2} maxLength={10} onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
             <label htmlFor="nicknameInput">Введите никнэйм</label>
-            <input id="emailInput" type="email" placeholder="В формате: mail@mail.domen" name="email" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+
+            <input id="emailInput" type="email" placeholder="В формате: mail@mail.domen" name="email" required onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
             <label htmlFor="emailInput">Введите email</label>
-            <input id="passworInput" type="password" placeholder="Минимум 8 символов" name="password" onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+
+            <input id="passworInput" type="password" placeholder="Минимум 8 символов" name="password" required minLength={8} onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
             <label htmlFor="passworInput">Введите пароль</label>
+
             <div className="authorization-buttons">
                <Link to={"/"}><button type="button" className="returnButton" disabled={loading} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Назад</button></Link>
                <button type="button" className="registrationButton" disabled={loading} onClick={registerHandler} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Зарегистрироваться</button>
             </div>
+
             {!loading && <div className="message-box">{message}</div>}
             {loading && <Loader />}
          </form>

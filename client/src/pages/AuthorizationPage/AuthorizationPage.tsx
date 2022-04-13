@@ -5,6 +5,7 @@ import { userTokenSave, userIdSave, userNicknameSave, selectToken } from "../../
 import { useForm } from "../../hooks/useForm.hook";
 
 import Loader from "../components/Loader/Loader";
+
 import "./AuthorizationPage.scss"
 
 const AuthorizationPage: FC = () => {
@@ -95,14 +96,18 @@ const AuthorizationPage: FC = () => {
          <form className="authorization-form">
             <p className="logo-text">My Chat</p>
             <h1 className="authorization-header">Авторизация:</h1>
-            <input id="emailInput" type="email" placeholder="Введите email" name="email" autoFocus onChange={changeHandler} />
+
+            <input id="emailInput" type="email" placeholder="Введите email" name="email" required autoFocus onChange={changeHandler} />
             <label htmlFor="emailInput">Введите email</label>
-            <input id="passworInput" type="password" placeholder="Введите пароль" name="password" onChange={changeHandler} />
+
+            <input id="passworInput" type="password" placeholder="Введите пароль" name="password" required minLength={8} onChange={changeHandler} />
             <label htmlFor="passworInput">Введите пароль</label>
+
             <div className="authorization-buttons">
                <button className="loginButton" disabled={loading} onClick={loginHandler} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Войти</button>
                <Link to={"/registration"}><button className="registrationButton" disabled={loading} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Регистрация</button></Link>
             </div>
+
             {!loading && <div className="message-box">{`${message !== null && signedMessage === "" ? message : ""}${signedMessage !== "" ? signedMessage : ""}`}</div>}
             {loading && <Loader />}
          </form>
