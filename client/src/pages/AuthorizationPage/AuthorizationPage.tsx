@@ -79,7 +79,7 @@ const AuthorizationPage: FC = () => {
       if (loading) {
          enterButton.current.style.backgroundColor = "rgba(0,150,0, 0.8)"
       } else {
-         enterButton.current.style.backgroundColor = "black"
+         enterButton.current.style.backgroundColor = "#00897b"
       }
    }, [loading])
 
