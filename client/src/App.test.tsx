@@ -1,15 +1,18 @@
 import React from 'react';
+import { io } from "socket.io-client";
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+const socket = io()
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+test('renders learn react link', () => {
+   const { getByText } = render(
+      <Provider store={store}>
+         <App socket={socket} />
+      </Provider>
+   );
+
+   expect(getByText(/learn/i)).toBeInTheDocument();
 });

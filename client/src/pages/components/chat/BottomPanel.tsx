@@ -77,6 +77,7 @@ const BottomPanel: FC<Props> = ({ socket }) => {
 
    const chatExit = () => {
       dispatch(messagesInChatSave([]));
+      dispatch(privateRecipientSave(null));
       navigate(`/usersroom/${nickname}`)
       socket.emit("user exit", nickname)
    };

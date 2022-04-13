@@ -1,4 +1,3 @@
-import { io } from "socket.io-client";
 import { Route, Routes } from "react-router-dom"
 import { useAppSelector } from "./app/hooks";
 import { selectToken } from "./app/userSlice";
@@ -8,13 +7,7 @@ import RegistrationPage from "./pages/RegistrationPage/RegistrationPage"
 import UserRoom from "./pages/UserRoom/UserRoom";
 import ChatMainPage from "./pages/ChatMainPage/ChatMainPage";
 
-export const useRoutes = () => {
-   const socket = io()
-
-   socket.off("connect").on("connect", () => {
-      console.log("websocket connection has been established...");
-   })
-
+export const useRoutes = (socket: any) => {
    const token = useAppSelector(selectToken)
    if (token) {
       return <Routes>

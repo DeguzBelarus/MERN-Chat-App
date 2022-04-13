@@ -11,7 +11,7 @@ const AuthorizationPage: FC = () => {
    const dispatch = useAppDispatch()
    const history = useNavigate()
 
-   const [formData, setFormData]:any = useState({ email: "", password: "" })
+   const [formData, setFormData]: any = useState({ email: "", password: "" })
    const [signedMessage, setSignedMessage] = useState("")
    const { loading, message, request, clearMessage } = useForm()
    const token = useAppSelector(selectToken)
@@ -84,6 +84,10 @@ const AuthorizationPage: FC = () => {
    useEffect(() => {
       setTimeout(() => clearMessage(), 8000)
    }, [message, clearMessage])
+
+   useEffect(() => {
+      document.title = "My Chat"
+   }, [])
 
    return (
       <div className="authorization-wrapper">

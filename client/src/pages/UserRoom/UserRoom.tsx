@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
@@ -32,6 +32,10 @@ const UserRoom: FC<Props> = () => {
    const buttonMouseOut = (event: any) => {
       event.target.style.boxShadow = "none"
    }
+
+   useEffect(() => {
+      document.title = `My Chat - ${nickname}`
+   }, [])
 
    return (
       <div className="user-room-wrapper">
