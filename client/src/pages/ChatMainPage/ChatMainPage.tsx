@@ -1,4 +1,4 @@
-import { useEffect, FC } from "react";
+import { useEffect, FC, useTransition } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname } from "../../app/userSlice";
 import { messagesInChatSave, usersInChatSave, selectMessagesInChat, privateRecipientSave } from "../../app/chatSlice";
@@ -16,6 +16,7 @@ const ChatMainPage: FC<Props> = ({ socket }) => {
    const dispatch = useAppDispatch()
    const nickname = useAppSelector(selectUserNickname);
    let messagesInChat = useAppSelector(selectMessagesInChat);
+   const [isPending, startTransition] = useTransition();
 
    const privateModeSet = (privateRecipient: string) => {
       socket.emit("getting users socketid", privateRecipient);
@@ -32,9 +33,11 @@ const ChatMainPage: FC<Props> = ({ socket }) => {
          if (enteredUser && usersInRoom) {
             dispatch(usersInChatSave(usersInRoom));
 
-            const enteringNotification = ["enn", enteredUser];
-            messagesInChat = [...messagesInChat, enteringNotification];
-            dispatch(messagesInChatSave(messagesInChat));
+            startTransition(() => {
+               const enteringNotification = ["enn", enteredUser];
+               messagesInChat = [...messagesInChat, enteringNotification];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
          }
       });
       //== connection listening
@@ -44,9 +47,11 @@ const ChatMainPage: FC<Props> = ({ socket }) => {
          if (disconnectedUser && usersInRoom) {
             dispatch(usersInChatSave(usersInRoom));
 
-            const exitingNotification = ["exn", disconnectedUser];
-            messagesInChat = [...messagesInChat, exitingNotification];
-            dispatch(messagesInChatSave(messagesInChat));
+            startTransition(() => {
+               const exitingNotification = ["exn", disconnectedUser];
+               messagesInChat = [...messagesInChat, exitingNotification];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
          }
       });
       //== disconnection listening
@@ -63,17 +68,21 @@ const ChatMainPage: FC<Props> = ({ socket }) => {
       //== message listenings
       socket.on("message from user", (nickname: string, message: string) => {
          if (nickname && message) {
-            const userMessage = ["um", nickname, message];
-            messagesInChat = [...messagesInChat, userMessage];
-            dispatch(messagesInChatSave(messagesInChat));
+            startTransition(() => {
+               const userMessage = ["um", nickname, message];
+               messagesInChat = [...messagesInChat, userMessage];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
          }
       });
 
       socket.on("private message from user", (nickname: string, privatemessage: string) => {
          if (nickname && privatemessage) {
-            const userMessagePrivate = ["ump", nickname, privatemessage];
-            messagesInChat = [...messagesInChat, userMessagePrivate];
-            dispatch(messagesInChatSave(messagesInChat));
+            startTransition(() => {
+               const userMessagePrivate = ["ump", nickname, privatemessage];
+               messagesInChat = [...messagesInChat, userMessagePrivate];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
          }
       });
 
@@ -81,9 +90,11 @@ const ChatMainPage: FC<Props> = ({ socket }) => {
          "private message notification",
          (privateUserNick: string, privatemessage: string) => {
             if (privateUserNick && privatemessage) {
-               const privateMessageNotification = ["pmn", privateUserNick, privatemessage];
-               messagesInChat = [...messagesInChat, privateMessageNotification];
-               dispatch(messagesInChatSave(messagesInChat));
+               startTransition(() => {
+                  const privateMessageNotification = ["pmn", privateUserNick, privatemessage];
+                  messagesInChat = [...messagesInChat, privateMessageNotification];
+                  dispatch(messagesInChatSave(messagesInChat));
+               });
             }
          }
       );

@@ -1,4 +1,4 @@
-import { useEffect, FC, useRef } from "react";
+import { useEffect, FC, useRef, useTransition } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { selectMessagesInChat, messagesInChatSave } from "../../../app/chatSlice";
 
@@ -7,18 +7,22 @@ const ChatMessages: FC = () => {
 
    const dispatch = useAppDispatch();
    let messagesInChat = useAppSelector(selectMessagesInChat);
+   const [isPending, startTransition] = useTransition();
 
    useEffect(() => {
       messagesBox.current.scrollTo(0, 9999);
 
-      if (messagesInChat.length > 1300) {
-         messagesInChat = messagesInChat.slice(300, messagesInChat.length);
-         dispatch(messagesInChatSave(messagesInChat));
+      if (messagesInChat.length > 1800) {
+         startTransition(() => {
+            messagesInChat = messagesInChat.slice(300, messagesInChat.length);
+            dispatch(messagesInChatSave(messagesInChat));
+         });
       }
    }, [messagesInChat]);
 
    return (
       <div className="chat-messages-box" ref={messagesBox}>
+
          {messagesInChat.map((message, index) => {
             if (message[0] === "enn") {
                return (
