@@ -26,7 +26,7 @@ const UserRoom: FC<Props> = () => {
    }
 
    useEffect(() => {
-      document.title = `My Chat - ${nickname}`
+      document.title = `MySN: ${nickname}`
    }, [])
 
    return (
@@ -39,7 +39,7 @@ const UserRoom: FC<Props> = () => {
                <button type="button" className="logout-button" onClick={logout}>Выйти из системы</button>
                <button type="button" className="enter-button" onClick={chatEnter}>Войти в Чат</button>
             </div>
-            
+
          </div>
       </div>
    )

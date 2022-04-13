@@ -4,6 +4,7 @@ import { useForm } from "../../hooks/useForm.hook";
 
 import Loader from "../components/Loader/Loader";
 import { MessageBox } from "../components/MessageBox/MessageBox";
+import { LanguageSwitcher } from "../components/LanguageSwitcher/LanguageSwitcher"
 
 import "./RegistrationPage.scss"
 
@@ -39,11 +40,16 @@ const RegistrationPage: FC = () => {
       setClearMessageTimeout(clearMessageTimeoutCurrent)
    }, [message])
 
+   useEffect(() => {
+      document.title = "MySN: Registration page"
+   }, [])
+
    return (
       <div className="registration-wrapper">
+         <LanguageSwitcher />
 
          <form id="registration-form" onSubmit={registerHandler}>
-            <p className="logo-text">My Chat</p>
+            <p className="logo-text">MySN: общение</p>
             <h1 className="registration-header">Регистрация:</h1>
 
             <input id="nicknameInput" type="text" placeholder="От 2 до 10 символов" name="nickname" autoFocus required minLength={2} maxLength={10} onChange={changeHandler} />

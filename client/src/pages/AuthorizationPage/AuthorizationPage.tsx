@@ -6,6 +6,7 @@ import { useForm } from "../../hooks/useForm.hook";
 
 import Loader from "../components/Loader/Loader";
 import { MessageBox } from "../components/MessageBox/MessageBox"
+import { LanguageSwitcher } from "../components/LanguageSwitcher/LanguageSwitcher"
 
 import "./AuthorizationPage.scss"
 
@@ -78,15 +79,15 @@ const AuthorizationPage: FC = () => {
    }, [loading])
 
    useEffect(() => {
-      if (document.title === "My Chat") return
-      document.title = "My Chat"
+      document.title = "MySN: Main page"
    }, [])
 
    return (
       <div className="authorization-wrapper">
+         <LanguageSwitcher />
 
          <form id="authorization-form" onSubmit={loginHandler}>
-            <p className="logo-text">My Chat</p>
+            <p className="logo-text">MySN: общение</p>
             <h1 className="authorization-header">Авторизация:</h1>
 
             <input id="emailInput" type="email" placeholder="Введите email" name="email" required autoFocus onChange={changeHandler} />
