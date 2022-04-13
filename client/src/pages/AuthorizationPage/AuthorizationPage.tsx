@@ -27,12 +27,6 @@ const AuthorizationPage: FC = () => {
    const loginHandler = async (event: any) => {
       event.preventDefault()
       try {
-         if (formData.email === "" || formData.password === "") {
-            event.preventDefault()
-            setMessage("Введите данные для входа")
-            return
-         }
-
          const data = await request("/api/authorization/login", "POST", { ...formData })
 
          dispatch(userTokenSave(data.token))

@@ -20,12 +20,6 @@ const RegistrationPage: FC = () => {
    const registerHandler = async (event: any) => {
       event.preventDefault()
       try {
-         if (formData.email === "" || formData.password === "" || formData.nickname === "") {
-            event.preventDefault()
-            setMessage("Введите данные для регистрации")
-            return
-         }
-
          const data = await request("/api/authorization/registration", "POST", { ...formData })
       } catch (e) {
          console.log("Error:", e);
