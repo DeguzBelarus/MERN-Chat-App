@@ -1,0 +1,26 @@
+.message-box {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 5px;
+  padding: 5px;
+  animation-name: message-dropdown;
+  animation-duration: 0.4s;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  box-sizing: border-box;
+
+  span {
+    color: green;
+  }
+}
+
+@keyframes message-dropdown {
+  100% {
+    transform: translateY(-30px);
+  }
+}

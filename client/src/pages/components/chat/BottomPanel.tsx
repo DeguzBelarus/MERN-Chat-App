@@ -82,14 +82,6 @@ const BottomPanel: FC<Props> = ({ socket }) => {
       socket.emit("user exit", nickname)
    };
 
-   const buttonMouseOver = (event: any) => {
-      event.target.style.boxShadow = "0 0 10px 1px deeppink";
-   };
-
-   const buttonMouseOut = (event: any) => {
-      event.target.style.boxShadow = "none";
-   };
-
    return (
       <div className="bottom-panel">
          <input
@@ -109,23 +101,15 @@ const BottomPanel: FC<Props> = ({ socket }) => {
                </div>
             )}
 
-            <button
+            <button type="button"
                className="button-sendmessage"
                onClick={sendMessageOnButton}
-               onMouseOver={buttonMouseOver}
-               onMouseOut={buttonMouseOut}
-            >
-               Отправить
-            </button>
+            >Отправить</button>
 
-            <button
+            <button type="button"
                className="bottom-return-button"
                onClick={chatExit}
-               onMouseOver={buttonMouseOver}
-               onMouseOut={buttonMouseOut}
-            >
-               Выйти
-            </button>
+            >Выйти</button>
          </div>
       </div>
    );

@@ -1,20 +1,24 @@
-import { useState, useEffect, FC } from "react";
-import { Link } from "react-router-dom"
+import { useState, FC, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 import { useForm } from "../../hooks/useForm.hook";
 
 import Loader from "../components/Loader/Loader";
+import { MessageBox } from "../components/MessageBox/MessageBox";
 
 import "./RegistrationPage.scss"
 
 const RegistrationPage: FC = () => {
-   const { loading, message, request, clearMessage, setMessage } = useForm()
+   const navigate = useNavigate()
+   const { loading, message, request, setMessage } = useForm()
    const [formData, setFormData]: any = useState({ nickname: "", email: "", password: "" })
+   const [clearMessageTimeout, setClearMessageTimeout]: any = useState(null)
 
    const changeHandler = (event: any) => {
       setFormData({ ...formData, [event.target.name]: event.target.value })
    }
 
    const registerHandler = async (event: any) => {
+      event.preventDefault()
       try {
          if (formData.email === "" || formData.password === "" || formData.nickname === "") {
             event.preventDefault()
@@ -23,63 +27,51 @@ const RegistrationPage: FC = () => {
          }
 
          const data = await request("/api/authorization/registration", "POST", { ...formData })
-
-      } catch (e) { }
-   }
-
-   const registerHandlerByKeyPress = async (event: any) => {
-      if (event.key === "Enter") {
-         try {
-            if (formData.email === "" || formData.password === "" || formData.nickname === "") {
-               event.preventDefault()
-               return
-            }
-
-            const data = await request("/api/authorization/registration", "POST", { ...formData })
-
-         } catch (e) { }
+      } catch (e) {
+         console.log("Error:", e);
       }
    }
 
-   const buttonMouseOver = (event: any) => {
-      event.target.style.boxShadow = "0 0 10px 1px deeppink"
-   }
-
-   const buttonMouseOut = (event: any) => {
-      event.target.style.boxShadow = "none"
+   const mainPageReturn = () => {
+      navigate("/")
    }
 
    useEffect(() => {
-      setTimeout(() => clearMessage(), 8000)
-   }, [message, clearMessage])
+      if (clearMessageTimeout) {
+         clearTimeout(clearMessageTimeout)
+      }
+
+      const clearMessageTimeoutCurrent = setTimeout(() => setMessage(""), 5000)
+      setClearMessageTimeout(clearMessageTimeoutCurrent)
+   }, [message])
 
    return (
       <div className="registration-wrapper">
 
-         <form className="registration-form">
+         <form id="registration-form" onSubmit={registerHandler}>
             <p className="logo-text">Magic Chat</p>
             <h1 className="registration-header">Регистрация:</h1>
 
-            <input id="nicknameInput" type="text" placeholder="От 2 до 10 символов" name="nickname" autoFocus required minLength={2} maxLength={10} onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+            <input id="nicknameInput" type="text" placeholder="От 2 до 10 символов" name="nickname" autoFocus required minLength={2} maxLength={10} onChange={changeHandler} />
             <label htmlFor="nicknameInput">Введите никнэйм</label>
 
-            <input id="emailInput" type="email" placeholder="В формате: mail@mail.domen" name="email" required onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+            <input id="emailInput" type="email" placeholder="В формате: mail@mail.domen" name="email" required onChange={changeHandler} />
             <label htmlFor="emailInput">Введите email</label>
 
-            <input id="passworInput" type="password" placeholder="Минимум 8 символов" name="password" required minLength={8} onChange={changeHandler} onKeyPress={registerHandlerByKeyPress} />
+            <input id="passworInput" type="password" placeholder="Минимум 8 символов" name="password" required minLength={8} onChange={changeHandler} />
             <label htmlFor="passworInput">Введите пароль</label>
 
             <div className="authorization-buttons">
-               <Link to={"/"}><button type="button" className="returnButton" disabled={loading} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Назад</button></Link>
-               <button type="button" className="registrationButton" disabled={loading} onClick={registerHandler} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Зарегистрироваться</button>
+               <button type="button" className="returnButton" disabled={loading} onClick={mainPageReturn}>Назад</button>
+               <input type="submit" form="registration-form" value="Зарегистрироваться" className="registrationButton" disabled={loading} />
             </div>
 
-            {!loading && <div className="message-box">{message}</div>}
+            {!loading && message && <MessageBox message={message} />}
             {loading && <Loader />}
          </form>
 
          <span className="copyright">© Deguz, 2022</span>
-      </div>
+      </div >
    )
 }
 

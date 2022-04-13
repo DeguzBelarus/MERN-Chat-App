@@ -25,14 +25,6 @@ const UserRoom: FC<Props> = () => {
       dispatch(userNicknameSave(null))
    }
 
-   const buttonMouseOver = (event: any) => {
-      event.target.style.boxShadow = "0 0 10px 1px deeppink"
-   }
-
-   const buttonMouseOut = (event: any) => {
-      event.target.style.boxShadow = "none"
-   }
-
    useEffect(() => {
       document.title = `My Chat - ${nickname}`
    }, [])
@@ -42,10 +34,12 @@ const UserRoom: FC<Props> = () => {
          <div className="user-info-box">
             <h1 className="user-welcome-header">{`Добро пожаловать в свою комнату, ${nickname}`}</h1>
             <p className="user-id-paragraph">{`Ваш id пользователя: `}<strong>{userId}</strong></p>
+
             <div className="user-room-buttons">
-               <button type="button" className="logout-button" onClick={logout} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Выйти из системы</button>
-               <button type="button" className="enter-button" onClick={chatEnter} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Войти в Чат</button>
+               <button type="button" className="logout-button" onClick={logout}>Выйти из системы</button>
+               <button type="button" className="enter-button" onClick={chatEnter}>Войти в Чат</button>
             </div>
+            
          </div>
       </div>
    )

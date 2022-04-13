@@ -18,7 +18,7 @@
     user-select: none;
   }
 
-  .registration-form {
+  #registration-form {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -61,14 +61,16 @@
       &::placeholder {
         padding-left: 5px;
         opacity: 0;
-        transition: 1s;
+        transition-property: opacity, padding;
+        transition-duration: 0.8s;
       }
 
       + label {
         display: block;
         background: white;
         opacity: 0.6;
-        transition: 0.8s;
+        transition-property: color, opacity, transform;
+        transition-duration: 0.8s;
         z-index: 1;
       }
 
@@ -105,14 +107,16 @@
       &::placeholder {
         padding-left: 5px;
         opacity: 0;
-        transition: 1s;
+        transition-property: opacity, padding;
+        transition-duration: 0.8s;
       }
 
       + label {
         display: block;
         background: white;
         opacity: 0.6;
-        transition: 0.8s;
+        transition-property: color, opacity, transform;
+        transition-duration: 0.8s;
         z-index: 1;
       }
 
@@ -148,14 +152,16 @@
       &::placeholder {
         padding-left: 5px;
         opacity: 0;
-        transition: 1s;
+        transition-property: opacity, padding;
+        transition-duration: 0.8s;
       }
 
       + label {
         display: block;
         background: white;
         opacity: 0.6;
-        transition: 0.8s;
+        transition-property: color, opacity, transform;
+        transition-duration: 0.8s;
         z-index: 1;
       }
 
@@ -198,7 +204,6 @@
         border-radius: 5px;
         background: #000;
         color: white;
-        transition: 0.8s;
 
         &:hover {
           cursor: pointer;
@@ -215,7 +220,6 @@
         border-radius: 5px;
         background: #000;
         color: white;
-        transition: 0.8s;
 
         &:hover {
           cursor: pointer;
@@ -247,7 +251,7 @@
     font-size: 10px;
   }
 
-  .registration-form {
+  #registration-form {
     width: 100%;
     height: 285px;
 
@@ -344,7 +348,7 @@
     font-size: 11px;
   }
 
-  .registration-form {
+  #registration-form {
     width: 100%;
     height: 285px;
 
@@ -441,7 +445,7 @@
     font-size: 12px;
   }
 
-  .registration-form {
+  #registration-form {
     width: 350px;
     height: 320px;
 
@@ -538,7 +542,7 @@
     font-size: 14px;
   }
 
-  .registration-form {
+  #registration-form {
     width: 380px;
     height: 340px;
 
@@ -635,7 +639,7 @@
     font-size: 15px;
   }
 
-  .registration-form {
+  #registration-form {
     width: 440px;
     height: 340px;
 
@@ -732,7 +736,7 @@
     font-size: 15px;
   }
 
-  .registration-form {
+  #registration-form {
     width: 470px;
     height: 355px;
 
@@ -829,7 +833,7 @@
     font-size: 20px;
   }
 
-  .registration-form {
+  #registration-form {
     width: 700px;
     height: 500px;
 

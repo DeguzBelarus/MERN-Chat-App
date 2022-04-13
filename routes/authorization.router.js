@@ -55,7 +55,7 @@ authorizationRouter.post(
       });
 
       await user.save();
-      response.status(201).json({ message: "Вы успешно зарегистриваны!" });
+      response.status(201).json({ message: "Вы успешно зарегистрированы!" });
     } catch (error) {
       response
         .status(500)

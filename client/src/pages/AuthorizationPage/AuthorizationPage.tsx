@@ -1,43 +1,35 @@
-import { useState, useEffect, FC } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { useState, useEffect, FC, useRef } from "react";
+import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { userTokenSave, userIdSave, userNicknameSave, selectToken } from "../../app/userSlice";
 import { useForm } from "../../hooks/useForm.hook";
 
 import Loader from "../components/Loader/Loader";
+import { MessageBox } from "../components/MessageBox/MessageBox"
 
 import "./AuthorizationPage.scss"
 
 const AuthorizationPage: FC = () => {
-   const dispatch = useAppDispatch()
-   const history = useNavigate()
+   const enterButton: any = useRef(null)
 
-   const [formData, setFormData]: any = useState({ email: "", password: "" })
-   const [signedMessage, setSignedMessage] = useState("")
-   const { loading, message, request, clearMessage } = useForm()
+   const dispatch = useAppDispatch()
+   const navigate = useNavigate()
    const token = useAppSelector(selectToken)
 
-   const clearSignedMessage = () => {
-      setSignedMessage("")
-   }
+   const { loading, message, request, setMessage } = useForm()
+   const [formData, setFormData]: any = useState({ email: "", password: "" })
+   const [clearMessageTimeout, setClearMessageTimeout]: any = useState(null)
 
    const changeHandler = (event: any) => {
       setFormData({ ...formData, [event.target.name]: event.target.value })
    }
 
    const loginHandler = async (event: any) => {
+      event.preventDefault()
       try {
-         if (token) {
+         if (formData.email === "" || formData.password === "") {
             event.preventDefault()
-            clearMessage()
-            setSignedMessage("Вы уже вошли в систему")
-            setTimeout(() => clearSignedMessage(), 8000)
-            return
-         } else if (formData.email === "" || formData.password === "") {
-            event.preventDefault()
-
-            setSignedMessage("Введите данные для входа")
-            setTimeout(() => clearSignedMessage(), 8000)
+            setMessage("Введите данные для входа")
             return
          }
 
@@ -48,17 +40,14 @@ const AuthorizationPage: FC = () => {
          dispatch(userNicknameSave(data.nickname))
 
          localStorage.setItem("saveChat", JSON.stringify({ token: data.token, nickname: data.nickname, userId: data.userId }))
-
-         history(`/usersroom/${data.nickname}`)
-      } catch (e) { }
+         navigate(`/usersroom/${data.nickname}`)
+      } catch (e) {
+         console.log("Error:", e);
+      }
    }
 
-   const buttonMouseOver = (event: any) => {
-      event.target.style.boxShadow = "0 0 10px 1px deeppink"
-   }
-
-   const buttonMouseOut = (event: any) => {
-      event.target.style.boxShadow = "none"
+   const transitionToRegitrationPage = () => {
+      navigate("/registration")
    }
 
    useEffect(() => {
@@ -66,34 +55,43 @@ const AuthorizationPage: FC = () => {
          let save: any = localStorage.getItem('saveChat')
          if (save !== null) {
             save = JSON.parse(save)
-
             dispatch(userTokenSave(save.token))
             dispatch(userIdSave(save.userId))
             dispatch(userNicknameSave(save.nickname))
-
-            setSignedMessage(`${save.nickname}, Вы успешно вошли в систему`)
-            setTimeout(() => clearSignedMessage(), 8000)
-
-            history(`/usersroom/${save.nickname}`)
+            setMessage(`${save.nickname}, Вы успешно вошли в систему`)
+            navigate(`/usersroom/${save.nickname}`)
          }
       } else {
-         history("/")
+         navigate("/")
       }
-
    }, [token])
 
    useEffect(() => {
-      setTimeout(() => clearMessage(), 8000)
-   }, [message, clearMessage])
+      if (clearMessageTimeout) {
+         clearTimeout(clearMessageTimeout)
+      }
+
+      const clearMessageTimeoutCurrent = setTimeout(() => setMessage(""), 5000)
+      setClearMessageTimeout(clearMessageTimeoutCurrent)
+   }, [message])
 
    useEffect(() => {
+      if (loading) {
+         enterButton.current.style.backgroundColor = "rgba(0,150,0, 0.8)"
+      } else {
+         enterButton.current.style.backgroundColor = "black"
+      }
+   }, [loading])
+
+   useEffect(() => {
+      if (document.title === "My Chat") return
       document.title = "My Chat"
    }, [])
 
    return (
       <div className="authorization-wrapper">
 
-         <form className="authorization-form">
+         <form id="authorization-form" onSubmit={loginHandler}>
             <p className="logo-text">My Chat</p>
             <h1 className="authorization-header">Авторизация:</h1>
 
@@ -104,16 +102,16 @@ const AuthorizationPage: FC = () => {
             <label htmlFor="passworInput">Введите пароль</label>
 
             <div className="authorization-buttons">
-               <button className="loginButton" disabled={loading} onClick={loginHandler} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Войти</button>
-               <Link to={"/registration"}><button className="registrationButton" disabled={loading} onMouseOver={buttonMouseOver} onMouseOut={buttonMouseOut}>Регистрация</button></Link>
+               <input type="submit" form="authorization-form" value={loading ? "Вход..." : "Войти"} className="loginButton" disabled={loading} ref={enterButton} />
+               <button type="button" className="registrationButton" disabled={loading} onClick={transitionToRegitrationPage}>Регистрация</button>
             </div>
 
-            {!loading && <div className="message-box">{`${message !== null && signedMessage === "" ? message : ""}${signedMessage !== "" ? signedMessage : ""}`}</div>}
+            {!loading && message && <MessageBox message={message} />}
             {loading && <Loader />}
-         </form>
+         </form >
 
          <span className="copyright">© Deguz, 2022</span>
-      </div>
+      </div >
    )
 }
 

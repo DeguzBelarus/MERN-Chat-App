@@ -27,16 +27,11 @@ export const useForm = () => {
          } catch (e: any) {
             setLoading(false);
             setMessage(e.message);
-
             throw e;
          }
       },
       []
    );
 
-   const clearMessage = useCallback(() => {
-      setMessage(null);
-   }, []);
-
-   return { loading, request, message, clearMessage, setMessage };
+   return { loading, request, message, setMessage };
 };

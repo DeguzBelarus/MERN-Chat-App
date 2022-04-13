@@ -44,7 +44,8 @@
         border-radius: 5px;
         background: #000;
         color: white;
-        transition: 0.8s;
+        transition-property: background-color;
+        transition-duration: 0.8s;
 
         &:hover {
           cursor: pointer;
@@ -57,8 +58,9 @@
         border-radius: 5px;
         background: darkgreen;
         color: white;
-        transition: 0.8s;
-
+        transition-property: background-color;
+        transition-duration: 0.8s;
+        
         &:hover {
           cursor: pointer;
         }

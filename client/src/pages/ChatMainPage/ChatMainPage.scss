@@ -270,7 +270,6 @@
       border: 2px solid slategrey;
       border-top-right-radius: 8px;
       border-bottom-right-radius: 8px;
-      transition: 1s;
 
       &::placeholder {
         opacity: 0;
@@ -280,7 +279,8 @@
         display: block;
         background: white;
         opacity: 0.6;
-        transition: 0.8s;
+        transition-property: color, opacity, transform;
+        transition-duration: 0.8s;
         font-weight: bolder;
         z-index: 1;
       }
@@ -364,7 +364,6 @@
       color: white;
       font-weight: bold;
       padding: 4px;
-      transition: 0.5s;
 
       &:hover {
         cursor: pointer;
@@ -383,7 +382,6 @@
       color: white;
       font-weight: bold;
       padding: 4px;
-      transition: 0.5s;
 
       &:hover {
         cursor: pointer;
