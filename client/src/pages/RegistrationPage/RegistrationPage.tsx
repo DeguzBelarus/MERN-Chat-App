@@ -57,7 +57,7 @@ const RegistrationPage: FC = () => {
 
             <div className="authorization-buttons">
                <button type="button" className="returnButton" disabled={loading} onClick={mainPageReturn}>Назад</button>
-               <input type="submit" form="registration-form" value="Зарегистрироваться" className="registrationButton" disabled={loading} />
+               <input type="submit" form="registration-form" value="Зарегистрироваться" className="registrationApplyButton" disabled={loading} />
             </div>
 
             {!loading && message && <MessageBox message={message} />}

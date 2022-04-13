@@ -141,7 +141,6 @@
         box-sizing: border-box;
         border: 2px solid grey;
         border-radius: 5px;
-        background: #000;
         color: white;
 
         &:hover {
@@ -731,6 +730,27 @@
       .message-box {
         font-size: 22px;
       }
+    }
+  }
+}
+
+@media (hover: hover) {
+  .loginButton {
+    transition-property: box-shadow;
+    transition-duration: 0.7s;
+
+    &:hover {
+      box-shadow: 0 0 5px #00897b, 0 0 25px #00897b, 0 0 50px #00897b,
+        0 0 200px #00897b;
+    }
+  }
+
+  .registrationButton {
+    transition-property: box-shadow;
+    transition-duration: 0.7s;
+
+    &:hover {
+      box-shadow: 0 0 5px #000, 0 0 25px #000, 0 0 50px #000, 0 0 200px #000;
     }
   }
 }

@@ -214,11 +214,11 @@
         }
       }
 
-      .registrationButton {
+      .registrationApplyButton {
         box-sizing: border-box;
         border: 2px solid grey;
         border-radius: 5px;
-        background: #000;
+        background: #00897b;
         color: white;
 
         &:hover {
@@ -331,7 +331,7 @@
         font-size: 12px;
       }
 
-      .registrationButton {
+      .registrationApplyButton {
         padding: 5px;
         font-size: 12px;
       }
@@ -428,7 +428,7 @@
         font-size: 13px;
       }
 
-      .registrationButton {
+      .registrationApplyButton {
         padding: 5px;
         font-size: 13px;
       }
@@ -525,7 +525,7 @@
         font-size: 14px;
       }
 
-      .registrationButton {
+      .registrationApplyButton {
         padding: 6px;
         font-size: 14px;
       }
@@ -622,7 +622,7 @@
         font-size: 15px;
       }
 
-      .registrationButton {
+      .registrationApplyButton {
         padding: 7px;
         font-size: 15px;
       }
@@ -719,7 +719,7 @@
         font-size: 16px;
       }
 
-      .registrationButton {
+      .registrationApplyButton {
         padding: 8px;
         font-size: 16px;
       }
@@ -816,7 +816,7 @@
         font-size: 18px;
       }
 
-      .registrationButton {
+      .registrationApplyButton {
         padding: 9px;
         font-size: 18px;
       }
@@ -912,7 +912,7 @@
         font-size: 28px;
       }
 
-      .registrationButton {
+      .registrationApplyButton {
         padding: 9px;
         font-size: 28px;
       }
@@ -920,6 +920,25 @@
 
     .message-box {
       font-size: 22px;
+    }
+  }
+}
+
+@media (hover: hover) {
+  .returnButton {
+    transition-property: box-shadow;
+    transition-duration: 0.7s;
+    &:hover {
+      box-shadow: 0 0 5px #000, 0 0 25px #000, 0 0 50px #000, 0 0 200px #000;
+    }
+  }
+
+  .registrationApplyButton {
+    transition-property: box-shadow;
+    transition-duration: 0.7s;
+    &:hover {
+      box-shadow: 0 0 5px #00897b, 0 0 25px #00897b, 0 0 50px #00897b,
+        0 0 200px #00897b;
     }
   }
 }
