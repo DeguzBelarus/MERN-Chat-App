@@ -49,7 +49,7 @@ const RegistrationPage: FC = () => {
       <div className="registration-wrapper">
 
          <form id="registration-form" onSubmit={registerHandler}>
-            <p className="logo-text">Magic Chat</p>
+            <p className="logo-text">My Chat</p>
             <h1 className="registration-header">Регистрация:</h1>
 
             <input id="nicknameInput" type="text" placeholder="От 2 до 10 символов" name="nickname" autoFocus required minLength={2} maxLength={10} onChange={changeHandler} />
