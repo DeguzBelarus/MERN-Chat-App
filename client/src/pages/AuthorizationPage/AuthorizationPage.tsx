@@ -2,6 +2,8 @@ import { useState, useEffect, FC, useRef } from "react";
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { userTokenSave, userIdSave, userNicknameSave, selectToken } from "../../app/userSlice";
+import { selectCurrentLanguage } from "../../app/globalSlice";
+import { currentLanguageSave } from "../../app/globalSlice";
 import { useForm } from "../../hooks/useForm.hook";
 
 import Loader from "../components/Loader/Loader";
@@ -16,9 +18,10 @@ const AuthorizationPage: FC = () => {
    const dispatch = useAppDispatch()
    const navigate = useNavigate()
    const token = useAppSelector(selectToken)
+   const currentLanguage = useAppSelector(selectCurrentLanguage)
 
    const { loading, message, request, setMessage } = useForm()
-   const [formData, setFormData]: any = useState({ email: "", password: "" })
+   const [formData, setFormData]: any = useState({ email: "", password: "", currentLanguage: currentLanguage })
    const [clearMessageTimeout, setClearMessageTimeout]: any = useState(null)
 
    const changeHandler = (event: any) => {
@@ -53,7 +56,11 @@ const AuthorizationPage: FC = () => {
             dispatch(userTokenSave(save.token))
             dispatch(userIdSave(save.userId))
             dispatch(userNicknameSave(save.nickname))
-            setMessage(`${save.nickname}, Вы успешно вошли в систему`)
+            if (currentLanguage === "ru") {
+               setMessage(`${save.nickname}, Вы успешно вошли в систему!`)
+            } else {
+               setMessage(`${save.nickname}, You have successfully logged in!`)
+            }
             navigate(`/usersroom/${save.nickname}`)
          }
       } else {
@@ -79,7 +86,14 @@ const AuthorizationPage: FC = () => {
    }, [loading])
 
    useEffect(() => {
-      document.title = "MySN: Main page"
+      document.title = currentLanguage === "ru" ? "MySN: Главная страница" : "MySN: Main page"
+      document.documentElement.lang = currentLanguage === "ru" ? "ru" : "en"
+      setFormData({ ...formData, currentLanguage: currentLanguage })
+   }, [currentLanguage])
+
+   useEffect(() => {
+      if (navigator.language === "ru") return
+      dispatch(currentLanguageSave("en"))
    }, [])
 
    return (
@@ -87,18 +101,17 @@ const AuthorizationPage: FC = () => {
          <LanguageSwitcher />
 
          <form id="authorization-form" onSubmit={loginHandler}>
-            <p className="logo-text">MySN: общение</p>
-            <h1 className="authorization-header">Авторизация:</h1>
+            <p className="logo-text">MySN</p>
 
-            <input id="emailInput" type="email" placeholder="Введите email" name="email" required autoFocus onChange={changeHandler} />
-            <label htmlFor="emailInput">Введите email</label>
+            <input id="emailInput" type="email" placeholder={currentLanguage === "ru" ? "Введите email" : "Enter email"} name="email" required autoFocus onChange={changeHandler} />
+            <label htmlFor="emailInput">{currentLanguage === "ru" ? "Введите email" : "Enter email"}</label>
 
-            <input id="passworInput" type="password" placeholder="Введите пароль" name="password" required minLength={8} onChange={changeHandler} />
-            <label htmlFor="passworInput">Введите пароль</label>
+            <input id="passworInput" type="password" placeholder={currentLanguage === "ru" ? "Введите пароль" : "Enter the password"} name="password" required minLength={8} onChange={changeHandler} />
+            <label htmlFor="passworInput">{currentLanguage === "ru" ? "Введите пароль" : "Enter the password"}</label>
 
             <div className="authorization-buttons">
-               <input type="submit" form="authorization-form" value={loading ? "Вход..." : "Войти"} className="loginButton" disabled={loading} ref={enterButton} />
-               <button type="button" className="registrationButton" disabled={loading} onClick={transitionToRegitrationPage}>Регистрация</button>
+               <input type="submit" form="authorization-form" value={loading ? currentLanguage === "ru" ? "Входим..." : "Enter..." : currentLanguage === "ru" ? "Войти" : "Enter"} className="loginButton" disabled={loading} ref={enterButton} />
+               <button type="button" className="registrationButton" disabled={loading} onClick={transitionToRegitrationPage}>{currentLanguage === "ru" ? "Регистрация" : "Registration"}</button>
             </div>
 
             {!loading && message && <MessageBox message={message} />}

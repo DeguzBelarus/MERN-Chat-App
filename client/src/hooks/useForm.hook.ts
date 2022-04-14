@@ -19,7 +19,7 @@ export const useForm = () => {
             setMessage(data.message);
 
             if (!response.ok) {
-               throw new Error(data.message || "Произошла ошибка");
+               throw new Error(data.message || "An error has occurred");
             }
 
             setLoading(false);
@@ -29,8 +29,7 @@ export const useForm = () => {
             setMessage(e.message);
             throw e;
          }
-      },
-      []
+      }, []
    );
 
    return { loading, request, message, setMessage };

@@ -1,14 +1,10 @@
 .languageSwitcher-wrapper {
-  width: 60px;
-  height: 23px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   position: absolute;
   top: 5px;
   right: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
   box-sizing: border-box;
   border-width: 2px;
   border-style: solid;
@@ -17,6 +13,7 @@
   background-color: #131616;
   transition-property: border-color;
   transition-duration: 0.6s;
+  transition-timing-function: ease-out;
   cursor: pointer;
 
   &.active {
@@ -24,8 +21,6 @@
   }
 
   .switcher {
-    width: 7px;
-    height: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,17 +28,17 @@
     border-radius: 50%;
     transition-property: transform, background-color;
     transition-duration: 0.6s;
+    transition-timing-function: ease-out;
     background-color: #00897b;
     z-index: 1;
 
     &.active {
-      transform: translateX(39px);
       background-color: white;
     }
   }
 
   .currentLangueage-span {
-    margin-left: -7px;
+    font-size: 16px;
     color: white;
     -ms-user-select: none;
     -webkit-user-select: none;
@@ -51,11 +46,66 @@
     font-weight: bold;
     transition-property: transform, color;
     transition-duration: 0.6s;
-    transform: translateX(22.5px);
+    transition-timing-function: ease-out;
 
     &.active {
       transform: translateX(0px);
       color: #00897b;
+    }
+  }
+}
+
+@media screen and (max-width: 2559px) {
+  .languageSwitcher-wrapper {
+    width: 60px;
+    height: 23px;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    .switcher {
+      width: 7px;
+      height: 7px;
+
+      &.active {
+        transform: translateX(39px);
+      }
+    }
+
+    .currentLangueage-span {
+      margin-left: -7px;
+      transform: translateX(22.5px);
+
+      &.active {
+        transform: translateX(0px);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .languageSwitcher-wrapper {
+    width: 120px;
+    height: 46px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    .switcher {
+      width: 14px;
+      height: 14px;
+
+      &.active {
+        transform: translateX(78px);
+      }
+    }
+
+    .currentLangueage-span {
+      font-size: 32px;
+      margin-left: -14px;
+      transform: translateX(45px);
+
+      &.active {
+        transform: translateX(0px);
+      }
     }
   }
 }

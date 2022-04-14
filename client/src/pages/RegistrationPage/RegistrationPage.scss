@@ -77,6 +77,10 @@
       &:not(:placeholder-shown) {
         border: 1px solid peru;
         padding-left: 5px;
+
+        &:invalid {
+          border: 1px solid red;
+        }
       }
 
       &:not(:placeholder-shown) + label {
@@ -123,6 +127,10 @@
       &:not(:placeholder-shown) {
         border: 1px solid peru;
         padding-left: 5px;
+
+        &:invalid {
+          border: 1px solid red;
+        }
       }
 
       &:not(:placeholder-shown) + label {
@@ -168,6 +176,10 @@
       &:not(:placeholder-shown) {
         border: 1px solid peru;
         padding-left: 5px;
+
+        &:invalid {
+          border: 1px solid red;
+        }
       }
 
       &:not(:placeholder-shown) + label {
@@ -190,7 +202,7 @@
       }
     }
 
-    .authorization-buttons {
+    .registration-buttons {
       width: 100%;
       display: flex;
       justify-content: center;
@@ -198,6 +210,9 @@
       margin-top: 10px;
 
       .returnButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-right: 10px;
         box-sizing: border-box;
         border: 2px solid #000;
@@ -215,10 +230,12 @@
       }
 
       .registrationApplyButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         box-sizing: border-box;
         border: 2px solid #00897b;
         border-radius: 5px;
-        background: #00897b;
         color: white;
 
         &:hover {
@@ -239,7 +256,7 @@
   }
 
   #registration-form {
-    width: 100%;
+    width: 90%;
     height: 285px;
 
     .registration-header {
@@ -312,13 +329,15 @@
       }
     }
 
-    .authorization-buttons {
+    .registration-buttons {
       .returnButton {
+        width: 55px;
         padding: 5px;
         font-size: 12px;
       }
 
       .registrationApplyButton {
+        width: 135px;
         padding: 5px;
         font-size: 12px;
       }
@@ -336,7 +355,7 @@
   }
 
   #registration-form {
-    width: 100%;
+    width: 90%;
     height: 285px;
 
     .registration-header {
@@ -409,13 +428,15 @@
       }
     }
 
-    .authorization-buttons {
+    .registration-buttons {
       .returnButton {
+        width: 60px;
         padding: 5px;
         font-size: 13px;
       }
 
       .registrationApplyButton {
+        width: 145px;
         padding: 5px;
         font-size: 13px;
       }
@@ -506,13 +527,15 @@
       }
     }
 
-    .authorization-buttons {
+    .registration-buttons {
       .returnButton {
+        width: 65px;
         padding: 6px;
         font-size: 14px;
       }
 
       .registrationApplyButton {
+        width: 155px;
         padding: 6px;
         font-size: 14px;
       }
@@ -603,13 +626,15 @@
       }
     }
 
-    .authorization-buttons {
+    .registration-buttons {
       .returnButton {
+        width: 70px;
         padding: 7px;
         font-size: 15px;
       }
 
       .registrationApplyButton {
+        width: 165px;
         padding: 7px;
         font-size: 15px;
       }
@@ -700,13 +725,15 @@
       }
     }
 
-    .authorization-buttons {
+    .registration-buttons {
       .returnButton {
+        width: 75px;
         padding: 8px;
         font-size: 16px;
       }
 
       .registrationApplyButton {
+        width: 180px;
         padding: 8px;
         font-size: 16px;
       }
@@ -724,7 +751,7 @@
   }
 
   #registration-form {
-    width: 470px;
+    width: 445px;
     height: 355px;
 
     .registration-header {
@@ -797,13 +824,15 @@
       }
     }
 
-    .authorization-buttons {
+    .registration-buttons {
       .returnButton {
+        width: 80px;
         padding: 9px;
         font-size: 18px;
       }
 
       .registrationApplyButton {
+        width: 195px;
         padding: 9px;
         font-size: 18px;
       }
@@ -821,7 +850,7 @@
   }
 
   #registration-form {
-    width: 700px;
+    width: 600px;
     height: 500px;
 
     .registration-header {
@@ -891,15 +920,17 @@
       }
     }
 
-    .authorization-buttons {
+    .registration-buttons {
       margin-bottom: 10px;
 
       .returnButton {
+        width: 120px;
         padding: 9px;
         font-size: 28px;
       }
 
       .registrationApplyButton {
+        width: 300px;
         padding: 9px;
         font-size: 28px;
       }

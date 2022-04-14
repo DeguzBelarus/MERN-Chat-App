@@ -25,6 +25,7 @@
     align-items: center;
     position: relative;
     padding: 15px;
+    padding-top: 25px;
     box-sizing: border-box;
     border-bottom-left-radius: 35px;
     border-bottom-right-radius: 35px;
@@ -42,15 +43,6 @@
       -ms-user-select: none;
       user-select: none;
       color: #00897b;
-    }
-
-    .authorization-header {
-      margin: 0;
-      margin-bottom: 15px;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      color: #131616;
     }
 
     #emailInput {
@@ -74,6 +66,10 @@
       &:not(:placeholder-shown) {
         border: 1px solid peru;
         padding-left: 5px;
+
+        &:invalid {
+          border: 1px solid red;
+        }
       }
 
       &:not(:placeholder-shown) + label {
@@ -112,6 +108,10 @@
       &:not(:placeholder-shown) {
         border: 1px solid peru;
         padding-left: 5px;
+
+        &:invalid {
+          border: 1px solid red;
+        }
       }
 
       &:not(:placeholder-shown) + label {
@@ -137,6 +137,9 @@
       margin-top: 10px;
 
       .loginButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-right: 10px;
         box-sizing: border-box;
         border: 2px solid #00897b;
@@ -153,6 +156,9 @@
       }
 
       .registrationButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         box-sizing: border-box;
         border: 2px solid #000;
         border-radius: 5px;
@@ -178,12 +184,8 @@
     }
 
     #authorization-form {
-      width: 100%;
-      height: 250px;
-
-      .authorization-header {
-        font-size: 25px;
-      }
+      width: 90%;
+      height: 200px;
 
       #emailInput {
         width: 170px;
@@ -231,12 +233,13 @@
 
       .authorization-buttons {
         .loginButton {
-          width: 60px;
+          width: 70px;
           padding: 5px;
           font-size: 12px;
         }
 
         .registrationButton {
+          width: 90px;
           padding: 5px;
           font-size: 12px;
         }
@@ -256,12 +259,8 @@
     }
 
     #authorization-form {
-      width: 100%;
-      height: 250px;
-
-      .authorization-header {
-        font-size: 25px;
-      }
+      width: 90%;
+      height: 205px;
 
       #emailInput {
         width: 170px;
@@ -309,12 +308,13 @@
 
       .authorization-buttons {
         .loginButton {
-          width: 65px;
+          width: 70px;
           padding: 5px;
           font-size: 13px;
         }
 
         .registrationButton {
+          width: 90px;
           padding: 5px;
           font-size: 13px;
         }
@@ -335,11 +335,7 @@
 
     #authorization-form {
       width: 350px;
-      height: 255px;
-
-      .authorization-header {
-        font-size: 27px;
-      }
+      height: 220px;
 
       #emailInput {
         width: 200px;
@@ -387,12 +383,13 @@
 
       .authorization-buttons {
         .loginButton {
-          width: 65px;
+          width: 75px;
           padding: 6px;
           font-size: 14px;
         }
 
         .registrationButton {
+          width: 95px;
           padding: 6px;
           font-size: 14px;
         }
@@ -413,11 +410,7 @@
 
     #authorization-form {
       width: 380px;
-      height: 265px;
-
-      .authorization-header {
-        font-size: 29px;
-      }
+      height: 230px;
 
       #emailInput {
         width: 220px;
@@ -465,12 +458,13 @@
 
       .authorization-buttons {
         .loginButton {
-          width: 70px;
+          width: 80px;
           padding: 7px;
           font-size: 15px;
         }
 
         .registrationButton {
+          width: 115px;
           padding: 7px;
           font-size: 15px;
         }
@@ -491,11 +485,7 @@
 
     #authorization-form {
       width: 440px;
-      height: 280px;
-
-      .authorization-header {
-        font-size: 32px;
-      }
+      height: 235px;
 
       #emailInput {
         width: 240px;
@@ -543,12 +533,13 @@
 
       .authorization-buttons {
         .loginButton {
-          width: 80px;
+          width: 85px;
           padding: 8px;
           font-size: 16px;
         }
 
         .registrationButton {
+          width: 125px;
           padding: 8px;
           font-size: 16px;
         }
@@ -568,12 +559,8 @@
     }
 
     #authorization-form {
-      width: 470px;
-      height: 290px;
-
-      .authorization-header {
-        font-size: 34px;
-      }
+      width: 445px;
+      height: 245px;
 
       #emailInput {
         width: 260px;
@@ -621,12 +608,13 @@
 
       .authorization-buttons {
         .loginButton {
-          width: 88px;
+          width: 90px;
           padding: 9px;
           font-size: 18px;
         }
 
         .registrationButton {
+          width: 135px;
           padding: 9px;
           font-size: 18px;
         }
@@ -646,12 +634,8 @@
     }
 
     #authorization-form {
-      width: 700px;
-      height: 450px;
-
-      .authorization-header {
-        font-size: 52px;
-      }
+      width: 600px;
+      height: 310px;
 
       #emailInput {
         width: 350px;
@@ -708,6 +692,7 @@
         }
 
         .registrationButton {
+          width: 200px;
           padding: 9px;
           font-size: 28px;
         }
