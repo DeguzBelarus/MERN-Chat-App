@@ -160,9 +160,12 @@
       box-sizing: border-box;
       border: 2px solid #000;
       border-radius: 5px;
-      background: #000;
-      color: white;
+      background: white;
+      color: black;
       z-index: 1;
+      font-weight: bold;
+      transition-property: color, background-color, box-shadow;
+      transition-duration: 0.5s;
 
       &:hover {
         cursor: pointer;
@@ -180,8 +183,10 @@
       box-sizing: border-box;
       border: 2px solid #00897b;
       border-radius: 5px;
-      background-color: #00897b;
       z-index: 1;
+      font-weight: bold;
+      transition-property: color, background-color, box-shadow;
+      transition-duration: 0.5s;
 
       &:hover {
         cursor: pointer;
@@ -235,7 +240,7 @@
       }
 
       .registration-apply-button {
-        width: 135px;
+        width: 140px;
         padding: 5px;
         font-size: 12px;
       }
@@ -288,7 +293,7 @@
       }
 
       .registration-apply-button {
-        width: 145px;
+        width: 150px;
         padding: 5px;
         font-size: 13px;
       }
@@ -341,7 +346,7 @@
       }
 
       .registration-apply-button {
-        width: 155px;
+        width: 160px;
         padding: 6px;
         font-size: 14px;
       }
@@ -394,7 +399,7 @@
       }
 
       .registration-apply-button {
-        width: 165px;
+        width: 170px;
         padding: 7px;
         font-size: 15px;
       }
@@ -447,7 +452,7 @@
       }
 
       .registration-apply-button {
-        width: 180px;
+        width: 185px;
         padding: 8px;
         font-size: 16px;
       }
@@ -500,7 +505,7 @@
       }
 
       .registration-apply-button {
-        width: 195px;
+        width: 200px;
         padding: 9px;
         font-size: 18px;
       }
@@ -559,7 +564,7 @@
       }
 
       .registration-apply-button {
-        width: 300px;
+        width: 310px;
         padding: 9px;
         font-size: 28px;
       }
@@ -573,19 +578,14 @@
 
 @media (hover: hover) {
   .return-button {
-    transition-property: box-shadow;
-    transition-duration: 0.7s;
     &:hover {
-      box-shadow: 0 0 5px #000, 0 0 25px #000, 0 0 50px #000, 0 0 200px #000;
+      box-shadow: inset 0 0 5px black;
     }
   }
 
   .registration-apply-button {
-    transition-property: box-shadow;
-    transition-duration: 0.7s;
     &:hover {
-      box-shadow: 0 0 5px #00897b, 0 0 25px #00897b, 0 0 50px #00897b,
-        0 0 200px #00897b;
+      box-shadow: inset 0 0 12px yellowgreen;
     }
   }
 }

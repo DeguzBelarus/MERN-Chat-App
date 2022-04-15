@@ -23,6 +23,18 @@ const RegistrationPage: FC = () => {
    const registerHandler = async (event: any) => {
       event.preventDefault()
       try {
+         if (formData.email.length < 8 || !formData.email.includes("@") || !formData.email.includes(".")) {
+            return setMessage(currentLanguage === "ru" ? "Введите корректный email" : "Enter the correct email")
+         }
+
+         if (formData.password.length < 8) {
+            return setMessage(currentLanguage === "ru" ? "Введите корректный пароль" : "Enter the correct password")
+         }
+
+         if (formData.nickname.length < 2 || formData.nickname.length > 10) {
+            return setMessage(currentLanguage === "ru" ? "Введите корректный никнейм" : "Enter the correct nickname")
+         }
+
          const data = await request("/api/authorization/registration", "POST", { ...formData })
       } catch (e) {
          console.log("Error:", e);
@@ -56,7 +68,8 @@ const RegistrationPage: FC = () => {
             changeHandler={changeHandler}
             loading={loading}
             mainPageReturn={mainPageReturn}
-            message={message} />
+            message={message}
+            formData={formData} />
 
          <span className="copyright">© Deguz, 2022</span>
       </div >

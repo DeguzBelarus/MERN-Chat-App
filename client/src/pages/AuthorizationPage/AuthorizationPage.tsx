@@ -28,6 +28,14 @@ const AuthorizationPage: FC = () => {
    const loginHandler = async (event: any) => {
       event.preventDefault()
       try {
+         if (formData.email.length < 8 || !formData.email.includes("@") || !formData.email.includes(".")) {
+            return setMessage(currentLanguage === "ru" ? "Введите корректный email" : "Enter the correct email")
+         }
+
+         if (formData.password.length < 8) {
+            return setMessage(currentLanguage === "ru" ? "Введите корректный пароль" : "Enter the correct password")
+         }
+
          const data = await request("/api/authorization/login", "POST", { ...formData })
 
          dispatch(userTokenSave(data.token))
@@ -93,7 +101,8 @@ const AuthorizationPage: FC = () => {
             loading={loading}
             transitionToRegitrationPage={transitionToRegitrationPage}
             message={message}
-            changeHandler={changeHandler} />
+            changeHandler={changeHandler}
+            formData={formData} />
 
          <span className="copyright">© Deguz, 2022</span>
       </div >
