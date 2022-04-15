@@ -33,14 +33,23 @@ export const RegistrationForm: FC<Props> = (
       <p className="logo-text">MySN</p>
       <h1 className="registration-header">{currentLanguage === "ru" ? "Регистрация:" : "Registration:"}</h1>
 
-      <input type="text" id="nicknameInput" placeholder={currentLanguage === "ru" ? "От 2 до 10 символов" : "From 2 to 10 characters"} name="nickname" autoFocus required minLength={2} maxLength={10} onChange={changeHandler} />
-      <label htmlFor="nicknameInput">{currentLanguage === "ru" ? "Введите никнейм" : "Enter the nickname"}</label>
+      <label htmlFor="nicknameInput" className="input-label">
+         <input type="text" id="nicknameInput" placeholder={currentLanguage === "ru" ? "От 2 до 10 символов" : "From 2 to 10 characters"} name="nickname" autoFocus required minLength={2} maxLength={10} onChange={changeHandler} />
+         <span>{currentLanguage === "ru" ? "Введите никнейм" : "Enter the nickname"}</span>
+         <div className="line"></div>
+      </label>
 
-      <input type="email" id="emailInput" placeholder={currentLanguage === "ru" ? "Формат: mail@mail.domen" : "Format: mail@mail.domen"} name="email" required onChange={changeHandler} />
-      <label htmlFor="emailInput">{currentLanguage === "ru" ? "Введите email" : "Enter email"}</label>
+      <label htmlFor="emailInput" className="input-label">
+         <input type="email" id="emailInput" placeholder={currentLanguage === "ru" ? "Формат: mail@mail.domen" : "Format: mail@mail.domen"} name="email" required onChange={changeHandler} />
+         <span>{currentLanguage === "ru" ? "Введите email" : "Enter email"}</span>
+         <div className="line"></div>
+      </label>
 
-      <input type="password" id="passworInput" placeholder={currentLanguage === "ru" ? "Минимум 8 символов" : "Minimum of 8 characters"} name="password" required minLength={8} onChange={changeHandler} />
-      <label htmlFor="passworInput">{currentLanguage === "ru" ? "Введите пароль" : "Enter the password"}</label>
+      <label htmlFor="passworInput" className="input-label">
+         <input type="password" id="passworInput" placeholder={currentLanguage === "ru" ? "Минимум 8 символов" : "Minimum of 8 characters"} name="password" required minLength={8} onChange={changeHandler} />
+         <span>{currentLanguage === "ru" ? "Введите пароль" : "Enter the password"}</span>
+         <div className="line"></div>
+      </label>
 
       <div className="registration-buttons">
          <button type="button" className="return-button" disabled={loading} onClick={mainPageReturn}>{currentLanguage === "ru" ? "Назад" : "Back"}</button>
