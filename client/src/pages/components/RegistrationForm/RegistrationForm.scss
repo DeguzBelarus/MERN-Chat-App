@@ -59,6 +59,8 @@
 
       &::placeholder {
         opacity: 0;
+        transition-property: opacity;
+        transition-duration: 0.8s;
       }
 
       &:focus {
