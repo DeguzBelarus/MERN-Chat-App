@@ -25,3 +25,51 @@
     transform: translateY(-20px);
   }
 }
+
+@media screen and (max-width: 319px) {
+  .message-box {
+    span {
+      font-size: 10px;
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .message-box {
+    span {
+      font-size: 11px;
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .message-box {
+    span {
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .message-box {
+    span {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .message-box {
+    span {
+      font-size: 15px;
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .message-box {
+    span {
+      font-size: 20px;
+    }
+  }
+}
