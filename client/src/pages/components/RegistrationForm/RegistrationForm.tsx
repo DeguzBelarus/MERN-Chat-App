@@ -23,9 +23,9 @@ export const RegistrationForm: FC<Props> = (
 
    useEffect(() => {
       if (loading) {
-         registerButton.current.style.backgroundColor = "rgba(0,150,0, 0.8)"
+         registerButton.current.style.color = "yellow"
       } else {
-         registerButton.current.style.backgroundColor = "#00897b"
+         registerButton.current.style.color = "white"
       }
    }, [loading])
 

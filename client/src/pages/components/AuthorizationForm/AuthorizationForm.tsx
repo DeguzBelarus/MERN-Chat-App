@@ -23,9 +23,9 @@ export const AuthorizationForm: FC<Props> = (
 
    useEffect(() => {
       if (loading) {
-         enterButton.current.style.backgroundColor = "rgba(0,150,0, 0.8)"
+         enterButton.current.style.color = "yellow"
       } else {
-         enterButton.current.style.backgroundColor = "#00897b"
+         enterButton.current.style.color = "white"
       }
    }, [loading])
 
