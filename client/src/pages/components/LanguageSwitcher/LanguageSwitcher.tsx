@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { selectCurrentLanguage, currentLanguageSave } from "../../../app/globalSlice";
 
@@ -17,8 +17,8 @@ export const LanguageSwitcher: FC = () => {
    }
 
    return <div className={currentLanguage === "ru" ?
-      "languageSwitcher-wrapper" : "languageSwitcher-wrapper active"} onClick={switchLanguage}>
+      "language-switcher-wrapper" : "language-switcher-wrapper active"} onClick={switchLanguage}>
       <div className={currentLanguage === "ru" ? "switcher" : "switcher active"}></div>
-      <span className={currentLanguage === "ru" ? "currentLangueage-span" : "currentLangueage-span active"}>{currentLanguage === "ru" ? "RU" : "EN"}</span>
+      <span className={currentLanguage === "ru" ? "current-language-span" : "current-language-span active"}>{currentLanguage === "ru" ? "RU" : "EN"}</span>
    </div >
 }

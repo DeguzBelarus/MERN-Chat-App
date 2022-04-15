@@ -1,4 +1,4 @@
-import { useState, useEffect, FC, useRef } from "react";
+import { useState, useEffect, FC } from "react";
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { userTokenSave, userIdSave, userNicknameSave, selectToken } from "../../app/userSlice";
@@ -6,15 +6,12 @@ import { selectCurrentLanguage } from "../../app/globalSlice";
 import { currentLanguageSave } from "../../app/globalSlice";
 import { useForm } from "../../hooks/useForm.hook";
 
-import Loader from "../components/Loader/Loader";
-import { MessageBox } from "../components/MessageBox/MessageBox"
+import { AuthorizationForm } from "../components/AuthorizationForm/AuthorizationForm";
 import { LanguageSwitcher } from "../components/LanguageSwitcher/LanguageSwitcher"
 
 import "./AuthorizationPage.scss"
 
 const AuthorizationPage: FC = () => {
-   const enterButton: any = useRef(null)
-
    const dispatch = useAppDispatch()
    const navigate = useNavigate()
    const token = useAppSelector(selectToken)
@@ -78,14 +75,6 @@ const AuthorizationPage: FC = () => {
    }, [message])
 
    useEffect(() => {
-      if (loading) {
-         enterButton.current.style.backgroundColor = "rgba(0,150,0, 0.8)"
-      } else {
-         enterButton.current.style.backgroundColor = "#00897b"
-      }
-   }, [loading])
-
-   useEffect(() => {
       document.title = currentLanguage === "ru" ? "MySN: Главная страница" : "MySN: Main page"
       document.documentElement.lang = currentLanguage === "ru" ? "ru" : "en"
       setFormData({ ...formData, currentLanguage: currentLanguage })
@@ -99,24 +88,12 @@ const AuthorizationPage: FC = () => {
    return (
       <div className="authorization-wrapper">
          <LanguageSwitcher />
-
-         <form id="authorization-form" onSubmit={loginHandler}>
-            <p className="logo-text">MySN</p>
-
-            <input id="emailInput" type="email" placeholder={currentLanguage === "ru" ? "Введите email" : "Enter email"} name="email" required autoFocus onChange={changeHandler} />
-            <label htmlFor="emailInput">{currentLanguage === "ru" ? "Введите email" : "Enter email"}</label>
-
-            <input id="passworInput" type="password" placeholder={currentLanguage === "ru" ? "Введите пароль" : "Enter the password"} name="password" required minLength={8} onChange={changeHandler} />
-            <label htmlFor="passworInput">{currentLanguage === "ru" ? "Введите пароль" : "Enter the password"}</label>
-
-            <div className="authorization-buttons">
-               <input type="submit" form="authorization-form" value={loading ? currentLanguage === "ru" ? "Входим..." : "Enter..." : currentLanguage === "ru" ? "Войти" : "Enter"} className="loginButton" disabled={loading} ref={enterButton} />
-               <button type="button" className="registrationButton" disabled={loading} onClick={transitionToRegitrationPage}>{currentLanguage === "ru" ? "Регистрация" : "Registration"}</button>
-            </div>
-
-            {!loading && message && <MessageBox message={message} />}
-            {loading && <Loader />}
-         </form >
+         <AuthorizationForm
+            loginHandler={loginHandler}
+            loading={loading}
+            transitionToRegitrationPage={transitionToRegitrationPage}
+            message={message}
+            changeHandler={changeHandler} />
 
          <span className="copyright">© Deguz, 2022</span>
       </div >

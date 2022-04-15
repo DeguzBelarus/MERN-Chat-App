@@ -1,4 +1,4 @@
-.languageSwitcher-wrapper {
+.language-switcher-wrapper {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -37,7 +37,7 @@
     }
   }
 
-  .currentLangueage-span {
+  .current-language-span {
     font-size: 16px;
     color: white;
     -ms-user-select: none;
@@ -56,7 +56,7 @@
 }
 
 @media screen and (max-width: 2559px) {
-  .languageSwitcher-wrapper {
+  .language-switcher-wrapper {
     width: 60px;
     height: 23px;
     padding-left: 5px;
@@ -71,7 +71,7 @@
       }
     }
 
-    .currentLangueage-span {
+    .current-language-span {
       margin-left: -7px;
       transform: translateX(22.5px);
 
@@ -83,7 +83,7 @@
 }
 
 @media screen and (min-width: 2560px) {
-  .languageSwitcher-wrapper {
+  .language-switcher-wrapper {
     width: 120px;
     height: 46px;
     padding-left: 10px;
@@ -98,7 +98,7 @@
       }
     }
 
-    .currentLangueage-span {
+    .current-language-span {
       font-size: 32px;
       margin-left: -14px;
       transform: translateX(45px);

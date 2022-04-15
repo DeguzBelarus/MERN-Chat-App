@@ -1,0 +1,512 @@
+#login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 15px;
+  padding-top: 25px;
+  position: relative;
+  box-sizing: border-box;
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+  border-top-right-radius: 35px;
+  box-shadow: inset 0 0 15px 1px #00897b;
+  background-color: white;
+
+  .logo-text {
+    position: absolute;
+    top: -88px;
+    left: -1px;
+    font-size: 45px;
+    font-weight: bolder;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #00897b;
+  }
+
+  .input-label {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid #00897b;
+
+    &:nth-of-type(1) {
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      box-sizing: border-box;
+      padding: 10px;
+      border: none;
+      outline: none;
+      background-color: white;
+
+      &::placeholder {
+        opacity: 0;
+      }
+
+      &:focus {
+        outline: none;
+
+        &:placeholder-shown {
+          + span {
+            background-color: white;
+            color: #00897b;
+          }
+
+          ~ .line {
+            background-color: #00897b;
+          }
+        }
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        + span {
+          background-color: white;
+          color: #00897b;
+        }
+
+        ~ .line {
+          width: calc(100% + 2px);
+        }
+      }
+
+      &:not(:focus),
+      &:not(:placeholder-shown) {
+        + span {
+          background-color: white;
+          color: yellowgreen;
+        }
+      }
+
+      &:invalid {
+        + span {
+          background-color: white;
+          color: red;
+        }
+
+        ~ .line {
+          background-color: red;
+        }
+      }
+
+      &:placeholder-shown {
+        + span {
+          background-color: white;
+          color: black;
+        }
+      }
+    }
+
+    span {
+      position: absolute;
+      left: 12px;
+      font-weight: 400;
+      opacity: 0.8;
+      transition: 0.5s;
+      color: black;
+      cursor: text;
+    }
+
+    .line {
+      width: 0;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: -1px;
+      background-color: yellowgreen;
+      transition: 0.3s;
+    }
+  }
+
+  .authorization-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+    .login-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+      box-sizing: border-box;
+      border: 2px solid #00897b;
+      border-radius: 5px;
+      color: white;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: white;
+      }
+    }
+
+    .registration-page-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      border: 2px solid #000;
+      border-radius: 5px;
+      background: #000;
+      color: white;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 319px) {
+  #login-form {
+    width: 90%;
+    height: 210px;
+
+    .input-label {
+      width: 180px;
+      height: 28px;
+
+      input {
+        font-size: 10px;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          + span {
+            left: 2px;
+            top: -5.5px;
+            padding: 0 4px;
+            opacity: 1;
+          }
+        }
+      }
+
+      span {
+        top: 8.5px;
+        font-size: 10px;
+      }
+    }
+
+    .authorization-buttons {
+      .login-button {
+        width: 70px;
+        padding: 5px;
+        font-size: 12px;
+      }
+
+      .registration-page-button {
+        width: 95px;
+        padding: 5px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  #login-form {
+    width: 90%;
+    height: 215px;
+
+    .input-label {
+      width: 200px;
+      height: 30px;
+
+      input {
+        font-size: 10px;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          + span {
+            left: 2px;
+            top: -5.5px;
+            padding: 0 4px;
+            opacity: 1;
+          }
+        }
+      }
+
+      span {
+        top: 9.5px;
+        font-size: 10px;
+      }
+    }
+
+    .authorization-buttons {
+      .login-button {
+        width: 70px;
+        padding: 5px;
+        font-size: 13px;
+      }
+
+      .registration-page-button {
+        width: 100px;
+        padding: 5px;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  #login-form {
+    width: 350px;
+    height: 230px;
+
+    .input-label {
+      width: 230px;
+      height: 32px;
+
+      input {
+        font-size: 12px;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          + span {
+            left: 2px;
+            top: -7.5px;
+            padding: 0 4px;
+            opacity: 1;
+          }
+        }
+      }
+
+      span {
+        top: 8.5px;
+        font-size: 12px;
+      }
+    }
+
+    .authorization-buttons {
+      .login-button {
+        width: 75px;
+        padding: 6px;
+        font-size: 14px;
+      }
+
+      .registration-page-button {
+        width: 110px;
+        padding: 6px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #login-form {
+    width: 380px;
+    height: 240px;
+
+    .input-label {
+      width: 260px;
+      height: 35px;
+
+      input {
+        font-size: 13px;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          + span {
+            left: 2px;
+            top: -8px;
+            padding: 0 4px;
+            opacity: 1;
+          }
+        }
+      }
+
+      span {
+        top: 9.5px;
+        font-size: 13px;
+      }
+    }
+
+    .authorization-buttons {
+      .login-button {
+        width: 80px;
+        padding: 7px;
+        font-size: 15px;
+      }
+
+      .registration-page-button {
+        width: 120px;
+        padding: 7px;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #login-form {
+    width: 440px;
+    height: 250px;
+
+    .input-label {
+      width: 300px;
+      height: 40px;
+
+      input {
+        font-size: 14px;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          + span {
+            left: 2px;
+            top: -8px;
+            padding: 0 4px;
+            opacity: 1;
+          }
+        }
+      }
+
+      span {
+        top: 12px;
+        font-size: 14px;
+      }
+    }
+
+    .authorization-buttons {
+      .login-button {
+        width: 85px;
+        padding: 8px;
+        font-size: 16px;
+      }
+
+      .registration-page-button {
+        width: 130px;
+        padding: 8px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  #login-form {
+    width: 440px;
+    height: 250px;
+
+    .input-label {
+      width: 320px;
+      height: 40px;
+
+      input {
+        font-size: 14px;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          + span {
+            left: 2px;
+            top: -8px;
+            padding: 0 4px;
+            opacity: 1;
+          }
+        }
+      }
+
+      span {
+        top: 12px;
+        font-size: 14px;
+      }
+    }
+
+    .authorization-buttons {
+      .login-button {
+        width: 85px;
+        padding: 8px;
+        font-size: 16px;
+      }
+
+      .registration-page-button {
+        width: 130px;
+        padding: 8px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  #login-form {
+    width: 600px;
+    height: 335px;
+
+    .input-label {
+      width: 430px;
+      height: 55px;
+
+      &:nth-of-type(2) {
+        margin-bottom: 10px;
+      }
+
+      input {
+        font-size: 20px;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          + span {
+            left: 2px;
+            top: -11.5px;
+            padding: 0 4px;
+            opacity: 1;
+          }
+        }
+      }
+
+      span {
+        top: 16px;
+        font-size: 20px;
+      }
+    }
+
+    .authorization-buttons {
+      .login-button {
+        width: 140px;
+        padding: 9px;
+        font-size: 28px;
+      }
+
+      .registration-page-button {
+        width: 220px;
+        padding: 9px;
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+@media (hover: hover) {
+  .login-button {
+    transition-property: box-shadow;
+    transition-duration: 0.7s;
+
+    &:hover {
+      box-shadow: 0 0 5px #00897b, 0 0 25px #00897b, 0 0 50px #00897b,
+        0 0 200px #00897b;
+    }
+  }
+
+  .registration-page-button {
+    transition-property: box-shadow;
+    transition-duration: 0.7s;
+
+    &:hover {
+      box-shadow: 0 0 5px #000, 0 0 25px #000, 0 0 50px #000, 0 0 200px #000;
+    }
+  }
+}
