@@ -30,15 +30,18 @@ export const RegistrationForm: FC<Props> = (
       if (loading) {
          registerButton.current.style.backgroundColor = "yellowgreen"
          registerButton.current.style.color = "#00897b"
+         registerButton.current.style.borderColor = "yellowgreen"
       } else {
          if (emailInput.current.validity.valid
             && passwordInput.current.validity.valid
             && nicknameInput.current.validity.valid) {
             registerButton.current.style.backgroundColor = "#00897b"
             registerButton.current.style.color = "white"
+            registerButton.current.style.borderColor = "#00897b"
          } else {
             registerButton.current.style.backgroundColor = "white"
             registerButton.current.style.color = "#00897b"
+            registerButton.current.style.borderColor = "#00897b"
          }
       }
    }, [loading])
@@ -49,9 +52,11 @@ export const RegistrationForm: FC<Props> = (
          && nicknameInput.current.validity.valid) {
          registerButton.current.style.backgroundColor = "#00897b"
          registerButton.current.style.color = "white"
+         registerButton.current.style.borderColor = "#00897b"
       } else {
          registerButton.current.style.backgroundColor = "white"
          registerButton.current.style.color = "#00897b"
+         registerButton.current.style.borderColor = "#00897b"
       }
    }, [formData])
 

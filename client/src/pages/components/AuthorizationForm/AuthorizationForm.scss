@@ -147,7 +147,7 @@
       border-radius: 5px;
       z-index: 1;
       font-weight: bold;
-      transition-property: color, background-color, box-shadow;
+      transition-property: color, background-color, box-shadow, border-color;
       transition-duration: 0.5s;
 
       &:hover {

@@ -38,13 +38,16 @@ export const AuthorizationForm: FC<Props> = (
       if (loading) {
          enterButton.current.style.backgroundColor = "yellowgreen"
          enterButton.current.style.color = "#00897b"
+         enterButton.current.style.borderColor = "yellowgreen"
       } else {
          if (emailInput.current.validity.valid && passwordInput.current.validity.valid) {
             enterButton.current.style.backgroundColor = "#00897b"
             enterButton.current.style.color = "white"
+            enterButton.current.style.borderColor = "#00897b"
          } else {
             enterButton.current.style.backgroundColor = "white"
             enterButton.current.style.color = "#00897b"
+            enterButton.current.style.borderColor = "#00897b"
          }
       }
    }, [loading])
@@ -53,9 +56,11 @@ export const AuthorizationForm: FC<Props> = (
       if (emailInput.current.validity.valid && passwordInput.current.validity.valid) {
          enterButton.current.style.backgroundColor = "#00897b"
          enterButton.current.style.color = "white"
+         enterButton.current.style.borderColor = "#00897b"
       } else {
          enterButton.current.style.backgroundColor = "white"
          enterButton.current.style.color = "#00897b"
+         enterButton.current.style.borderColor = "#00897b"
       }
    }, [formData])
 
