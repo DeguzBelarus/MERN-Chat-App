@@ -7,7 +7,7 @@ import "./UserRoom.scss"
 interface Props {
 }
 
-const UserRoom: FC<Props> = () => {
+export const UserRoom: FC<Props> = () => {
    const dispatch = useAppDispatch()
    const nickname = useAppSelector(selectUserNickname)
    const userId = useAppSelector(selectUserId)
@@ -44,5 +44,3 @@ const UserRoom: FC<Props> = () => {
       </div>
    )
 }
-
-export default UserRoom

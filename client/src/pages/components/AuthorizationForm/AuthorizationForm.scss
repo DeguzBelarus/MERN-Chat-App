@@ -132,6 +132,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     margin-top: 10px;
 
     .login-button {
@@ -169,6 +170,9 @@
       font-weight: bold;
       transition-property: color, background-color, box-shadow;
       transition-duration: 0.5s;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
 
       &:hover {
         cursor: pointer;
@@ -184,7 +188,7 @@
 @media screen and (max-width: 319px) {
   #login-form {
     width: 90%;
-    height: 210px;
+    height: 230px;
 
     .input-label {
       width: 180px;
@@ -229,7 +233,7 @@
 @media screen and (min-width: 320px) {
   #login-form {
     width: 90%;
-    height: 215px;
+    height: 230px;
 
     .input-label {
       width: 200px;
@@ -274,7 +278,7 @@
 @media screen and (min-width: 425px) {
   #login-form {
     width: 350px;
-    height: 230px;
+    height: 240px;
 
     .input-label {
       width: 230px;
@@ -319,7 +323,7 @@
 @media screen and (min-width: 768px) {
   #login-form {
     width: 380px;
-    height: 240px;
+    height: 245px;
 
     .input-label {
       width: 260px;
@@ -364,7 +368,7 @@
 @media screen and (min-width: 1024px) {
   #login-form {
     width: 440px;
-    height: 250px;
+    height: 255px;
 
     .input-label {
       width: 300px;
@@ -409,7 +413,7 @@
 @media screen and (min-width: 1440px) {
   #login-form {
     width: 440px;
-    height: 250px;
+    height: 255px;
 
     .input-label {
       width: 320px;
@@ -454,7 +458,7 @@
 @media screen and (min-width: 2560px) {
   #login-form {
     width: 600px;
-    height: 300px;
+    height: 320px;
 
     .input-label {
       width: 430px;

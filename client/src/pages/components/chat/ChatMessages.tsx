@@ -2,7 +2,7 @@ import { useEffect, FC, useRef, useTransition } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { selectMessagesInChat, messagesInChatSave } from "../../../app/chatSlice";
 
-const ChatMessages: FC = () => {
+export const ChatMessages: FC = () => {
    const messagesBox: any = useRef(null);
 
    const dispatch = useAppDispatch();
@@ -59,5 +59,3 @@ const ChatMessages: FC = () => {
       </div>
    );
 };
-
-export default ChatMessages;

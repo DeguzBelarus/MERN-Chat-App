@@ -3,16 +3,16 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname } from "../../app/userSlice";
 import { messagesInChatSave, usersInChatSave, selectMessagesInChat, privateRecipientSave } from "../../app/chatSlice";
 
-import BottomPanel from "../components/chat/BottomPanel";
-import UsersList from "../components/chat/UsersList";
-import ChatMessages from "../components/chat/ChatMessages";
+import { ChatMessages } from "../components/chat/ChatMessages";
+import { UsersList } from "../components/chat/UsersList";
+import { BottomPanel } from "../components/chat/BottomPanel";
 
 import "./ChatMainPage.scss";
 interface Props {
    socket: any
 }
 
-const ChatMainPage: FC<Props> = ({ socket }) => {
+export const ChatMainPage: FC<Props> = ({ socket }) => {
    const dispatch = useAppDispatch()
    const nickname = useAppSelector(selectUserNickname);
    let messagesInChat = useAppSelector(selectMessagesInChat);
@@ -111,5 +111,3 @@ const ChatMainPage: FC<Props> = ({ socket }) => {
       </div>
    );
 };
-
-export default ChatMainPage;

@@ -6,7 +6,7 @@ interface Props {
    privateModeSet: any
 }
 
-const UsersList: FC<Props> = ({ privateModeSet }) => {
+export const UsersList: FC<Props> = ({ privateModeSet }) => {
    const usersInChat = useAppSelector(selectUsersInChat);
    const nickname = useAppSelector(selectUserNickname);
    const privateRecipient = useAppSelector(selectPrivateRecipient);
@@ -167,5 +167,3 @@ const UsersList: FC<Props> = ({ privateModeSet }) => {
       </div>
    );
 };
-
-export default UsersList;

@@ -3,6 +3,7 @@ import { useAppSelector } from "../../../app/hooks";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
 
 import { Loader } from "../../components/Loader/Loader";
+import { StayLoggedInBox } from "../StayLoggedInBox/StayLoggedInBox";
 import { MessageBox } from "../../components/MessageBox/MessageBox"
 
 import "./AuthorizationForm.scss"
@@ -13,11 +14,20 @@ interface Props {
    transitionToRegitrationPage: any,
    message: string,
    changeHandler: any,
-   formData: object
+   formData: object,
+   setIsStayLoggedIn: any,
+   isStayLoggedIn: boolean
 }
 
 export const AuthorizationForm: FC<Props> = (
-   { loginHandler, loading, transitionToRegitrationPage, message, changeHandler, formData }) => {
+   { loginHandler,
+      loading,
+      transitionToRegitrationPage,
+      message,
+      changeHandler,
+      formData,
+      setIsStayLoggedIn,
+      isStayLoggedIn }) => {
    const enterButton: any = useRef(null)
    const emailInput: any = useRef(null)
    const passwordInput: any = useRef(null)
@@ -81,6 +91,9 @@ export const AuthorizationForm: FC<Props> = (
       <div className="authorization-buttons">
          <input type="submit" className="login-button" form="login-form" value={loading ? currentLanguage === "ru" ? "Входим..." : "Enter..." : currentLanguage === "ru" ? "Войти" : "Enter"} disabled={loading} ref={enterButton} />
          <button type="button" className="registration-page-button" disabled={loading} onClick={transitionToRegitrationPage}>{currentLanguage === "ru" ? "Регистрация" : "Registration"}</button>
+         <StayLoggedInBox
+            setIsStayLoggedIn={setIsStayLoggedIn}
+            isStayLoggedIn={isStayLoggedIn} />
       </div>
 
       {!loading && message && <MessageBox message={message} />}

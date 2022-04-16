@@ -9,7 +9,7 @@ import { LanguageSwitcher } from "../components/LanguageSwitcher/LanguageSwitche
 
 import "./RegistrationPage.scss"
 
-const RegistrationPage: FC = () => {
+export const RegistrationPage: FC = () => {
    const navigate = useNavigate()
    const currentLanguage = useAppSelector(selectCurrentLanguage)
    const { loading, message, request, setMessage } = useForm()
@@ -75,5 +75,3 @@ const RegistrationPage: FC = () => {
       </div >
    )
 }
-
-export default RegistrationPage

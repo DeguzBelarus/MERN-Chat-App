@@ -7,7 +7,7 @@ interface Props {
    socket: any
 }
 
-const BottomPanel: FC<Props> = ({ socket }) => {
+export const BottomPanel: FC<Props> = ({ socket }) => {
    const messageInput: any = useRef(null);
 
    const dispatch = useAppDispatch();
@@ -114,5 +114,3 @@ const BottomPanel: FC<Props> = ({ socket }) => {
       </div>
    );
 };
-
-export default BottomPanel;

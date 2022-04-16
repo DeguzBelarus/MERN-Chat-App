@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router-dom"
 import { useAppSelector } from "./app/hooks";
 import { selectToken } from "./app/userSlice";
 
-import AuthorizationPage from "./pages/AuthorizationPage/AuthorizationPage";
-import RegistrationPage from "./pages/RegistrationPage/RegistrationPage"
-import UserRoom from "./pages/UserRoom/UserRoom";
-import ChatMainPage from "./pages/ChatMainPage/ChatMainPage";
+import { AuthorizationPage } from "./pages/AuthorizationPage/AuthorizationPage";
+import { RegistrationPage } from "./pages/RegistrationPage/RegistrationPage"
+import { UserRoom } from "./pages/UserRoom/UserRoom";
+import { ChatMainPage } from "./pages/ChatMainPage/ChatMainPage";
 
 export const useRoutes = (socket: any) => {
    const token = useAppSelector(selectToken)

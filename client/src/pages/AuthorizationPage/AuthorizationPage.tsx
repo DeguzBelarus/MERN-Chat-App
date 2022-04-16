@@ -11,7 +11,7 @@ import { LanguageSwitcher } from "../components/LanguageSwitcher/LanguageSwitche
 
 import "./AuthorizationPage.scss"
 
-const AuthorizationPage: FC = () => {
+export const AuthorizationPage: FC = () => {
    const dispatch = useAppDispatch()
    const navigate = useNavigate()
    const token = useAppSelector(selectToken)
@@ -20,6 +20,7 @@ const AuthorizationPage: FC = () => {
    const { loading, message, request, setMessage } = useForm()
    const [formData, setFormData]: any = useState({ email: "", password: "", currentLanguage: currentLanguage })
    const [clearMessageTimeout, setClearMessageTimeout]: any = useState(null)
+   const [isStayLoggedIn, setIsStayLoggedIn]: any = useState(true)
 
    const changeHandler = (event: any) => {
       setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -42,7 +43,9 @@ const AuthorizationPage: FC = () => {
          dispatch(userIdSave(data.userId))
          dispatch(userNicknameSave(data.nickname))
 
-         localStorage.setItem("saveChat", JSON.stringify({ token: data.token, nickname: data.nickname, userId: data.userId }))
+         if (isStayLoggedIn) {
+            localStorage.setItem("saveChat", JSON.stringify({ token: data.token, nickname: data.nickname, userId: data.userId }))
+         }
          navigate(`/usersroom/${data.nickname}`)
       } catch (e) {
          console.log("Error:", e);
@@ -102,11 +105,11 @@ const AuthorizationPage: FC = () => {
             transitionToRegitrationPage={transitionToRegitrationPage}
             message={message}
             changeHandler={changeHandler}
-            formData={formData} />
+            formData={formData}
+            isStayLoggedIn={isStayLoggedIn}
+            setIsStayLoggedIn={setIsStayLoggedIn} />
 
          <span className="copyright">© Deguz, 2022</span>
       </div >
    )
 }
-
-export default AuthorizationPage

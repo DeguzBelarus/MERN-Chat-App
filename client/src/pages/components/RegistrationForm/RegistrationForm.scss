@@ -166,6 +166,9 @@
       font-weight: bold;
       transition-property: color, background-color, box-shadow;
       transition-duration: 0.5s;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
 
       &:hover {
         cursor: pointer;
