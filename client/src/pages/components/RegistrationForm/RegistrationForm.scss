@@ -205,7 +205,7 @@
 @media screen and (max-width: 319px) {
   #registration-form {
     width: 90%;
-    height: 280px;
+    height: 300px;
 
     .registration-header {
       font-size: 25px;
@@ -258,7 +258,7 @@
 @media screen and (min-width: 320px) {
   #registration-form {
     width: 90%;
-    height: 285px;
+    height: 305px;
 
     .registration-header {
       font-size: 25px;
@@ -301,17 +301,13 @@
         font-size: 13px;
       }
     }
-
-    .message-box {
-      font-size: 11px;
-    }
   }
 }
 
 @media screen and (min-width: 425px) {
   #registration-form {
     width: 350px;
-    height: 300px;
+    height: 320px;
 
     .registration-header {
       font-size: 27px;
@@ -354,17 +350,13 @@
         font-size: 14px;
       }
     }
-
-    .message-box {
-      font-size: 12px;
-    }
   }
 }
 
 @media screen and (min-width: 768px) {
   #registration-form {
     width: 380px;
-    height: 305px;
+    height: 325px;
 
     .registration-header {
       font-size: 29px;
@@ -407,17 +399,13 @@
         font-size: 15px;
       }
     }
-
-    .message-box {
-      font-size: 14px;
-    }
   }
 }
 
 @media screen and (min-width: 1024px) {
   #registration-form {
     width: 440px;
-    height: 320px;
+    height: 340px;
 
     .registration-header {
       font-size: 32px;
@@ -460,17 +448,13 @@
         font-size: 16px;
       }
     }
-
-    .message-box {
-      font-size: 15px;
-    }
   }
 }
 
 @media screen and (min-width: 1440px) {
   #registration-form {
     width: 445px;
-    height: 330px;
+    height: 345px;
 
     .registration-header {
       font-size: 34px;
@@ -504,18 +488,14 @@
       .return-button {
         width: 80px;
         padding: 9px;
-        font-size: 18px;
+        font-size: 16px;
       }
 
       .registration-apply-button {
         width: 200px;
         padding: 9px;
-        font-size: 18px;
+        font-size: 16px;
       }
-    }
-
-    .message-box {
-      font-size: 16px;
     }
   }
 }
@@ -523,7 +503,7 @@
 @media screen and (min-width: 2560px) {
   #registration-form {
     width: 600px;
-    height: 425px;
+    height: 455px;
 
     .registration-header {
       font-size: 52px;
@@ -571,10 +551,6 @@
         padding: 9px;
         font-size: 28px;
       }
-    }
-
-    .message-box {
-      font-size: 22px;
     }
   }
 }
