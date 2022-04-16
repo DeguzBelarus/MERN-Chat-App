@@ -64,11 +64,13 @@ export const AuthorizationPage: FC = () => {
             dispatch(userTokenSave(save.token))
             dispatch(userIdSave(save.userId))
             dispatch(userNicknameSave(save.nickname))
+
             if (currentLanguage === "ru") {
                setMessage(`${save.nickname}, Вы успешно вошли в систему!`)
             } else {
                setMessage(`${save.nickname}, You have successfully logged in!`)
             }
+
             navigate(`/usersroom/${save.nickname}`)
          }
       } else {
