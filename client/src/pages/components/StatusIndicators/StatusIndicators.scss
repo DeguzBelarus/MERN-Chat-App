@@ -1,6 +1,10 @@
 .indicator-online {
   border-radius: 50%;
   background-color: green;
+  animation-name: indicator-glow;
+  animation-iteration-count: infinite;
+  animation-duration: 2.5s;
+  animation-timing-function: linear;
 }
 
 @media screen and (max-width: 319px) {
@@ -49,5 +53,17 @@
   .indicator-online {
     width: 20px;
     height: 20px;
+  }
+}
+
+@keyframes indicator-glow {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
   }
 }

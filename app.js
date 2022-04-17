@@ -26,6 +26,7 @@ let usersInRoom = [];
 io.on("connection", (socket) => {
   console.log(`new connection: socket ${socket.id}`);
 
+  //== chat listeners
   socket.on("user entered", (nickname) => {
     const enteredUser = nickname;
     const userSocketId = socket.id;
@@ -103,6 +104,7 @@ io.on("connection", (socket) => {
       );
     }
   );
+  //== chat listeners
 });
 
 const start = async () => {
