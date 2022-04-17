@@ -1,0 +1,53 @@
+.indicator-online {
+  border-radius: 50%;
+  background-color: green;
+}
+
+@media screen and (max-width: 319px) {
+  .indicator-online {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .indicator-online {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .indicator-online {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .indicator-online {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .indicator-online {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .indicator-online {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .indicator-online {
+    width: 20px;
+    height: 20px;
+  }
+}

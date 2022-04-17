@@ -62,7 +62,10 @@ export const RegistrationPage: FC = () => {
 
    return (
       <div className="registration-wrapper">
-         <LanguageSwitcher />
+         <div className="switcher-wrapper">
+            <LanguageSwitcher />
+         </div>
+
          <RegistrationForm
             registerHandler={registerHandler}
             changeHandler={changeHandler}

@@ -1,0 +1,113 @@
+header {
+  width: 100%;
+  height: 39px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 5px;
+  padding-left: 5px;
+  box-sizing: border-box;
+  border: 3px solid #00897b;
+  background-color: white;
+
+  .nickname-wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      width: 100%;
+      margin-left: 5px;
+      margin-right: 5px;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      font-weight: bold;
+      color: #00897b;
+    }
+  }
+
+  nav {
+    flex-grow: 10;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: white;
+  }
+
+  .services {
+    width: 100px;
+    height: 33px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    border-left: 2px solid #00897b;
+    border-right: 2px solid #00897b;
+    padding-top: 7px;
+    background-color: white;
+    z-index: 1;
+    transition-property: height;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+    overflow: hidden;
+
+    &:hover {
+      height: 120px;
+      border-bottom: 2px solid #00897b;
+    }
+
+    span {
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      font-weight: bold;
+      color: #00897b;
+    }
+
+    .chat-link {
+      margin-top: 10px;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      font-weight: bold;
+      color: yellowgreen;
+      cursor: pointer;
+    }
+  }
+
+  .exit-wrapper {
+    width: 65px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-right: 2px solid #00897b;
+    background-color: white;
+
+    span {
+      font-weight: bold;
+      color: #00897b;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+
+  .language-wrapper {
+    height: 100%;
+    padding-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: white;
+  }
+}

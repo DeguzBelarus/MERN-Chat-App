@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
 
-import "./UserRoom.scss"
-interface Props {
-}
+import { UserRoomHeader } from "../components/UserRoomHeader/UserRoomHeader";
 
-export const UserRoom: FC<Props> = () => {
+import "./UserRoom.scss"
+
+export const UserRoom: FC = () => {
    const dispatch = useAppDispatch()
    const nickname = useAppSelector(selectUserNickname)
    const userId = useAppSelector(selectUserId)
@@ -31,16 +31,9 @@ export const UserRoom: FC<Props> = () => {
 
    return (
       <div className="user-room-wrapper">
-         <div className="user-info-box">
-            <h1 className="user-welcome-header">{`Добро пожаловать в свою комнату, ${nickname}`}</h1>
-            <p className="user-id-paragraph">{`Ваш id пользователя: `}<strong>{userId}</strong></p>
-
-            <div className="user-room-buttons">
-               <button type="button" className="logout-button" onClick={logout}>Выйти из системы</button>
-               <button type="button" className="enter-button" onClick={chatEnter}>Войти в Чат</button>
-            </div>
-
-         </div>
+         <UserRoomHeader
+            logout={logout}
+            chatEnter={chatEnter} />
       </div>
    )
 }

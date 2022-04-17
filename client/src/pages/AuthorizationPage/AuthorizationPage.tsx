@@ -100,7 +100,10 @@ export const AuthorizationPage: FC = () => {
 
    return (
       <div className="authorization-wrapper">
-         <LanguageSwitcher />
+         <div className="switcher-wrapper">
+            <LanguageSwitcher />
+         </div>
+
          <AuthorizationForm
             loginHandler={loginHandler}
             loading={loading}

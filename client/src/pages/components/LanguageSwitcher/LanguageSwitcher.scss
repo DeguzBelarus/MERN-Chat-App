@@ -2,9 +2,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  position: absolute;
-  top: 5px;
-  right: 5px;
   box-sizing: border-box;
   border-width: 2px;
   border-style: solid;
@@ -17,7 +14,7 @@
   cursor: pointer;
 
   &.active {
-    border-color: white;
+    border-color: gray;
   }
 
   .switcher {
