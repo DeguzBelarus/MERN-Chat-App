@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(
         path.resolve(
           __dirname,
-          process.env.RENDER_PM_DIR,
+          "opt/render/project/src",
           "client",
           "build",
           "index.html"
