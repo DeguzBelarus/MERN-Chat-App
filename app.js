@@ -15,10 +15,25 @@ app.use("/api/authorization", require("./routes/authorization.router"));
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === "production") {
-  app.use("/", express.static(path.join(__dirname, "client", "build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
+  if (!process.env.RENDER_PM_DIR) {
+    app.use("/", express.static(path.join(__dirname, "client", "build")));
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    });
+  } else {
+    app.use("/", express.static(path.join(__dirname, "client", "build")));
+    app.get("*", (req, res) => {
+      res.sendFile(
+        path.resolve(
+          __dirname,
+          process.env.RENDER_PM_DIR,
+          "client",
+          "build",
+          "index.html"
+        )
+      );
+    });
+  }
 }
 
 let usersInRoom = [];
@@ -91,6 +106,12 @@ io.on("connection", (socket) => {
   socket.on(
     "user send private message",
     (nickname, privatemessage, privateUserNick, privateUserSocket) => {
+      if (!usersInRoom.flat().includes(privateUserNick)) {
+        return console.log(
+          `${nickname}, user ${privateUserNick} in not in chat.`
+        );
+      }
+
       socket.emit(
         "private message notification",
         privateUserNick,
