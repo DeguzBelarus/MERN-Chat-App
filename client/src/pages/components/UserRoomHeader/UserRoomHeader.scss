@@ -16,7 +16,6 @@ header {
     align-items: center;
 
     span {
-      width: 100%;
       margin-left: 3px;
       margin-right: 3px;
       -webkit-user-select: none;
@@ -38,7 +37,6 @@ header {
   }
 
   .services {
-    width: 80px;
     height: 33px;
     display: flex;
     flex-direction: column;
@@ -62,6 +60,8 @@ header {
     }
 
     span {
+      margin-left: 3px;
+      margin-right: 3px;
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
@@ -81,7 +81,6 @@ header {
   }
 
   .exit-wrapper {
-    width: 60px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -90,6 +89,8 @@ header {
     background-color: white;
 
     span {
+      margin-left: 3px;
+      margin-right: 3px;
       font-weight: bold;
       color: #00897b;
       -webkit-user-select: none;
