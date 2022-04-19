@@ -15,22 +15,10 @@ app.use("/api/authorization", require("./routes/authorization.router"));
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === "production") {
-  if (!process.env.RENDER_PM_DIR) {
-    app.use("/", express.static(path.join(__dirname, "client", "build")));
-    app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-    });
-  } else {
-    app.use(
-      "/",
-      express.static(
-        path.join(__dirname, process.env.NODE_ENV, "client", "build")
-      )
-    );
-    app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-    });
-  }
+  app.use("/", express.static(path.join(__dirname, "client", "build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
 }
 
 let usersInRoom = [];
