@@ -3,7 +3,6 @@ import { useAppSelector } from "../../../app/hooks";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 
-import { LanguageSwitcher } from "../../components/LanguageSwitcher/LanguageSwitcher";
 import { StatusIndicatorOnline } from "../StatusIndicators/StatusIndicators";
 
 import "./UserRoomHeader.scss"
@@ -36,8 +35,5 @@ export const UserRoomHeader: FC<Props> = ({ logout, chatEnter }) => {
          <span onClick={logout}>{currentLanguage === "ru" ? "Выйти" : "Exit"}</span>
       </div>
 
-      <div className="language-wrapper">
-         <LanguageSwitcher />
-      </div>
    </header>
 }
