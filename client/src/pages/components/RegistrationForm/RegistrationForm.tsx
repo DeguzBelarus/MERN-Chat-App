@@ -71,6 +71,7 @@ export const RegistrationForm: FC<Props> = (
             name="nickname"
             autoFocus
             required
+            autoComplete="off"
             minLength={2}
             maxLength={10}
             onChange={changeHandler}
@@ -85,6 +86,7 @@ export const RegistrationForm: FC<Props> = (
             placeholder={currentLanguage === "ru" ? "Формат: mail@mail.domen" : "Format: mail@mail.domen"}
             name="email"
             required
+            autoComplete="off"
             onChange={changeHandler}
             ref={emailInput} />
          <span>{currentLanguage === "ru" ? "Введите email" : "Enter email"}</span>
@@ -95,7 +97,9 @@ export const RegistrationForm: FC<Props> = (
          <input type="password"
             id="passworInput" placeholder={currentLanguage === "ru" ? "Минимум 8 символов" : "Minimum of 8 characters"}
             name="password"
-            required minLength={8}
+            required
+            autoComplete="off"
+            minLength={8}
             onChange={changeHandler}
             ref={passwordInput} />
          <span>{currentLanguage === "ru" ? "Введите пароль" : "Enter the password"}</span>

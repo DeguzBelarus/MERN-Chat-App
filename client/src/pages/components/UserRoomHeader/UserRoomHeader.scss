@@ -111,3 +111,45 @@ header {
     background-color: white;
   }
 }
+
+@media screen and (max-width: 319px) {
+  span {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  span {
+    font-size: 11px;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  span {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  span {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  span {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  span {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  span {
+    font-size: 20px;
+  }
+}
