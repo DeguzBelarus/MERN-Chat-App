@@ -39,7 +39,7 @@ header {
   }
 
   .services {
-    width: 100px;
+    width: 80px;
     height: 33px;
     display: flex;
     flex-direction: column;
@@ -53,12 +53,12 @@ header {
     background-color: white;
     z-index: 1;
     transition-property: height;
-    transition-duration: 0.25s;
+    transition-duration: 0.3s;
     transition-timing-function: ease-out;
     overflow: hidden;
 
     &:hover {
-      height: 100px;
+      height: 120px;
       border-bottom: 2px solid #00897b;
     }
 
@@ -82,7 +82,7 @@ header {
   }
 
   .exit-wrapper {
-    width: 65px;
+    width: 60px;
     height: 100%;
     display: flex;
     justify-content: center;

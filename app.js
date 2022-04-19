@@ -92,8 +92,11 @@ io.on("connection", (socket) => {
     "user send private message",
     (nickname, privatemessage, privateUserNick, privateUserSocket) => {
       if (!usersInRoom.flat().includes(privateUserNick)) {
-        return console.log(
-          `${nickname}, user ${privateUserNick} in not in chat.`
+        console.log(`${nickname}, user ${privateUserNick} in not in chat.`);
+
+        return socket.emit(
+          "private message recipient not in chat",
+          privateUserNick
         );
       }
 

@@ -245,6 +245,20 @@
           word-break: keep-all;
         }
       }
+
+      .private-notdelivered-notification {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 5px;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
+
+        span {
+          color: green;
+          font-weight: bolder;
+          word-break: keep-all;
+        }
+      }
     }
   }
 
@@ -517,6 +531,10 @@
     .user-message-private {
       font-size: 13px;
     }
+
+    .private-notdelivered-notification {
+      font-size: 12px;
+    }
   }
 }
 
@@ -629,6 +647,10 @@
     .user-message-private {
       font-size: 14px;
     }
+
+    .private-notdelivered-notification {
+      font-size: 12px;
+    }
   }
 }
 
@@ -740,6 +762,10 @@
 
     .user-message-private {
       font-size: 14px;
+    }
+
+    .private-notdelivered-notification {
+      font-size: 12px;
     }
   }
 }
@@ -854,6 +880,10 @@
     .user-message-private {
       font-size: 16px;
     }
+
+    .private-notdelivered-notification {
+      font-size: 14px;
+    }
   }
 }
 
@@ -966,6 +996,10 @@
 
     .user-message-private {
       font-size: 18px;
+    }
+
+    .private-notdelivered-notification {
+      font-size: 16px;
     }
   }
 }
@@ -1080,6 +1114,10 @@
     .user-message-private {
       font-size: 20px;
     }
+
+    .private-notdelivered-notification {
+      font-size: 18px;
+    }
   }
 }
 
@@ -1192,6 +1230,10 @@
 
     .user-message-private {
       font-size: 28px;
+    }
+
+    .private-notdelivered-notification {
+      font-size: 24px;
     }
   }
 }

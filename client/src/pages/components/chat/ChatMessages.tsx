@@ -54,6 +54,12 @@ export const ChatMessages: FC = () => {
                      <span>{`Лично для ${message[1]}: `}</span> {message[2]}
                   </p>
                );
+            } else if (message[0] === "pmd") {
+               return (
+                  <p className="private-notdelivered-notification" key={index}>
+                     Пользователя <span>{message[1]}</span> нет в чате
+                  </p>
+               )
             }
          })}
       </div>

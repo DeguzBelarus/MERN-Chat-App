@@ -98,6 +98,16 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
             }
          }
       );
+
+      socket.on("private message recipient not in chat", (privateUserNick: string) => {
+         if (privateUserNick) {
+            startTransition(() => {
+               const privateNotDeliveredNotification = ["pmd", privateUserNick];
+               messagesInChat = [...messagesInChat, privateNotDeliveredNotification];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
       //== message listenings
    }, [])
 
