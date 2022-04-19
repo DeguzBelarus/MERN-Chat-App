@@ -21,17 +21,14 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
     });
   } else {
-    app.use("/", express.static(path.join(__dirname, "client", "build")));
+    app.use(
+      "/",
+      express.static(
+        path.join(__dirname, process.env.NODE_ENV, "client", "build")
+      )
+    );
     app.get("*", (req, res) => {
-      res.sendFile(
-        path.resolve(
-          __dirname,
-          "opt/render/project/src",
-          "client",
-          "build",
-          "index.html"
-        )
-      );
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
     });
   }
 }
