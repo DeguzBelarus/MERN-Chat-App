@@ -1,6 +1,5 @@
 header {
   width: 100%;
-  height: 39px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -16,8 +15,8 @@ header {
     align-items: center;
 
     span {
-      margin-left: 3px;
-      margin-right: 3px;
+      margin-left: 5px;
+      margin-right: 5px;
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
@@ -37,31 +36,24 @@ header {
   }
 
   .services {
-    height: 33px;
+    height: calc(100% + 6px);
     display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    position: relative;
     box-sizing: border-box;
+    background-color: white;
     border-left: 2px solid #00897b;
     border-right: 2px solid #00897b;
-    padding-top: 7px;
-    background-color: white;
-    z-index: 1;
-    transition-property: height;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-out;
-    overflow: hidden;
+    border-top: 3px solid #00897b;
+    border-bottom: 3px solid #00897b;
 
-    &:hover {
-      height: 120px;
-      border-bottom: 2px solid #00897b;
-    }
+    cursor: pointer;
+    z-index: 1;
 
     span {
-      margin-left: 3px;
-      margin-right: 3px;
+      margin-left: 5px;
+      margin-right: 5px;
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
@@ -69,14 +61,38 @@ header {
       color: #00897b;
     }
 
-    .chat-link {
-      margin-top: 10px;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      font-weight: bold;
-      color: yellowgreen;
-      cursor: pointer;
+    .services-list {
+      width: calc(100% + 4px);
+      height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: absolute;
+      left: -2px;
+      transition-property: height;
+      transition-duration: 0.3s;
+      box-sizing: border-box;
+      background-color: white;
+      border-left: 2px solid #00897b;
+      border-right: 2px solid #00897b;
+      overflow: hidden;
+      cursor: default;
+
+      &.active {
+        height: 80px;
+        border-bottom: 2px solid #00897b;
+      }
+
+      .chat-link {
+        margin-top: 5px;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-weight: bold;
+        color: yellowgreen;
+        cursor: pointer;
+      }
     }
   }
 
@@ -89,8 +105,8 @@ header {
     background-color: white;
 
     span {
-      margin-left: 3px;
-      margin-right: 3px;
+      margin-left: 5px;
+      margin-right: 5px;
       font-weight: bold;
       color: #00897b;
       -webkit-user-select: none;
@@ -102,43 +118,99 @@ header {
 }
 
 @media screen and (max-width: 319px) {
-  span {
-    font-size: 10px;
+  header {
+    height: 30px;
+
+    .services-list {
+      top: 27px;
+    }
+
+    span {
+      font-size: 10px;
+    }
   }
 }
 
 @media screen and (min-width: 320px) {
-  span {
-    font-size: 11px;
+  header {
+    height: 32px;
+
+    .services-list {
+      top: 29px;
+    }
+
+    span {
+      font-size: 11px;
+    }
   }
 }
 
 @media screen and (min-width: 425px) {
-  span {
-    font-size: 12px;
+  header {
+    height: 34px;
+
+    .services-list {
+      top: 31px;
+    }
+
+    span {
+      font-size: 12px;
+    }
   }
 }
 
 @media screen and (min-width: 768px) {
-  span {
-    font-size: 14px;
+  header {
+    height: 36px;
+
+    .services-list {
+      top: 33px;
+    }
+
+    span {
+      font-size: 14px;
+    }
   }
 }
 
 @media screen and (min-width: 1024px) {
-  span {
-    font-size: 16px;
+  header {
+    height: 39px;
+
+    .services-list {
+      top: 36px;
+    }
+
+    span {
+      font-size: 16px;
+    }
   }
 }
 
 @media screen and (min-width: 1440px) {
-  span {
-    font-size: 16px;
+  header {
+    height: 39px;
+
+    .services-list {
+      top: 36px;
+    }
+
+    span {
+      font-size: 16px;
+    }
   }
 }
 
 @media screen and (min-width: 2560px) {
-  span {
-    font-size: 20px;
+  header {
+    height: 50px;
+
+    .services-list {
+      top: 47px;
+    }
+
+    span {
+      font-size: 20px;
+    }
   }
 }
