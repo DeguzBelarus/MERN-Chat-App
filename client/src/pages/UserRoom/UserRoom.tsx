@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, selectUserId, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
+import { messagesInChatSave } from "../../app/chatSlice";
 
 import { UserRoomHeader } from "../components/UserRoomHeader/UserRoomHeader";
 
@@ -27,8 +28,7 @@ export const UserRoom: FC = () => {
 
    useEffect(() => {
       document.title = `MySN: ${nickname}`
-
-      // window.removeEventListener("mousemove")
+      dispatch(messagesInChatSave([]))
    }, [])
 
    return (
