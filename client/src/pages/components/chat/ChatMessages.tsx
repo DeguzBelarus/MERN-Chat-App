@@ -61,6 +61,19 @@ export const ChatMessages: FC = () => {
                   </p>
                )
             }
+            else if (message[0] === "AFK") {
+               return (
+                  <p className="user-AFK-notification" key={index}>
+                     Пользователь <span>{message[1]}</span> отошел
+                  </p>
+               )
+            } else if (message[0] === "notAFK") {
+               return (
+                  <p className="user-notAFK-notification" key={index}>
+                     Пользователь <span>{message[1]}</span> вернулся
+                  </p>
+               )
+            }
          })}
       </div>
    );

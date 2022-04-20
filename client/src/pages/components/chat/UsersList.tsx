@@ -2,6 +2,8 @@ import { FC } from "react";
 import { useAppSelector } from "../../../app/hooks";
 import { selectUsersInChat, selectPrivateRecipient } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
+
+import { StatusIndicatorOnline, StatusIndicatorAFK } from "../StatusIndicators/StatusIndicators"
 interface Props {
    privateModeSet: any
 }
@@ -12,7 +14,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
    const privateRecipient = useAppSelector(selectPrivateRecipient);
 
    const privateModeHandler = (event: any) => {
-      const privateRecipient = event.target.parentElement.firstChild.innerText;
+      const privateRecipient = event.target.parentElement.children[1].innerText;
       privateModeSet(privateRecipient)
    }
 
@@ -22,31 +24,43 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
             Пользователей:<span>{`${usersInChat.length}`}</span>
          </div>
          {usersInChat.map((user) => {
+
+            //== block when not private mode
             if (!privateRecipient) {
+
+               //== block for current user
                if (user[0] === nickname) {
                   if (user[0] === "Deguz") {
                      return (
                         <div className="user-box-admin" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{`${user[0]} (Вы)`}</span>
                         </div>
                      );
                   } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
                      return (
                         <div className="user-box-mentor" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{`${user[0]} (Вы)`}</span>
                         </div>
                      );
                   } else {
                      return (
                         <div className="user-box" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{`${user[0]} (Вы)`}</span>
                         </div>
                      );
                   }
-               } else {
+               }
+               //== block for current user
+
+               //== block for others users
+               else {
                   if (user[0] === "Deguz") {
                      return (
                         <div className="user-box-admin" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{user[0]}</span>
                            <button
                               className="private-button"
@@ -59,6 +73,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                   } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
                      return (
                         <div className="user-box-mentor" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{user[0]}</span>
                            <button
                               className="private-button"
@@ -71,6 +86,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                   } else {
                      return (
                         <div className="user-box" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{user[0]}</span>
                            <button
                               className="private-button"
@@ -82,51 +98,73 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                      );
                   }
                }
-            } else {
+               //== block for others users
+
+            }
+            //== block when not private mode
+
+            //== block when private mode
+            else {
+               //== block for others users, not private recipient
                if (user[0] !== nickname && user[0] === privateRecipient[0]) {
                   if (user[0] === "Deguz") {
                      return (
                         <div className="user-box-private" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{user[0]}</span>
                         </div>
                      );
                   } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
                      return (
                         <div className="user-box-private" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{user[0]}</span>
                         </div>
                      );
                   } else {
                      return (
                         <div className="user-box-private" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{user[0]}</span>
                         </div>
                      );
                   }
-               } else if (user[0] === nickname) {
+               }
+               //== block for others users, not private recipient
+
+               //== block for current user
+               else if (user[0] === nickname) {
                   if (user[0] === "Deguz") {
                      return (
                         <div className="user-box-admin" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{`${user[0]} (Вы)`}</span>
                         </div>
                      );
                   } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
                      return (
                         <div className="user-box-mentor" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{`${user[0]} (Вы)`}</span>
                         </div>
                      );
                   } else {
                      return (
                         <div className="user-box" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{`${user[0]} (Вы)`}</span>
                         </div>
                      );
                   }
-               } else {
+               }
+               //== block for current user
+
+               //== block for others users, private recipient
+               else {
                   if (user[0] === "Deguz") {
                      return (
                         <div className="user-box-admin" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{user[0]}</span>
                            <button
                               className="private-button"
@@ -139,6 +177,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                   } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
                      return (
                         <div className="user-box-mentor" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{user[0]}</span>
                            <button
                               className="private-button"
@@ -151,6 +190,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                   } else {
                      return (
                         <div className="user-box" key={user[0]}>
+                           {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
                            <span>{user[0]}</span>
                            <button
                               className="private-button"
@@ -162,7 +202,10 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                      );
                   }
                }
+               //== block for others users, private recipient
+
             }
+            //== block when private mode
          })}
       </div>
    );

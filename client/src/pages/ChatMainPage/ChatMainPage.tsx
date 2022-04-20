@@ -1,4 +1,4 @@
-import { useEffect, FC, useTransition } from "react";
+import { useEffect, FC, useTransition, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname } from "../../app/userSlice";
 import { messagesInChatSave, usersInChatSave, selectMessagesInChat, privateRecipientSave } from "../../app/chatSlice";
@@ -14,9 +14,15 @@ interface Props {
 
 export const ChatMainPage: FC<Props> = ({ socket }) => {
    const dispatch = useAppDispatch()
-   const nickname = useAppSelector(selectUserNickname);
-   let messagesInChat = useAppSelector(selectMessagesInChat);
-   const [isPending, startTransition] = useTransition();
+   const nickname = useAppSelector(selectUserNickname)
+   let messagesInChat = useAppSelector(selectMessagesInChat)
+
+   const [isPending, startTransition]: any = useTransition()
+
+   let aFKlock: boolean = false;
+   let stayNotAFK: boolean = false;
+   let isAFK: boolean = false;
+   let afkTimeout: any;
 
    const privateModeSet = (privateRecipient: string) => {
       socket.emit("getting users socketid", privateRecipient);
@@ -109,6 +115,62 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
          }
       })
       //== message listenings
+
+      //== AFK status listenings
+      socket.on("user's status is AFK", (AFKuser: string, usersInRoom: any[]) => {
+         if (AFKuser && usersInRoom) {
+            dispatch(usersInChatSave(usersInRoom));
+
+            startTransition(() => {
+               const userIsAFKNotification = ["AFK", AFKuser];
+               messagesInChat = [...messagesInChat, userIsAFKNotification];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
+      socket.on("user's status is not AFK", (notAFKuser: string, usersInRoom: any[]) => {
+         if (notAFKuser && usersInRoom) {
+            dispatch(usersInChatSave(usersInRoom));
+
+            startTransition(() => {
+               const userIsNotAFKNotification = ["notAFK", notAFKuser];
+               messagesInChat = [...messagesInChat, userIsNotAFKNotification];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+      //== AFK status listenings
+   }, [])
+
+   const afkTimeoutRestart = () => {
+      //== set status to not AFK
+      if (isAFK && !aFKlock) {
+         isAFK = false;
+         socket.emit("user is not AFK", nickname)
+      }
+      //== set status to not AFK
+
+      //== removes current AFK timeout
+      if (afkTimeout) {
+         clearTimeout(afkTimeout)
+      }
+      //== removes current AFK timeout
+
+      //== set status to AFK after 10 minutes
+      if (!stayNotAFK) {
+         afkTimeout = setTimeout(() => {
+            isAFK = true;
+            socket.emit("user is AFK", nickname)
+         }, 5000)
+      }
+      //== set status to AFK after 10 minutes (600 000 ms)
+   }
+
+   useEffect(() => {
+      afkTimeoutRestart()
+      window.addEventListener("mousemove", afkTimeoutRestart)
+      window.addEventListener("keypress", afkTimeoutRestart)
    }, [])
 
    return (

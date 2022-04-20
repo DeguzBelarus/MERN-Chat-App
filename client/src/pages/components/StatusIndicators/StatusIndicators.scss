@@ -1,6 +1,17 @@
 .indicator-online {
+  margin-right: 5px;
   border-radius: 50%;
   background-color: green;
+  animation-name: indicator-glow;
+  animation-iteration-count: infinite;
+  animation-duration: 2.5s;
+  animation-timing-function: linear;
+}
+
+.indicator-AFK {
+  margin-right: 5px;
+  border-radius: 50%;
+  background-color: orange;
   animation-name: indicator-glow;
   animation-iteration-count: infinite;
   animation-duration: 2.5s;
@@ -12,10 +23,20 @@
     width: 6px;
     height: 6px;
   }
+
+  .indicator-AFK {
+    width: 6px;
+    height: 6px;
+  }
 }
 
 @media screen and (min-width: 320px) {
   .indicator-online {
+    width: 7px;
+    height: 7px;
+  }
+
+  .indicator-AFK {
     width: 7px;
     height: 7px;
   }
@@ -26,10 +47,20 @@
     width: 8px;
     height: 8px;
   }
+
+  .indicator-AFK {
+    width: 8px;
+    height: 8px;
+  }
 }
 
 @media screen and (min-width: 768px) {
   .indicator-online {
+    width: 9px;
+    height: 9px;
+  }
+
+  .indicator-AFK {
     width: 9px;
     height: 9px;
   }
@@ -40,6 +71,11 @@
     width: 10px;
     height: 10px;
   }
+
+  .indicator-AFK {
+    width: 10px;
+    height: 10px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -47,10 +83,20 @@
     width: 10px;
     height: 10px;
   }
+
+  .indicator-AFK {
+    width: 10px;
+    height: 10px;
+  }
 }
 
 @media screen and (min-width: 2560px) {
   .indicator-online {
+    width: 16px;
+    height: 16px;
+  }
+
+  .indicator-AFK {
     width: 16px;
     height: 16px;
   }

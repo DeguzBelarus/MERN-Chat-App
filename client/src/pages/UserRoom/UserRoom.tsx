@@ -27,6 +27,8 @@ export const UserRoom: FC = () => {
 
    useEffect(() => {
       document.title = `MySN: ${nickname}`
+
+      // window.removeEventListener("mousemove")
    }, [])
 
    return (

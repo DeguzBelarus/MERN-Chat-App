@@ -259,6 +259,34 @@
           word-break: keep-all;
         }
       }
+
+      .user-AFK-notification {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 5px;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
+
+        span {
+          color: gray;
+          font-weight: bolder;
+          word-break: keep-all;
+        }
+      }
+
+      .user-notAFK-notification {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 5px;
+        animation-name: manifestation;
+        animation-duration: 0.7s;
+
+        span {
+          color: gray;
+          font-weight: bolder;
+          word-break: keep-all;
+        }
+      }
     }
   }
 
@@ -535,6 +563,14 @@
     .private-notdelivered-notification {
       font-size: 12px;
     }
+
+    .user-AFK-notification {
+      font-size: 12px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 12px;
+    }
   }
 }
 
@@ -651,6 +687,14 @@
     .private-notdelivered-notification {
       font-size: 12px;
     }
+
+    .user-AFK-notification {
+      font-size: 12px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 12px;
+    }
   }
 }
 
@@ -765,6 +809,14 @@
     }
 
     .private-notdelivered-notification {
+      font-size: 12px;
+    }
+
+    .user-AFK-notification {
+      font-size: 12px;
+    }
+
+    .user-notAFK-notification {
       font-size: 12px;
     }
   }
@@ -884,6 +936,14 @@
     .private-notdelivered-notification {
       font-size: 14px;
     }
+
+    .user-AFK-notification {
+      font-size: 14px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 14px;
+    }
   }
 }
 
@@ -999,6 +1059,14 @@
     }
 
     .private-notdelivered-notification {
+      font-size: 16px;
+    }
+
+    .user-AFK-notification {
+      font-size: 16px;
+    }
+
+    .user-notAFK-notification {
       font-size: 16px;
     }
   }
@@ -1118,6 +1186,14 @@
     .private-notdelivered-notification {
       font-size: 18px;
     }
+
+    .user-AFK-notification {
+      font-size: 18px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 18px;
+    }
   }
 }
 
@@ -1233,6 +1309,14 @@
     }
 
     .private-notdelivered-notification {
+      font-size: 24px;
+    }
+
+    .user-AFK-notification {
+      font-size: 24px;
+    }
+
+    .user-notAFK-notification {
       font-size: 24px;
     }
   }

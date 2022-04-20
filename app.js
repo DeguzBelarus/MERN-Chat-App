@@ -33,7 +33,7 @@ io.on("connection", (socket) => {
 
     console.log(`${nickname} entered the chat, his socket: ${userSocketId}`);
 
-    usersInRoom.push([enteredUser, userSocketId]);
+    usersInRoom.push([enteredUser, userSocketId, false]);
     usersInRoom = usersInRoom.sort();
 
     socket.emit("entered user info", enteredUser, usersInRoom);
@@ -82,9 +82,10 @@ io.on("connection", (socket) => {
   });
 
   socket.on("getting users socketid", (nickname) => {
-    const targetUser = usersInRoom.filter((element) => {
-      return element[0] === nickname;
+    const targetUser = usersInRoom.filter((user) => {
+      return user[0] === nickname;
     });
+
     socket.emit("getting private user data", targetUser);
   });
 
@@ -113,6 +114,32 @@ io.on("connection", (socket) => {
       );
     }
   );
+
+  socket.on("user is AFK", (nickname) => {
+    usersInRoom = usersInRoom.map((user) => {
+      if (user[0] === nickname) {
+        user[2] = true;
+        return user;
+      } else return user;
+    });
+
+    console.log(usersInRoom, nickname, "AFK");
+    socket.emit("user's status is AFK", nickname, usersInRoom);
+    socket.broadcast.emit("user's status is AFK", nickname, usersInRoom);
+  });
+
+  socket.on("user is not AFK", (nickname) => {
+    usersInRoom = usersInRoom.map((user) => {
+      if (user[0] === nickname) {
+        user[2] = false;
+        return user;
+      } else return user;
+    });
+
+    console.log(usersInRoom, nickname, "not AFK");
+    socket.emit("user's status is not AFK", nickname, usersInRoom);
+    socket.broadcast.emit("user's status is not AFK", nickname, usersInRoom);
+  });
   //== chat listeners
 });
 
