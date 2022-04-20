@@ -52,12 +52,10 @@ export const UserRoomHeader: FC<Props> = ({ logout, chatEnter }) => {
          </span>
 
          <div className={!servicesIsOpen ? "services-list" : "services-list active"}>
-            {servicesIsOpen &&
-               <span className="chat-link" onClick={chatEnter}>{currentLanguage === "ru"
-                  ? "Чат"
-                  : "Chat"}
-               </span>
-            }
+            <span className="chat-link" onClick={chatEnter}>{currentLanguage === "ru"
+               ? "Чат"
+               : "Chat"}
+            </span>
          </div>
       </div>
 
