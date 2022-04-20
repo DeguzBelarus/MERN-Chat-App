@@ -7,7 +7,7 @@
       "start": "cross-env NODE_ENV=production node app.js & yarn client:install & yarn client:build",
       "server": "nodemon app.js",
       "client": "yarn --cwd client run start",
-      "client:install": "yarn --cwd client add",
+      "client:install": "yarn --cwd client add react-scripts --save",
       "client:build": "yarn --cwd client run build",
       "dev": "cross-env NODE_ENV=development concurrently \"yarn server\" \"yarn client\"",
       "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
