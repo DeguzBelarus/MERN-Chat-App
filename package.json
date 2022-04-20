@@ -4,7 +4,7 @@
    "description": "Deguz's MERN chat",
    "main": "app.js",
    "scripts": {
-      "start": "cross-env NODE_ENV=production node app.js",
+      "start": "cross-env NODE_ENV=production node app.js && yarn init --cwd client && yarn --cwd client run build",
       "server": "nodemon app.js",
       "client": "yarn --cwd client run start",
       "client:install": "yarn --cwd client add",

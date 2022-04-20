@@ -123,7 +123,6 @@ io.on("connection", (socket) => {
       } else return user;
     });
 
-    console.log(usersInRoom, nickname, "AFK");
     socket.emit("user's status is AFK", nickname, usersInRoom);
     socket.broadcast.emit("user's status is AFK", nickname, usersInRoom);
   });
@@ -136,7 +135,6 @@ io.on("connection", (socket) => {
       } else return user;
     });
 
-    console.log(usersInRoom, nickname, "not AFK");
     socket.emit("user's status is not AFK", nickname, usersInRoom);
     socket.broadcast.emit("user's status is not AFK", nickname, usersInRoom);
   });
