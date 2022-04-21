@@ -101,21 +101,26 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
          </label>
 
          <div className="bottom-buttons">
+
             {privateRecipient && (
                <div className="private-info" onClick={privateModeOff}>
-                  <span>{`Лично для: ${privateRecipient[0]}`}</span>
+                  <span>
+                     {currentLanguage === "ru"
+                        ? `Лично для: ${privateRecipient[0]}`
+                        : `Privately for: ${privateRecipient[0]}`}
+                  </span>
                </div>
             )}
 
             <button type="button"
-               className="button-sendmessage"
+               className="button-send-message"
                onClick={sendMessageOnButton}
-            >Отправить</button>
+            >{currentLanguage === "ru" ? "Отправить" : "Send"}</button>
 
             <button type="button"
-               className="bottom-return-button"
+               className="button-exit"
                onClick={chatExit}
-            >Выйти</button>
+            >{currentLanguage === "ru" ? "Выйти" : "Quit"}</button>
          </div>
       </div>
    );
