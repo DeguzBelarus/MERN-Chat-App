@@ -3,6 +3,7 @@ import { useAppSelector } from "../../../app/hooks";
 import { selectUsersInChat, selectPrivateRecipient } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 import { StatusIndicatorOnline, StatusIndicatorAFK } from "../StatusIndicators/StatusIndicators"
+import { selectCurrentLanguage } from "../../../app/globalSlice";
 
 import "./UsersList.scss"
 interface Props {
@@ -13,6 +14,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
    const usersInChat = useAppSelector(selectUsersInChat);
    const nickname = useAppSelector(selectUserNickname);
    const privateRecipient = useAppSelector(selectPrivateRecipient);
+   const currentLanguage = useAppSelector(selectCurrentLanguage)
 
    const privateModeHandler = (event: any) => {
       const privateRecipient = event.target.parentElement.children[1].innerText;
@@ -22,7 +24,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
    return (
       <div className="userslist-box">
          <div className="users-count-box">
-            Пользователей:<span>{`${usersInChat.length}`}</span>
+            {currentLanguage === "ru" ? "Пользователей" : "Users"}:<span>{`${usersInChat.length}`}</span>
          </div>
          {usersInChat.map((user) => {
 
@@ -35,21 +37,21 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                      return (
                         <div className="user-box-admin" key={user[0]}>
                            {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
-                           <span>{`${user[0]} (Вы)`}</span>
+                           <span>{currentLanguage === "ru" ? `${user[0]} (Вы)` : `${user[0]} (You)`}</span>
                         </div>
                      );
                   } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
                      return (
                         <div className="user-box-mentor" key={user[0]}>
                            {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
-                           <span>{`${user[0]} (Вы)`}</span>
+                           <span>{currentLanguage === "ru" ? `${user[0]} (Вы)` : `${user[0]} (You)`}</span>
                         </div>
                      );
                   } else {
                      return (
                         <div className="user-box" key={user[0]}>
                            {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
-                           <span>{`${user[0]} (Вы)`}</span>
+                           <span>{currentLanguage === "ru" ? `${user[0]} (Вы)` : `${user[0]} (You)`}</span>
                         </div>
                      );
                   }
@@ -67,7 +69,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                               className="private-button"
                               onClick={privateModeHandler}
                            >
-                              ЛС
+                              {currentLanguage === "ru" ? "ЛС" : "PM"}
                            </button>
                         </div>
                      );
@@ -80,7 +82,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                               className="private-button"
                               onClick={privateModeHandler}
                            >
-                              ЛС
+                              {currentLanguage === "ru" ? "ЛС" : "PM"}
                            </button>
                         </div>
                      );
@@ -93,7 +95,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                               className="private-button"
                               onClick={privateModeHandler}
                            >
-                              ЛС
+                              {currentLanguage === "ru" ? "ЛС" : "PM"}
                            </button>
                         </div>
                      );
@@ -139,21 +141,21 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                      return (
                         <div className="user-box-admin" key={user[0]}>
                            {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
-                           <span>{`${user[0]} (Вы)`}</span>
+                           <span>{currentLanguage === "ru" ? `${user[0]} (Вы)` : `${user[0]} (You)`}</span>
                         </div>
                      );
                   } else if (user[0] === "NightOwl" || user[0] === "Mamon") {
                      return (
                         <div className="user-box-mentor" key={user[0]}>
                            {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
-                           <span>{`${user[0]} (Вы)`}</span>
+                           <span>{currentLanguage === "ru" ? `${user[0]} (Вы)` : `${user[0]} (You)`}</span>
                         </div>
                      );
                   } else {
                      return (
                         <div className="user-box" key={user[0]}>
                            {user[2] === true ? <StatusIndicatorAFK /> : <StatusIndicatorOnline />}
-                           <span>{`${user[0]} (Вы)`}</span>
+                           <span>{currentLanguage === "ru" ? `${user[0]} (Вы)` : `${user[0]} (You)`}</span>
                         </div>
                      );
                   }
@@ -171,7 +173,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                               className="private-button"
                               onClick={privateModeHandler}
                            >
-                              ЛС
+                              {currentLanguage === "ru" ? "ЛС" : "PM"}
                            </button>
                         </div>
                      );
@@ -184,7 +186,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                               className="private-button"
                               onClick={privateModeHandler}
                            >
-                              ЛС
+                              {currentLanguage === "ru" ? "ЛС" : "PM"}
                            </button>
                         </div>
                      );
@@ -197,7 +199,7 @@ export const UsersList: FC<Props> = ({ privateModeSet }) => {
                               className="private-button"
                               onClick={privateModeHandler}
                            >
-                              ЛС
+                              {currentLanguage === "ru" ? "ЛС" : "PM"}
                            </button>
                         </div>
                      );
