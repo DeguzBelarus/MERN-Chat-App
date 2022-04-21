@@ -1,0 +1,409 @@
+.userslist-box {
+  height: 100%;
+  padding-top: 5px;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1px solid slategrey;
+  border-top: 2px solid slategrey;
+  border-bottom: 2px solid slategrey;
+  border-left: 2px solid slategrey;
+  overflow-y: scroll;
+
+  .users-count-box {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    border-bottom: 1px solid slategrey;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    span {
+      padding-left: 2px;
+      font-weight: bolder;
+      color: deeppink;
+    }
+  }
+
+  .user-box-admin {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    box-sizing: border-box;
+    margin-bottom: 2px;
+    background: #eee;
+    color: #a59263;
+    font-weight: bolder;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    .private-button {
+      margin-left: 5px;
+      box-sizing: border-box;
+      border: 2px solid slategrey;
+      border-radius: 20%;
+      background-color: black;
+      color: wheat;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .user-box-mentor {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    box-sizing: border-box;
+    margin-bottom: 2px;
+    background: #eee;
+    color: blueviolet;
+    font-weight: bolder;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    .private-button {
+      margin-left: 5px;
+      box-sizing: border-box;
+      border: 2px solid slategrey;
+      border-radius: 20%;
+      background-color: black;
+      color: wheat;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .user-box {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    box-sizing: border-box;
+    margin-bottom: 2px;
+    background: #eee;
+    color: black;
+    font-weight: bold;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    .private-button {
+      margin-left: 5px;
+      box-sizing: border-box;
+      border: 2px solid slategrey;
+      border-radius: 20%;
+      background-color: black;
+      color: wheat;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .user-box-private {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    box-sizing: border-box;
+    margin-bottom: 2px;
+    padding-left: 5px;
+    background: #eee;
+    color: green;
+    font-weight: bolder;
+    text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 319px) {
+  .userslist-box {
+    width: 38%;
+
+    .users-count-box {
+      font-size: 12px;
+    }
+
+    .user-box-admin {
+      font-size: 12px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 12px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box {
+      font-size: 12px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .userslist-box {
+    width: 33%;
+
+    .users-count-box {
+      font-size: 12px;
+    }
+
+    .user-box-admin {
+      font-size: 14px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 14px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box {
+      font-size: 14px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .userslist-box {
+    width: 33%;
+
+    .users-count-box {
+      font-size: 12px;
+    }
+
+    .user-box-admin {
+      font-size: 14px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 14px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box {
+      font-size: 14px;
+
+      .private-button {
+        font-size: 10px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .userslist-box {
+    width: 25%;
+
+    .users-count-box {
+      font-size: 14px;
+    }
+
+    .user-box-admin {
+      font-size: 16px;
+
+      .private-button {
+        font-size: 12px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 16px;
+
+      .private-button {
+        font-size: 12px;
+      }
+    }
+
+    .user-box {
+      font-size: 16px;
+
+      .private-button {
+        font-size: 12px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .userslist-box {
+    width: 20%;
+
+    .users-count-box {
+      font-size: 16px;
+    }
+
+    .user-box-admin {
+      font-size: 18px;
+
+      .private-button {
+        font-size: 13px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 18px;
+
+      .private-button {
+        font-size: 13px;
+      }
+    }
+
+    .user-box {
+      font-size: 18px;
+
+      .private-button {
+        font-size: 13px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .userslist-box {
+    width: 16%;
+
+    .users-count-box {
+      font-size: 18px;
+    }
+
+    .user-box-admin {
+      font-size: 20px;
+
+      .private-button {
+        font-size: 14px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 20px;
+
+      .private-button {
+        font-size: 14px;
+      }
+    }
+
+    .user-box {
+      font-size: 20px;
+
+      .private-button {
+        font-size: 14px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .userslist-box {
+    width: 13%;
+
+    .users-count-box {
+      font-size: 22px;
+    }
+
+    .user-box-admin {
+      font-size: 23px;
+
+      .private-button {
+        font-size: 16px;
+      }
+    }
+
+    .user-box-mentor {
+      font-size: 23px;
+
+      .private-button {
+        font-size: 16px;
+      }
+    }
+
+    .user-box {
+      font-size: 23px;
+
+      .private-button {
+        font-size: 16px;
+      }
+    }
+
+    .user-box-private {
+      font-size: 23px;
+    }
+  }
+}

@@ -1,0 +1,398 @@
+.chat-messages-box {
+  height: 100%;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: 1px solid slategrey;
+  border-top: 2px solid slategrey;
+  border-bottom: 2px solid slategrey;
+  overflow-y: scroll;
+
+  .entering-notification {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    span {
+      color: skyblue;
+      font-weight: bolder;
+    }
+  }
+
+  .exiting-notification {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    span {
+      color: crimson;
+      font-weight: bolder;
+    }
+  }
+
+  .user-message {
+    width: 100%;
+    display: flex;
+    margin: 0;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+    word-break: break-all;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    span {
+      margin-right: 2px;
+      font-weight: bolder;
+      color: deeppink;
+      word-break: keep-all;
+    }
+  }
+
+  .private-notification {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+    word-break: break-all;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    span {
+      font-weight: bolder;
+      color: green;
+      word-break: keep-all;
+    }
+  }
+
+  .user-message-private {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+    word-break: break-all;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    span {
+      color: green;
+      font-weight: bolder;
+      word-break: keep-all;
+    }
+  }
+
+  .private-notdelivered-notification {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    span {
+      color: green;
+      font-weight: bolder;
+      word-break: keep-all;
+    }
+  }
+
+  .user-AFK-notification {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    span {
+      color: gray;
+      font-weight: bolder;
+      word-break: keep-all;
+    }
+  }
+
+  .user-notAFK-notification {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+    animation-name: manifestation;
+    animation-duration: 0.7s;
+
+    span {
+      color: gray;
+      font-weight: bolder;
+      word-break: keep-all;
+    }
+  }
+}
+
+@media screen and (max-width: 319px) {
+  .chat-messages-box {
+    width: 62%;
+
+    .entering-notification {
+      font-size: 12px;
+    }
+
+    .exiting-notification {
+      font-size: 12px;
+    }
+
+    .user-message {
+      font-size: 13px;
+    }
+
+    .private-notification {
+      font-size: 13px;
+    }
+
+    .user-message-private {
+      font-size: 13px;
+    }
+
+    .private-notdelivered-notification {
+      font-size: 12px;
+    }
+
+    .user-AFK-notification {
+      font-size: 12px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .chat-messages-box {
+    width: 67%;
+
+    .entering-notification {
+      font-size: 12px;
+    }
+
+    .exiting-notification {
+      font-size: 12px;
+    }
+
+    .user-message {
+      font-size: 14px;
+    }
+
+    .private-notification {
+      font-size: 14px;
+    }
+
+    .user-message-private {
+      font-size: 14px;
+    }
+
+    .private-notdelivered-notification {
+      font-size: 12px;
+    }
+
+    .user-AFK-notification {
+      font-size: 12px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .chat-messages-box {
+    width: 67%;
+
+    .entering-notification {
+      font-size: 12px;
+    }
+
+    .exiting-notification {
+      font-size: 12px;
+    }
+
+    .user-message {
+      font-size: 14px;
+    }
+
+    .private-notification {
+      font-size: 14px;
+    }
+
+    .user-message-private {
+      font-size: 14px;
+    }
+
+    .private-notdelivered-notification {
+      font-size: 12px;
+    }
+
+    .user-AFK-notification {
+      font-size: 12px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .chat-messages-box {
+    width: 75%;
+
+    .entering-notification {
+      font-size: 14px;
+    }
+
+    .exiting-notification {
+      font-size: 14px;
+    }
+
+    .user-message {
+      font-size: 16px;
+    }
+
+    .private-notification {
+      font-size: 16px;
+    }
+
+    .user-message-private {
+      font-size: 16px;
+    }
+
+    .private-notdelivered-notification {
+      font-size: 14px;
+    }
+
+    .user-AFK-notification {
+      font-size: 14px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .chat-messages-box {
+    width: 80%;
+
+    .entering-notification {
+      font-size: 16px;
+    }
+
+    .exiting-notification {
+      font-size: 16px;
+    }
+
+    .user-message {
+      font-size: 18px;
+    }
+
+    .private-notification {
+      font-size: 18px;
+    }
+
+    .user-message-private {
+      font-size: 18px;
+    }
+
+    .private-notdelivered-notification {
+      font-size: 16px;
+    }
+
+    .user-AFK-notification {
+      font-size: 16px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .chat-messages-box {
+    width: 84%;
+
+    .entering-notification {
+      font-size: 18px;
+    }
+
+    .exiting-notification {
+      font-size: 18px;
+    }
+
+    .user-message {
+      font-size: 20px;
+    }
+
+    .private-notification {
+      font-size: 20px;
+    }
+
+    .user-message-private {
+      font-size: 20px;
+    }
+
+    .private-notdelivered-notification {
+      font-size: 18px;
+    }
+
+    .user-AFK-notification {
+      font-size: 18px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .chat-messages-box {
+    width: 87%;
+
+    .entering-notification {
+      font-size: 24px;
+    }
+
+    .exiting-notification {
+      font-size: 24px;
+    }
+
+    .user-message {
+      font-size: 28px;
+    }
+
+    .private-notification {
+      font-size: 28px;
+    }
+
+    .user-message-private {
+      font-size: 28px;
+    }
+
+    .private-notdelivered-notification {
+      font-size: 24px;
+    }
+
+    .user-AFK-notification {
+      font-size: 24px;
+    }
+
+    .user-notAFK-notification {
+      font-size: 24px;
+    }
+  }
+}
