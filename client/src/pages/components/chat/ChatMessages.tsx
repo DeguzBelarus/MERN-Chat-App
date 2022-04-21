@@ -2,6 +2,8 @@ import { useEffect, FC, useRef, useTransition } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { selectMessagesInChat, messagesInChatSave } from "../../../app/chatSlice";
 
+import "./ChatMessages.scss"
+
 export const ChatMessages: FC = () => {
    const messagesBox: any = useRef(null);
 

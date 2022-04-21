@@ -1,39 +1,25 @@
-#login-form {
+.bottom-panel {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: center;
-  padding: 15px;
-  padding-top: 25px;
-  position: relative;
+  align-items: flex-start;
   box-sizing: border-box;
-  border-bottom-left-radius: 35px;
-  border-bottom-right-radius: 35px;
-  border-top-right-radius: 35px;
-  box-shadow: inset 0 0 10px 1px #00897b;
+  border: 1px solid slategrey;
+  border-top: 0;
+  border-bottom: 2px solid slategrey;
+  border-left: 2px solid slategrey;
+  border-right: 2px solid slategrey;
   background-color: white;
 
-  .logo-text {
-    position: absolute;
-    top: -88px;
-    left: -1px;
-    font-size: 45px;
-    font-weight: bolder;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    color: #00897b;
-  }
-
-  .input-label {
+  .message-input-label {
+    width: 100%;
     display: block;
     position: relative;
     box-sizing: border-box;
-    border: 1px solid #00897b;
-
-    &:nth-of-type(1) {
-      margin-bottom: 15px;
-    }
+    border: 1px solid slategrey;
 
     input {
       width: 100%;
@@ -129,117 +115,97 @@
     }
   }
 
-  .authorization-buttons {
+  .bottom-buttons {
     width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    .private-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding-top: 2px;
+      margin-right: 5px;
+      background: deeppink;
+      border: 1px dashed white;
+      border-radius: 5px;
+      animation-name: private-box-moving;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-in;
+      overflow: hidden;
+
+      &::after {
+        content: "✗";
+        position: absolute;
+        top: 0;
+        right: 5px;
+        font-weight: bolder;
+        color: white;
+        z-index: 5;
+      }
+
+      span {
+        height: 18px;
+        position: relative;
+        margin-left: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        font-weight: bolder;
+        color: whitesmoke;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .button-sendmessage {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    margin-top: 10px;
+    box-sizing: border-box;
+    border: 2px solid slategrey;
+    border-radius: 5px;
+    background: #000;
+    color: white;
+    font-weight: bold;
+    padding: 4px;
 
-    .login-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 10px;
-      box-sizing: border-box;
-      border: 2px solid #00897b;
-      border-radius: 5px;
-      z-index: 1;
-      font-weight: bold;
-      transition-property: color, background-color, box-shadow, border-color;
-      transition-duration: 0.5s;
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      &:focus {
-        outline: white;
-      }
+    &:hover {
+      cursor: pointer;
     }
+  }
 
-    .registration-page-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
-      border: 2px solid black;
-      border-radius: 5px;
-      background: white;
-      color: black;
-      z-index: 1;
-      font-weight: bold;
-      transition-property: color, background-color, box-shadow;
-      transition-duration: 0.5s;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+  .bottom-return-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 8px;
+    box-sizing: border-box;
+    border: 2px solid slategrey;
+    border-radius: 5px;
+    background: #555;
+    color: white;
+    font-weight: bold;
+    padding: 4px;
 
-      &:hover {
-        cursor: pointer;
-      }
-
-      &:focus {
-        outline: white;
-      }
+    &:hover {
+      cursor: pointer;
     }
   }
 }
 
 @media screen and (max-width: 319px) {
-  #login-form {
-    width: 90%;
-    height: 230px;
+  .bottom-panel {
+    height: 80px;
 
-    .input-label {
-      width: 180px;
+    .message-input-label {
       height: 33px;
-
-      input {
-        font-size: 10px;
-
-        &:focus,
-        &:not(:placeholder-shown) {
-          + span {
-            left: 2px;
-            top: -5.5px;
-            padding: 0 4px;
-            opacity: 1;
-          }
-        }
-      }
-
-      span {
-        top: 10.5px;
-        font-size: 10px;
-      }
-    }
-
-    .authorization-buttons {
-      .login-button {
-        width: 70px;
-        padding: 5px;
-        font-size: 12px;
-      }
-
-      .registration-page-button {
-        width: 95px;
-        padding: 5px;
-        font-size: 12px;
-      }
-    }
-  }
-}
-
-@media screen and (min-width: 320px) {
-  #login-form {
-    width: 90%;
-    height: 230px;
-
-    .input-label {
-      width: 200px;
-      height: 33px;
+      margin-bottom: 10px;
 
       input {
         font-size: 10px;
@@ -261,30 +227,86 @@
       }
     }
 
-    .authorization-buttons {
-      .login-button {
-        width: 70px;
-        padding: 5px;
-        font-size: 13px;
+    .bottom-buttons {
+      .private-info {
+        font-size: 11px;
+
+        &::after {
+          font-size: 11px;
+        }
       }
 
-      .registration-page-button {
-        width: 100px;
-        padding: 5px;
+      .button-sendmessage {
+        width: 72px;
+        font-size: 10px;
+      }
+
+      .bottom-return-button {
+        width: 60px;
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .bottom-panel {
+    height: 85px;
+
+    .message-input-label {
+      height: 33px;
+      margin-bottom: 10px;
+
+      input {
+        font-size: 10px;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          + span {
+            left: 2px;
+            top: -5.5px;
+            padding: 0 4px;
+            opacity: 1;
+          }
+        }
+      }
+
+      span {
+        top: 9.5px;
+        font-size: 10px;
+      }
+    }
+
+    .bottom-buttons {
+      .private-info {
         font-size: 13px;
+
+        &::after {
+          font-size: 13px;
+        }
+      }
+
+      .button-sendmessage {
+        width: 75px;
+        font-size: 12px;
+      }
+
+      .bottom-return-button {
+        width: 65px;
+        font-size: 12px;
       }
     }
   }
 }
 
 @media screen and (min-width: 425px) {
-  #login-form {
-    width: 350px;
-    height: 240px;
+  .bottom-panel {
+    height: 88px;
+    padding-top: 8px;
 
-    .input-label {
-      width: 230px;
+    .message-input-label {
       height: 36px;
+      margin-bottom: 10px;
 
       input {
         font-size: 12px;
@@ -301,35 +323,40 @@
       }
 
       span {
-        top: 10.5px;
+        top: 9.5px;
         font-size: 12px;
       }
     }
 
-    .authorization-buttons {
-      .login-button {
-        width: 75px;
-        padding: 6px;
-        font-size: 14px;
+    .bottom-buttons {
+      .private-info {
+        font-size: 13px;
+
+        &::after {
+          font-size: 13px;
+        }
       }
 
-      .registration-page-button {
-        width: 110px;
-        padding: 6px;
-        font-size: 14px;
+      .button-sendmessage {
+        width: 75px;
+        font-size: 12px;
+      }
+
+      .bottom-return-button {
+        width: 65px;
+        font-size: 12px;
       }
     }
   }
 }
 
 @media screen and (min-width: 768px) {
-  #login-form {
-    width: 380px;
-    height: 245px;
+  .bottom-panel {
+    height: 90px;
 
-    .input-label {
-      width: 260px;
+    .message-input-label {
       height: 37px;
+      margin-bottom: 10px;
 
       input {
         font-size: 13px;
@@ -351,30 +378,35 @@
       }
     }
 
-    .authorization-buttons {
-      .login-button {
-        width: 80px;
-        padding: 7px;
-        font-size: 15px;
+    .bottom-buttons {
+      .private-info {
+        font-size: 14px;
+
+        &::after {
+          font-size: 14px;
+        }
       }
 
-      .registration-page-button {
-        width: 120px;
-        padding: 7px;
-        font-size: 15px;
+      .button-sendmessage {
+        width: 85px;
+        font-size: 14px;
+      }
+
+      .bottom-return-button {
+        width: 70px;
+        font-size: 14px;
       }
     }
   }
 }
 
 @media screen and (min-width: 1024px) {
-  #login-form {
-    width: 440px;
-    height: 255px;
+  .bottom-panel {
+    height: 92px;
 
-    .input-label {
-      width: 300px;
+    .message-input-label {
       height: 40px;
+      margin-bottom: 10px;
 
       input {
         font-size: 14px;
@@ -391,35 +423,40 @@
       }
 
       span {
-        top: 12px;
+        top: 11px;
         font-size: 14px;
       }
     }
 
-    .authorization-buttons {
-      .login-button {
-        width: 85px;
-        padding: 8px;
+    .bottom-buttons {
+      .private-info {
         font-size: 16px;
+
+        &::after {
+          font-size: 15px;
+        }
       }
 
-      .registration-page-button {
-        width: 130px;
-        padding: 8px;
-        font-size: 16px;
+      .button-sendmessage {
+        width: 90px;
+        font-size: 15px;
+      }
+
+      .bottom-return-button {
+        width: 75px;
+        font-size: 15px;
       }
     }
   }
 }
 
 @media screen and (min-width: 1440px) {
-  #login-form {
-    width: 440px;
-    height: 255px;
+  .bottom-panel {
+    height: 100px;
 
-    .input-label {
-      width: 320px;
+    .message-input-label {
       height: 40px;
+      margin-bottom: 10px;
 
       input {
         font-size: 14px;
@@ -441,34 +478,36 @@
       }
     }
 
-    .authorization-buttons {
-      .login-button {
-        width: 85px;
-        padding: 8px;
-        font-size: 16px;
+    .bottom-buttons {
+      .private-info {
+        font-size: 17px;
+
+        &::after {
+          font-size: 15px;
+        }
       }
 
-      .registration-page-button {
-        width: 130px;
-        padding: 8px;
-        font-size: 16px;
+      .button-sendmessage {
+        width: 100px;
+        font-size: 17px;
+      }
+
+      .bottom-return-button {
+        width: 85px;
+        font-size: 17px;
       }
     }
   }
 }
 
 @media screen and (min-width: 2560px) {
-  #login-form {
-    width: 600px;
-    height: 320px;
+  .bottom-panel {
+    height: 150px;
+    padding-top: 12px;
 
-    .input-label {
-      width: 430px;
+    .message-input-label {
       height: 55px;
-
-      &:nth-of-type(2) {
-        margin-bottom: 10px;
-      }
+      margin-bottom: 20px;
 
       input {
         font-size: 20px;
@@ -490,32 +529,24 @@
       }
     }
 
-    .authorization-buttons {
-      .login-button {
-        width: 140px;
-        padding: 9px;
-        font-size: 28px;
+    .bottom-buttons {
+      .private-info {
+        font-size: 18px;
+
+        &::after {
+          font-size: 16px;
+        }
       }
 
-      .registration-page-button {
-        width: 220px;
-        padding: 9px;
-        font-size: 28px;
+      .button-sendmessage {
+        width: 125px;
+        font-size: 22px;
       }
-    }
-  }
-}
 
-@media (hover: hover) {
-  .login-button {
-    &:hover {
-      box-shadow: inset 0 0 8px yellowgreen;
-    }
-  }
-
-  .registration-page-button {
-    &:hover {
-      box-shadow: inset 0 0 5px black;
+      .bottom-return-button {
+        width: 100px;
+        font-size: 22px;
+      }
     }
   }
 }

@@ -289,147 +289,6 @@
       }
     }
   }
-
-  .bottom-panel {
-    width: 100%;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
-    box-sizing: border-box;
-    border: 1px solid slategrey;
-    border-top: 0;
-    border-bottom: 2px solid slategrey;
-    border-left: 2px solid slategrey;
-    border-right: 2px solid slategrey;
-    background-color: white;
-
-    #message-input {
-      width: 100%;
-      margin-bottom: 0;
-      box-sizing: border-box;
-      border: 2px solid slategrey;
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
-
-      &::placeholder {
-        opacity: 0;
-      }
-
-      + label {
-        display: block;
-        background: white;
-        opacity: 0.6;
-        transition-property: color, opacity, transform;
-        transition-duration: 0.8s;
-        font-weight: bolder;
-        z-index: 1;
-      }
-
-      &:not(:placeholder-shown) {
-        border: 2px solid peru;
-        padding-left: 5px;
-      }
-
-      &:not(:placeholder-shown) + label {
-        color: deeppink;
-        opacity: 1;
-      }
-
-      &:focus {
-        outline: none;
-
-        + label {
-          color: deeppink;
-          opacity: 1;
-        }
-      }
-    }
-
-    .bottom-buttons {
-      width: 100%;
-      display: flex;
-      justify-content: start;
-      align-items: center;
-
-      .private-info {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        padding-top: 2px;
-        margin-right: 5px;
-        background: deeppink;
-        border: 1px dashed white;
-        border-radius: 5px;
-        animation-name: private-box-moving;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease-in;
-        overflow: hidden;
-
-        &::after {
-          content: "✗";
-          position: absolute;
-          top: 0;
-          right: 5px;
-          font-weight: bolder;
-          color: white;
-          z-index: 5;
-        }
-
-        span {
-          height: 18px;
-          position: relative;
-          margin-left: 2px;
-          white-space: nowrap;
-          overflow: hidden;
-          font-weight: bolder;
-          color: whitesmoke;
-        }
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
-
-    .button-sendmessage {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
-      border: 2px solid slategrey;
-      border-radius: 5px;
-      background: #000;
-      color: white;
-      font-weight: bold;
-      padding: 4px;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-
-    .bottom-return-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: 8px;
-      box-sizing: border-box;
-      border: 2px solid slategrey;
-      border-radius: 5px;
-      background: #555;
-      color: white;
-      font-weight: bold;
-      padding: 4px;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
 }
 
 @keyframes private-box-moving {
@@ -453,10 +312,6 @@
 @media screen and (max-width: 319px) {
   .chat-upper-wrapper {
     height: calc(100vh - 80px);
-  }
-
-  .bottom-panel {
-    height: 80px;
   }
 
   .userslist-box {
@@ -499,46 +354,6 @@
     width: 62%;
   }
 
-  #message-input {
-    height: 30px;
-    font-size: 8px;
-
-    + label {
-      font-size: 8px;
-      transform: translateY(-20px) translateX(5px);
-    }
-
-    &:not(:placeholder-shown) + label {
-      transform: translateY(-34px) translateX(5px);
-    }
-
-    &:focus {
-      + label {
-        transform: translateY(-34px) translateX(5px);
-      }
-    }
-  }
-
-  .bottom-buttons {
-    .private-info {
-      font-size: 11px;
-
-      &::after {
-        font-size: 11px;
-      }
-    }
-  }
-
-  .button-sendmessage {
-    width: 72px;
-    font-size: 10px;
-  }
-
-  .bottom-return-button {
-    width: 60px;
-    font-size: 10px;
-  }
-
   .chat-messages-box {
     .entering-notification {
       font-size: 12px;
@@ -576,11 +391,7 @@
 
 @media screen and (min-width: 320px) {
   .chat-upper-wrapper {
-    height: calc(100vh - 80px);
-  }
-
-  .bottom-panel {
-    height: 80px;
+    height: calc(100vh - 85px);
   }
 
   .userslist-box {
@@ -621,46 +432,6 @@
 
   .chat-messages-box {
     width: 67%;
-  }
-
-  #message-input {
-    height: 30px;
-    font-size: 9px;
-
-    + label {
-      font-size: 9px;
-      transform: translateY(-20px) translateX(5px);
-    }
-
-    &:not(:placeholder-shown) + label {
-      transform: translateY(-34px) translateX(5px);
-    }
-
-    &:focus {
-      + label {
-        transform: translateY(-34px) translateX(5px);
-      }
-    }
-  }
-
-  .bottom-buttons {
-    .private-info {
-      font-size: 13px;
-
-      &::after {
-        font-size: 13px;
-      }
-    }
-  }
-
-  .button-sendmessage {
-    width: 75px;
-    font-size: 12px;
-  }
-
-  .bottom-return-button {
-    width: 65px;
-    font-size: 12px;
   }
 
   .chat-messages-box {
@@ -700,11 +471,7 @@
 
 @media screen and (min-width: 425px) {
   .chat-upper-wrapper {
-    height: calc(100vh - 80px);
-  }
-
-  .bottom-panel {
-    height: 80px;
+    height: calc(100vh - 88px);
   }
 
   .userslist-box {
@@ -745,46 +512,6 @@
 
   .chat-messages-box {
     width: 67%;
-  }
-
-  #message-input {
-    height: 32px;
-    font-size: 10px;
-
-    + label {
-      font-size: 10px;
-      transform: translateY(-22px) translateX(5px);
-    }
-
-    &:not(:placeholder-shown) + label {
-      transform: translateY(-37px) translateX(5px);
-    }
-
-    &:focus {
-      + label {
-        transform: translateY(-37px) translateX(5px);
-      }
-    }
-  }
-
-  .bottom-buttons {
-    .private-info {
-      font-size: 13px;
-
-      &::after {
-        font-size: 13px;
-      }
-    }
-  }
-
-  .button-sendmessage {
-    width: 75px;
-    font-size: 12px;
-  }
-
-  .bottom-return-button {
-    width: 65px;
-    font-size: 12px;
   }
 
   .chat-messages-box {
@@ -827,10 +554,6 @@
     height: calc(100vh - 90px);
   }
 
-  .bottom-panel {
-    height: 90px;
-  }
-
   .userslist-box {
     width: 25%;
 
@@ -871,47 +594,6 @@
     width: 75%;
   }
 
-  #message-input {
-    height: 35px;
-    font-size: 11px;
-    margin-top: 2px;
-
-    + label {
-      font-size: 11px;
-      transform: translateY(-24px) translateX(6px);
-    }
-
-    &:not(:placeholder-shown) + label {
-      transform: translateY(-41px) translateX(6px);
-    }
-
-    &:focus {
-      + label {
-        transform: translateY(-41px) translateX(6px);
-      }
-    }
-  }
-
-  .bottom-buttons {
-    .private-info {
-      font-size: 14px;
-
-      &::after {
-        font-size: 14px;
-      }
-    }
-  }
-
-  .button-sendmessage {
-    width: 85px;
-    font-size: 14px;
-  }
-
-  .bottom-return-button {
-    width: 70px;
-    font-size: 14px;
-  }
-
   .chat-messages-box {
     .entering-notification {
       font-size: 14px;
@@ -949,11 +631,7 @@
 
 @media screen and (min-width: 1024px) {
   .chat-upper-wrapper {
-    height: calc(100vh - 90px);
-  }
-
-  .bottom-panel {
-    height: 90px;
+    height: calc(100vh - 92px);
   }
 
   .userslist-box {
@@ -996,47 +674,6 @@
     width: 80%;
   }
 
-  #message-input {
-    height: 35px;
-    font-size: 11px;
-    margin-top: 2px;
-
-    + label {
-      font-size: 11px;
-      transform: translateY(-24px) translateX(6px);
-    }
-
-    &:not(:placeholder-shown) + label {
-      transform: translateY(-41px) translateX(6px);
-    }
-
-    &:focus {
-      + label {
-        transform: translateY(-41px) translateX(6px);
-      }
-    }
-  }
-
-  .bottom-buttons {
-    .private-info {
-      font-size: 16px;
-
-      &::after {
-        font-size: 15px;
-      }
-    }
-  }
-
-  .button-sendmessage {
-    width: 90px;
-    font-size: 15px;
-  }
-
-  .bottom-return-button {
-    width: 75px;
-    font-size: 15px;
-  }
-
   .chat-messages-box {
     .entering-notification {
       font-size: 16px;
@@ -1075,10 +712,6 @@
 @media screen and (min-width: 1440px) {
   .chat-upper-wrapper {
     height: calc(100vh - 100px);
-  }
-
-  .bottom-panel {
-    height: 100px;
   }
 
   .userslist-box {
@@ -1121,47 +754,6 @@
     width: 84%;
   }
 
-  #message-input {
-    height: 37px;
-    font-size: 12px;
-    margin-top: 2px;
-
-    + label {
-      font-size: 12px;
-      transform: translateY(-25px) translateX(7px);
-    }
-
-    &:not(:placeholder-shown) + label {
-      transform: translateY(-43px) translateX(7px);
-    }
-
-    &:focus {
-      + label {
-        transform: translateY(-43px) translateX(7px);
-      }
-    }
-  }
-
-  .bottom-buttons {
-    .private-info {
-      font-size: 17px;
-
-      &::after {
-        font-size: 15px;
-      }
-    }
-  }
-
-  .button-sendmessage {
-    width: 100px;
-    font-size: 17px;
-  }
-
-  .bottom-return-button {
-    width: 85px;
-    font-size: 17px;
-  }
-
   .chat-messages-box {
     .entering-notification {
       font-size: 18px;
@@ -1202,10 +794,6 @@
     height: calc(100vh - 150px);
   }
 
-  .bottom-panel {
-    height: 150px;
-  }
-
   .userslist-box {
     width: 13%;
 
@@ -1244,47 +832,6 @@
 
   .chat-messages-box {
     width: 87%;
-  }
-
-  #message-input {
-    height: 50px;
-    font-size: 17px;
-    margin-top: 5px;
-
-    + label {
-      font-size: 17px;
-      transform: translateY(-34px) translateX(10px);
-    }
-
-    &:not(:placeholder-shown) + label {
-      transform: translateY(-58px) translateX(10px);
-    }
-
-    &:focus {
-      + label {
-        transform: translateY(-58px) translateX(10px);
-      }
-    }
-  }
-
-  .bottom-buttons {
-    .private-info {
-      font-size: 18px;
-
-      &::after {
-        font-size: 16px;
-      }
-    }
-  }
-
-  .button-sendmessage {
-    width: 125px;
-    font-size: 22px;
-  }
-
-  .bottom-return-button {
-    width: 100px;
-    font-size: 22px;
   }
 
   .chat-messages-box {

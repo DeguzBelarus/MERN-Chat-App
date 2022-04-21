@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { selectPrivateRecipient, privateRecipientSave, messagesInChatSave } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
+import { selectCurrentLanguage } from "../../../app/globalSlice";
+
+import "./BottomPanel.scss"
 interface Props {
    socket: any
 }
@@ -14,6 +17,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
    const navigate = useNavigate()
    const privateRecipient = useAppSelector(selectPrivateRecipient);
    const nickname = useAppSelector(selectUserNickname);
+   const currentLanguage = useAppSelector(selectCurrentLanguage)
 
    const userSendMessage = (event: any) => {
       if (event.key === "Enter") {
@@ -84,15 +88,17 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
    return (
       <div className="bottom-panel">
-         <input
-            type="text"
-            id="message-input"
-            placeholder="Введите сообщение..."
-            autoComplete="off"
-            onKeyPress={userSendMessage}
-            ref={messageInput}
-         />
-         <label htmlFor="message-input">Введите сообщение</label>
+
+         <label htmlFor="message-input" className="message-input-label">
+            <input type="text"
+               id="message-input"
+               placeholder={currentLanguage === "ru" ? "Введите сообщение..." : "Enter a message..."}
+               autoComplete="off"
+               onKeyPress={userSendMessage}
+               ref={messageInput} />
+            <span>{currentLanguage === "ru" ? "Введите сообщение..." : "Enter a message..."}</span>
+            <div className="line"></div>
+         </label>
 
          <div className="bottom-buttons">
             {privateRecipient && (

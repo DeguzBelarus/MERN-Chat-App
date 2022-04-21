@@ -2,8 +2,9 @@ import { FC } from "react";
 import { useAppSelector } from "../../../app/hooks";
 import { selectUsersInChat, selectPrivateRecipient } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
-
 import { StatusIndicatorOnline, StatusIndicatorAFK } from "../StatusIndicators/StatusIndicators"
+
+import "./UsersList.scss"
 interface Props {
    privateModeSet: any
 }
