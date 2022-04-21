@@ -4,12 +4,13 @@
    "description": "Deguz's MERN chat",
    "main": "app.js",
    "scripts": {
-      "start": "cross-env NODE_ENV=production node app.js & yarn client:install && yarn client:build",
+      "start": "cross-env NODE_ENV=production node app.js",
       "server": "nodemon app.js",
       "client": "yarn --cwd client run start",
       "client:install": "yarn --cwd client add react-scripts --save",
       "client:build": "yarn --cwd client run build",
-      "dev": "cross-env NODE_ENV=development concurrently \"yarn server\" \"yarn client\""
+      "dev": "cross-env NODE_ENV=development concurrently \"yarn server\" \"yarn client\"",
+      "heroku-postbuild": "yarn client:install && yarn client:build"
    },
    "author": "Deguz <deguz@mail.ru>",
    "license": "MIT",
