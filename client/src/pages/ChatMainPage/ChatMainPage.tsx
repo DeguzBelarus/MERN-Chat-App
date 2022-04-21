@@ -19,10 +19,8 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
 
    const [isPending, startTransition]: any = useTransition()
 
-   let aFKlock: boolean = false;
-   let stayNotAFK: boolean = false;
-   let isAFK: boolean = false;
    let afkTimeout: any;
+   let isAFK: boolean = false;
 
    const privateModeSet = (privateRecipient: string) => {
       socket.emit("getting users socketid", privateRecipient);
@@ -145,26 +143,24 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
 
    const afkTimeoutRestart = () => {
       //== set status to not AFK
-      if (isAFK && !aFKlock) {
+      if (isAFK) {
          isAFK = false;
          socket.emit("user is not AFK", nickname)
       }
       //== set status to not AFK
 
-      //== removes current AFK timeout
+      //== removes current AFK timeout if there is one
       if (afkTimeout) {
          clearTimeout(afkTimeout)
       }
-      //== removes current AFK timeout
+      //== removes current AFK timeout if there is one
 
-      //== set status to AFK after 10 minutes (600 000 ms)
-      if (!stayNotAFK) {
-         afkTimeout = setTimeout(() => {
-            isAFK = true;
-            socket.emit("user is AFK", nickname)
-         }, 600000)
-      }
-      //== set status to AFK after 10 minutes (600 000 ms)
+      //== set status to AFK after 5 minutes (300 000 ms)
+      afkTimeout = setTimeout(() => {
+         isAFK = true;
+         socket.emit("user is AFK", nickname)
+      }, 300000)
+      //== set status to AFK after 10 minutes (300 000 ms)
    }
 
    useEffect(() => {

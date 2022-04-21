@@ -93,11 +93,6 @@ export const AuthorizationPage: FC = () => {
       setFormData({ ...formData, currentLanguage: currentLanguage })
    }, [currentLanguage])
 
-   useEffect(() => {
-      if (navigator.language === "ru") return
-      dispatch(currentLanguageSave("en"))
-   }, [])
-
    return (
       <div className="authorization-wrapper">
          <div className="switcher-wrapper">
