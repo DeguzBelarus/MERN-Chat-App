@@ -13,7 +13,7 @@ interface Props {
 export const BottomPanel: FC<Props> = ({ socket }) => {
    const messageInput: any = useRef(null)
    const fileInput: any = useRef(null)
-   const sendFileBox: any = useRef(null)
+   const sendFileButton: any = useRef(null)
 
    const dispatch = useAppDispatch()
    const navigate = useNavigate()
@@ -24,7 +24,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
    const [sendFileMode, setSendFileMode] = useState(false)
 
    const sendFileModeSet = (event: any) => {
-      sendFileBox.current.style.color = "black"
+      sendFileButton.current.style.backgroundColor = "white"
+      sendFileButton.current.innerText = "File"
       fileInput.current.value = null
 
       if (sendFileMode) {
@@ -35,7 +36,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
    }
 
    const selectFile = (event: any) => {
-      sendFileBox.current.style.color = "yellowgreen"
+      sendFileButton.current.style.backgroundColor = "yellowgreen"
+      sendFileButton.current.innerText = "📎"
       messageInput.current.focus()
    }
 
@@ -54,7 +56,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                socket.emit("user send image", nickname, image)
 
                fileInput.current.value = null
-               sendFileBox.current.style.color = "black"
+               sendFileButton.current.style.backgroundColor = "white"
+               sendFileButton.current.innerText = "File"
             } else if (event.target.value && fileInput.current.files.length) {
                const message = event.target.value;
                const image = fileInput.current.files[0]
@@ -62,7 +65,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
                event.target.value = "";
                fileInput.current.value = null
-               sendFileBox.current.style.color = "black"
+               sendFileButton.current.style.backgroundColor = "white"
+               sendFileButton.current.innerText = "File"
             }
          } else {
             if (!event.target.value && !fileInput.current.files.length) return;
@@ -92,7 +96,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                   privateUserSocket);
 
                fileInput.current.value = null
-               sendFileBox.current.style.color = "black"
+               sendFileButton.current.style.backgroundColor = "white"
+               sendFileButton.current.innerText = "File"
             } else if (event.target.value && fileInput.current.files.length) {
                const privateImage = fileInput.current.files[0]
                const privatemessage = event.target.value;
@@ -109,7 +114,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
                event.target.value = "";
                fileInput.current.value = null
-               sendFileBox.current.style.color = "black"
+               sendFileButton.current.style.backgroundColor = "white"
+               sendFileButton.current.innerText = "File"
             }
          }
       }
@@ -129,14 +135,16 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
             socket.emit("user send image", nickname, image)
 
             fileInput.current.value = null
-            sendFileBox.current.style.color = "black"
+            sendFileButton.current.style.backgroundColor = "white"
+            sendFileButton.current.innerText = "File"
          } else if (message && fileInput.current.files.length) {
             const image = fileInput.current.files[0]
             socket.emit("user send message with image", nickname, image, message)
 
             messageInput.current.value = "";
             fileInput.current.value = null
-            sendFileBox.current.style.color = "black"
+            sendFileButton.current.style.backgroundColor = "white"
+            sendFileButton.current.innerText = "File"
          } else {
             const privatemessage = messageInput.current.value;
             if (!privatemessage) return;
@@ -170,8 +178,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
    return (
       <div className="bottom-panel">
-
-         <label htmlFor="message-input" className="message-input-label">
+         <div className="message-input-wrapper">
             <input type="text"
                id="message-input"
                placeholder={currentLanguage === "ru" ? "Введите сообщение..." : "Enter a message..."}
@@ -181,17 +188,22 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
             <span>{currentLanguage === "ru" ? "Введите сообщение..." : "Enter a message..."}</span>
             <div className="line"></div>
 
-            <div className="send-file-box" onClick={sendFileModeSet} ref={sendFileBox}>
-               <div className="send-file-button" >File</div>
+            <div className="send-file-box" onClick={sendFileModeSet}>
+               <div className="send-file-button" ref={sendFileButton}>File</div>
                <div className={!sendFileMode ? "select-file-box" : "select-file-box active"}>
-                  <span>📎</span>
-                  <input type="file" accept="image/*" ref={fileInput} onChange={selectFile} />
+                  <p>📎</p>
+                  <input type="file"
+                     title={currentLanguage === "ru"
+                        ? "выберите файл для отправки"
+                        : "select the file to send"}
+                     accept="image/*"
+                     onChange={selectFile}
+                     ref={fileInput} />
                </div>
             </div>
-         </label>
+         </div>
 
          <div className="bottom-buttons">
-
             {privateRecipient && (
                <div className="private-info" onClick={privateModeOff}>
                   <span>

@@ -111,7 +111,9 @@ export const ChatMessages: FC = () => {
                      <div className="upper-part">
                         <span>{message[1]}:</span>
                      </div>
-                     <img src={message[2]} alt={`picture from user ${message[1]}`} />
+                     <img src={message[2]} alt={currentLanguage === "ru"
+                        ? `файл изображение от пользователя ${message[1]}`
+                        : `picture from user ${message[1]}`} />
                   </div>
                );
             } else if (message[0] === "umi") {
@@ -120,7 +122,9 @@ export const ChatMessages: FC = () => {
                      <div className="upper-part">
                         <span>{message[1]}:</span>{message[3]}
                      </div>
-                     <img src={message[2]} alt={`picture from user ${message[1]}`} />
+                     <img src={message[2]} alt={currentLanguage === "ru"
+                        ? `файл изображение от пользователя ${message[1]}`
+                        : `picture from user ${message[1]}`} />
                   </div>
                );
             } else if (message[0] === "uip") {
@@ -130,13 +134,17 @@ export const ChatMessages: FC = () => {
                         <div className="upper-part">
                            <span>{`Лично от ${message[1]}: `}</span>
                         </div>
-                        <img src={message[2]} alt={`picture from user ${message[1]}`} />
+                        <img src={message[2]} alt={currentLanguage === "ru"
+                           ? `файл изображение от пользователя ${message[1]}`
+                           : `picture from user ${message[1]}`} />
                      </div>
                      : <div className="user-image-private" key={index}>
                         <div className="upper-part">
                            <span>{`Personally from ${message[1]}: `}</span>
                         </div>
-                        <img src={message[2]} alt={`picture from user ${message[1]}`} />
+                        <img src={message[2]} alt={currentLanguage === "ru"
+                           ? `файл изображение от пользователя ${message[1]}`
+                           : `picture from user ${message[1]}`} />
                      </div>
                );
             } else if (message[0] === "pin") {
@@ -146,13 +154,17 @@ export const ChatMessages: FC = () => {
                         <div className="upper-part">
                            <span>{`Лично для ${message[1]}: `}</span>
                         </div>
-                        <img src={message[2]} alt={`picture from user ${message[1]}`} />
+                        <img src={message[2]} alt={currentLanguage === "ru"
+                           ? `файл изображение от пользователя ${message[1]}`
+                           : `picture from user ${message[1]}`} />
                      </div>
                      : <div className="user-image-private-notification" key={index}>
                         <div className="upper-part">
                            <span>{`Personally for ${message[1]}: `}</span>
                         </div>
-                        <img src={message[2]} alt={`picture from user ${message[1]}`} />
+                        <img src={message[2]} alt={currentLanguage === "ru"
+                           ? `файл изображение от пользователя ${message[1]}`
+                           : `picture from user ${message[1]}`} />
                      </div>
                );
             } else if (message[0] === "umip") {
@@ -162,13 +174,17 @@ export const ChatMessages: FC = () => {
                         <div className="upper-part">
                            <span>{`Лично от ${message[1]}: `}</span>{message[3]}
                         </div>
-                        <img src={message[2]} alt={`picture from user ${message[1]}`} />
+                        <img src={message[2]} alt={currentLanguage === "ru"
+                           ? `файл изображение от пользователя ${message[1]}`
+                           : `picture from user ${message[1]}`} />
                      </div>
                      : <div className="user-message-image-private" key={index}>
                         <div className="upper-part">
                            <span>{`Personally from ${message[1]}: `}</span>{message[3]}
                         </div>
-                        <img src={message[2]} alt={`picture from user ${message[1]}`} />
+                        <img src={message[2]} alt={currentLanguage === "ru"
+                           ? `файл изображение от пользователя ${message[1]}`
+                           : `picture from user ${message[1]}`} />
                      </div>
                );
             } else if (message[0] === "pmin") {
@@ -178,13 +194,17 @@ export const ChatMessages: FC = () => {
                         <div className="upper-part">
                            <span>{`Лично для ${message[1]}: `}</span>{message[3]}
                         </div>
-                        <img src={message[2]} alt={`picture from user ${message[1]}`} />
+                        <img src={message[2]} alt={currentLanguage === "ru"
+                           ? `файл изображение от пользователя ${message[1]}`
+                           : `picture from user ${message[1]}`} />
                      </div>
                      : <div className="user-message-image-private-notification" key={index}>
                         <div className="upper-part">
                            <span>{`Personally for ${message[1]}: `}</span>{message[3]}
                         </div>
-                        <img src={message[2]} alt={`picture from user ${message[1]}`} />
+                        <img src={message[2]} alt={currentLanguage === "ru"
+                           ? `файл изображение от пользователя ${message[1]}`
+                           : `picture from user ${message[1]}`} />
                      </div>
                );
             }

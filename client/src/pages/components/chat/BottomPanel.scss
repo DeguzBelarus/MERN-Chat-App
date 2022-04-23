@@ -13,7 +13,7 @@
   border-right: 2px solid slategrey;
   background-color: white;
 
-  .message-input-label {
+  .message-input-wrapper {
     width: 100%;
     display: block;
     position: relative;
@@ -115,7 +115,6 @@
 
     .send-file-box {
       height: 100%;
-      width: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -136,12 +135,12 @@
         align-items: center;
         background-color: white;
         cursor: pointer;
-        z-index: 1;
+        z-index: 2;
       }
 
       .select-file-box {
         height: 100%;
-        width: 100%;
+        width: calc(100% + 2px);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -150,13 +149,12 @@
         right: 0;
         overflow: hidden;
         transition-property: transform;
-        transition-duration: 0.4s;
+        transition-duration: 0.25s;
+        transition-timing-function: linear;
         box-sizing: border-box;
         border-left: 2px solid slategrey;
-
-        &.active {
-          transform: translateX(-40px);
-        }
+        background-color: white;
+        z-index: 1;
 
         input {
           width: 100%;
@@ -272,9 +270,27 @@
     height: 80px;
     padding: 4px;
 
-    .message-input-label {
+    .message-input-wrapper {
       height: 35px;
       margin-bottom: 8px;
+
+      .send-file-box {
+        width: 35px;
+
+        .send-file-button {
+          font-size: 12px;
+        }
+
+        .select-file-box {
+          p {
+            font-size: 16px;
+          }
+
+          &.active {
+            transform: translateX(-36px);
+          }
+        }
+      }
 
       input {
         font-size: 10px;
@@ -325,9 +341,27 @@
     height: 85px;
     padding: 5px;
 
-    .message-input-label {
+    .message-input-wrapper {
       height: 35px;
       margin-bottom: 9px;
+
+      .send-file-box {
+        width: 35px;
+
+        .send-file-button {
+          font-size: 13px;
+        }
+
+        .select-file-box {
+          p {
+            font-size: 16px;
+          }
+
+          &.active {
+            transform: translateX(-36px);
+          }
+        }
+      }
 
       input {
         font-size: 10px;
@@ -379,9 +413,27 @@
     padding: 5px;
     padding-top: 6px;
 
-    .message-input-label {
+    .message-input-wrapper {
       height: 38px;
       margin-bottom: 8px;
+
+      .send-file-box {
+        width: 37px;
+
+        .send-file-button {
+          font-size: 13px;
+        }
+
+        .select-file-box {
+          p {
+            font-size: 16px;
+          }
+
+          &.active {
+            transform: translateX(-38px);
+          }
+        }
+      }
 
       input {
         font-size: 12px;
@@ -433,9 +485,27 @@
     padding: 5px;
     padding-top: 7px;
 
-    .message-input-label {
+    .message-input-wrapper {
       height: 39px;
       margin-bottom: 8px;
+
+      .send-file-box {
+        width: 38px;
+
+        .send-file-button {
+          font-size: 14px;
+        }
+
+        .select-file-box {
+          p {
+            font-size: 17px;
+          }
+
+          &.active {
+            transform: translateX(-39px);
+          }
+        }
+      }
 
       input {
         font-size: 13px;
@@ -487,9 +557,27 @@
     padding: 5px;
     padding-top: 8px;
 
-    .message-input-label {
+    .message-input-wrapper {
       height: 40px;
       margin-bottom: 8px;
+
+      .send-file-box {
+        width: 39px;
+
+        .send-file-button {
+          font-size: 15px;
+        }
+
+        .select-file-box {
+          p {
+            font-size: 18px;
+          }
+
+          &.active {
+            transform: translateX(-40px);
+          }
+        }
+      }
 
       input {
         font-size: 14px;
@@ -541,9 +629,27 @@
     padding: 5px;
     padding-top: 8px;
 
-    .message-input-label {
+    .message-input-wrapper {
       height: 40px;
       margin-bottom: 8px;
+
+      .send-file-box {
+        width: 40px;
+
+        .send-file-button {
+          font-size: 16px;
+        }
+
+        .select-file-box {
+          p {
+            font-size: 19px;
+          }
+
+          &.active {
+            transform: translateX(-41px);
+          }
+        }
+      }
 
       input {
         font-size: 14px;
@@ -595,9 +701,27 @@
     padding: 11px;
     padding-top: 14px;
 
-    .message-input-label {
+    .message-input-wrapper {
       height: 55px;
       margin-bottom: 15px;
+
+      .send-file-box {
+        width: 55px;
+
+        .send-file-button {
+          font-size: 20px;
+        }
+
+        .select-file-box {
+          p {
+            font-size: 24px;
+          }
+
+          &.active {
+            transform: translateX(-57px);
+          }
+        }
+      }
 
       input {
         font-size: 20px;
