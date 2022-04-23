@@ -18,7 +18,7 @@
     display: block;
     position: relative;
     box-sizing: border-box;
-    border: 1px solid slategrey;
+    border: 2px solid slategrey;
 
     input {
       width: 100%;
@@ -112,6 +112,59 @@
       background-color: yellowgreen;
       transition: 0.3s;
     }
+
+    .send-file-box {
+      height: 100%;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      box-sizing: border-box;
+      border-left: 2px solid slategrey;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+
+      .send-file-button {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        cursor: pointer;
+        z-index: 1;
+      }
+
+      .select-file-box {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        overflow: hidden;
+        transition-property: transform;
+        transition-duration: 0.4s;
+        box-sizing: border-box;
+        border-left: 2px solid slategrey;
+
+        &.active {
+          transform: translateX(-40px);
+        }
+
+        input {
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+        }
+      }
+    }
   }
 
   .bottom-buttons {
@@ -125,11 +178,10 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      padding-top: 2px;
       margin-right: 5px;
       background: deeppink;
       border: 1px dashed white;
-      border-radius: 5px;
+      border-radius: 8px;
       animation-name: private-box-moving;
       animation-duration: 1s;
       animation-fill-mode: forwards;
@@ -138,6 +190,9 @@
 
       &::after {
         content: "✗";
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: absolute;
         top: 0;
         right: 5px;
@@ -147,13 +202,14 @@
       }
 
       span {
-        height: 18px;
+        display: flex;
+        align-items: center;
         position: relative;
-        margin-left: 2px;
         white-space: nowrap;
         overflow: hidden;
         font-weight: bolder;
         color: whitesmoke;
+        vertical-align: middle;
       }
 
       &:hover {
@@ -217,7 +273,7 @@
     padding: 4px;
 
     .message-input-label {
-      height: 33px;
+      height: 35px;
       margin-bottom: 8px;
 
       input {
@@ -270,7 +326,7 @@
     padding: 5px;
 
     .message-input-label {
-      height: 33px;
+      height: 35px;
       margin-bottom: 9px;
 
       input {
@@ -324,7 +380,7 @@
     padding-top: 6px;
 
     .message-input-label {
-      height: 36px;
+      height: 38px;
       margin-bottom: 8px;
 
       input {
@@ -378,7 +434,7 @@
     padding-top: 7px;
 
     .message-input-label {
-      height: 37px;
+      height: 39px;
       margin-bottom: 8px;
 
       input {

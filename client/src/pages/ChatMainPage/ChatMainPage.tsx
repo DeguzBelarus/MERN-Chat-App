@@ -112,6 +112,92 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
             });
          }
       })
+
+      socket.on("user send image only message", (nickname: string, image: any) => {
+         if (nickname && image) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(image)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "image/*" }))
+
+               const userOnlyImageMessage = ["ui", nickname, url];
+               messagesInChat = [...messagesInChat, userOnlyImageMessage];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
+      socket.on("user send message with image", (nickname: string, image: any, message: string) => {
+         if (nickname && image && message) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(image)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "image/*" }))
+
+               const userImageAndMessage = ["umi", nickname, url, message];
+               messagesInChat = [...messagesInChat, userImageAndMessage];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
+      socket.on("private image from user", (nickname: string, privateImage: any) => {
+         if (nickname && privateImage) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(privateImage)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "image/*" }))
+
+               const userImagePrivate = ["uip", nickname, url];
+               messagesInChat = [...messagesInChat, userImagePrivate];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
+      socket.on("private image notification", (privateUserNick: string, privateImage: any) => {
+         if (privateUserNick && privateImage) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(privateImage)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "image/*" }))
+
+               const privateImageNotification = ["pin", privateUserNick, url];
+               messagesInChat = [...messagesInChat, privateImageNotification];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
+      socket.on("private message with image from user", (nickname: string,
+         privateImage: any, privatemessage: string) => {
+         if (nickname && privateImage && privatemessage) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(privateImage)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "image/*" }))
+
+               const userImageAndMessagePrivate = ["umip", nickname, url, privatemessage];
+               messagesInChat = [...messagesInChat, userImageAndMessagePrivate];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
+      socket.on("private message with image notification", (privateUserNick: string,
+         privateImage: any, privatemessage: string) => {
+         if (nickname && privateImage && privatemessage) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(privateImage)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "image/*" }))
+
+               const privateImageAndMessageNotification = ["pmin", privateUserNick, url, privatemessage];
+               messagesInChat = [...messagesInChat, privateImageAndMessageNotification];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
       //== message listenings
 
       //== AFK status listenings

@@ -7,7 +7,7 @@ const path = require("path");
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, { maxHttpBufferSize: 1e8 });
 
 app.use(express.json({ extended: true }));
 app.use("/api/authorization", require("./routes/authorization.router"));
@@ -25,6 +25,11 @@ let usersInRoom = [];
 
 io.on("connection", (socket) => {
   console.log(`new connection: socket ${socket.id}`);
+  console.log(
+    `All connections: ${Array.from(io.sockets.sockets).map(
+      (socket) => socket[0]
+    )}`
+  );
 
   //== chat listeners
   socket.on("user entered", (nickname) => {
@@ -138,6 +143,81 @@ io.on("connection", (socket) => {
     socket.emit("user's status is not AFK", nickname, usersInRoom);
     socket.broadcast.emit("user's status is not AFK", nickname, usersInRoom);
   });
+
+  socket.on("user send image", (nickname, image) => {
+    console.log(`${nickname} send image...`);
+
+    socket.emit("user send image only message", nickname, image);
+    socket.broadcast.emit("user send image only message", nickname, image);
+  });
+
+  socket.on("user send message with image", (nickname, image, message) => {
+    console.log(`${nickname} send message with image...`);
+
+    socket.emit("user send message with image", nickname, image, message);
+    socket.broadcast.emit(
+      "user send message with image",
+      nickname,
+      image,
+      message
+    );
+  });
+
+  socket.on(
+    "user send private image",
+    (nickname, privateImage, privateUserNick, privateUserSocket) => {
+      if (!usersInRoom.flat().includes(privateUserNick)) {
+        console.log(`${nickname}, user ${privateUserNick} in not in chat.`);
+
+        return socket.emit(
+          "private message recipient not in chat",
+          privateUserNick
+        );
+      }
+
+      socket.emit("private image notification", privateUserNick, privateImage);
+
+      io.to(privateUserSocket).emit(
+        "private image from user",
+        nickname,
+        privateImage
+      );
+    }
+  );
+
+  socket.on(
+    "user send private message with image",
+    (
+      nickname,
+      privateImage,
+      privatemessage,
+      privateUserNick,
+      privateUserSocket
+    ) => {
+      if (!usersInRoom.flat().includes(privateUserNick)) {
+        console.log(`${nickname}, user ${privateUserNick} in not in chat.`);
+
+        return socket.emit(
+          "private message recipient not in chat",
+          privateUserNick
+        );
+      }
+
+      socket.emit(
+        "private message with image notification",
+        privateUserNick,
+        privateImage,
+        privatemessage
+      );
+
+      io.to(privateUserSocket).emit(
+        "private message with image from user",
+        nickname,
+        privateImage,
+        privatemessage
+      );
+    }
+  );
   //== chat listeners
 });
 
