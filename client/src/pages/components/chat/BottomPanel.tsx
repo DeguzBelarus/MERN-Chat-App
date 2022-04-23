@@ -21,7 +21,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
    const nickname = useAppSelector(selectUserNickname)
    const currentLanguage = useAppSelector(selectCurrentLanguage)
 
-   const [sendFileMode, setSendFileMode] = useState(false)
+   const [sendFileMode, setSendFileMode]: any = useState(false)
 
    const sendFileModeSet = (event: any) => {
       sendFileButton.current.style.backgroundColor = "white"

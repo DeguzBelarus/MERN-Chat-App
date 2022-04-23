@@ -6,6 +6,7 @@ import { messagesInChatSave, usersInChatSave, selectMessagesInChat, privateRecip
 import { ChatMessages } from "../components/chat/ChatMessages";
 import { UsersList } from "../components/chat/UsersList";
 import { BottomPanel } from "../components/chat/BottomPanel";
+import { ImageAndVideoBox } from "../components/chat/ImageAndVideoBox";
 
 import "./ChatMainPage.scss";
 interface Props {
@@ -19,12 +20,23 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
 
    const [isPending, startTransition]: any = useTransition()
 
+   const [typeOfFileBox, setTypeOfFileBox]: any = useState("image")
+   const [fileOfFileBoxSRC, setFileOfFileBoxSRC]: any = useState(null)
+   const [fileBoxIsShown, setFileBoxIsShown]: any = useState(false)
+
    let afkTimeout: any;
    let isAFK: boolean = false;
 
    const privateModeSet = (privateRecipient: string) => {
       socket.emit("getting users socketid", privateRecipient);
    };
+
+   const fileBoxImageOpening = (event: any) => {
+      console.log(event.target.src);
+      setFileOfFileBoxSRC(event.target.src)
+      setTypeOfFileBox("image")
+      setFileBoxIsShown(true)
+   }
 
    useEffect(() => {
       //== notification about entering the chat
@@ -257,11 +269,18 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
 
    return (
       <div className="chat-wrapper">
-         <div className="chat-upper-wrapper">
+         {fileBoxIsShown
+            && <ImageAndVideoBox
+               typeOfFileBox={typeOfFileBox}
+               fileOfFileBoxSRC={fileOfFileBoxSRC}
+               setFileBoxIsShown={setFileBoxIsShown}
+            />}
+
+         {!fileBoxIsShown && <div className="chat-upper-wrapper">
             <UsersList privateModeSet={privateModeSet} />
-            <ChatMessages />
-         </div>
-         <BottomPanel socket={socket} />
+            <ChatMessages fileBoxImageOpening={fileBoxImageOpening} />
+         </div>}
+         {!fileBoxIsShown && <BottomPanel socket={socket} />}
       </div>
    );
 };

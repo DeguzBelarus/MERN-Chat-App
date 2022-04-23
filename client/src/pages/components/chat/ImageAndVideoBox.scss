@@ -1,0 +1,38 @@
+.image-and-video-box {
+  width: 100%;
+  height: 100%;
+  padding: 3px;
+  box-sizing: border-box;
+  border: 2px solid slategrey;
+  opacity: 0;
+  animation-name: image-box-appearance;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+  }
+
+  button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+}
+
+@keyframes image-box-appearance {
+  100% {
+    opacity: 1;
+  }
+}
