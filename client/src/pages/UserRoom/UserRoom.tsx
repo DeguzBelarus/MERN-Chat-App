@@ -31,7 +31,6 @@ export const UserRoom: FC<Props> = ({ socket }) => {
 
    useEffect(() => {
       document.title = `MySN: ${nickname}`
-      dispatch(messagesInChatSave([]))
 
       //== removes current user from list of users in chat
       socket.emit("i'm not in chat", nickname)
