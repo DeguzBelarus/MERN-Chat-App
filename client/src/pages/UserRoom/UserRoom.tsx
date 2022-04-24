@@ -7,8 +7,11 @@ import { messagesInChatSave } from "../../app/chatSlice";
 import { UserRoomHeader } from "../components/UserRoomHeader/UserRoomHeader";
 
 import "./UserRoom.scss"
+interface Props {
+   socket: any
+}
 
-export const UserRoom: FC = () => {
+export const UserRoom: FC<Props> = ({ socket }) => {
    const dispatch = useAppDispatch()
    const nickname = useAppSelector(selectUserNickname)
    const userId = useAppSelector(selectUserId)
@@ -29,6 +32,10 @@ export const UserRoom: FC = () => {
    useEffect(() => {
       document.title = `MySN: ${nickname}`
       dispatch(messagesInChatSave([]))
+
+      //== removes current user from list of users in chat
+      socket.emit("i'm not in chat", nickname)
+      //== removes current user from list of users in chat
    }, [])
 
    return (

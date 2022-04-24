@@ -81,6 +81,23 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("user disconnected", nickname, usersInRoom);
   });
 
+  socket.on("i'm not in chat", (nickname) => {
+    if (usersInRoom.some((user) => user[1] === socket.id)) {
+      console.log(
+        `user ${nickname} presents in chat and will be removed from chat list of users`
+      );
+
+      usersInRoom = usersInRoom
+        .filter((user) => {
+          return user[1] !== socket.id;
+        })
+        .sort();
+
+      socket.broadcast.emit("user disconnected", nickname, usersInRoom);
+      console.log(`${nickname} left the chat, his socket: ${socket.id}`);
+    }
+  });
+
   socket.on("user send message", (nickname, message) => {
     socket.emit("message from user", nickname, message);
     socket.broadcast.emit("message from user", nickname, message);
