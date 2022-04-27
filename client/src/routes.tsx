@@ -11,9 +11,9 @@ export const useRoutes = (socket: any) => {
    const token = useAppSelector(selectToken)
    if (token) {
       return <Routes>
-         <Route path="/" element={<UserRoom socket={socket} />}></Route>
-         <Route path="*" element={<UserRoom socket={socket} />}></Route>
-         <Route path="/usersroom" element={<UserRoom socket={socket} />}></Route>
+         <Route path="/" element={<UserRoom />}></Route>
+         <Route path="*" element={<UserRoom />}></Route>
+         <Route path="/usersroom" element={<UserRoom />}></Route>
          <Route path="/chat" element={<ChatMainPage socket={socket} />}></Route>
       </Routes >
    }

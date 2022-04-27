@@ -257,7 +257,7 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
       afkTimeout = setTimeout(() => {
          isAFK = true;
          socket.emit("user is AFK", nickname)
-      }, 300000)
+      }, 3000)
       //== set status to AFK after 10 minutes (300 000 ms)
    }
 
@@ -265,6 +265,21 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
       afkTimeoutRestart()
       window.addEventListener("mousemove", afkTimeoutRestart)
       window.addEventListener("keypress", afkTimeoutRestart)
+
+      return () => {
+         window.removeEventListener("mousemove", afkTimeoutRestart)
+         window.removeEventListener("keypress", afkTimeoutRestart)
+
+         //== removes current AFK timeout if there is one
+         if (afkTimeout) {
+            clearTimeout(afkTimeout)
+         }
+         //== removes current AFK timeout if there is one
+
+         //== removes current user from list of users in chat
+         socket.emit("i'm not in chat", nickname)
+         //== removes current user from list of users in chat
+      }
    }, [])
 
    return (

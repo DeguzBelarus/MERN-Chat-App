@@ -1,20 +1,15 @@
 import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { selectUserNickname, selectUserId, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
-import { messagesInChatSave } from "../../app/chatSlice";
+import { selectUserNickname, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
 
 import { UserRoomHeader } from "../components/UserRoomHeader/UserRoomHeader";
 
 import "./UserRoom.scss"
-interface Props {
-   socket: any
-}
 
-export const UserRoom: FC<Props> = ({ socket }) => {
+export const UserRoom: FC = () => {
    const dispatch = useAppDispatch()
    const nickname = useAppSelector(selectUserNickname)
-   const userId = useAppSelector(selectUserId)
    const navigate = useNavigate()
 
    const chatEnter = () => {
@@ -31,10 +26,6 @@ export const UserRoom: FC<Props> = ({ socket }) => {
 
    useEffect(() => {
       document.title = `MySN: ${nickname}`
-
-      //== removes current user from list of users in chat
-      socket.emit("i'm not in chat", nickname)
-      //== removes current user from list of users in chat
    }, [])
 
    return (
