@@ -257,8 +257,8 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
       afkTimeout = setTimeout(() => {
          isAFK = true;
          socket.emit("user is AFK", nickname)
-      }, 3000)
-      //== set status to AFK after 10 minutes (300 000 ms)
+      }, 300000)
+      //== set status to AFK after 5 minutes (300 000 ms)
    }
 
    useEffect(() => {
