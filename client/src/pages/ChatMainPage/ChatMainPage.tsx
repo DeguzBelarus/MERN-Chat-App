@@ -277,7 +277,7 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
          //== removes current AFK timeout if there is one
 
          //== removes current user from list of users in chat
-         socket.emit("i'm not in chat", nickname)
+         socket.emit("user exit", nickname)
          //== removes current user from list of users in chat
       }
    }, [])
