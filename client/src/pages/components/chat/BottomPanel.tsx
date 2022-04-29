@@ -52,16 +52,22 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
                event.target.value = "";
             } else if (!event.target.value && fileInput.current.files.length) {
-               const image = fileInput.current.files[0]
-               socket.emit("user send image", nickname, image)
+
+               if (fileInput.current.files[0].type.split("/")[0] === "image") {
+                  const image = fileInput.current.files[0]
+                  socket.emit("user send image", nickname, image)
+               }
 
                fileInput.current.value = null
                sendFileButton.current.style.backgroundColor = "white"
                sendFileButton.current.innerText = "File"
             } else if (event.target.value && fileInput.current.files.length) {
                const message = event.target.value;
-               const image = fileInput.current.files[0]
-               socket.emit("user send message with image", nickname, image, message)
+
+               if (fileInput.current.files[0].type.split("/")[0] === "image") {
+                  const image = fileInput.current.files[0]
+                  socket.emit("user send message with image", nickname, image, message)
+               }
 
                event.target.value = "";
                fileInput.current.value = null
@@ -85,32 +91,37 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
                event.target.value = "";
             } else if (!event.target.value && fileInput.current.files.length) {
-               const privateImage = fileInput.current.files[0]
-               const privateUserNick = privateRecipient[0];
-               const privateUserSocket = privateRecipient[1];
+               if (fileInput.current.files[0].type.split("/")[0] === "image") {
+                  const privateImage = fileInput.current.files[0]
+                  const privateUserNick = privateRecipient[0];
+                  const privateUserSocket = privateRecipient[1];
 
-               socket.emit("user send private image",
-                  nickname,
-                  privateImage,
-                  privateUserNick,
-                  privateUserSocket);
+                  socket.emit("user send private image",
+                     nickname,
+                     privateImage,
+                     privateUserNick,
+                     privateUserSocket);
+               }
 
                fileInput.current.value = null
                sendFileButton.current.style.backgroundColor = "white"
                sendFileButton.current.innerText = "File"
             } else if (event.target.value && fileInput.current.files.length) {
-               const privateImage = fileInput.current.files[0]
                const privatemessage = event.target.value;
-               const privateUserNick = privateRecipient[0];
-               const privateUserSocket = privateRecipient[1];
 
-               socket.emit(
-                  "user send private message with image",
-                  nickname,
-                  privateImage,
-                  privatemessage,
-                  privateUserNick,
-                  privateUserSocket);
+               if (fileInput.current.files[0].type.split("/")[0] === "image") {
+                  const privateImage = fileInput.current.files[0]
+                  const privateUserNick = privateRecipient[0];
+                  const privateUserSocket = privateRecipient[1];
+
+                  socket.emit(
+                     "user send private message with image",
+                     nickname,
+                     privateImage,
+                     privatemessage,
+                     privateUserNick,
+                     privateUserSocket);
+               }
 
                event.target.value = "";
                fileInput.current.value = null
@@ -124,6 +135,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
    const sendMessageOnButton = () => {
       if (!privateRecipient) {
          const message = messageInput.current.value;
+
          if (!message && !fileInput.current.files.length) return;
 
          if (message && !fileInput.current.files.length) {
@@ -131,24 +143,31 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
             messageInput.current.value = "";
          } else if (!message && fileInput.current.files.length) {
-            const image = fileInput.current.files[0]
-            socket.emit("user send image", nickname, image)
+            if (fileInput.current.files[0].type.split("/")[0] === "image") {
+               const image = fileInput.current.files[0]
+               socket.emit("user send image", nickname, image)
+            }
 
             fileInput.current.value = null
             sendFileButton.current.style.backgroundColor = "white"
             sendFileButton.current.innerText = "File"
          } else if (message && fileInput.current.files.length) {
-            const image = fileInput.current.files[0]
-            socket.emit("user send message with image", nickname, image, message)
+            if (fileInput.current.files[0].type.split("/")[0] === "image") {
+               const image = fileInput.current.files[0]
+               socket.emit("user send message with image", nickname, image, message)
+            }
 
             messageInput.current.value = "";
             fileInput.current.value = null
             sendFileButton.current.style.backgroundColor = "white"
             sendFileButton.current.innerText = "File"
-         } else {
-            const privatemessage = messageInput.current.value;
-            if (!privatemessage) return;
+         }
+      } else {
+         const privatemessage = messageInput.current.value;
 
+         if (!privatemessage && !fileInput.current.files.length) return;
+
+         if (privatemessage && !fileInput.current.files.length) {
             const privateUserNick = privateRecipient[0];
             const privateUserSocket = privateRecipient[1];
 
@@ -161,6 +180,41 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
             );
 
             messageInput.current.value = "";
+         } else if (!privatemessage && fileInput.current.files.length) {
+            if (fileInput.current.files[0].type.split("/")[0] === "image") {
+               const privateImage = fileInput.current.files[0]
+               const privateUserNick = privateRecipient[0];
+               const privateUserSocket = privateRecipient[1];
+
+               socket.emit("user send private image",
+                  nickname,
+                  privateImage,
+                  privateUserNick,
+                  privateUserSocket);
+            }
+
+            fileInput.current.value = null
+            sendFileButton.current.style.backgroundColor = "white"
+            sendFileButton.current.innerText = "File"
+         } else if (privatemessage && fileInput.current.files.length) {
+            if (fileInput.current.files[0].type.split("/")[0] === "image") {
+               const privateImage = fileInput.current.files[0]
+               const privateUserNick = privateRecipient[0];
+               const privateUserSocket = privateRecipient[1];
+
+               socket.emit(
+                  "user send private message with image",
+                  nickname,
+                  privateImage,
+                  privatemessage,
+                  privateUserNick,
+                  privateUserSocket);
+            }
+
+            messageInput.current.value = "";
+            fileInput.current.value = null
+            sendFileButton.current.style.backgroundColor = "white"
+            sendFileButton.current.innerText = "File"
          }
       }
    }
@@ -196,7 +250,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                      title={currentLanguage === "ru"
                         ? "выберите файл для отправки"
                         : "select the file to send"}
-                     accept="image/*"
+                     accept="image/*, video/*"
                      onChange={selectFile}
                      ref={fileInput} />
                </div>
