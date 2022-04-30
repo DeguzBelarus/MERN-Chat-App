@@ -202,6 +202,98 @@ export const ChatMessages: FC<Props> = ({ fileBoxImageOpening }) => {
                            onClick={fileBoxImageOpening} />
                      </div>
                );
+            } else if (message[0] === "uv") {
+               return (
+                  <div className="user-video" key={index}>
+                     <div className="upper-part">
+                        <span>{message[1]}:</span>
+                     </div>
+                     <video src={message[2]} controls preload="none" />
+                  </div>
+               );
+            } else if (message[0] === "umv") {
+               return (
+                  <div className="user-message-video" key={index}>
+                     <div className="upper-part">
+                        <span>{message[1]}:</span>{message[3]}
+                     </div>
+                     <video src={message[2]} controls preload="none" />
+                  </div>
+               );
+            } else if (message[0] === "uvp") {
+               return (
+                  currentLanguage === "ru"
+                     ? <div className="user-video-private" key={index}>
+                        <div className="upper-part">
+                           <span>{`Лично от ${message[1]}: `}</span>
+                        </div>
+                        <video src={message[2]} controls preload="none" />
+                     </div>
+                     : <div className="user-video-private" key={index}>
+                        <div className="upper-part">
+                           <span>{`Personally from ${message[1]}: `}</span>
+                        </div>
+                        <video src={message[2]} controls preload="none" />
+                     </div>
+               );
+            } else if (message[0] === "pvn") {
+               return (
+                  currentLanguage === "ru"
+                     ? <div className="user-video-private-notification" key={index}>
+                        <div className="upper-part">
+                           <span>{`Лично для ${message[1]}: `}</span>
+                        </div>
+                        <video src={message[2]} controls preload="none" />
+                     </div>
+                     : <div className="user-video-private-notification" key={index}>
+                        <div className="upper-part">
+                           <span>{`Personally for ${message[1]}: `}</span>
+                        </div>
+                        <video src={message[2]} controls preload="none" />
+                     </div>
+               );
+            } else if (message[0] === "umvp") {
+               return (
+                  currentLanguage === "ru"
+                     ? <div className="user-message-video-private" key={index}>
+                        <div className="upper-part">
+                           <span>{`Лично от ${message[1]}: `}</span>{message[3]}
+                        </div>
+                        <video src={message[2]} controls preload="none" />
+                     </div>
+                     : <div className="user-message-video-private" key={index}>
+                        <div className="upper-part">
+                           <span>{`Personally from ${message[1]}: `}</span>{message[3]}
+                        </div>
+                        <video src={message[2]} controls preload="none" />
+                     </div>
+               );
+            } else if (message[0] === "pmvn") {
+               return (
+                  currentLanguage === "ru"
+                     ? <div className="user-message-video-private-notification" key={index}>
+                        <div className="upper-part">
+                           <span>{`Лично для ${message[1]}: `}</span>{message[3]}
+                        </div>
+                        <video src={message[2]} controls preload="none" />
+                     </div>
+                     : <div className="user-message-video-private-notification" key={index}>
+                        <div className="upper-part">
+                           <span>{`Personally for ${message[1]}: `}</span>{message[3]}
+                        </div>
+                        <video src={message[2]} controls preload="none" />
+                     </div>
+               );
+            } else if (message[0] === "lovn") {
+               return (
+                  currentLanguage === "ru"
+                     ? <p className="loading-video-notification" key={index}>
+                        Видеофайл загружается...
+                     </p>
+                     : <p className="loading-video-notification" key={index}>
+                        The video file is being uploaded...
+                     </p>
+               );
             }
          })}
       </div>

@@ -32,6 +32,9 @@ io.on("connection", (socket) => {
   );
 
   //== chat listeners
+
+  //== connection and disconnection listenings
+  //== connection listening
   socket.on("user entered", (nickname) => {
     const enteredUser = nickname;
     const userSocketId = socket.id;
@@ -44,7 +47,9 @@ io.on("connection", (socket) => {
     socket.emit("entered user info", enteredUser, usersInRoom);
     socket.broadcast.emit("entered user info", enteredUser, usersInRoom);
   });
+  //== connection listening
 
+  //== disconnection listening
   socket.on("disconnect", (data) => {
     const disconnectedUser = usersInRoom
       .filter((user) => {
@@ -80,12 +85,10 @@ io.on("connection", (socket) => {
 
     socket.broadcast.emit("user disconnected", nickname, usersInRoom);
   });
+  //== disconnection listening
+  //== connection and disconnection listenings
 
-  socket.on("user send message", (nickname, message) => {
-    socket.emit("message from user", nickname, message);
-    socket.broadcast.emit("message from user", nickname, message);
-  });
-
+  //== defining a user for personal correspondence
   socket.on("getting users socketid", (nickname) => {
     const targetUser = usersInRoom.filter((user) => {
       return user[0] === nickname;
@@ -93,7 +96,17 @@ io.on("connection", (socket) => {
 
     socket.emit("getting private user data", targetUser);
   });
+  //== defining a user for personal correspondence
 
+  //== message listenings
+  //== not private
+  socket.on("user send message", (nickname, message) => {
+    socket.emit("message from user", nickname, message);
+    socket.broadcast.emit("message from user", nickname, message);
+  });
+  //== not private
+
+  //== private
   socket.on(
     "user send private message",
     (nickname, privatemessage, privateUserNick, privateUserSocket) => {
@@ -119,36 +132,22 @@ io.on("connection", (socket) => {
       );
     }
   );
+  //== private
 
-  socket.on("user is AFK", (nickname) => {
-    usersInRoom = usersInRoom.map((user) => {
-      if (user[0] === nickname) {
-        user[2] = true;
-        return user;
-      } else return user;
-    });
-
-    socket.emit("user's status is AFK", nickname, usersInRoom);
-    socket.broadcast.emit("user's status is AFK", nickname, usersInRoom);
-  });
-
-  socket.on("user is not AFK", (nickname) => {
-    usersInRoom = usersInRoom.map((user) => {
-      if (user[0] === nickname) {
-        user[2] = false;
-        return user;
-      } else return user;
-    });
-
-    socket.emit("user's status is not AFK", nickname, usersInRoom);
-    socket.broadcast.emit("user's status is not AFK", nickname, usersInRoom);
-  });
-
+  //== messages with files
+  //== not private
   socket.on("user send image", (nickname, image) => {
     console.log(`${nickname} send image...`);
 
     socket.emit("user send image only message", nickname, image);
     socket.broadcast.emit("user send image only message", nickname, image);
+  });
+
+  socket.on("user send video", (nickname, video) => {
+    console.log(`${nickname} send video...`);
+
+    socket.emit("user send video only message", nickname, video);
+    socket.broadcast.emit("user send video only message", nickname, video);
   });
 
   socket.on("user send message with image", (nickname, image, message) => {
@@ -163,6 +162,20 @@ io.on("connection", (socket) => {
     );
   });
 
+  socket.on("user send message with video", (nickname, video, message) => {
+    console.log(`${nickname} send message with video...`);
+
+    socket.emit("user send message with video", nickname, video, message);
+    socket.broadcast.emit(
+      "user send message with video",
+      nickname,
+      video,
+      message
+    );
+  });
+  //== not private
+
+  //== private
   socket.on(
     "user send private image",
     (nickname, privateImage, privateUserNick, privateUserSocket) => {
@@ -181,6 +194,28 @@ io.on("connection", (socket) => {
         "private image from user",
         nickname,
         privateImage
+      );
+    }
+  );
+
+  socket.on(
+    "user send private video",
+    (nickname, privateVideo, privateUserNick, privateUserSocket) => {
+      if (!usersInRoom.flat().includes(privateUserNick)) {
+        console.log(`${nickname}, user ${privateUserNick} in not in chat.`);
+
+        return socket.emit(
+          "private message recipient not in chat",
+          privateUserNick
+        );
+      }
+
+      socket.emit("private video notification", privateUserNick, privateVideo);
+
+      io.to(privateUserSocket).emit(
+        "private video from user",
+        nickname,
+        privateVideo
       );
     }
   );
@@ -218,6 +253,69 @@ io.on("connection", (socket) => {
       );
     }
   );
+
+  socket.on(
+    "user send private message with video",
+    (
+      nickname,
+      privateVideo,
+      privatemessage,
+      privateUserNick,
+      privateUserSocket
+    ) => {
+      if (!usersInRoom.flat().includes(privateUserNick)) {
+        console.log(`${nickname}, user ${privateUserNick} in not in chat.`);
+
+        return socket.emit(
+          "private message recipient not in chat",
+          privateUserNick
+        );
+      }
+
+      socket.emit(
+        "private message with video notification",
+        privateUserNick,
+        privateVideo,
+        privatemessage
+      );
+
+      io.to(privateUserSocket).emit(
+        "private message with video from user",
+        nickname,
+        privateVideo,
+        privatemessage
+      );
+    }
+  );
+  //== private
+  //== messages with files
+  //== message listenings
+
+  //== AFK status listenings
+  socket.on("user is AFK", (nickname) => {
+    usersInRoom = usersInRoom.map((user) => {
+      if (user[0] === nickname) {
+        user[2] = true;
+        return user;
+      } else return user;
+    });
+
+    socket.emit("user's status is AFK", nickname, usersInRoom);
+    socket.broadcast.emit("user's status is AFK", nickname, usersInRoom);
+  });
+
+  socket.on("user is not AFK", (nickname) => {
+    usersInRoom = usersInRoom.map((user) => {
+      if (user[0] === nickname) {
+        user[2] = false;
+        return user;
+      } else return user;
+    });
+
+    socket.emit("user's status is not AFK", nickname, usersInRoom);
+    socket.broadcast.emit("user's status is not AFK", nickname, usersInRoom);
+  });
+  //== AFK status listenings
   //== chat listeners
 });
 

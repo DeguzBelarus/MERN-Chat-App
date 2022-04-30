@@ -1,7 +1,7 @@
-import { useRef, FC, useState } from "react";
+import { useRef, FC, useState, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
-import { selectPrivateRecipient, privateRecipientSave, messagesInChatSave } from "../../../app/chatSlice";
+import { selectPrivateRecipient, privateRecipientSave, messagesInChatSave, selectMessagesInChat } from "../../../app/chatSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
 
@@ -17,9 +17,12 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
    const dispatch = useAppDispatch()
    const navigate = useNavigate()
+   let messagesInChat = useAppSelector(selectMessagesInChat)
    const privateRecipient = useAppSelector(selectPrivateRecipient)
    const nickname = useAppSelector(selectUserNickname)
    const currentLanguage = useAppSelector(selectCurrentLanguage)
+
+   const [isPending, startTransition]: any = useTransition()
 
    const [sendFileMode, setSendFileMode]: any = useState(false)
 
@@ -56,6 +59,15 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                if (fileInput.current.files[0].type.split("/")[0] === "image") {
                   const image = fileInput.current.files[0]
                   socket.emit("user send image", nickname, image)
+               } else if (fileInput.current.files[0].type.split("/")[0] === "video") {
+                  const video = fileInput.current.files[0]
+
+                  startTransition(() => {
+                     const loadingVideoNotification = ["lovn"];
+                     messagesInChat = [...messagesInChat, loadingVideoNotification];
+                     dispatch(messagesInChatSave(messagesInChat));
+                  });
+                  socket.emit("user send video", nickname, video)
                }
 
                fileInput.current.value = null
@@ -67,6 +79,15 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                if (fileInput.current.files[0].type.split("/")[0] === "image") {
                   const image = fileInput.current.files[0]
                   socket.emit("user send message with image", nickname, image, message)
+               } else if (fileInput.current.files[0].type.split("/")[0] === "video") {
+                  const video = fileInput.current.files[0]
+
+                  startTransition(() => {
+                     const loadingVideoNotification = ["lovn"];
+                     messagesInChat = [...messagesInChat, loadingVideoNotification];
+                     dispatch(messagesInChatSave(messagesInChat));
+                  });
+                  socket.emit("user send message with video", nickname, video, message)
                }
 
                event.target.value = "";
@@ -101,6 +122,21 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                      privateImage,
                      privateUserNick,
                      privateUserSocket);
+               } else if (fileInput.current.files[0].type.split("/")[0] === "video") {
+                  const privateVideo = fileInput.current.files[0]
+                  const privateUserNick = privateRecipient[0];
+                  const privateUserSocket = privateRecipient[1];
+
+                  startTransition(() => {
+                     const loadingVideoNotification = ["lovn"];
+                     messagesInChat = [...messagesInChat, loadingVideoNotification];
+                     dispatch(messagesInChatSave(messagesInChat));
+                  });
+                  socket.emit("user send private video",
+                     nickname,
+                     privateVideo,
+                     privateUserNick,
+                     privateUserSocket);
                }
 
                fileInput.current.value = null
@@ -118,6 +154,23 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                      "user send private message with image",
                      nickname,
                      privateImage,
+                     privatemessage,
+                     privateUserNick,
+                     privateUserSocket);
+               } else if (fileInput.current.files[0].type.split("/")[0] === "video") {
+                  const privateVideo = fileInput.current.files[0]
+                  const privateUserNick = privateRecipient[0];
+                  const privateUserSocket = privateRecipient[1];
+
+                  startTransition(() => {
+                     const loadingVideoNotification = ["lovn"];
+                     messagesInChat = [...messagesInChat, loadingVideoNotification];
+                     dispatch(messagesInChatSave(messagesInChat));
+                  });
+                  socket.emit(
+                     "user send private message with video",
+                     nickname,
+                     privateVideo,
                      privatemessage,
                      privateUserNick,
                      privateUserSocket);
@@ -146,6 +199,15 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
             if (fileInput.current.files[0].type.split("/")[0] === "image") {
                const image = fileInput.current.files[0]
                socket.emit("user send image", nickname, image)
+            } else if (fileInput.current.files[0].type.split("/")[0] === "video") {
+               const video = fileInput.current.files[0]
+
+               startTransition(() => {
+                  const loadingVideoNotification = ["lovn"];
+                  messagesInChat = [...messagesInChat, loadingVideoNotification];
+                  dispatch(messagesInChatSave(messagesInChat));
+               });
+               socket.emit("user send video", nickname, video)
             }
 
             fileInput.current.value = null
@@ -155,6 +217,15 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
             if (fileInput.current.files[0].type.split("/")[0] === "image") {
                const image = fileInput.current.files[0]
                socket.emit("user send message with image", nickname, image, message)
+            } else if (fileInput.current.files[0].type.split("/")[0] === "video") {
+               const video = fileInput.current.files[0]
+
+               startTransition(() => {
+                  const loadingVideoNotification = ["lovn"];
+                  messagesInChat = [...messagesInChat, loadingVideoNotification];
+                  dispatch(messagesInChatSave(messagesInChat));
+               });
+               socket.emit("user send message with video", nickname, video, message)
             }
 
             messageInput.current.value = "";
@@ -191,6 +262,21 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                   privateImage,
                   privateUserNick,
                   privateUserSocket);
+            } else if (fileInput.current.files[0].type.split("/")[0] === "video") {
+               const privateVideo = fileInput.current.files[0]
+               const privateUserNick = privateRecipient[0];
+               const privateUserSocket = privateRecipient[1];
+
+               startTransition(() => {
+                  const loadingVideoNotification = ["lovn"];
+                  messagesInChat = [...messagesInChat, loadingVideoNotification];
+                  dispatch(messagesInChatSave(messagesInChat));
+               });
+               socket.emit("user send private video",
+                  nickname,
+                  privateVideo,
+                  privateUserNick,
+                  privateUserSocket);
             }
 
             fileInput.current.value = null
@@ -206,6 +292,23 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                   "user send private message with image",
                   nickname,
                   privateImage,
+                  privatemessage,
+                  privateUserNick,
+                  privateUserSocket);
+            } else if (fileInput.current.files[0].type.split("/")[0] === "video") {
+               const privateVideo = fileInput.current.files[0]
+               const privateUserNick = privateRecipient[0];
+               const privateUserSocket = privateRecipient[1];
+
+               startTransition(() => {
+                  const loadingVideoNotification = ["lovn"];
+                  messagesInChat = [...messagesInChat, loadingVideoNotification];
+                  dispatch(messagesInChatSave(messagesInChat));
+               });
+               socket.emit(
+                  "user send private message with video",
+                  nickname,
+                  privateVideo,
                   privatemessage,
                   privateUserNick,
                   privateUserSocket);
@@ -251,6 +354,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                         ? "выберите файл для отправки"
                         : "select the file to send"}
                      accept="image/*, video/*"
+
                      onChange={selectFile}
                      ref={fileInput} />
                </div>

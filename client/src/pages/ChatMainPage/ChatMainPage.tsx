@@ -139,6 +139,20 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
          }
       })
 
+      socket.on("user send video only message", (nickname: string, video: any) => {
+         if (nickname && video) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(video)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "video/*" }))
+
+               const userOnlyVideoMessage = ["uv", nickname, url];
+               messagesInChat = [...messagesInChat, userOnlyVideoMessage];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
       socket.on("user send message with image", (nickname: string, image: any, message: string) => {
          if (nickname && image && message) {
             startTransition(() => {
@@ -148,6 +162,20 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
 
                const userImageAndMessage = ["umi", nickname, url, message];
                messagesInChat = [...messagesInChat, userImageAndMessage];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
+      socket.on("user send message with video", (nickname: string, video: any, message: string) => {
+         if (nickname && video && message) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(video)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "video/*" }))
+
+               const userVideoAndMessage = ["umv", nickname, url, message];
+               messagesInChat = [...messagesInChat, userVideoAndMessage];
                dispatch(messagesInChatSave(messagesInChat));
             });
          }
@@ -167,6 +195,20 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
          }
       })
 
+      socket.on("private video from user", (nickname: string, privateVideo: any) => {
+         if (nickname && privateVideo) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(privateVideo)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "video/*" }))
+
+               const userVideoPrivate = ["uvp", nickname, url];
+               messagesInChat = [...messagesInChat, userVideoPrivate];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
       socket.on("private image notification", (privateUserNick: string, privateImage: any) => {
          if (privateUserNick && privateImage) {
             startTransition(() => {
@@ -176,6 +218,20 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
 
                const privateImageNotification = ["pin", privateUserNick, url];
                messagesInChat = [...messagesInChat, privateImageNotification];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
+      socket.on("private video notification", (privateUserNick: string, privateVideo: any) => {
+         if (privateUserNick && privateVideo) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(privateVideo)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "video/*" }))
+
+               const privateVideoNotification = ["pvn", privateUserNick, url];
+               messagesInChat = [...messagesInChat, privateVideoNotification];
                dispatch(messagesInChatSave(messagesInChat));
             });
          }
@@ -196,6 +252,21 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
          }
       })
 
+      socket.on("private message with video from user", (nickname: string,
+         privateVideo: any, privatemessage: string) => {
+         if (nickname && privateVideo && privatemessage) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(privateVideo)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "video/*" }))
+
+               const userVideoAndMessagePrivate = ["umvp", nickname, url, privatemessage];
+               messagesInChat = [...messagesInChat, userVideoAndMessagePrivate];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
       socket.on("private message with image notification", (privateUserNick: string,
          privateImage: any, privatemessage: string) => {
          if (nickname && privateImage && privatemessage) {
@@ -206,6 +277,21 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
 
                const privateImageAndMessageNotification = ["pmin", privateUserNick, url, privatemessage];
                messagesInChat = [...messagesInChat, privateImageAndMessageNotification];
+               dispatch(messagesInChatSave(messagesInChat));
+            });
+         }
+      })
+
+      socket.on("private message with video notification", (privateUserNick: string,
+         privateVideo: any, privatemessage: string) => {
+         if (nickname && privateVideo && privatemessage) {
+            startTransition(() => {
+               let binaryData = []
+               binaryData.push(privateVideo)
+               const url = URL.createObjectURL(new Blob(binaryData, { type: "video/*" }))
+
+               const privateVideoAndMessageNotification = ["pmvn", privateUserNick, url, privatemessage];
+               messagesInChat = [...messagesInChat, privateVideoAndMessageNotification];
                dispatch(messagesInChatSave(messagesInChat));
             });
          }
