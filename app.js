@@ -111,8 +111,6 @@ io.on("connection", (socket) => {
     "user send private message",
     (nickname, privatemessage, privateUserNick, privateUserSocket) => {
       if (!usersInRoom.flat().includes(privateUserNick)) {
-        console.log(`${nickname}, user ${privateUserNick} in not in chat.`);
-
         return socket.emit(
           "private message recipient not in chat",
           privateUserNick
@@ -137,22 +135,16 @@ io.on("connection", (socket) => {
   //== messages with files
   //== not private
   socket.on("user send image", (nickname, image) => {
-    console.log(`${nickname} send image...`);
-
     socket.emit("user send image only message", nickname, image);
     socket.broadcast.emit("user send image only message", nickname, image);
   });
 
   socket.on("user send video", (nickname, video) => {
-    console.log(`${nickname} send video...`);
-
     socket.emit("user send video only message", nickname, video);
     socket.broadcast.emit("user send video only message", nickname, video);
   });
 
   socket.on("user send message with image", (nickname, image, message) => {
-    console.log(`${nickname} send message with image...`);
-
     socket.emit("user send message with image", nickname, image, message);
     socket.broadcast.emit(
       "user send message with image",
@@ -163,8 +155,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("user send message with video", (nickname, video, message) => {
-    console.log(`${nickname} send message with video...`);
-
     socket.emit("user send message with video", nickname, video, message);
     socket.broadcast.emit(
       "user send message with video",
@@ -180,8 +170,6 @@ io.on("connection", (socket) => {
     "user send private image",
     (nickname, privateImage, privateUserNick, privateUserSocket) => {
       if (!usersInRoom.flat().includes(privateUserNick)) {
-        console.log(`${nickname}, user ${privateUserNick} in not in chat.`);
-
         return socket.emit(
           "private message recipient not in chat",
           privateUserNick
@@ -202,8 +190,6 @@ io.on("connection", (socket) => {
     "user send private video",
     (nickname, privateVideo, privateUserNick, privateUserSocket) => {
       if (!usersInRoom.flat().includes(privateUserNick)) {
-        console.log(`${nickname}, user ${privateUserNick} in not in chat.`);
-
         return socket.emit(
           "private message recipient not in chat",
           privateUserNick
@@ -230,8 +216,6 @@ io.on("connection", (socket) => {
       privateUserSocket
     ) => {
       if (!usersInRoom.flat().includes(privateUserNick)) {
-        console.log(`${nickname}, user ${privateUserNick} in not in chat.`);
-
         return socket.emit(
           "private message recipient not in chat",
           privateUserNick
@@ -264,8 +248,6 @@ io.on("connection", (socket) => {
       privateUserSocket
     ) => {
       if (!usersInRoom.flat().includes(privateUserNick)) {
-        console.log(`${nickname}, user ${privateUserNick} in not in chat.`);
-
         return socket.emit(
           "private message recipient not in chat",
           privateUserNick
