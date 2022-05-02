@@ -11,6 +11,8 @@ interface Props {
 }
 
 export const BottomPanel: FC<Props> = ({ socket }) => {
+   const CryptoJS = require("crypto-js");
+
    const messageInput: any = useRef(null)
    const fileInput: any = useRef(null)
    const sendFileButton: any = useRef(null)
@@ -50,7 +52,9 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
             if (!event.target.value && !fileInput.current.files.length) return;
 
             if (event.target.value && !fileInput.current.files.length) {
-               const message = event.target.value;
+               let message = event.target.value;
+               message = CryptoJS.AES.encrypt(message, process.env.REACT_APP_DECRYPT_WORD).toString();
+
                socket.emit("user send message", nickname, message);
 
                event.target.value = "";
@@ -74,7 +78,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                sendFileButton.current.style.backgroundColor = "white"
                sendFileButton.current.innerText = "File"
             } else if (event.target.value && fileInput.current.files.length) {
-               const message = event.target.value;
+               let message = event.target.value;
+               message = CryptoJS.AES.encrypt(message, process.env.REACT_APP_DECRYPT_WORD).toString();
 
                if (fileInput.current.files[0].type.split("/")[0] === "image") {
                   const image = fileInput.current.files[0]
@@ -99,7 +104,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
             if (!event.target.value && !fileInput.current.files.length) return;
 
             if (event.target.value && !fileInput.current.files.length) {
-               const privatemessage = event.target.value;
+               let privatemessage = event.target.value;
+               privatemessage = CryptoJS.AES.encrypt(privatemessage, process.env.REACT_APP_DECRYPT_WORD).toString();
                const privateUserNick = privateRecipient[0];
                const privateUserSocket = privateRecipient[1];
 
@@ -143,7 +149,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                sendFileButton.current.style.backgroundColor = "white"
                sendFileButton.current.innerText = "File"
             } else if (event.target.value && fileInput.current.files.length) {
-               const privatemessage = event.target.value;
+               let privatemessage = event.target.value;
+               privatemessage = CryptoJS.AES.encrypt(privatemessage, process.env.REACT_APP_DECRYPT_WORD).toString();
 
                if (fileInput.current.files[0].type.split("/")[0] === "image") {
                   const privateImage = fileInput.current.files[0]
@@ -187,7 +194,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
    const sendMessageOnButton = () => {
       if (!privateRecipient) {
-         const message = messageInput.current.value;
+         let message = messageInput.current.value;
+         message = CryptoJS.AES.encrypt(message, process.env.REACT_APP_DECRYPT_WORD).toString();
 
          if (!message && !fileInput.current.files.length) return;
 
@@ -234,7 +242,8 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
             sendFileButton.current.innerText = "File"
          }
       } else {
-         const privatemessage = messageInput.current.value;
+         let privatemessage = messageInput.current.value;
+         privatemessage = CryptoJS.AES.encrypt(privatemessage, process.env.REACT_APP_DECRYPT_WORD).toString();
 
          if (!privatemessage && !fileInput.current.files.length) return;
 

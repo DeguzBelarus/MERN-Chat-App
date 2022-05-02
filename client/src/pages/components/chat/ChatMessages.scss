@@ -152,7 +152,6 @@
     }
 
     img {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -182,7 +181,6 @@
     }
 
     img {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -212,7 +210,6 @@
     }
 
     img {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -242,7 +239,6 @@
     }
 
     img {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -272,7 +268,6 @@
     }
 
     img {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -302,7 +297,6 @@
     }
 
     img {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -332,7 +326,6 @@
     }
 
     video {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -361,7 +354,6 @@
     }
 
     video {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -390,7 +382,6 @@
     }
 
     video {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -419,7 +410,6 @@
     }
 
     video {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -448,7 +438,6 @@
     }
 
     video {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -477,7 +466,6 @@
     }
 
     video {
-      width: 165px;
       margin-top: 1px;
       box-sizing: border-box;
       border: 2px solid slategrey;
@@ -1542,4 +1530,36 @@
       font-size: 24px;
     }
   }
+}
+
+@media screen and (max-width: 767px) {
+  img,
+  video {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  img,
+  video {
+    width: 290px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 2559px) {
+  img,
+  video {
+    width: 310px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  img,
+  video {
+    width: 500px;
+  }
+}
+
+audio {
+  display: none;
 }

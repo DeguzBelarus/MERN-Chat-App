@@ -9,11 +9,13 @@ import { BottomPanel } from "../components/chat/BottomPanel";
 import { ImageAndVideoBox } from "../components/chat/ImageAndVideoBox";
 
 import "./ChatMainPage.scss";
+
 interface Props {
    socket: any
 }
 
 export const ChatMainPage: FC<Props> = ({ socket }) => {
+   const CryptoJS = require("crypto-js");
    const dispatch = useAppDispatch()
    const nickname = useAppSelector(selectUserNickname)
    let messagesInChat = useAppSelector(selectMessagesInChat)
@@ -85,6 +87,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
       socket.on("message from user", (nickname: string, message: string) => {
          if (nickname && message) {
             startTransition(() => {
+               const bytes = CryptoJS.AES.decrypt(message, process.env.REACT_APP_DECRYPT_WORD);
+               message = bytes.toString(CryptoJS.enc.Utf8);
+
                const userMessage = ["um", nickname, message];
                messagesInChat = [...messagesInChat, userMessage];
                dispatch(messagesInChatSave(messagesInChat));
@@ -95,6 +100,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
       socket.on("private message from user", (nickname: string, privatemessage: string) => {
          if (nickname && privatemessage) {
             startTransition(() => {
+               const bytes = CryptoJS.AES.decrypt(privatemessage, process.env.REACT_APP_DECRYPT_WORD);
+               privatemessage = bytes.toString(CryptoJS.enc.Utf8);
+
                const userMessagePrivate = ["ump", nickname, privatemessage];
                messagesInChat = [...messagesInChat, userMessagePrivate];
                dispatch(messagesInChatSave(messagesInChat));
@@ -107,6 +115,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
          (privateUserNick: string, privatemessage: string) => {
             if (privateUserNick && privatemessage) {
                startTransition(() => {
+                  const bytes = CryptoJS.AES.decrypt(privatemessage, process.env.REACT_APP_DECRYPT_WORD);
+                  privatemessage = bytes.toString(CryptoJS.enc.Utf8);
+
                   const privateMessageNotification = ["pmn", privateUserNick, privatemessage];
                   messagesInChat = [...messagesInChat, privateMessageNotification];
                   dispatch(messagesInChatSave(messagesInChat));
@@ -156,6 +167,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
       socket.on("user send message with image", (nickname: string, image: any, message: string) => {
          if (nickname && image && message) {
             startTransition(() => {
+               const bytes = CryptoJS.AES.decrypt(message, process.env.REACT_APP_DECRYPT_WORD);
+               message = bytes.toString(CryptoJS.enc.Utf8);
+
                let binaryData = []
                binaryData.push(image)
                const url = URL.createObjectURL(new Blob(binaryData, { type: "image/*" }))
@@ -170,6 +184,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
       socket.on("user send message with video", (nickname: string, video: any, message: string) => {
          if (nickname && video && message) {
             startTransition(() => {
+               const bytes = CryptoJS.AES.decrypt(message, process.env.REACT_APP_DECRYPT_WORD);
+               message = bytes.toString(CryptoJS.enc.Utf8);
+
                let binaryData = []
                binaryData.push(video)
                const url = URL.createObjectURL(new Blob(binaryData, { type: "video/*" }))
@@ -241,6 +258,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
          privateImage: any, privatemessage: string) => {
          if (nickname && privateImage && privatemessage) {
             startTransition(() => {
+               const bytes = CryptoJS.AES.decrypt(privatemessage, process.env.REACT_APP_DECRYPT_WORD);
+               privatemessage = bytes.toString(CryptoJS.enc.Utf8);
+
                let binaryData = []
                binaryData.push(privateImage)
                const url = URL.createObjectURL(new Blob(binaryData, { type: "image/*" }))
@@ -256,6 +276,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
          privateVideo: any, privatemessage: string) => {
          if (nickname && privateVideo && privatemessage) {
             startTransition(() => {
+               const bytes = CryptoJS.AES.decrypt(privatemessage, process.env.REACT_APP_DECRYPT_WORD);
+               privatemessage = bytes.toString(CryptoJS.enc.Utf8);
+
                let binaryData = []
                binaryData.push(privateVideo)
                const url = URL.createObjectURL(new Blob(binaryData, { type: "video/*" }))
@@ -271,6 +294,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
          privateImage: any, privatemessage: string) => {
          if (nickname && privateImage && privatemessage) {
             startTransition(() => {
+               const bytes = CryptoJS.AES.decrypt(privatemessage, process.env.REACT_APP_DECRYPT_WORD);
+               privatemessage = bytes.toString(CryptoJS.enc.Utf8);
+
                let binaryData = []
                binaryData.push(privateImage)
                const url = URL.createObjectURL(new Blob(binaryData, { type: "image/*" }))
@@ -286,6 +312,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
          privateVideo: any, privatemessage: string) => {
          if (nickname && privateVideo && privatemessage) {
             startTransition(() => {
+               const bytes = CryptoJS.AES.decrypt(privatemessage, process.env.REACT_APP_DECRYPT_WORD);
+               privatemessage = bytes.toString(CryptoJS.enc.Utf8);
+
                let binaryData = []
                binaryData.push(privateVideo)
                const url = URL.createObjectURL(new Blob(binaryData, { type: "video/*" }))

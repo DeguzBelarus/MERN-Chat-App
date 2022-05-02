@@ -25,7 +25,7 @@ export const UserRoom: FC = () => {
    }
 
    useEffect(() => {
-      document.title = `MySN: ${nickname}`
+      document.title = `MySN: ${nickname}`      
    }, [])
 
    return (
