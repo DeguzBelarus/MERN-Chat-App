@@ -1,4 +1,0 @@
-{
-    "jwtSecret": "hello everybody",
-    "mongoDBurl": "mongodb+srv://deguz:deguz12345@maincluster.0cb8h.mongodb.net/chatDB?retryWrites=true&w=majority"
-}

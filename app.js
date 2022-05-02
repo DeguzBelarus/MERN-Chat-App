@@ -1,7 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const config = require("config");
 const mongoose = require("mongoose");
 const path = require("path");
 
@@ -13,6 +13,7 @@ app.use(express.json({ extended: true }));
 app.use("/api/authorization", require("./routes/authorization.router"));
 
 const PORT = process.env.PORT || 5000;
+const DB_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@maincluster.0cb8h.mongodb.net/chatDB?retryWrites=true&w=majority`;
 
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(path.join(__dirname, "client", "build")));
@@ -32,7 +33,6 @@ io.on("connection", (socket) => {
   );
 
   //== chat listeners
-
   //== connection and disconnection listenings
   //== connection listening
   socket.on("user entered", (nickname) => {
@@ -321,12 +321,10 @@ io.on("connection", (socket) => {
 
 const start = async () => {
   try {
-    await mongoose.connect(
-      config.get("mongoDBurl", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
-    );
+    await mongoose.connect(DB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
   } catch (e) {
     console.log("Server error:", e.message);
     process.exit(1);
