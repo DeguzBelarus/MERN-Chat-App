@@ -5,12 +5,10 @@ import { selectCurrentLanguage } from "../../../app/globalSlice";
 import { Loader } from "../../components/Loader/Loader";
 import { StayLoggedInBox } from "../StayLoggedInBox/StayLoggedInBox";
 import { MessageBox } from "../../components/MessageBox/MessageBox"
-
 import "./AuthorizationForm.scss"
-
 interface Props {
    loginHandler: any,
-   loading: boolean,
+   loading: string,
    transitionToRegitrationPage: any,
    message: string,
    changeHandler: any,
@@ -35,10 +33,10 @@ export const AuthorizationForm: FC<Props> = (
    const currentLanguage = useAppSelector(selectCurrentLanguage)
 
    useEffect(() => {
-      if (loading) {
+      if (loading === "loading") {
          enterButton.current.style.backgroundColor = "yellowgreen"
          enterButton.current.style.color = "#00897b"
-         enterButton.current.style.borderColor = "yellowgreen"
+         enterButton.current.style.borderColor = "#00897b"
       } else {
          if (emailInput.current.validity.valid && passwordInput.current.validity.valid) {
             enterButton.current.style.backgroundColor = "#00897b"
@@ -94,14 +92,14 @@ export const AuthorizationForm: FC<Props> = (
       </label>
 
       <div className="authorization-buttons">
-         <input type="submit" className="login-button" form="login-form" value={loading ? currentLanguage === "ru" ? "Входим..." : "Enter..." : currentLanguage === "ru" ? "Войти" : "Enter"} disabled={loading} ref={enterButton} />
-         <button type="button" className="registration-page-button" disabled={loading} onClick={transitionToRegitrationPage}>{currentLanguage === "ru" ? "Регистрация" : "Registration"}</button>
+         <input type="submit" className="login-button" form="login-form" value={loading === "loading" ? currentLanguage === "ru" ? "Входим..." : "Enter..." : currentLanguage === "ru" ? "Войти" : "Enter"} disabled={loading === "loading" ? true : false} ref={enterButton} />
+         <button type="button" className="registration-page-button" disabled={loading === "loading" ? true : false} onClick={transitionToRegitrationPage}>{currentLanguage === "ru" ? "Регистрация" : "Registration"}</button>
          <StayLoggedInBox
             setIsStayLoggedIn={setIsStayLoggedIn}
             isStayLoggedIn={isStayLoggedIn} />
       </div>
 
-      {!loading && message && <MessageBox message={message} />}
-      {loading && <Loader />}
+      {loading !== "loading" && message && <MessageBox message={message} />}
+      {loading === "loading" && <Loader />}
    </form >
 }

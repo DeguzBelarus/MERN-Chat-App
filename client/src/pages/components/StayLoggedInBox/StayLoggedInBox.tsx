@@ -1,9 +1,8 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { useAppSelector } from "../../../app/hooks";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
 
 import "./StayLoggedInBox.scss"
-
 interface Props {
    setIsStayLoggedIn: any,
    isStayLoggedIn: boolean

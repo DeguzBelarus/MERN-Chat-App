@@ -1,7 +1,6 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import "./MessageBox.scss"
-
 interface Props {
    message: string
 }

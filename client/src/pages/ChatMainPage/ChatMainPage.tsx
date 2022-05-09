@@ -7,9 +7,7 @@ import { ChatMessages } from "../components/chat/ChatMessages";
 import { UsersList } from "../components/chat/UsersList";
 import { BottomPanel } from "../components/chat/BottomPanel";
 import { ImageAndVideoBox } from "../components/chat/ImageAndVideoBox";
-
 import "./ChatMainPage.scss";
-
 interface Props {
    socket: any
 }
@@ -17,10 +15,10 @@ interface Props {
 export const ChatMainPage: FC<Props> = ({ socket }) => {
    const CryptoJS = require("crypto-js");
    const dispatch = useAppDispatch()
+   const [isPending, startTransition]: any = useTransition()
+
    const nickname = useAppSelector(selectUserNickname)
    let messagesInChat = useAppSelector(selectMessagesInChat)
-
-   const [isPending, startTransition]: any = useTransition()
 
    const [typeOfFileBox, setTypeOfFileBox]: any = useState("image")
    const [fileOfFileBoxSRC, setFileOfFileBoxSRC]: any = useState(null)

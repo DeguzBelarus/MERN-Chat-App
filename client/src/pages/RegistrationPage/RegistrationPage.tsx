@@ -1,18 +1,26 @@
 import { useState, FC, useEffect } from "react";
-import { useAppSelector } from "../../app/hooks";
 import { useNavigate } from "react-router-dom"
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectCurrentLanguage } from "../../app/globalSlice";
-import { useForm } from "../../hooks/useForm.hook";
+import {
+   registrationAsync,
+   authMessageSave,
+   selectAuthMessage,
+   selectAuthStatus
+} from "../../app/userSlice";
 
 import { RegistrationForm } from "../components/RegistrationForm/RegistrationForm";
 import { LanguageSwitcher } from "../components/LanguageSwitcher/LanguageSwitcher"
-
 import "./RegistrationPage.scss"
 
 export const RegistrationPage: FC = () => {
    const navigate = useNavigate()
+   const dispatch = useAppDispatch()
+
    const currentLanguage = useAppSelector(selectCurrentLanguage)
-   const { loading, message, request, setMessage } = useForm()
+   const loading = useAppSelector(selectAuthStatus)
+   const message = useAppSelector(selectAuthMessage)
+
    const [formData, setFormData]: any = useState({ nickname: "", email: "", password: "", currentLanguage: currentLanguage })
    const [clearMessageTimeout, setClearMessageTimeout]: any = useState(null)
 
@@ -22,26 +30,22 @@ export const RegistrationPage: FC = () => {
 
    const registerHandler = async (event: any) => {
       event.preventDefault()
-      try {
-         if (formData.email.length < 8 || !formData.email.includes("@") || !formData.email.includes(".")) {
-            return setMessage(currentLanguage === "ru" ? "Введите корректный email" : "Enter the correct email")
-         }
-
-         if (formData.password.length < 8) {
-            return setMessage(currentLanguage === "ru" ? "Введите корректный пароль" : "Enter the correct password")
-         }
-
-         if (formData.nickname.length < 2 || formData.nickname.length > 10) {
-            return setMessage(currentLanguage === "ru" ? "Введите корректный никнейм" : "Enter the correct nickname")
-         }
-
-         const data = await request("/api/authorization/registration", "POST", { ...formData })
-      } catch (e) {
-         console.log("Error:", e);
+      if (formData.email.length < 8 || !formData.email.includes("@") || !formData.email.includes(".")) {
+         return dispatch(authMessageSave(currentLanguage === "ru" ? "Введите корректный email" : "Enter the correct email"))
       }
+
+      if (formData.password.length < 8) {
+         return dispatch(authMessageSave(currentLanguage === "ru" ? "Введите корректный пароль" : "Enter the correct password"))
+      }
+
+      if (formData.nickname.length < 2 || formData.nickname.length > 10) {
+         return dispatch(authMessageSave(currentLanguage === "ru" ? "Введите корректный никнейм" : "Enter the correct nickname"))
+      }
+
+      dispatch(registrationAsync(JSON.stringify({ ...formData })))
    }
 
-   const mainPageReturn = () => {
+   const goToMainPage = () => {
       navigate("/")
    }
 
@@ -50,7 +54,7 @@ export const RegistrationPage: FC = () => {
          clearTimeout(clearMessageTimeout)
       }
 
-      const clearMessageTimeoutCurrent = setTimeout(() => setMessage(""), 5000)
+      const clearMessageTimeoutCurrent = setTimeout(() => dispatch(authMessageSave("")), 5000)
       setClearMessageTimeout(clearMessageTimeoutCurrent)
    }, [message])
 
@@ -59,6 +63,10 @@ export const RegistrationPage: FC = () => {
       document.documentElement.lang = currentLanguage === "ru" ? "ru" : "en"
       setFormData({ ...formData, currentLanguage: currentLanguage })
    }, [currentLanguage])
+
+   useEffect(() => {
+      dispatch(authMessageSave(""))
+   }, [])
 
    return (
       <div className="registration-wrapper">
@@ -70,7 +78,7 @@ export const RegistrationPage: FC = () => {
             registerHandler={registerHandler}
             changeHandler={changeHandler}
             loading={loading}
-            mainPageReturn={mainPageReturn}
+            mainPageReturn={goToMainPage}
             message={message}
             formData={formData} />
 

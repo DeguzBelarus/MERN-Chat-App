@@ -1,7 +1,6 @@
 import { FC } from "react"
 
 import "./ImageAndVideoBox.scss"
-
 interface Props {
    fileOfFileBoxSRC: any,
    typeOfFileBox: string,

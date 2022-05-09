@@ -11,11 +11,11 @@ interface Props {
 }
 
 export const BottomPanel: FC<Props> = ({ socket }) => {
-   const CryptoJS = require("crypto-js");
-
    const messageInput: any = useRef(null)
    const fileInput: any = useRef(null)
    const sendFileButton: any = useRef(null)
+
+   const CryptoJS = require("crypto-js");
 
    const dispatch = useAppDispatch()
    const navigate = useNavigate()

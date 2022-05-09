@@ -4,13 +4,13 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
 
 import { UserRoomHeader } from "../components/UserRoomHeader/UserRoomHeader";
-
 import "./UserRoom.scss"
 
 export const UserRoom: FC = () => {
    const dispatch = useAppDispatch()
-   const nickname = useAppSelector(selectUserNickname)
    const navigate = useNavigate()
+
+   const nickname = useAppSelector(selectUserNickname)
 
    const chatEnter = () => {
       navigate("/chat")
@@ -25,8 +25,9 @@ export const UserRoom: FC = () => {
    }
 
    useEffect(() => {
-      document.title = `MySN: ${nickname}`      
-   }, [])
+      document.title = `MySN: ${nickname}`
+      navigate(`/usersroom/${nickname}`)
+   }, [nickname, navigate])
 
    return (
       <div className="user-room-wrapper">

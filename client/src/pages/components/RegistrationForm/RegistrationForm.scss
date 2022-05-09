@@ -560,13 +560,13 @@
 @media (hover: hover) {
   .return-button {
     &:hover {
-      box-shadow: inset 0 0 5px black;
+      box-shadow: inset 0 0 6px black;
     }
   }
 
   .registration-apply-button {
     &:hover {
-      box-shadow: inset 0 0 8px yellowgreen;
+      box-shadow: inset 0 0 6px black;
     }
   }
 }

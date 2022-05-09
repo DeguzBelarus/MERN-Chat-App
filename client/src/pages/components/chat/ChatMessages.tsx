@@ -1,4 +1,4 @@
-import { useEffect, FC, useRef, useTransition, useState } from "react";
+import { useEffect, FC, useRef, useTransition } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { selectMessagesInChat, messagesInChatSave } from "../../../app/chatSlice";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
@@ -12,9 +12,10 @@ export const ChatMessages: FC<Props> = ({ fileBoxImageOpening }) => {
    const messagesBox: any = useRef(null);
 
    const dispatch = useAppDispatch();
+   const [isPending, startTransition] = useTransition();
+
    let messagesInChat = useAppSelector(selectMessagesInChat);
    const currentLanguage = useAppSelector(selectCurrentLanguage)
-   const [isPending, startTransition] = useTransition();
 
    useEffect(() => {
       messagesBox.current.scrollTo(0, 9999);

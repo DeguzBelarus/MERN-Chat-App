@@ -4,13 +4,11 @@ import { selectCurrentLanguage } from "../../../app/globalSlice";
 
 import { Loader } from "../../components/Loader/Loader";
 import { MessageBox } from "../../components/MessageBox/MessageBox";
-
 import "./RegistrationForm.scss"
-
 interface Props {
    registerHandler: any,
    changeHandler: any,
-   loading: boolean,
+   loading: string,
    mainPageReturn: any,
    message: string,
    formData: object
@@ -23,14 +21,13 @@ export const RegistrationForm: FC<Props> = (
    const passwordInput: any = useRef(null)
    const nicknameInput: any = useRef(null)
 
-
    const currentLanguage = useAppSelector(selectCurrentLanguage)
 
    useEffect(() => {
-      if (loading) {
+      if (loading === "loading") {
          registerButton.current.style.backgroundColor = "yellowgreen"
          registerButton.current.style.color = "#00897b"
-         registerButton.current.style.borderColor = "yellowgreen"
+         registerButton.current.style.borderColor = "#00897b"
       } else {
          if (emailInput.current.validity.valid
             && passwordInput.current.validity.valid
@@ -107,11 +104,11 @@ export const RegistrationForm: FC<Props> = (
       </label>
 
       <div className="registration-buttons">
-         <button type="button" className="return-button" disabled={loading} onClick={mainPageReturn}>{currentLanguage === "ru" ? "Назад" : "Back"}</button>
-         <input type="submit" className="registration-apply-button" form="registration-form" value={loading ? currentLanguage === "ru" ? "Регистрация..." : "Registering..." : currentLanguage === "ru" ? "Зарегистрироваться" : "Register"} disabled={loading} ref={registerButton} />
+         <button type="button" className="return-button" disabled={loading === "loading" ? true : false} onClick={mainPageReturn}>{currentLanguage === "ru" ? "Назад" : "Back"}</button>
+         <input type="submit" className="registration-apply-button" form="registration-form" value={loading === "loading" ? currentLanguage === "ru" ? "Регистрация..." : "Registering..." : currentLanguage === "ru" ? "Зарегистрироваться" : "Register"} disabled={loading === "loading" ? true : false} ref={registerButton} />
       </div>
 
-      {!loading && message && <MessageBox message={message} />}
-      {loading && <Loader />}
+      {loading !== "loading" && message && <MessageBox message={message} />}
+      {loading === "loading" && <Loader />}
    </form>
 }

@@ -13,7 +13,7 @@ const App: FC<Props> = ({ socket }) => {
          console.log("websocket connection has been established...");
       })
       //== notification of connection establishment
-   }, [])
+   }, [socket])
 
    return (
       <>

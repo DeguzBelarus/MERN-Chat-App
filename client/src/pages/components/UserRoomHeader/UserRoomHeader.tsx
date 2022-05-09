@@ -1,12 +1,10 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { useAppSelector } from "../../../app/hooks";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 
 import { StatusIndicatorOnline } from "../StatusIndicators/StatusIndicators";
-
 import "./UserRoomHeader.scss"
-
 interface Props {
    logout: any,
    chatEnter: any
