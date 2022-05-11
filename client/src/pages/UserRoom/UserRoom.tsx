@@ -16,6 +16,10 @@ export const UserRoom: FC = () => {
       navigate("/chat")
    }
 
+   const trainingDiaryEnter = () => {
+      navigate("/trainingdiary")
+   }
+
    const logout = () => {
       localStorage.removeItem("saveChat")
 
@@ -27,13 +31,14 @@ export const UserRoom: FC = () => {
    useEffect(() => {
       document.title = `MySN: ${nickname}`
       navigate(`/usersroom/${nickname}`)
-   }, [nickname, navigate])
+   }, [])
 
    return (
       <div className="user-room-wrapper">
          <UserRoomHeader
             logout={logout}
-            chatEnter={chatEnter} />
+            chatEnter={chatEnter}
+            trainingDiaryEnter={trainingDiaryEnter} />
       </div>
    )
 }

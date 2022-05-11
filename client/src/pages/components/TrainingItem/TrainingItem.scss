@@ -1,0 +1,63 @@
+.training-item-wrapper {
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid gray;
+  padding: 5px;
+  padding-bottom: 15px;
+
+  .remove-training-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+
+  .upper-container {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .exercise-wrapper {
+    .exercise-name-span {
+      color: green;
+      font-weight: bold;
+    }
+
+    .exercise-description {
+      font-weight: bold;
+    }
+  }
+
+  .total-paragraph {
+    margin: 0;
+    margin-top: 5px;
+
+    span {
+      font-weight: bolder;
+      color: tomato;
+    }
+  }
+
+  .comment-paragraph {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    margin: 0;
+    margin-top: 5px;
+
+    span {
+      font-weight: bolder;
+      color: grey;
+      font-style: italic;
+    }
+  }
+}

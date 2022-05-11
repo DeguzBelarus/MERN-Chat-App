@@ -8,9 +8,12 @@ import "./UserRoomHeader.scss"
 interface Props {
    logout: any,
    chatEnter: any
+   trainingDiaryEnter: any
 }
 
-export const UserRoomHeader: FC<Props> = ({ logout, chatEnter }) => {
+export const UserRoomHeader: FC<Props> = ({
+   logout, chatEnter, trainingDiaryEnter
+}) => {
    const currentLanguage = useAppSelector(selectCurrentLanguage)
    const nickname = useAppSelector(selectUserNickname)
 
@@ -53,6 +56,11 @@ export const UserRoomHeader: FC<Props> = ({ logout, chatEnter }) => {
             <span className="chat-link" onClick={chatEnter}>{currentLanguage === "ru"
                ? "Чат"
                : "Chat"}
+            </span>
+
+            <span className="chat-link" onClick={trainingDiaryEnter}>{currentLanguage === "ru"
+               ? "Дневник тренировок"
+               : "Training diary"}
             </span>
          </div>
       </div>

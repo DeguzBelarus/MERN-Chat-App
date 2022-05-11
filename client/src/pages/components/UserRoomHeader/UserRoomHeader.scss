@@ -79,7 +79,7 @@ header {
       cursor: default;
 
       &.active {
-        height: 50px;
+        height: 64px;
         border-bottom: 2px solid #00897b;
       }
 
@@ -120,8 +120,12 @@ header {
   header {
     height: 30px;
 
-    .services-list {
-      top: 27px;
+    .services {
+      width: 110px;
+
+      .services-list {
+        top: 27px;
+      }
     }
 
     span {
@@ -134,8 +138,12 @@ header {
   header {
     height: 32px;
 
-    .services-list {
-      top: 29px;
+    .services {
+      width: 119px;
+
+      .services-list {
+        top: 29px;
+      }
     }
 
     span {
@@ -148,8 +156,12 @@ header {
   header {
     height: 34px;
 
-    .services-list {
-      top: 31px;
+    .services {
+      width: 129px;
+
+      .services-list {
+        top: 31px;
+      }
     }
 
     span {
@@ -162,8 +174,12 @@ header {
   header {
     height: 36px;
 
-    .services-list {
-      top: 33px;
+    .services {
+      width: 148px;
+
+      .services-list {
+        top: 33px;
+      }
     }
 
     span {
@@ -176,8 +192,12 @@ header {
   header {
     height: 39px;
 
-    .services-list {
-      top: 36px;
+    .services {
+      width: 167px;
+
+      .services-list {
+        top: 36px;
+      }
     }
 
     span {
@@ -190,8 +210,12 @@ header {
   header {
     height: 39px;
 
-    .services-list {
-      top: 36px;
+    .services {
+      width: 167px;
+
+      .services-list {
+        top: 36px;
+      }
     }
 
     span {
@@ -204,8 +228,12 @@ header {
   header {
     height: 50px;
 
-    .services-list {
-      top: 47px;
+    .services {
+      width: 205px;
+
+      .services-list {
+        top: 47px;
+      }
     }
 
     span {

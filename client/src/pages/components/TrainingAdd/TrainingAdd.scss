@@ -1,0 +1,80 @@
+.training-add-wrapper {
+  width: 55vw;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid gray;
+  padding: 5px;
+
+  .exit-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+
+  h1 {
+    margin: 10px;
+  }
+
+  .training-form {
+    .upper-container {
+      display: flex;
+      gap: 5px;
+
+      #myweight-input {
+        width: 50px;
+      }
+    }
+    .exercise-info-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 3px;
+
+      select {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 1px;
+        margin-top: 5px;
+      }
+
+      input {
+        width: 55px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 1px;
+        margin-top: 5px;
+      }
+
+      button {
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    #comment-input {
+      margin-top: 5px;
+    }
+
+    .buttons-container {
+      width: 100%;
+      display: flex;
+      margin-top: 10px;
+      gap: 5px;
+    }
+
+    .note {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+    }
+  }
+}

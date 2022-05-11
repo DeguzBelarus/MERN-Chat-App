@@ -1,7 +1,9 @@
 import { useEffect, FC, useTransition, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname } from "../../app/userSlice";
 import { messagesInChatSave, usersInChatSave, selectMessagesInChat, privateRecipientSave } from "../../app/chatSlice";
+import { selectCurrentLanguage } from "../../app/globalSlice";
 
 import { ChatMessages } from "../components/chat/ChatMessages";
 import { UsersList } from "../components/chat/UsersList";
@@ -16,8 +18,10 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
    const CryptoJS = require("crypto-js");
    const dispatch = useAppDispatch()
    const [isPending, startTransition]: any = useTransition()
+   const navigate = useNavigate()
 
    const nickname = useAppSelector(selectUserNickname)
+   const currentLanguage = useAppSelector(selectCurrentLanguage)
    let messagesInChat = useAppSelector(selectMessagesInChat)
 
    const [typeOfFileBox, setTypeOfFileBox]: any = useState("image")
@@ -375,6 +379,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
    }
 
    useEffect(() => {
+      document.title = currentLanguage === "ru" ? `MySN: ${nickname} - Чат` : `MySN: ${nickname} - Chat`
+      navigate(`/chat/${nickname}`)
+
       afkTimeoutRestart()
       window.addEventListener("mousemove", afkTimeoutRestart)
       window.addEventListener("keypress", afkTimeoutRestart)
