@@ -25,6 +25,8 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
       "Жим гантелей",
       "Жим гантелей наклонный",
       "Подтягивания",
+      "Отжимания",
+      "Отжимания (брусья)",
       "Приседания со штангой",
       "Запястные сжимания"
    ]
@@ -34,6 +36,8 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
       "Dumbbell press",
       "Dumbbell press inclined",
       "Pull - ups",
+      "Push-ups",
+      "Push-ups (uneven bars)",
       "Barbell Squats",
       "Wrist squeezes"
    ]
@@ -57,6 +61,18 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
          case "Запястные сжимания":
          case "Wrist squeezes":
             planData.q = 0.2
+            break
+         case "Подтягивания":
+         case "Pull - ups":
+            planData.q = 0.75
+            break
+         case "Отжимания":
+         case "Push-ups":
+            planData.q = 0.25
+            break
+         case "Отжимания (брусья)":
+         case "Push-ups (uneven bars)":
+            planData.q = 0.35
             break
       }
 
@@ -91,7 +107,6 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
       set(ref(firebaseDB, `trainings/` + nickname), trainingDataUpdated)
 
-      setPlanData({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1 })
       setPlanDataComplete([planData])
       trainingForm.current.reset()
    }
@@ -143,8 +158,8 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
                   {planDataComplete.length === index + 1 ? `${index + 1}* :` : `${index + 1} :`}
                </span>
                <select title={currentLanguage === "ru"
-                  ? "Выберите упражнение "
-                  : "Choose an exercise "}
+                  ? "Выберите упражнение"
+                  : "Choose an exercise"}
                   name="exercise"
                   id="exercise-input"
                   onChange={planDataUpdate}
@@ -234,7 +249,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
             >{currentLanguage === "ru" ? "Очистить " : "Clear "}</button>
          </div>
 
-         <span className="note">{currentLanguage === "ru" ? "* - ещё не добавлено" : "* - not added yet"}</span>
+         <span className="note">{currentLanguage === "ru" ? "* - нажмите \"+\" для добавления" : "* - press \"+\" to add"}</span>
       </form>
    </div>
 }
