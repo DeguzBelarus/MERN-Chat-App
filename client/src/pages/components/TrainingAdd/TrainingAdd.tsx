@@ -121,7 +121,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
          onClick={trainingDiaryExit}>
          {currentLanguage === "ru"
             ? "Выйти"
-            : "Exit"}
+            : "Quit"}
       </button>
 
       <h1>{currentLanguage === "ru"
@@ -133,16 +133,24 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
          ref={trainingForm}
       >
          <div className="upper-container">
-            <div>
-               <label htmlFor="date-input">{currentLanguage === "ru" ? "Дата: " : "Date: "}</label>
+            <div className="date-input-wrapper">
+               <label htmlFor="date-input">
+                  {currentLanguage === "ru"
+                     ? "Дата: "
+                     : "Date: "}
+               </label>
                <input type="date"
                   name="date"
                   id="date-input"
                   onChange={formDataUpdate} />
             </div>
 
-            <div>
-               <label htmlFor="myweight-input">{currentLanguage === "ru" ? "Ваш вес: " : "Your weight: "}</label>
+            <div className="myweight-input-wrapper">
+               <label htmlFor="myweight-input">
+                  {currentLanguage === "ru"
+                     ? "Ваш вес: "
+                     : "Your weight: "}
+               </label>
                <input type="number"
                   name="myweight"
                   step={0.1}
@@ -229,6 +237,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
                {planDataComplete.length === index + 1
                   && <button type="button"
+                     className="exercise-add-button"
                      onClick={exerciseAdd}
                   >+
                   </button>}
@@ -239,6 +248,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
          <textarea
             name="comment"
             id="comment-input"
+            maxLength={100}
             onChange={formDataUpdate}
          />
 

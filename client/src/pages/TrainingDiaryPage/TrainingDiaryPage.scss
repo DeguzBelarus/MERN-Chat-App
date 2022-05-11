@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 10px 0;
+  padding: 3px 0;
   gap: 10px;
 
   .training-items-wrapper {
@@ -16,4 +16,25 @@
     justify-content: flex-start;
     gap: 5px;
   }
+}
+
+@media screen and (max-width: 319px) {
+}
+
+@media screen and (min-width: 320px) {
+}
+
+@media screen and (min-width: 425px) {
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1024px) {
+}
+
+@media screen and (min-width: 1440px) {
+}
+
+@media screen and (min-width: 2560px) {
 }

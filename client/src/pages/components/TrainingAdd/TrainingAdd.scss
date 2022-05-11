@@ -1,80 +1,968 @@
 .training-add-wrapper {
-  width: 55vw;
-  min-height: 50px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   position: relative;
   box-sizing: border-box;
-  border: 2px solid gray;
-  padding: 5px;
-
-  .exit-button {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-  }
-
-  h1 {
-    margin: 10px;
-  }
 
   .training-form {
+    width: 100%;
+
     .upper-container {
       display: flex;
-      gap: 5px;
-
-      #myweight-input {
-        width: 50px;
-      }
     }
+
     .exercise-info-container {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 3px;
-
-      select {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 1px;
-        margin-top: 5px;
-      }
-
-      input {
-        width: 55px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 1px;
-        margin-top: 5px;
-      }
-
-      button {
-        width: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-
-    #comment-input {
-      margin-top: 5px;
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+      border: 2px solid cadetblue;
     }
 
     .buttons-container {
-      width: 100%;
       display: flex;
-      margin-top: 10px;
-      gap: 5px;
     }
 
     .note {
       position: absolute;
-      bottom: 2px;
+    }
+  }
+}
+
+@media screen and (max-width: 319px) {
+  .training-add-wrapper {
+    width: calc(100% - 6px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid gray;
+    padding: 5px;
+    padding-bottom: 20px;
+
+    .exit-button {
+      position: absolute;
+      top: 2px;
       right: 2px;
+      font-size: 10px;
+    }
+
+    h1 {
+      margin: 12px;
+      font-size: 14px;
+    }
+
+    .training-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      .upper-container {
+        width: 100%;
+        justify-content: center;
+        gap: 5px;
+
+        .date-input-wrapper {
+          label {
+            font-size: 10px;
+          }
+
+          input {
+            font-size: 10px;
+          }
+        }
+
+        .myweight-input-wrapper {
+          label {
+            font-size: 10px;
+          }
+
+          input {
+            width: 28px;
+            font-size: 10px;
+          }
+        }
+      }
+      .exercise-info-container {
+        position: relative;
+        margin-top: 5px;
+        padding-bottom: 27px;
+
+        span {
+          float: left;
+          font-size: 10px;
+        }
+
+        select {
+          width: 100%;
+          padding: 1px;
+          margin-bottom: 4px;
+          font-size: 10px;
+
+          option {
+            font-size: 10px;
+          }
+        }
+
+        label {
+          font-size: 10px;
+          margin-left: 19px;
+
+          &:first-of-type {
+            margin-left: 0;
+          }
+        }
+
+        input {
+          width: 28px;
+          padding: 1px;
+          font-size: 10px;
+        }
+
+        .exercise-add-button {
+          width: 25px;
+          height: 20px;
+          position: absolute;
+          bottom: 3px;
+          left: 5px;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      label {
+        margin-top: 5px;
+        font-size: 10px;
+      }
+
+      #comment-input {
+        width: calc(100% - 6px);
+        margin-top: 2px;
+        font-size: 10px;
+      }
+
+      .buttons-container {
+        width: 100%;
+        margin-top: 10px;
+        justify-content: center;
+        gap: 8px;
+
+        button {
+          padding: 2px 6px;
+          font-size: 12px;
+        }
+      }
+
+      .note {
+        bottom: 2px;
+        right: 2px;
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .training-add-wrapper {
+    width: calc(100% - 6px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid gray;
+    padding: 5px;
+    padding-bottom: 20px;
+
+    .exit-button {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      font-size: 11px;
+    }
+
+    h1 {
+      margin: 12px;
+      font-size: 14.5px;
+    }
+
+    .training-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      .upper-container {
+        width: 100%;
+        justify-content: center;
+        gap: 7px;
+
+        .date-input-wrapper {
+          label {
+            font-size: 11px;
+          }
+
+          input {
+            font-size: 11px;
+          }
+        }
+
+        .myweight-input-wrapper {
+          label {
+            font-size: 11px;
+          }
+
+          input {
+            width: 29px;
+            font-size: 11px;
+          }
+        }
+      }
+      .exercise-info-container {
+        position: relative;
+        margin-top: 5px;
+        padding-bottom: 27px;
+
+        span {
+          float: left;
+          font-size: 11px;
+        }
+
+        select {
+          width: 100%;
+          padding: 1px;
+          margin-bottom: 4px;
+          font-size: 11px;
+
+          option {
+            font-size: 11px;
+          }
+        }
+
+        label {
+          font-size: 11px;
+          margin-left: 32.8px;
+
+          &:first-of-type {
+            margin-left: 0;
+          }
+        }
+
+        input {
+          width: 29px;
+          padding: 1px;
+          font-size: 11px;
+        }
+
+        .exercise-add-button {
+          width: 25px;
+          height: 20px;
+          position: absolute;
+          bottom: 3px;
+          left: 5px;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      label {
+        margin-top: 5px;
+        font-size: 11px;
+      }
+
+      #comment-input {
+        width: calc(100% - 6px);
+        margin-top: 2px;
+        font-size: 11px;
+      }
+
+      .buttons-container {
+        width: 100%;
+        margin-top: 10px;
+        justify-content: center;
+        gap: 9px;
+
+        button {
+          padding: 3px 8px;
+          font-size: 13px;
+        }
+      }
+
+      .note {
+        bottom: 2px;
+        right: 2px;
+        font-size: 11px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .training-add-wrapper {
+    width: calc(100% - 6px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid gray;
+    padding: 5px;
+    padding-bottom: 20px;
+
+    .exit-button {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      font-size: 12px;
+    }
+
+    h1 {
+      margin: 12px;
+      font-size: 16px;
+    }
+
+    .training-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      .upper-container {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+
+        .date-input-wrapper {
+          label {
+            font-size: 12px;
+          }
+
+          input {
+            font-size: 12px;
+          }
+        }
+
+        .myweight-input-wrapper {
+          label {
+            font-size: 12px;
+          }
+
+          input {
+            width: 32px;
+            font-size: 12px;
+          }
+        }
+      }
+      .exercise-info-container {
+        position: relative;
+        margin-top: 5px;
+        padding-bottom: 30px;
+
+        span {
+          float: left;
+          font-size: 12px;
+        }
+
+        select {
+          width: 100%;
+          padding: 1px;
+          margin-bottom: 6px;
+          font-size: 12px;
+
+          option {
+            font-size: 12px;
+          }
+        }
+
+        label {
+          font-size: 12px;
+          margin-left: 7px;
+
+          &:first-of-type {
+            margin-left: 0;
+          }
+        }
+
+        input {
+          width: 29px;
+          padding: 1px;
+          font-size: 12px;
+        }
+
+        .exercise-add-button {
+          width: 26px;
+          height: 20px;
+          position: absolute;
+          bottom: 3px;
+          left: 5px;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      label {
+        margin-top: 5px;
+        font-size: 12px;
+      }
+
+      #comment-input {
+        width: calc(100% - 6px);
+        margin-top: 2px;
+        font-size: 12px;
+      }
+
+      .buttons-container {
+        width: 100%;
+        margin-top: 10px;
+        justify-content: center;
+        gap: 11px;
+
+        button {
+          padding: 3px 9px;
+          font-size: 14px;
+        }
+      }
+
+      .note {
+        bottom: 2px;
+        right: 2px;
+        font-size: 11.2px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .training-add-wrapper {
+    width: calc(100% - 6px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid gray;
+    padding: 5px;
+    padding-bottom: 20px;
+
+    .exit-button {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      font-size: 14px;
+    }
+
+    h1 {
+      margin: 12px;
+      font-size: 18px;
+    }
+
+    .training-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      .upper-container {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+
+        .date-input-wrapper {
+          label {
+            font-size: 14px;
+          }
+
+          input {
+            font-size: 14px;
+          }
+        }
+
+        .myweight-input-wrapper {
+          label {
+            font-size: 14px;
+          }
+
+          input {
+            width: 36px;
+            font-size: 14px;
+          }
+        }
+      }
+      .exercise-info-container {
+        width: 700px;
+        position: relative;
+        margin-top: 5px;
+        padding-bottom: 30px;
+
+        span {
+          font-size: 14px;
+        }
+
+        select {
+          width: 200px;
+          padding: 1px;
+          margin-left: 7px;
+          margin-bottom: 6px;
+          font-size: 14px;
+
+          option {
+            font-size: 14px;
+          }
+        }
+
+        label {
+          font-size: 14px;
+          margin-left: 7px;
+
+          &:first-of-type {
+            margin-left: 7px;
+          }
+        }
+
+        input {
+          width: 45px;
+          padding: 1px;
+          font-size: 14px;
+        }
+
+        .exercise-add-button {
+          width: 27px;
+          height: 21px;
+          position: absolute;
+          bottom: 3px;
+          left: 5px;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      label {
+        margin-top: 5px;
+        font-size: 14px;
+      }
+
+      #comment-input {
+        width: 694px;
+        margin-top: 2px;
+        font-size: 14px;
+      }
+
+      .buttons-container {
+        width: 100%;
+        margin-top: 10px;
+        justify-content: center;
+        gap: 14px;
+
+        button {
+          padding: 4px 12px;
+          font-size: 15px;
+        }
+      }
+
+      .note {
+        bottom: 2px;
+        right: 3px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .training-add-wrapper {
+    width: calc(100% - 6px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid gray;
+    padding: 5px;
+    padding-bottom: 20px;
+
+    .exit-button {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      font-size: 15px;
+    }
+
+    h1 {
+      margin: 12px;
+      font-size: 21px;
+    }
+
+    .training-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      .upper-container {
+        width: 100%;
+        justify-content: center;
+        gap: 13px;
+
+        .date-input-wrapper {
+          label {
+            font-size: 15px;
+          }
+
+          input {
+            font-size: 15px;
+          }
+        }
+
+        .myweight-input-wrapper {
+          label {
+            font-size: 15px;
+          }
+
+          input {
+            width: 54px;
+            font-size: 15px;
+          }
+        }
+      }
+      .exercise-info-container {
+        width: 800px;
+        position: relative;
+        margin-top: 5px;
+        padding-bottom: 30px;
+
+        span {
+          font-size: 15px;
+        }
+
+        select {
+          width: 220px;
+          padding: 1px;
+          margin-left: 7px;
+          margin-bottom: 6px;
+          font-size: 15px;
+
+          option {
+            font-size: 15px;
+          }
+        }
+
+        label {
+          font-size: 15px;
+          margin-left: 7px;
+
+          &:first-of-type {
+            margin-left: 7px;
+          }
+        }
+
+        input {
+          width: 62px;
+          padding: 1px;
+          font-size: 15px;
+        }
+
+        .exercise-add-button {
+          width: 30px;
+          height: 22px;
+          position: absolute;
+          bottom: 3px;
+          left: 5px;
+          justify-content: center;
+          align-items: center;
+          font-size: 15px;
+        }
+      }
+
+      label {
+        margin-top: 5px;
+        font-size: 15px;
+      }
+
+      #comment-input {
+        width: 794px;
+        margin-top: 2px;
+        font-size: 15px;
+      }
+
+      .buttons-container {
+        width: 100%;
+        margin-top: 10px;
+        justify-content: center;
+        gap: 14px;
+
+        button {
+          padding: 4px 12px;
+          font-size: 15px;
+        }
+      }
+
+      .note {
+        bottom: 2px;
+        right: 3px;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .training-add-wrapper {
+    width: calc(100% - 6px);
+    max-width: 1400px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid gray;
+    padding: 5px;
+    padding-bottom: 20px;
+
+    .exit-button {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      font-size: 16px;
+    }
+
+    h1 {
+      margin: 12px;
+      font-size: 24px;
+    }
+
+    .training-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      .upper-container {
+        width: 100%;
+        justify-content: center;
+        gap: 14px;
+
+        .date-input-wrapper {
+          label {
+            font-size: 16px;
+          }
+
+          input {
+            font-size: 16px;
+          }
+        }
+
+        .myweight-input-wrapper {
+          label {
+            font-size: 16px;
+          }
+
+          input {
+            width: 55px;
+            font-size: 16px;
+          }
+        }
+      }
+      .exercise-info-container {
+        width: 1000px;
+        position: relative;
+        margin-top: 8px;
+        padding-bottom: 30px;
+
+        span {
+          font-size: 16px;
+        }
+
+        select {
+          width: 230px;
+          padding: 1px;
+          margin-left: 8px;
+          margin-bottom: 6px;
+          font-size: 16px;
+
+          option {
+            font-size: 16px;
+          }
+        }
+
+        label {
+          font-size: 16px;
+          margin-left: 8px;
+
+          &:first-of-type {
+            margin-left: 8px;
+          }
+        }
+
+        input {
+          width: 65px;
+          padding: 1px;
+          font-size: 16px;
+        }
+
+        .exercise-add-button {
+          width: 32px;
+          height: 23px;
+          position: absolute;
+          bottom: 3px;
+          left: 5px;
+          justify-content: center;
+          align-items: center;
+          font-size: 16px;
+        }
+      }
+
+      label {
+        margin-top: 5px;
+        font-size: 16px;
+      }
+
+      #comment-input {
+        width: 794px;
+        margin-top: 2px;
+        font-size: 16px;
+      }
+
+      .buttons-container {
+        width: 100%;
+        margin-top: 11px;
+        justify-content: center;
+        gap: 16px;
+
+        button {
+          padding: 5px 16px;
+          font-size: 16px;
+        }
+      }
+
+      .note {
+        bottom: 2px;
+        right: 3px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .training-add-wrapper {
+    width: calc(100% - 6px);
+    max-width: 1800px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid gray;
+    padding: 5px;
+    padding-bottom: 20px;
+
+    .exit-button {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      font-size: 20px;
+    }
+
+    h1 {
+      margin: 14px;
+      font-size: 30px;
+    }
+
+    .training-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      .upper-container {
+        width: 100%;
+        justify-content: center;
+        gap: 18px;
+
+        .date-input-wrapper {
+          label {
+            font-size: 20px;
+          }
+
+          input {
+            font-size: 20px;
+          }
+        }
+
+        .myweight-input-wrapper {
+          label {
+            font-size: 20px;
+          }
+
+          input {
+            width: 65px;
+            font-size: 20px;
+          }
+        }
+      }
+      .exercise-info-container {
+        width: 1200px;
+        position: relative;
+        margin-top: 10px;
+        padding-bottom: 34px;
+
+        span {
+          font-size: 20px;
+        }
+
+        select {
+          width: 280px;
+          padding: 1px;
+          margin-left: 10px;
+          margin-bottom: 6px;
+          font-size: 20px;
+
+          option {
+            font-size: 20px;
+          }
+        }
+
+        label {
+          font-size: 20px;
+          margin-left: 10px;
+
+          &:first-of-type {
+            margin-left: 10px;
+          }
+        }
+
+        input {
+          width: 65px;
+          padding: 1px;
+          font-size: 20px;
+        }
+
+        .exercise-add-button {
+          width: 32px;
+          height: 23px;
+          position: absolute;
+          bottom: 3px;
+          left: 5px;
+          justify-content: center;
+          align-items: center;
+          font-size: 20px;
+        }
+      }
+
+      label {
+        margin-top: 6px;
+        font-size: 20px;
+      }
+
+      #comment-input {
+        width: 1194px;
+        margin-top: 2px;
+        font-size: 20px;
+      }
+
+      .buttons-container {
+        width: 100%;
+        margin-top: 13px;
+        justify-content: center;
+        gap: 20px;
+
+        button {
+          padding: 8px 24px;
+          font-size: 20px;
+        }
+      }
+
+      .note {
+        bottom: 2px;
+        right: 3px;
+        font-size: 16.5px;
+      }
     }
   }
 }
