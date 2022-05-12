@@ -19,27 +19,113 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
    const [planData, setPlanData] = useState({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1 })
    const [planDataComplete, setPlanDataComplete] = useState([planData])
    const [formData, setFormData] = useState({ id: 0, date: "", myweight: 0, comment: "", plan: planDataComplete })
+
    const exercises = [
       "Жим штанги",
       "Жим штанги наклонный",
       "Жим гантелей",
       "Жим гантелей наклонный",
+      "Тренажёр бабочка",
+      "Тренажёр кроссовер",
+      "Разводка (грудь)",
+      "Скамья Скотта (штанга)",
+      "Скамья Скотта (гантели)",
+      "Подъёмы штанги (бицепс)",
+      "Обратные подъемы штанги",
+      "Молотки",
+      "Концентрированные сгибания",
+      "Французский жим",
+      "Жим узким хватом",
+      "Разгибание рук (гантель)",
+      "Разгибание руки (гантеля)",
+      "Разгибание рук (тренажёр)",
       "Подтягивания",
+      "Тяга вертикальная (тренажёр)",
+      "Тяга горизонтальная (тренажёр)",
+      "Тяга т-гифа",
+      "Тяга штанги в наклоне",
       "Отжимания",
       "Отжимания (брусья)",
+      "Приседания",
       "Приседания со штангой",
-      "Запястные сжимания"
+      "Приседания с гантелями",
+      "Выпады (гантели)",
+      "Разгибания ног (тренажёр)",
+      "Сгибания ног (тренажёр)",
+      "Приседания в Гаке",
+      "Жим ногами (тренажёр)",
+      "Мёртвая тяга (штанга)",
+      "Мёртвая тяга (гантели)",
+      "Подъёмы на носках",
+      "Подъёмы на носках (тренажёр)",
+      "Ослик",
+      "Шраги со штангой",
+      "Шраги с гантелями",
+      "Разведения с гантелями",
+      "Разведения в наклоне (гантели)",
+      "Подъёмы вперёд (гантели)",
+      "Жим гантелей (плечи)",
+      "Жим штанги (плечи)",
+      "Армейский жим",
+      "Жим Арнольда",
+      "Запястные сжимания",
+      "Запястные сжимания (обратные)",
+      "Скручивания (пресс)",
+      "Скручивания (косые мышцы)",
    ]
+
    const exercisesEng = [
       "Bench press",
       "Bench press inclined",
       "Dumbbell press",
       "Dumbbell press inclined",
+      "Butterfly apparatus",
+      "Crossover apparatus",
+      "Wiring (chest)",
+      "Scott Bench (barbell)",
+      "Scott Bench (dumbbells)",
+      "Barbell Lifts (biceps)",
+      "Reverse barbell lifts",
+      "Hammers",
+      "Concentrated flexion",
+      "French bench press",
+      "Tight grip press",
+      "Arms extension (dumbbell)",
+      "Arm extension (dumbbell)",
+      "Arm extension (apparatus)",
       "Pull - ups",
+      "Vertical pull (apparatus)",
+      "Horizontal pull (apparatus)",
+      "T-gif pull",
+      "Barbell pull in tilt",
       "Push-ups",
       "Push-ups (uneven bars)",
+      "Squats",
       "Barbell Squats",
-      "Wrist squeezes"
+      "Squats with dumbbells",
+      "Lunges (dumbbells)",
+      "Leg extensions (apparatus)",
+      "Leg flexion (apparatus)",
+      "Squats in the Gak",
+      "Leg press (apparatus)",
+      "Deadlift (barbell)",
+      "Deadlift (dumbbells)",
+      "Toe lifts",
+      "Toe lifts (apparatus)",
+      "Donkey",
+      "Scars with a barbell",
+      "Scars with dumbbells",
+      "Dilutions with dumbbells",
+      "Dilutions in slope (dumbbells)",
+      "Forward lifts (dumbbells)",
+      "Dumbbell press (shoulders)",
+      "Barbell bench press (shoulders)",
+      "Army Bench press",
+      "Arnold 's Bench Press",
+      "Wrist squeezes",
+      "Wrist squeezes (reverse)",
+      "Twisting (press)",
+      "Twisting (oblique muscles)",
    ]
 
    const formDataUpdate = (event: any) => {
@@ -48,6 +134,11 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
    const planDataUpdate = (event: any) => {
       setPlanData({ ...planData, [event.target.name]: event.target.value, id: new Date().getTime() })
+   }
+
+   const planDataCompleteReset = () => {
+      setPlanData({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1 })
+      setPlanDataComplete([planData])
    }
 
    const exerciseAdd = () => {
@@ -59,30 +150,53 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
       switch (planData.exercise) {
          case "Запястные сжимания":
+         case "Запястные сжимания (обратные)":
          case "Wrist squeezes":
-            planData.q = 0.2
+         case "Wrist squeezes (reverse)":
+            planData.q = 0.15
+            break
+         case "Скручивания (пресс)":
+         case "Скручивания (косые мышцы)":
+         case "Twisting (press)":
+         case "Twisting (oblique muscles)":
+            planData.q = 0.15
             break
          case "Подтягивания":
          case "Pull - ups":
-            planData.q = 0.75
+            planData.q = 0.7
             break
          case "Отжимания":
          case "Push-ups":
-            planData.q = 0.25
+            planData.q = 0.2
             break
          case "Отжимания (брусья)":
          case "Push-ups (uneven bars)":
-            planData.q = 0.35
+            planData.q = 0.25
+            break
+         case "Приседания":
+         case "Squats":
+            planData.q = 0.25
+            break
+         case "Подъёмы на носках":
+         case "Подъёмы на носках (тренажёр)":
+         case "Toe lifts":
+         case "Toe lifts (apparatus)":
+            planData.q = 0.15
+            break
+         case "Ослик":
+         case "Donkey":
+            planData.q = 0.2
+            break
+         case "Шраги со штангой":
+         case "Шраги с гантелями":
+         case "Scars with a barbell":
+         case "Scars with dumbbells":
+            planData.q = 0.15
             break
       }
 
       setPlanDataComplete([...planDataComplete, planData])
       setPlanData({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1 })
-   }
-
-   const planDataCompleteReset = () => {
-      setPlanData({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1 })
-      setPlanDataComplete([planData])
    }
 
    const trainingAddSubmit = (event: any) => {
@@ -107,7 +221,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
       set(ref(firebaseDB, `trainings/` + nickname), trainingDataUpdated)
 
-      setPlanDataComplete([planData])
+      planDataCompleteReset()
       trainingForm.current.reset()
    }
 
