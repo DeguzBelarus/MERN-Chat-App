@@ -219,7 +219,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
       if (planData.exercise === "Бег быстрый"
          || planData.exercise === "High-speed running") {
-         planData.calories = formData.myweight * 10 * planData.meters / 1000 * 0.24
+         planData.calories = formData.myweight * 9.5 * planData.meters / 1000 * 0.24
       }
 
       if (planData.exercise === "Бег трусцой"
@@ -229,12 +229,12 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
       if (planData.exercise === "Ходьба быстрая"
          || planData.exercise === "Walking fast") {
-         planData.calories = formData.myweight * 5.5 * planData.meters / 1000 * 0.24
+         planData.calories = formData.myweight * 5.8 * planData.meters / 1000 * 0.24
       }
 
       if (planData.exercise === "Ходьба"
          || planData.exercise === "Walking") {
-         planData.calories = formData.myweight * 4 * planData.meters / 1000 * 0.24
+         planData.calories = formData.myweight * 4.2 * planData.meters / 1000 * 0.24
       }
 
       setPlanDataComplete([...planDataComplete, planData])

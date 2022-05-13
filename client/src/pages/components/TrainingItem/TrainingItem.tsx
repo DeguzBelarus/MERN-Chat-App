@@ -37,12 +37,21 @@ export const TrainingItem: FC<Props> = ({ info, removeTraining }) => {
       {info.plan.map((exercise: any, index: number) => {
          return <div className="exercise-wrapper" key={index}>
             <span className="exercise-name-span">{exercise.exercise}: </span>
-            <span className="exercise-description">
+
+            {exercise.calories && <span className="exercise-description">
+               {currentLanguage === "ru"
+                  ? `${exercise.meters} м - ${exercise.calories.toFixed(2)} ккал`
+                  : `${exercise.meters} m - ${exercise.calories.toFixed(2)} kcal`
+               }
+            </span>}
+
+            {!exercise.calories && <span className="exercise-description">
                {currentLanguage === "ru"
                   ? `${exercise.weight} кг ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} кг)`
                   : `${exercise.weight} kg ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} kg)`
                }
-            </span>
+            </span>}
+
             {exercise.q < 1 && <span>{` ${exercise.q * 100}%`}</span>}
          </div>
       })}
@@ -54,6 +63,17 @@ export const TrainingItem: FC<Props> = ({ info, removeTraining }) => {
          </span>
          {currentLanguage === "ru" ? " кг" : " kg"}
       </p>
+
+      {!info.plan.some((item: any) => {
+         if (!item.calories) return true
+      }) && <p className="total-paragraph">{currentLanguage === "ru" ? "Каллорий от кардио: " : "Calories from cardio: "}
+            <span>
+               {info.plan.reduce((sum: number, exercise: any, index: number) => {
+                  return sum + exercise.calories
+               }, 0).toFixed(2)}
+            </span>
+            {currentLanguage === "ru" ? " ккал" : " kcal"}
+         </p>}
 
       {info.comment && <p className="comment-paragraph">{currentLanguage === "ru" ? "Комментарий: " : "Comment: "}
          <span>
