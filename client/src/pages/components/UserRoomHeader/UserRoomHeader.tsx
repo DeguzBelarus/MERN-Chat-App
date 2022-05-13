@@ -3,7 +3,6 @@ import { useAppSelector } from "../../../app/hooks";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
 import { selectUserNickname } from "../../../app/userSlice";
 
-import { StatusIndicatorOnline } from "../StatusIndicators/StatusIndicators";
 import "./UserRoomHeader.scss"
 interface Props {
    logout: any,
@@ -35,7 +34,6 @@ export const UserRoomHeader: FC<Props> = ({
       setServicesIsOpen(false)
    }
    return <header>
-      <StatusIndicatorOnline />
       <div className="nickname-wrapper">
          <span>{nickname}</span>
       </div>

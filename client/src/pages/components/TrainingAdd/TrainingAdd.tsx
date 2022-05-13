@@ -193,13 +193,15 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
          case "Запястные сжимания (обратные)":
          case "Wrist squeezes":
          case "Wrist squeezes (reverse)":
-            planData.q = 0.15
+            planData.q = 0.08
             break
          case "Скручивания (пресс)":
-         case "Скручивания (косые мышцы)":
          case "Twisting (press)":
+            planData.q = 0.1
+            break
+         case "Скручивания (косые мышцы)":
          case "Twisting (oblique muscles)":
-            planData.q = 0.15
+            planData.q = 0.12
             break
          case "Подтягивания":
          case "Pull - ups":
@@ -221,17 +223,17 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
          case "Подъёмы на носках (тренажёр)":
          case "Toe lifts":
          case "Toe lifts (apparatus)":
-            planData.q = 0.15
+            planData.q = 0.08
             break
          case "Ослик":
          case "Donkey":
-            planData.q = 0.2
+            planData.q = 0.12
             break
          case "Шраги со штангой":
          case "Шраги с гантелями":
          case "Scars with a barbell":
          case "Scars with dumbbells":
-            planData.q = 0.15
+            planData.q = 0.12
             break
       }
 
