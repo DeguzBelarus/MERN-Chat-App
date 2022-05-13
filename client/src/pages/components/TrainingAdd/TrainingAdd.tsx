@@ -147,6 +147,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
    const planDataCompleteReset = () => {
       setPlanData({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1, meters: 0, calories: 0 })
       setPlanDataComplete([planData])
+      setFormData({ id: 0, date: "", myweight: 0, comment: "", plan: planDataComplete })
    }
 
    const exerciseAdd = () => {
@@ -249,6 +250,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
    useEffect(() => {
       setFormData({ ...formData, plan: [...planDataComplete] })
       console.log(planDataComplete);
+      console.log(formData);
    }, [planDataComplete])
 
    return <div className="training-add-wrapper">
