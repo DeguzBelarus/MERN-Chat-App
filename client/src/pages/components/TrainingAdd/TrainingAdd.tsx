@@ -160,7 +160,8 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
          || planData.exercise === "Ходьба быстрая"
          || planData.exercise === "Walking"
          || planData.exercise === "Walking fast") {
-         if (planData.meters === 0) {
+         if (planData.meters === 0
+            || formData.myweight === 0) {
             return
          }
       } else if (planData.weight === 0
@@ -288,10 +289,12 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
                </label>
                <input type="number"
                   name="myweight"
+                  id="myweight-input"
                   step={0.1}
                   min={0}
-                  id="myweight-input"
-                  onChange={formDataUpdate} />
+                  disabled={planDataComplete.length > 1}
+                  onChange={formDataUpdate}
+               />
             </div>
          </div>
 
