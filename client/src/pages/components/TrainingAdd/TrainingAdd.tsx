@@ -217,6 +217,26 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
             break
       }
 
+      if (planData.exercise === "Бег быстрый"
+         || planData.exercise === "High-speed running") {
+         planData.calories = formData.myweight * 10 * planData.meters / 1000 * 0.24
+      }
+
+      if (planData.exercise === "Бег трусцой"
+         || planData.exercise === "Jogging") {
+         planData.calories = formData.myweight * 7 * planData.meters / 1000 * 0.24
+      }
+
+      if (planData.exercise === "Ходьба быстрая"
+         || planData.exercise === "Walking fast") {
+         planData.calories = formData.myweight * 5.5 * planData.meters / 1000 * 0.24
+      }
+
+      if (planData.exercise === "Ходьба"
+         || planData.exercise === "Walking") {
+         planData.calories = formData.myweight * 4 * planData.meters / 1000 * 0.24
+      }
+
       setPlanDataComplete([...planDataComplete, planData])
       setPlanData({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1, meters: 0, calories: 0 })
    }
@@ -249,8 +269,6 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
    useEffect(() => {
       setFormData({ ...formData, plan: [...planDataComplete] })
-      console.log(planDataComplete);
-      console.log(formData);
    }, [planDataComplete])
 
    return <div className="training-add-wrapper">
