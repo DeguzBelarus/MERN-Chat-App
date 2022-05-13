@@ -8,6 +8,14 @@
 
     .upper-container {
       display: flex;
+
+      #date-input {
+        border: 2px solid black;
+      }
+
+      #myweight-input {
+        border: 2px solid black;
+      }
     }
 
     .exercise-info-container {
@@ -15,6 +23,16 @@
       padding: 5px;
       box-sizing: border-box;
       border: 2px solid cadetblue;
+
+      &.current {
+        border: 2px solid deeppink;
+      }
+
+      .exercise-message-span {
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+      }
     }
 
     .buttons-container {

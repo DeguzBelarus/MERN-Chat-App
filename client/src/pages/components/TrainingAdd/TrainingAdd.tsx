@@ -12,12 +12,23 @@ interface Props {
 }
 export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
    const trainingForm: any = useRef(null)
+   const dateInput: any = useRef(null)
+   const myweightInput: any = useRef(null)
+
+   //== planData inputs
+   const exerciseSelect: any = useRef(null)
+   const metersInput: any = useRef(null)
+   const weightInput: any = useRef(null)
+   const setsInput: any = useRef(null)
+   const repeatsInput: any = useRef(null)
+   //== planData inputs
 
    const currentLanguage = useSelector(selectCurrentLanguage)
    const nickname = useSelector(selectUserNickname)
 
+   const [exerciseMessage, setExerciseMessage]: any = useState(null)
    const [planData, setPlanData] = useState({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1, meters: 0, calories: 0 })
-   const [planDataComplete, setPlanDataComplete] = useState([planData])
+   const [planDataComplete, setPlanDataComplete] = useState([])
    const [formData, setFormData] = useState({ id: 0, date: "", myweight: 0, comment: "", plan: planDataComplete })
 
    const exercises = [
@@ -145,8 +156,9 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
    }
 
    const planDataCompleteReset = () => {
+      setExerciseMessage(null)
       setPlanData({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1, meters: 0, calories: 0 })
-      setPlanDataComplete([planData])
+      setPlanDataComplete([])
       setFormData({ id: 0, date: "", myweight: 0, comment: "", plan: planDataComplete })
    }
 
@@ -163,6 +175,12 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
          || planData.exercise === "Walking fast") {
          if (planData.meters === 0
             || formData.myweight === 0) {
+            myweightInput.current.style.border = "2px solid deeppink"
+            if (currentLanguage === "ru") {
+               setExerciseMessage("Необходимо указать Ваш вес (расчёт калорий)")
+            } else {
+               setExerciseMessage("It is necessary to specify your weight (calorie calculation)")
+            }
             return
          }
       } else if (planData.weight === 0
@@ -219,35 +237,56 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
       if (planData.exercise === "Бег быстрый"
          || planData.exercise === "High-speed running") {
-         planData.calories = formData.myweight * 9.5 * planData.meters / 1000 * 0.24
+         planData.calories = formData.myweight * 8 * planData.meters / 1000 * 0.24
       }
 
       if (planData.exercise === "Бег трусцой"
          || planData.exercise === "Jogging") {
-         planData.calories = formData.myweight * 7 * planData.meters / 1000 * 0.24
+         planData.calories = formData.myweight * 6.5 * planData.meters / 1000 * 0.24
       }
 
       if (planData.exercise === "Ходьба быстрая"
          || planData.exercise === "Walking fast") {
-         planData.calories = formData.myweight * 5.8 * planData.meters / 1000 * 0.24
+         planData.calories = formData.myweight * 5.5 * planData.meters / 1000 * 0.24
       }
 
       if (planData.exercise === "Ходьба"
          || planData.exercise === "Walking") {
-         planData.calories = formData.myweight * 4.2 * planData.meters / 1000 * 0.24
+         planData.calories = formData.myweight * 4.5 * planData.meters / 1000 * 0.24
       }
 
-      setPlanDataComplete([...planDataComplete, planData])
+      const newPlanDataComplete: any = [...planDataComplete, planData]
+      setPlanDataComplete(newPlanDataComplete)
+
       setPlanData({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1, meters: 0, calories: 0 })
+      setExerciseMessage(null)
+
+      if (planData.exercise === "Бег быстрый"
+         || planData.exercise === "Бег трусцой"
+         || planData.exercise === "High-speed running"
+         || planData.exercise === "Jogging"
+         || planData.exercise === "Ходьба"
+         || planData.exercise === "Ходьба быстрая"
+         || planData.exercise === "Walking"
+         || planData.exercise === "Walking fast") {
+         exerciseSelect.current.value = ""
+         metersInput.current.value = ""
+      } else {
+         exerciseSelect.current.value = ""
+         weightInput.current.value = ""
+         setsInput.current.value = ""
+         repeatsInput.current.value = ""
+      }
+
+      myweightInput.current.style.border = "2px solid black"
    }
 
    const trainingAddSubmit = (event: any) => {
       event.preventDefault()
-      if (formData.date === "" || planDataComplete.length === 1) return
+      if (formData.date === "" || !planDataComplete.length) return
 
       const data = formData
-      const correctedPlanDataComplete = planDataComplete.slice(1)
-      data.plan = correctedPlanDataComplete
+      data.plan = planDataComplete
 
       if (!trainingData) trainingData = []
       const trainingDataUpdated = [...trainingData, data]
@@ -263,13 +302,37 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
       set(ref(firebaseDB, `trainings/` + nickname), trainingDataUpdated)
 
-      planDataCompleteReset()
       trainingForm.current.reset()
+      planDataCompleteReset()
+      setFormData({ id: 0, date: getToday(), myweight: 0, comment: "", plan: planDataComplete })
+   }
+
+   const getToday = () => {
+      let today: string | Date = new Date();
+      let dd: string | number = today.getDate();
+      let mm: string | number = today.getMonth() + 1;
+      let yyyy: string | number = today.getFullYear();
+
+      if (dd < 10) {
+         dd = '0' + dd
+      }
+
+      if (mm < 10) {
+         mm = '0' + mm
+      }
+      return today = yyyy + '-' + mm + '-' + dd;
    }
 
    useEffect(() => {
-      setFormData({ ...formData, plan: [...planDataComplete] })
-   }, [planDataComplete])
+      if (!dateInput.current.value) {
+         dateInput.current.value = getToday()
+      }
+   }, [dateInput.current?.value])
+
+   useEffect(() => {
+      dateInput.current.value = getToday()
+      setFormData({ id: 0, date: getToday(), myweight: 0, comment: "", plan: planDataComplete })
+   }, [])
 
    return <div className="training-add-wrapper">
       <button type="button"
@@ -298,7 +361,9 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
                <input type="date"
                   name="date"
                   id="date-input"
-                  onChange={formDataUpdate} />
+                  onChange={formDataUpdate}
+                  ref={dateInput}
+               />
             </div>
 
             <div className="myweight-input-wrapper">
@@ -312,8 +377,18 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
                   id="myweight-input"
                   step={0.1}
                   min={0}
-                  disabled={planDataComplete.length > 1}
+                  disabled={planDataComplete.some((exercise: any) => {
+                     if (exercise.exercise === "Бег быстрый"
+                        || exercise.exercise === "Бег трусцой"
+                        || exercise.exercise === "High-speed running"
+                        || exercise.exercise === "Jogging"
+                        || exercise.exercise === "Ходьба"
+                        || exercise.exercise === "Ходьба быстрая"
+                        || exercise.exercise === "Walking"
+                        || exercise.exercise === "Walking fast") return true
+                  })}
                   onChange={formDataUpdate}
+                  ref={myweightInput}
                />
             </div>
          </div>
@@ -321,189 +396,184 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
          {planDataComplete.map((training: any, index: number) => {
             return <div className="exercise-info-container" key={index}>
                <span>
-                  {planDataComplete.length === index + 1 ? `${index + 1}* :` : `${index + 1} :`}
+                  {`${index + 1} :`}
                </span>
                <select title={currentLanguage === "ru"
                   ? "Выберите упражнение"
                   : "Choose an exercise"}
-                  name="exercise"
                   id="exercise-input"
-                  onChange={planDataUpdate}
-                  disabled={planDataComplete.length === index + 1
-                     ? false
-                     : true}
+                  disabled
                >
-                  <option value="">
-                     {currentLanguage === "ru"
-                        ? " -- Выберите упражнение -- "
-                        : " -- Choose an exercise -- "}
-                  </option>
-                  {currentLanguage === "ru"
-                     ? exercises.map((exercise, index) => {
-                        return <option value={exercise} key={index}>{exercise}</option>
-                     })
-                     : exercisesEng.map((exercise, index) => {
-                        return <option value={exercise} key={index}>{exercise}</option>
-                     })}
+                  <option value={training.exercise}>{training.exercise}</option>
                </select>
 
-               {planDataComplete.length === index + 1
-                  ? planData.exercise === "Бег быстрый"
-                     || planData.exercise === "Бег трусцой"
-                     || planData.exercise === "High-speed running"
-                     || planData.exercise === "Jogging"
-                     || planData.exercise === "Ходьба"
-                     || planData.exercise === "Ходьба быстрая"
-                     || planData.exercise === "Walking"
-                     || planData.exercise === "Walking fast"
-                     ? <>
-                        <label htmlFor="meters-input">
-                           {currentLanguage === "ru"
-                              ? "Метры: "
-                              : "Meters: "}
-                        </label>
-                        <input type="number"
-                           name="meters"
-                           id="meters-input"
-                           step={10}
-                           min={0}
-                           disabled={planDataComplete.length === index + 1
-                              ? false
-                              : true}
-                           onChange={planDataUpdate}
-                        />
-                     </>
-                     : <>
-                        <label htmlFor="weight-input">
-                           {currentLanguage === "ru"
-                              ? "Вес: "
-                              : "Weight: "}
-                        </label>
-                        <input type="number"
-                           name="weight"
-                           step={0.25}
-                           id="weight-input"
-                           min={0}
-                           disabled={planDataComplete.length === index + 1
-                              ? false
-                              : true}
-                           onChange={planDataUpdate}
-                        />
+               {training.exercise === "Бег быстрый"
+                  || training.exercise === "Бег трусцой"
+                  || training.exercise === "High-speed running"
+                  || training.exercise === "Jogging"
+                  || training.exercise === "Ходьба"
+                  || training.exercise === "Ходьба быстрая"
+                  || training.exercise === "Walking"
+                  || training.exercise === "Walking fast" ?
+                  <>
+                     <label htmlFor="meters-input">
+                        {currentLanguage === "ru"
+                           ? "Метры: "
+                           : "Meters: "}
+                     </label>
+                     <input type="number"
+                        id="meters-input"
+                        disabled
+                        value={training.meters}
+                     />
+                  </>
+                  :
+                  <>
+                     <label htmlFor="weight-input">
+                        {currentLanguage === "ru"
+                           ? "Вес: "
+                           : "Weight: "}
+                     </label>
+                     <input type="number"
+                        id="weight-input"
+                        disabled
+                        value={training.weight}
+                     />
 
-                        <label htmlFor="sets-input">
-                           {currentLanguage === "ru"
-                              ? "Сеты: "
-                              : "Sets: "}
-                        </label>
-                        <input type="number"
-                           name="sets"
-                           id="sets-input"
-                           min={0}
-                           disabled={planDataComplete.length === index + 1
-                              ? false
-                              : true}
-                           onChange={planDataUpdate}
-                        />
+                     <label htmlFor="sets-input">
+                        {currentLanguage === "ru"
+                           ? "Сеты: "
+                           : "Sets: "}
+                     </label>
+                     <input type="number"
+                        id="sets-input"
+                        disabled
+                        value={training.sets}
+                     />
 
-                        <label htmlFor="repeats-input">
-                           {currentLanguage === "ru"
-                              ? "Повторения: "
-                              : "Repeats: "}
-                        </label>
-                        <input type="number"
-                           name="repeats"
-                           id="repeats-input"
-                           min={0}
-                           disabled={planDataComplete.length === index + 1
-                              ? false
-                              : true}
-                           onChange={planDataUpdate}
-                        />
-                     </>
-                  : training.exercise === "Бег быстрый"
-                     || training.exercise === "Бег трусцой"
-                     || training.exercise === "High-speed running"
-                     || training.exercise === "Jogging"
-                     || training.exercise === "Ходьба"
-                     || training.exercise === "Ходьба быстрая"
-                     || training.exercise === "Walking"
-                     || training.exercise === "Walking fast"
-                     ? <>
-                        <label htmlFor="weight-input">
-                           {currentLanguage === "ru"
-                              ? "Вес: "
-                              : "Weight: "}
-                        </label>
-                        <input type="number"
-                           name="weight"
-                           step={0.25}
-                           id="weight-input"
-                           min={0}
-                           disabled={planDataComplete.length === index + 1
-                              ? false
-                              : true}
-                           onChange={planDataUpdate}
-                        />
-
-                        <label htmlFor="sets-input">
-                           {currentLanguage === "ru"
-                              ? "Сеты: "
-                              : "Sets: "}
-                        </label>
-                        <input type="number"
-                           name="sets"
-                           id="sets-input"
-                           min={0}
-                           disabled={planDataComplete.length === index + 1
-                              ? false
-                              : true}
-                           onChange={planDataUpdate}
-                        />
-
-                        <label htmlFor="repeats-input">
-                           {currentLanguage === "ru"
-                              ? "Повторения: "
-                              : "Repeats: "}
-                        </label>
-                        <input type="number"
-                           name="repeats"
-                           id="repeats-input"
-                           min={0}
-                           disabled={planDataComplete.length === index + 1
-                              ? false
-                              : true}
-                           onChange={planDataUpdate}
-                        />
-                     </>
-                     : <>
-                        <label htmlFor="meters-input">
-                           {currentLanguage === "ru"
-                              ? "Метры: "
-                              : "Meters: "}
-                        </label>
-                        <input type="number"
-                           name="meters"
-                           id="meters-input"
-                           step={10}
-                           min={0}
-                           disabled={planDataComplete.length === index + 1
-                              ? false
-                              : true}
-                           onChange={planDataUpdate}
-                        />
-                     </>
+                     <label htmlFor="repeats-input">
+                        {currentLanguage === "ru"
+                           ? "Повторения: "
+                           : "Repeats: "}
+                     </label>
+                     <input type="number"
+                        id="repeats-input"
+                        disabled
+                        value={training.repeats}
+                     />
+                  </>
                }
-
-               {planDataComplete.length === index + 1
-                  && <button type="button"
-                     className="exercise-add-button"
-                     onClick={exerciseAdd}
-                  >+
-                  </button>}
             </div>
          })}
 
-         <label htmlFor="comment-input">{currentLanguage === "ru" ? "Комментарий: " : "Comment: "}</label>
+         <div className="exercise-info-container current">
+            <span>
+               {`${planDataComplete.length + 1}* :`}
+            </span>
+            <select title={currentLanguage === "ru"
+               ? "Выберите упражнение"
+               : "Choose an exercise"}
+               name="exercise"
+               id="exercise-input"
+               onChange={planDataUpdate}
+               ref={exerciseSelect}
+            >
+               <option value="">
+                  {currentLanguage === "ru"
+                     ? " -- Выберите упражнение -- "
+                     : " -- Choose an exercise -- "}
+               </option>
+               {currentLanguage === "ru"
+                  ? exercises.map((exercise, index) => {
+                     return <option value={exercise} key={index}>{exercise}</option>
+                  })
+                  : exercisesEng.map((exercise, index) => {
+                     return <option value={exercise} key={index}>{exercise}</option>
+                  })}
+            </select>
+
+            {planData.exercise === "Бег быстрый"
+               || planData.exercise === "Бег трусцой"
+               || planData.exercise === "High-speed running"
+               || planData.exercise === "Jogging"
+               || planData.exercise === "Ходьба"
+               || planData.exercise === "Ходьба быстрая"
+               || planData.exercise === "Walking"
+               || planData.exercise === "Walking fast" ?
+               <>
+                  <label htmlFor="meters-input">
+                     {currentLanguage === "ru"
+                        ? "Метры: "
+                        : "Meters: "}
+                  </label>
+                  <input type="number"
+                     name="meters"
+                     id="meters-input"
+                     step={10}
+                     min={0}
+                     onChange={planDataUpdate}
+                     ref={metersInput}
+                  />
+               </>
+               :
+               <>
+                  <label htmlFor="weight-input">
+                     {currentLanguage === "ru"
+                        ? "Вес: "
+                        : "Weight: "}
+                  </label>
+                  <input type="number"
+                     name="weight"
+                     step={0.25}
+                     id="weight-input"
+                     min={0}
+                     onChange={planDataUpdate}
+                     ref={weightInput}
+                  />
+
+                  <label htmlFor="sets-input">
+                     {currentLanguage === "ru"
+                        ? "Сеты: "
+                        : "Sets: "}
+                  </label>
+                  <input type="number"
+                     name="sets"
+                     id="sets-input"
+                     min={0}
+                     onChange={planDataUpdate}
+                     ref={setsInput}
+                  />
+
+                  <label htmlFor="repeats-input">
+                     {currentLanguage === "ru"
+                        ? "Повторения: "
+                        : "Repeats: "}
+                  </label>
+                  <input type="number"
+                     name="repeats"
+                     id="repeats-input"
+                     min={0}
+                     onChange={planDataUpdate}
+                     ref={repeatsInput}
+                  />
+               </>}
+
+            <button type="button"
+               className="exercise-add-button"
+               onClick={exerciseAdd}
+            >
+               +
+            </button>
+
+            {exerciseMessage
+               && <span className="exercise-message-span">
+                  {exerciseMessage}
+               </span>}
+         </div>
+
+         <label htmlFor="comment-input">
+            {currentLanguage === "ru" ? "Комментарий: " : "Comment: "}
+         </label>
          <textarea
             name="comment"
             id="comment-input"
@@ -518,7 +588,11 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
             >{currentLanguage === "ru" ? "Очистить " : "Clear "}</button>
          </div>
 
-         <span className="note">{currentLanguage === "ru" ? "* - нажмите \"+\" для добавления" : "* - press \"+\" to add"}</span>
-      </form>
-   </div>
+         <span className="note">
+            {currentLanguage === "ru"
+               ? "* - нажмите \"+\" для добавления"
+               : "* - press \"+\" to add"}
+         </span>
+      </form >
+   </div >
 }

@@ -38,35 +38,47 @@ export const TrainingItem: FC<Props> = ({ info, removeTraining }) => {
          return <div className="exercise-wrapper" key={index}>
             <span className="exercise-name-span">{exercise.exercise}: </span>
 
-            {exercise.calories && <span className="exercise-description">
-               {currentLanguage === "ru"
-                  ? `${exercise.meters} м - ${exercise.calories.toFixed(2)} ккал`
-                  : `${exercise.meters} m - ${exercise.calories.toFixed(2)} kcal`
-               }
-            </span>}
-
-            {!exercise.calories && <span className="exercise-description">
-               {currentLanguage === "ru"
-                  ? `${exercise.weight} кг ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} кг)`
-                  : `${exercise.weight} kg ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} kg)`
-               }
-            </span>}
+            {!exercise.calories
+               ? <span className="exercise-description">
+                  {currentLanguage === "ru"
+                     ? `${exercise.weight} кг ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} кг)`
+                     : `${exercise.weight} kg ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} kg)`
+                  }
+               </span>
+               : <span className="exercise-description">
+                  {currentLanguage === "ru"
+                     ? `${exercise.meters} м - ${exercise.calories.toFixed(2)} ккал`
+                     : `${exercise.meters} m - ${exercise.calories.toFixed(2)} kcal`
+                  }
+               </span>
+            }
 
             {exercise.q < 1 && <span>{` ${exercise.q * 100}%`}</span>}
          </div>
       })}
-      <p className="total-paragraph">{currentLanguage === "ru" ? "Нагрузка за тренировку: " : "Training load: "}
-         <span>
-            {info.plan.reduce((sum: number, exercise: any, index: number) => {
-               return sum + (exercise.weight * exercise.sets * exercise.repeats * exercise.q)
-            }, 0)}
-         </span>
-         {currentLanguage === "ru" ? " кг" : " kg"}
-      </p>
 
-      {!info.plan.some((item: any) => {
-         if (!item.calories) return true
-      }) && <p className="total-paragraph">{currentLanguage === "ru" ? "Каллорий от кардио: " : "Calories from cardio: "}
+      {info.plan.some((exercise: any) => {
+         if (exercise.weight) return true
+      }) && <p className="total-paragraph">
+            {currentLanguage === "ru"
+               ? "Нагрузка за тренировку: "
+               : "Training load: "
+            }
+            <span>
+               {info.plan.reduce((sum: number, exercise: any, index: number) => {
+                  return sum + (exercise.weight * exercise.sets * exercise.repeats * exercise.q)
+               }, 0)}
+            </span>
+            {currentLanguage === "ru" ? " кг" : " kg"}
+         </p>}
+
+      {info.plan.some((exercise: any) => {
+         if (exercise.calories) return true
+      }) && <p className="total-paragraph">
+            {currentLanguage === "ru"
+               ? "Результативность кардио: "
+               : "Cardio performance: "
+            }
             <span>
                {info.plan.reduce((sum: number, exercise: any, index: number) => {
                   return sum + exercise.calories
@@ -75,11 +87,15 @@ export const TrainingItem: FC<Props> = ({ info, removeTraining }) => {
             {currentLanguage === "ru" ? " ккал" : " kcal"}
          </p>}
 
-      {info.comment && <p className="comment-paragraph">{currentLanguage === "ru" ? "Комментарий: " : "Comment: "}
-         <span>
-            {info.comment}
-         </span>
-      </p>}
+      {info.comment
+         && <p className="comment-paragraph">
+            {currentLanguage === "ru"
+               ? "Комментарий: "
+               : "Comment: "}
+            <span>
+               {info.comment}
+            </span>
+         </p>}
 
       <button type="button" className="remove-training-button" onClick={removeTrainingHandler}>X</button>
    </div >
