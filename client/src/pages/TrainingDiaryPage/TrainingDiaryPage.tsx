@@ -17,6 +17,7 @@ export const TrainingDiaryPage: FC = () => {
    const nickname = useAppSelector(selectUserNickname)
 
    const [trainingData, setTrainingData]: any[] = useState([])
+   const [planningMode, setPlanningMode]: any = useState(false)
 
    const trainingDiaryExit = () => {
       navigate(`/usersroom/${nickname}`)
@@ -24,24 +25,50 @@ export const TrainingDiaryPage: FC = () => {
 
    const removeTraining = (id: string) => {
       const trainingDataUpdated = trainingData.filter((trainig: any) => trainig.id !== id)
-      set(ref(firebaseDB, `trainings/` + nickname), trainingDataUpdated)
+
+      if (!planningMode) {
+         set(ref(firebaseDB, `trainings/` + nickname), trainingDataUpdated)
+      } else {
+         set(ref(firebaseDB, `trainings-plan/` + nickname), trainingDataUpdated)
+      }
    }
+
+   const trainingSetcompleted = (id: number) => {
+      const trainingDataUpdated = trainingData.map((trainig: any) => {
+         if (trainig.id === id) {
+            trainig.completed = !trainig.completed
+            return trainig
+         } else return trainig
+      })
+
+      set(ref(firebaseDB, `trainings-plan/` + nickname), trainingDataUpdated)
+   }
+
+   useEffect(() => {
+      //== database reading and onchange etry listener run
+      if (!planningMode) {
+         onValue(ref(firebaseDB, `trainings/` + nickname), (snapshot) => {
+            setTrainingData(snapshot.val())
+         })
+      } else {
+         onValue(ref(firebaseDB, `trainings-plan/` + nickname), (snapshot) => {
+            setTrainingData(snapshot.val())
+         })
+      }
+      //== database reading and onchange etry listener run
+   }, [planningMode])
 
    useEffect(() => {
       document.title = currentLanguage === "ru" ? `MySN: ${nickname} - Тренировки` : `MySN: ${nickname} - Training`
       navigate(`/trainingdiary/${nickname}`)
-
-      //== database reading and onchange etry listener run
-      onValue(ref(firebaseDB, `trainings/` + nickname), (snapshot) => {
-         setTrainingData(snapshot.val())
-      })
-      //== database reading and onchange etry listener run
    }, [])
 
    return <div className="training-diary-wrapper">
       <TrainingAdd
          trainingData={trainingData}
          trainingDiaryExit={trainingDiaryExit}
+         planningMode={planningMode}
+         setPlanningMode={setPlanningMode}
       />
 
       <div className="training-items-wrapper">
@@ -50,12 +77,26 @@ export const TrainingDiaryPage: FC = () => {
                return <TrainingItem
                   info={training}
                   removeTraining={removeTraining}
+                  trainingSetcompleted={trainingSetcompleted}
+                  planningMode={planningMode}
                   key={index}
                />
             })
-            : currentLanguage === "ru"
-               ? "У Вас нет тренировок ещё :)"
-               : "You don't have any training yet :)"
+            :
+            !planningMode
+               ? <span className="no-trainings-span">
+                  {currentLanguage === "ru"
+                     ? "У Вас нет тренировок ещё :)"
+                     : "You don't have any training yet :)"
+                  }
+               </span>
+               :
+               <span className="no-trainings-span">
+                  {currentLanguage === "ru"
+                     ? "У Вас не запланировано тренировок :)"
+                     : "You don't have any training planned :)"
+                  }
+               </span>
          }
       </div>
    </div>

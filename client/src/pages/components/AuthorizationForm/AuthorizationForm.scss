@@ -24,8 +24,8 @@
     user-select: none;
     color: #00897b;
     animation-name: jump;
-    animation-duration: 0.2s;
-    animation-delay: 2s;
+    animation-duration: 0.25s;
+    animation-delay: 1s;
     animation-timing-function: ease-out;
   }
 
@@ -527,14 +527,18 @@
 @keyframes jump {
   0% {
     transform: translateY(0);
+    color: #00897b;
   }
-  25% {
+  20% {
     transform: translateY(-30px);
+    color: yellowgreen;
   }
-  70% {
+  60% {
     transform: translateY(-30px);
+    color: yellowgreen;
   }
   100% {
     transform: translateY(0);
+    color: #00897b;
   }
 }

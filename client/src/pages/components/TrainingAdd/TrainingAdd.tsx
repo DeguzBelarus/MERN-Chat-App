@@ -6,11 +6,28 @@ import { firebaseDB } from "../../..";
 import { ref, set } from "firebase/database";
 
 import "./TrainingAdd.scss"
+import { PlanningModeSwitcher } from "../PlanningModeSwitcher/PlanningModeSwitcher";
 interface Props {
    trainingData: any[] | null,
-   trainingDiaryExit: any
+   trainingDiaryExit: any,
+   planningMode: boolean,
+   setPlanningMode: any
 }
-export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
+interface Data {
+   id: number,
+   date: string,
+   myweight: number,
+   comment: string,
+   completed?: boolean,
+   plan: any[]
+}
+
+export const TrainingAdd: FC<Props> = ({
+   trainingData,
+   trainingDiaryExit,
+   planningMode,
+   setPlanningMode
+}) => {
    const trainingForm: any = useRef(null)
    const dateInput: any = useRef(null)
    const myweightInput: any = useRef(null)
@@ -29,7 +46,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
    const [exerciseMessage, setExerciseMessage]: any = useState(null)
    const [planData, setPlanData] = useState({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1, meters: 0, calories: 0 })
    const [planDataComplete, setPlanDataComplete] = useState([])
-   const [formData, setFormData] = useState({ id: 0, date: "", myweight: 0, comment: "", plan: planDataComplete })
+   const [formData, setFormData] = useState({ id: 0, date: "", myweight: 0, comment: "", plan: planDataComplete, completed: false })
 
    const exercises = [
       "Бег быстрый",
@@ -159,7 +176,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
       setExerciseMessage(null)
       setPlanData({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1, meters: 0, calories: 0 })
       setPlanDataComplete([])
-      setFormData({ id: 0, date: "", myweight: 0, comment: "", plan: planDataComplete })
+      setFormData({ id: 0, date: getToday(), myweight: 0, comment: "", plan: planDataComplete, completed: false })
    }
 
    const exerciseAdd = () => {
@@ -205,7 +222,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
             break
          case "Подтягивания":
          case "Pull - ups":
-            planData.q = 0.7
+            planData.q = 0.65
             break
          case "Отжимания":
          case "Push-ups":
@@ -328,8 +345,12 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
       event.preventDefault()
       if (formData.date === "" || !planDataComplete.length) return
 
-      const data = formData
+      const data: Data = formData
       data.plan = planDataComplete
+
+      if (!planningMode) {
+         delete data.completed
+      }
 
       if (!trainingData) trainingData = []
       const trainingDataUpdated = [...trainingData, data]
@@ -343,11 +364,15 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
             return 0
          })
 
-      set(ref(firebaseDB, `trainings/` + nickname), trainingDataUpdated)
+      if (!planningMode) {
+         set(ref(firebaseDB, `trainings/` + nickname), trainingDataUpdated)
+      } else {
+         set(ref(firebaseDB, `trainings-plan/` + nickname), trainingDataUpdated)
+      }
 
       trainingForm.current.reset()
       planDataCompleteReset()
-      setFormData({ id: 0, date: getToday(), myweight: 0, comment: "", plan: planDataComplete })
+      setFormData({ id: 0, date: getToday(), myweight: 0, comment: "", plan: planDataComplete, completed: false })
    }
 
    const getToday = () => {
@@ -374,7 +399,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
 
    useEffect(() => {
       dateInput.current.value = getToday()
-      setFormData({ id: 0, date: getToday(), myweight: 0, comment: "", plan: planDataComplete })
+      setFormData({ id: 0, date: getToday(), myweight: 0, comment: "", plan: planDataComplete, completed: false })
    }, [])
 
    return <div className="training-add-wrapper">
@@ -385,6 +410,11 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
             ? "Выйти"
             : "Quit"}
       </button>
+
+      <PlanningModeSwitcher
+         planningMode={planningMode}
+         setPlanningMode={setPlanningMode}
+      />
 
       <h1>{currentLanguage === "ru"
          ? "Добавление тренировки:"
@@ -433,6 +463,8 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
                   onChange={formDataUpdate}
                   ref={myweightInput}
                />
+
+               {planningMode && <span className="circa-span">~</span>}
             </div>
          </div>
 

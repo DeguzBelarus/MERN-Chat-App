@@ -5,10 +5,16 @@ import { selectCurrentLanguage } from "../../../app/globalSlice";
 import "./TrainingItem.scss"
 interface Props {
    info: any,
-   removeTraining: any
+   removeTraining: any,
+   planningMode: boolean,
+   trainingSetcompleted: any
 }
 
-export const TrainingItem: FC<Props> = ({ info, removeTraining }) => {
+export const TrainingItem: FC<Props> = ({
+   info,
+   removeTraining,
+   planningMode,
+   trainingSetcompleted }) => {
    const currentLanguage = useAppSelector(selectCurrentLanguage)
 
    const date = info.date.split("-")
@@ -19,6 +25,10 @@ export const TrainingItem: FC<Props> = ({ info, removeTraining }) => {
 
    const removeTrainingHandler = () => {
       removeTraining(info.id)
+   }
+
+   const trainingSetcompletedHandler = () => {
+      trainingSetcompleted(info.id)
    }
 
    return <div className="training-item-wrapper">
@@ -32,6 +42,8 @@ export const TrainingItem: FC<Props> = ({ info, removeTraining }) => {
             ? `/ Вес: ${info.myweight} кг`
             : `/ Weight: ${info.myweight} kg`}
          </span>}
+
+         {info.completed && <div className="complete-logo">🖒</div>}
       </div>
 
       {info.plan.map((exercise: any, index: number) => {
@@ -41,8 +53,8 @@ export const TrainingItem: FC<Props> = ({ info, removeTraining }) => {
             {!exercise.calories
                ? <span className="exercise-description">
                   {currentLanguage === "ru"
-                     ? `${exercise.weight} кг ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} кг)`
-                     : `${exercise.weight} kg ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} kg)`
+                     ? `${exercise.weight} кг - ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} кг)`
+                     : `${exercise.weight} kg - ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} kg)`
                   }
                </span>
                : <span className="exercise-description">
@@ -98,6 +110,22 @@ export const TrainingItem: FC<Props> = ({ info, removeTraining }) => {
             </span>
          </p>}
 
-      <button type="button" className="remove-training-button" onClick={removeTrainingHandler}>X</button>
+      <button type="button"
+         className="remove-training-button"
+         onClick={removeTrainingHandler}
+      >
+         X
+      </button>
+
+      {planningMode
+         && <button type="button"
+            className="set-completed-training-button"
+            onClick={trainingSetcompletedHandler}
+         >
+            {info.completed
+               ? currentLanguage === "ru" ? "Выполнена" : "Completed"
+               : currentLanguage === "ru" ? "Не выполнена" : "Not completed"
+            }
+         </button>}
    </div >
 }
