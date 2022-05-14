@@ -52,7 +52,7 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
       "Французский жим",
       "Жим узким хватом",
       "Разгибание рук (гантель)",
-      "Разгибание руки (гантеля)",
+      "Разгибание руки (гантель)",
       "Разгибание рук (тренажёр)",
       "Подтягивания",
       "Тяга вертикальная (тренажёр)",
@@ -197,11 +197,11 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
             break
          case "Скручивания (пресс)":
          case "Twisting (press)":
-            planData.q = 0.1
+            planData.q = 0.12
             break
          case "Скручивания (косые мышцы)":
          case "Twisting (oblique muscles)":
-            planData.q = 0.12
+            planData.q = 0.13
             break
          case "Подтягивания":
          case "Pull - ups":
@@ -230,11 +230,52 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
             planData.q = 0.12
             break
          case "Шраги со штангой":
-         case "Шраги с гантелями":
          case "Scars with a barbell":
-         case "Scars with dumbbells":
             planData.q = 0.12
             break
+
+         //== dumbbells x2 load
+         case "Шраги с гантелями":
+         case "Scars with dumbbells":
+            planData.q = 0.24
+            break
+
+         //== dumbbells x2 load
+         case "Жим гантелей":
+         case "Жим гантелей наклонный":
+         case "Dumbbell press":
+         case "Dumbbell press inclined":
+         case "Разводка (грудь)":
+         case "Wiring (chest)":
+         case "Скамья Скотта (гантели)":
+         case "Scott Bench (dumbbells)":
+         case "Молотки":
+         case "Hammers":
+         case "Концентрированные сгибания":
+         case "Concentrated flexion":
+         case "Разгибание рук (гантель)":
+         case "Разгибание руки (гантель)":
+         case "Arms extension (dumbbell)":
+         case "Arm extension (dumbbell)":
+         case "Приседания с гантелями":
+         case "Squats with dumbbells":
+         case "Выпады (гантели)":
+         case "Lunges (dumbbells)":
+         case 'Мёртвая тяга (гантели)':
+         case "Deadlift (dumbbells)":
+         case "Разведения с гантелями":
+         case "Разведения в наклоне (гантели)":
+         case "Подъёмы вперёд (гантели)":
+         case "Жим гантелей (плечи)":
+         case "Dilutions with dumbbells":
+         case "Dilutions in slope (dumbbells)":
+         case "Forward lifts (dumbbells)":
+         case "Dumbbell press (shoulders)":
+         case "Жим Арнольда":
+         case "Arnold 's Bench Press":
+            planData.q = 2
+            break
+         //== dumbbells x2 load
       }
 
       if (planData.exercise === "Бег быстрый"
@@ -594,6 +635,9 @@ export const TrainingAdd: FC<Props> = ({ trainingData, trainingDiaryExit }) => {
             {currentLanguage === "ru"
                ? "* - нажмите \"+\" для добавления"
                : "* - press \"+\" to add"}
+         </span>
+         <span className="logo-text">
+            MySN
          </span>
       </form >
    </div >

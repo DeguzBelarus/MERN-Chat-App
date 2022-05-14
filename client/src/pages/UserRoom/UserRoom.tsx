@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
+import { Logo } from "../components/Logo/Logo";
 
 import { UserRoomHeader } from "../components/UserRoomHeader/UserRoomHeader";
 import "./UserRoom.scss"
@@ -38,7 +39,9 @@ export const UserRoom: FC = () => {
          <UserRoomHeader
             logout={logout}
             chatEnter={chatEnter}
-            trainingDiaryEnter={trainingDiaryEnter} />
+            trainingDiaryEnter={trainingDiaryEnter}
+         />
+         <Logo />
       </div>
    )
 }

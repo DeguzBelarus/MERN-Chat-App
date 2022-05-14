@@ -2,6 +2,7 @@
   display: flex;
   position: relative;
   box-sizing: border-box;
+  background-color: white;
 
   .remove-training-button {
     position: absolute;
@@ -27,6 +28,10 @@
   }
 
   .total-paragraph {
+    &:first-of-type {
+      margin-bottom: -5px;
+    }
+
     span {
       font-weight: bolder;
       color: tomato;

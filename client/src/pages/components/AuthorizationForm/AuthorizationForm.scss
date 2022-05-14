@@ -23,6 +23,10 @@
     -ms-user-select: none;
     user-select: none;
     color: #00897b;
+    animation-name: jump;
+    animation-duration: 0.2s;
+    animation-delay: 2s;
+    animation-timing-function: ease-out;
   }
 
   .input-label {
@@ -517,5 +521,20 @@
     &:hover {
       box-shadow: inset 0 0 6px black;
     }
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-30px);
+  }
+  70% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

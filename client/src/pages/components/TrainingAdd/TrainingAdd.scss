@@ -2,9 +2,11 @@
   display: flex;
   position: relative;
   box-sizing: border-box;
+  background-color: white;
 
   .training-form {
     width: 100%;
+    background-color: white;
 
     .upper-container {
       display: flex;
@@ -41,6 +43,18 @@
 
     .note {
       position: absolute;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .logo-text {
+      position: absolute;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      color: #00897b;
+      font-weight: bolder;
     }
   }
 }
@@ -173,6 +187,12 @@
         bottom: 2px;
         right: 2px;
         font-size: 10px;
+      }
+
+      .logo-text {
+        top: 2px;
+        left: 2px;
+        font-size: 12px;
       }
     }
   }
@@ -307,6 +327,12 @@
         right: 2px;
         font-size: 11px;
       }
+
+      .logo-text {
+        top: 2px;
+        left: 2px;
+        font-size: 13px;
+      }
     }
   }
 }
@@ -439,6 +465,12 @@
         bottom: 2px;
         right: 2px;
         font-size: 11.2px;
+      }
+
+      .logo-text {
+        top: 2px;
+        left: 2px;
+        font-size: 14px;
       }
     }
   }
@@ -574,6 +606,12 @@
         right: 3px;
         font-size: 12px;
       }
+
+      .logo-text {
+        top: 2px;
+        left: 2px;
+        font-size: 16px;
+      }
     }
   }
 }
@@ -708,6 +746,12 @@
         bottom: 2px;
         right: 3px;
         font-size: 13px;
+      }
+
+      .logo-text {
+        top: 2px;
+        left: 2px;
+        font-size: 18px;
       }
     }
   }
@@ -845,6 +889,12 @@
         right: 3px;
         font-size: 14px;
       }
+
+      .logo-text {
+        top: 2px;
+        left: 2px;
+        font-size: 20px;
+      }
     }
   }
 }
@@ -980,6 +1030,12 @@
         bottom: 2px;
         right: 3px;
         font-size: 16.5px;
+      }
+
+      .logo-text {
+        top: 2px;
+        left: 2px;
+        font-size: 27px;
       }
     }
   }

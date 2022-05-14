@@ -54,6 +54,7 @@ export const TrainingItem: FC<Props> = ({ info, removeTraining }) => {
             }
 
             {exercise.q < 1 && <span>{` ${exercise.q * 100}%`}</span>}
+            {exercise.q === 2 && <span>{` x${exercise.q}`}</span>}
          </div>
       })}
 
