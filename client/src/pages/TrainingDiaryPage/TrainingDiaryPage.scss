@@ -1,11 +1,12 @@
 .training-diary-wrapper {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 11px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding: 3px 0;
+  padding-top: 8px;
   gap: 10px;
   background-color: #131616;
 

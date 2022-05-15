@@ -7,11 +7,24 @@
   .remove-training-button {
     position: absolute;
     cursor: pointer;
+    background-color: rgba($color: red, $alpha: 0.35);
+    border-radius: 3px;
+    transition-property: background-color, border;
+    transition-duration: 0.7s;
   }
 
   .set-completed-training-button {
     position: absolute;
     cursor: pointer;
+    transition-property: background-color, border;
+    transition-duration: 0.7s;
+    background-color: rgba($color: orange, $alpha: 0.6);
+    border-radius: 3px;
+    color: #555;
+
+    &.active {
+      background-color: rgba($color: yellowgreen, $alpha: 0.9);
+    }
   }
 
   .upper-container {
@@ -81,7 +94,7 @@
     align-items: center;
     border: 2px solid gray;
     padding: 5px;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
 
     .remove-training-button {
       top: 2px;
@@ -140,7 +153,6 @@
       bottom: 4px;
       right: 4px;
       margin: 0;
-      margin-top: 5px;
       font-size: 10px;
 
       span {
@@ -158,7 +170,7 @@
     align-items: center;
     border: 2px solid gray;
     padding: 5px;
-    padding-bottom: 22px;
+    padding-bottom: 27px;
 
     .remove-training-button {
       top: 2px;
@@ -217,7 +229,6 @@
       bottom: 4px;
       right: 4px;
       margin: 0;
-      margin-top: 5px;
       font-size: 10px;
 
       span {
@@ -235,7 +246,7 @@
     align-items: center;
     border: 2px solid gray;
     padding: 5px;
-    padding-bottom: 22px;
+    padding-bottom: 27px;
 
     .remove-training-button {
       top: 2px;
@@ -294,7 +305,6 @@
       bottom: 4px;
       right: 4px;
       margin: 0;
-      margin-top: 5px;
       font-size: 10.5px;
 
       span {
@@ -312,7 +322,7 @@
     align-items: center;
     border: 2px solid gray;
     padding: 5px;
-    padding-bottom: 22px;
+    padding-bottom: 27px;
 
     .remove-training-button {
       top: 2px;
@@ -371,7 +381,6 @@
       bottom: 4px;
       right: 4px;
       margin: 0;
-      margin-top: 5px;
       font-size: 11.5px;
 
       span {
@@ -389,7 +398,7 @@
     align-items: center;
     border: 2px solid gray;
     padding: 5px;
-    padding-bottom: 22px;
+    padding-bottom: 27px;
 
     .remove-training-button {
       top: 2px;
@@ -448,7 +457,6 @@
       bottom: 4px;
       right: 4px;
       margin: 0;
-      margin-top: 5px;
       font-size: 12.5px;
 
       span {
@@ -467,7 +475,7 @@
     align-items: center;
     border: 2px solid gray;
     padding: 5px;
-    padding-bottom: 22px;
+    padding-bottom: 27px;
 
     .remove-training-button {
       top: 2px;
@@ -526,7 +534,6 @@
       bottom: 4px;
       right: 4px;
       margin: 0;
-      margin-top: 5px;
       font-size: 14px;
 
       span {
@@ -545,7 +552,7 @@
     align-items: center;
     border: 2px solid gray;
     padding: 5px;
-    padding-bottom: 25px;
+    padding-bottom: 30px;
 
     .remove-training-button {
       top: 2px;
@@ -604,7 +611,6 @@
       bottom: 4px;
       right: 4px;
       margin: 0;
-      margin-top: 5px;
       font-size: 17px;
 
       span {
@@ -617,5 +623,19 @@
 @keyframes logo-manifestation {
   100% {
     opacity: 0.45;
+  }
+}
+
+@media (hover: hover) {
+  .remove-training-button {
+    &:hover {
+      border-color: cornflowerblue;
+    }
+  }
+
+  .set-completed-training-button {
+    &:hover {
+      border-color: cornflowerblue;
+    }
   }
 }

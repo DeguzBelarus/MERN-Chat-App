@@ -119,13 +119,14 @@ export const TrainingItem: FC<Props> = ({
 
       {planningMode
          && <button type="button"
-            className="set-completed-training-button"
+            className={info.completed
+               ? "set-completed-training-button active"
+               : "set-completed-training-button"}
             onClick={trainingSetcompletedHandler}
          >
             {info.completed
                ? currentLanguage === "ru" ? "Выполнена" : "Completed"
-               : currentLanguage === "ru" ? "Не выполнена" : "Not completed"
-            }
+               : currentLanguage === "ru" ? "Не выполнена" : "Not completed"}
          </button>}
    </div >
 }

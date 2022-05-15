@@ -6,6 +6,8 @@
 
   .exit-button {
     cursor: pointer;
+    background-color: rgba($color: grey, $alpha: 0.1);
+    border-radius: 3px;
   }
 
   .training-form {
@@ -77,6 +79,7 @@
     padding-bottom: 20px;
 
     .exit-button {
+      height: 17px;
       position: absolute;
       top: 2px;
       right: 2px;
@@ -221,6 +224,7 @@
     padding-bottom: 20px;
 
     .exit-button {
+      height: 18px;
       position: absolute;
       top: 2px;
       right: 2px;
@@ -365,6 +369,7 @@
     padding-bottom: 20px;
 
     .exit-button {
+      height: 20px;
       position: absolute;
       top: 2px;
       right: 2px;
@@ -509,6 +514,7 @@
     padding-bottom: 20px;
 
     .exit-button {
+      height: 22px;
       position: absolute;
       top: 2px;
       right: 2px;
@@ -654,6 +660,7 @@
     padding-bottom: 20px;
 
     .exit-button {
+      height: 23px;
       position: absolute;
       top: 2px;
       right: 2px;
@@ -801,6 +808,7 @@
     padding-bottom: 20px;
 
     .exit-button {
+      height: 24px;
       position: absolute;
       top: 2px;
       right: 2px;
@@ -948,6 +956,7 @@
     padding-bottom: 20px;
 
     .exit-button {
+      height: 29px;
       position: absolute;
       top: 2px;
       right: 2px;
