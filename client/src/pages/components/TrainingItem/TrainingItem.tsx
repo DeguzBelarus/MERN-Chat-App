@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useAppSelector } from "../../../app/hooks";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
 
@@ -17,11 +17,21 @@ export const TrainingItem: FC<Props> = ({
    trainingSetcompleted }) => {
    const currentLanguage = useAppSelector(selectCurrentLanguage)
 
+   const [removingBlock, setRemovingBlock]: any = useState(true)
+
    const date = info.date.split("-")
    const day = date[2]
    const month = date[1]
    const year = date[0]
    const correctDate = [day, month, year].join(".")
+
+   const removingBlockHandle = () => {
+      if (removingBlock) {
+         setRemovingBlock(false)
+      } else {
+         setRemovingBlock(true)
+      }
+   }
 
    const removeTrainingHandler = () => {
       removeTraining(info.id)
@@ -31,7 +41,7 @@ export const TrainingItem: FC<Props> = ({
       trainingSetcompleted(info.id)
    }
 
-   return <div className="training-item-wrapper">
+   return <div className="training-item-wrapper" onClick={removingBlockHandle}>
       <div className="upper-container">
          <span >{currentLanguage === "ru"
             ? `Дата: ${correctDate}`
@@ -110,12 +120,28 @@ export const TrainingItem: FC<Props> = ({
             </span>
          </p>}
 
-      <button type="button"
+      {/* {!removingBlock && !planningMode || removingBlock && planningMode && <button type="button"
          className="remove-training-button"
          onClick={removeTrainingHandler}
       >
          X
-      </button>
+      </button>} */}
+
+      {!removingBlock
+         ? <button type="button"
+            className="remove-training-button"
+            onClick={removeTrainingHandler}
+         >
+            X
+         </button>
+         : planningMode
+            ? <button type="button"
+               className="remove-training-button"
+               onClick={removeTrainingHandler}
+            >
+               X
+            </button>
+            : ""}
 
       {planningMode
          && <button type="button"
