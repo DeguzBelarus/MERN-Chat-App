@@ -39,7 +39,15 @@
       border: 2px solid cadetblue;
 
       &.current {
-        border: 2px solid deeppink;
+        border: 2px solid palevioletred;
+      }
+
+      input {
+        background-color: white;
+        border-radius: 3px;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
       }
 
       .exercise-message-span {
@@ -49,8 +57,33 @@
       }
     }
 
+    textarea {
+      background-color: white;
+      border-radius: 3px;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
     .buttons-container {
       display: flex;
+
+      button {
+        border-radius: 3px;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        color: black;
+        transition-property: background-color, border;
+        transition-duration: 0.7s;
+        font-weight: bolder;
+        cursor: pointer;
+
+        &:first-of-type {
+          background-color: rgba($color: green, $alpha: 0.7);
+          color: white;
+        }
+      }
     }
 
     .note {
@@ -1090,6 +1123,23 @@
         top: 2px;
         left: 2px;
         font-size: 27px;
+      }
+    }
+  }
+}
+
+@media (hover: hover) {
+  .buttons-container {
+    button {
+      &:hover {
+        border-color: cornflowerblue;
+        background-color: rgba($color: red, $alpha: 0.9);
+
+        &:first-of-type {
+          &:hover {
+            background-color: rgba($color: yellowgreen, $alpha: 0.9);
+          }
+        }
       }
     }
   }

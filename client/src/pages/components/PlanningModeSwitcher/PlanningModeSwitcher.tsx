@@ -20,7 +20,7 @@ export const PlanningModeSwitcher: FC<Props> = ({ planningMode, setPlanningMode 
       }
    }
 
-   return <div className="planning-mode-switcher-wrapper"
+   return <button type="button" className="planning-mode-switcher-wrapper"
       onClick={planningModeHandler}
    >
       <span className={!planningMode ? "planning-mode-switcher-text active" : "planning-mode-switcher-text"}>
@@ -34,5 +34,5 @@ export const PlanningModeSwitcher: FC<Props> = ({ planningMode, setPlanningMode 
             ? "Планирование"
             : "Planning"}
       </span>
-   </div>
+   </button>
 }
