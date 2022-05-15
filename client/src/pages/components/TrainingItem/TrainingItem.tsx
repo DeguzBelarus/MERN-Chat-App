@@ -43,7 +43,7 @@ export const TrainingItem: FC<Props> = ({
             : `/ Weight: ${info.myweight} kg`}
          </span>}
 
-         {info.completed && <div className="complete-logo">🖒</div>}
+         {info.completed && <div className="complete-logo">DONE!</div>}
       </div>
 
       {info.plan.map((exercise: any, index: number) => {
