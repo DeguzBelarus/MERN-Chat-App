@@ -11,6 +11,9 @@
     border-radius: 3px;
     transition-property: background-color, border;
     transition-duration: 0.7s;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .set-completed-training-button {
@@ -21,6 +24,9 @@
     background-color: rgba($color: orange, $alpha: 0.6);
     border-radius: 3px;
     color: #555;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 
     &.active {
       background-color: rgba($color: yellowgreen, $alpha: 0.9);

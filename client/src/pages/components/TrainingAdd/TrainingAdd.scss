@@ -8,6 +8,9 @@
     cursor: pointer;
     background-color: rgba($color: grey, $alpha: 0.1);
     border-radius: 3px;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .training-form {
