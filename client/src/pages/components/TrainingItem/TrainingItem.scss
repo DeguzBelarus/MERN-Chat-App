@@ -3,6 +3,19 @@
   position: relative;
   box-sizing: border-box;
   background-color: white;
+  transition-property: background-color;
+  transition-duration: 0.7s;
+  border-width: 2px;
+  border-style: solid;
+  border-color: grey;
+
+  &.diary {
+    cursor: pointer;
+  }
+
+  &.under-removing {
+    background-color: yellowgreen;
+  }
 
   .remove-training-button {
     position: absolute;
@@ -98,7 +111,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 2px solid gray;
     padding: 5px;
     padding-bottom: 25px;
 
@@ -174,7 +186,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 2px solid gray;
     padding: 5px;
     padding-bottom: 27px;
 
@@ -250,7 +261,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 2px solid gray;
     padding: 5px;
     padding-bottom: 27px;
 
@@ -326,7 +336,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 2px solid gray;
     padding: 5px;
     padding-bottom: 27px;
 
@@ -402,7 +411,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 2px solid gray;
     padding: 5px;
     padding-bottom: 27px;
 
@@ -479,7 +487,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 2px solid gray;
     padding: 5px;
     padding-bottom: 27px;
 
@@ -556,7 +563,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 2px solid gray;
     padding: 5px;
     padding-bottom: 30px;
 
@@ -633,9 +639,16 @@
 }
 
 @media (hover: hover) {
+  .training-item-wrapper {
+    &:hover {
+      border-color: cornflowerblue;
+    }
+  }
+
   .remove-training-button {
     &:hover {
       border-color: cornflowerblue;
+      background-color: rgba($color: red, $alpha: 0.6);
     }
   }
 

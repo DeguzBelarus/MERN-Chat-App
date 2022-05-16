@@ -41,7 +41,13 @@ export const TrainingItem: FC<Props> = ({
       trainingSetcompleted(info.id)
    }
 
-   return <div className="training-item-wrapper" onClick={removingBlockHandle}>
+   return <div className={planningMode
+      ? "training-item-wrapper"
+      : removingBlock
+         ? "training-item-wrapper diary"
+         : "training-item-wrapper diary under-removing"
+   }
+      onClick={removingBlockHandle} >
       <div className="upper-container">
          <span >{currentLanguage === "ru"
             ? `Дата: ${correctDate}`
@@ -56,33 +62,36 @@ export const TrainingItem: FC<Props> = ({
          {info.completed && <div className="complete-logo">DONE!</div>}
       </div>
 
-      {info.plan.map((exercise: any, index: number) => {
-         return <div className="exercise-wrapper" key={index}>
-            <span className="exercise-name-span">{exercise.exercise}: </span>
+      {
+         info.plan.map((exercise: any, index: number) => {
+            return <div className="exercise-wrapper" key={index}>
+               <span className="exercise-name-span">{exercise.exercise}: </span>
 
-            {!exercise.calories
-               ? <span className="exercise-description">
-                  {currentLanguage === "ru"
-                     ? `${exercise.weight} кг - ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} кг)`
-                     : `${exercise.weight} kg - ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} kg)`
-                  }
-               </span>
-               : <span className="exercise-description">
-                  {currentLanguage === "ru"
-                     ? `${exercise.meters} м - ${exercise.calories.toFixed(2)} ккал`
-                     : `${exercise.meters} m - ${exercise.calories.toFixed(2)} kcal`
-                  }
-               </span>
-            }
+               {!exercise.calories
+                  ? <span className="exercise-description">
+                     {currentLanguage === "ru"
+                        ? `${exercise.weight} кг - ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} кг)`
+                        : `${exercise.weight} kg - ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} kg)`
+                     }
+                  </span>
+                  : <span className="exercise-description">
+                     {currentLanguage === "ru"
+                        ? `${exercise.meters} м - ${exercise.calories.toFixed(2)} ккал`
+                        : `${exercise.meters} m - ${exercise.calories.toFixed(2)} kcal`
+                     }
+                  </span>
+               }
 
-            {exercise.q < 1 && <span>{` ${exercise.q * 100}%`}</span>}
-            {exercise.q === 2 && <span>{` x${exercise.q}`}</span>}
-         </div>
-      })}
+               {exercise.q < 1 && <span>{` ${exercise.q * 100}%`}</span>}
+               {exercise.q === 2 && <span>{` x${exercise.q}`}</span>}
+            </div>
+         })
+      }
 
-      {info.plan.some((exercise: any) => {
-         if (exercise.weight) return true
-      }) && <p className="total-paragraph">
+      {
+         info.plan.some((exercise: any) => {
+            if (exercise.weight) return true
+         }) && <p className="total-paragraph">
             {currentLanguage === "ru"
                ? "Нагрузка за тренировку: "
                : "Training load: "
@@ -93,11 +102,13 @@ export const TrainingItem: FC<Props> = ({
                }, 0)}
             </span>
             {currentLanguage === "ru" ? " кг" : " kg"}
-         </p>}
+         </p>
+      }
 
-      {info.plan.some((exercise: any) => {
-         if (exercise.calories) return true
-      }) && <p className="total-paragraph">
+      {
+         info.plan.some((exercise: any) => {
+            if (exercise.calories) return true
+         }) && <p className="total-paragraph">
             {currentLanguage === "ru"
                ? "Результативность кардио: "
                : "Cardio performance: "
@@ -108,9 +119,11 @@ export const TrainingItem: FC<Props> = ({
                }, 0).toFixed(2)}
             </span>
             {currentLanguage === "ru" ? " ккал" : " kcal"}
-         </p>}
+         </p>
+      }
 
-      {info.comment
+      {
+         info.comment
          && <p className="comment-paragraph">
             {currentLanguage === "ru"
                ? "Комментарий: "
@@ -118,32 +131,29 @@ export const TrainingItem: FC<Props> = ({
             <span>
                {info.comment}
             </span>
-         </p>}
+         </p>
+      }
 
-      {/* {!removingBlock && !planningMode || removingBlock && planningMode && <button type="button"
-         className="remove-training-button"
-         onClick={removeTrainingHandler}
-      >
-         X
-      </button>} */}
-
-      {!removingBlock
-         ? <button type="button"
-            className="remove-training-button"
-            onClick={removeTrainingHandler}
-         >
-            X
-         </button>
-         : planningMode
+      {
+         !removingBlock
             ? <button type="button"
                className="remove-training-button"
                onClick={removeTrainingHandler}
             >
                X
             </button>
-            : ""}
+            : planningMode
+               ? <button type="button"
+                  className="remove-training-button"
+                  onClick={removeTrainingHandler}
+               >
+                  &times;
+               </button>
+               : ""
+      }
 
-      {planningMode
+      {
+         planningMode
          && <button type="button"
             className={info.completed
                ? "set-completed-training-button active"
@@ -153,6 +163,7 @@ export const TrainingItem: FC<Props> = ({
             {info.completed
                ? currentLanguage === "ru" ? "Выполнена" : "Completed"
                : currentLanguage === "ru" ? "Не выполнена" : "Not completed"}
-         </button>}
+         </button>
+      }
    </div >
 }

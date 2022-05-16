@@ -50,6 +50,11 @@
         user-select: none;
       }
 
+      .exercise-add-button {
+        cursor: pointer;
+        font-weight: bolder;
+      }
+
       .exercise-message-span {
         position: absolute;
         right: 2px;
