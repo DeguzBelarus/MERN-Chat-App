@@ -1,6 +1,6 @@
 .training-diary-wrapper {
   width: 100%;
-  height: calc(100vh - 11px);
+  min-height: calc(100vh - 11px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

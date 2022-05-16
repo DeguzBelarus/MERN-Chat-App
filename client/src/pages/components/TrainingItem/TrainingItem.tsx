@@ -26,6 +26,8 @@ export const TrainingItem: FC<Props> = ({
    const correctDate = [day, month, year].join(".")
 
    const removingBlockHandle = () => {
+      if (planningMode) return
+
       if (removingBlock) {
          setRemovingBlock(false)
       } else {
@@ -140,7 +142,7 @@ export const TrainingItem: FC<Props> = ({
                className="remove-training-button"
                onClick={removeTrainingHandler}
             >
-               X
+               &times;
             </button>
             : planningMode
                ? <button type="button"
