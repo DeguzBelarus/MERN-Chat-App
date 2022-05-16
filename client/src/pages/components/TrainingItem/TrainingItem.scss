@@ -27,6 +27,10 @@
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    opacity: 0;
+    animation-name: logo-manifestation-full;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
   }
 
   .set-completed-training-button {
@@ -64,8 +68,8 @@
       border-radius: 50%;
       padding: 5px;
       color: #0504aa;
-      opacity: 0;
       transform: rotate(-42deg);
+      opacity: 0;
       animation-name: logo-manifestation;
       animation-fill-mode: forwards;
       animation-duration: 0.5s;
@@ -635,6 +639,12 @@
 @keyframes logo-manifestation {
   100% {
     opacity: 0.45;
+  }
+}
+
+@keyframes logo-manifestation-full {
+  100% {
+    opacity: 1;
   }
 }
 

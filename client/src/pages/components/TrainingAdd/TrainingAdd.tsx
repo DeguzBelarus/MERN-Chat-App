@@ -7,6 +7,7 @@ import { ref, set } from "firebase/database";
 
 import "./TrainingAdd.scss"
 import { PlanningModeSwitcher } from "../PlanningModeSwitcher/PlanningModeSwitcher";
+import { ExerciseItem } from "./ExerciseItem/ExerciseItem";
 interface Props {
    trainingData: any[] | null,
    trainingDiaryExit: any,
@@ -21,7 +22,6 @@ interface Data {
    completed?: boolean,
    plan: any[]
 }
-
 export const TrainingAdd: FC<Props> = ({
    trainingData,
    trainingDiaryExit,
@@ -343,6 +343,11 @@ export const TrainingAdd: FC<Props> = ({
       myweightInput.current.style.border = "2px solid black"
    }
 
+   const exerciseRemove = (id: number) => {
+      const newPlanDataComplete: any = planDataComplete.filter((exercise: any) => exercise.id !== id)
+      setPlanDataComplete(newPlanDataComplete)
+   }
+
    const trainingAddSubmit = (event: any) => {
       event.preventDefault()
       if (formData.date === "" || !planDataComplete.length) return
@@ -470,77 +475,12 @@ export const TrainingAdd: FC<Props> = ({
             </div>
          </div>
 
-         {planDataComplete.map((training: any, index: number) => {
-            return <div className="exercise-info-container" key={index}>
-               <span>
-                  {`${index + 1} :`}
-               </span>
-               <select title={currentLanguage === "ru"
-                  ? "Выберите упражнение"
-                  : "Choose an exercise"}
-                  id="exercise-input"
-                  disabled
-               >
-                  <option value={training.exercise}>{training.exercise}</option>
-               </select>
-
-               {training.exercise === "Бег быстрый"
-                  || training.exercise === "Бег трусцой"
-                  || training.exercise === "High-speed running"
-                  || training.exercise === "Jogging"
-                  || training.exercise === "Ходьба"
-                  || training.exercise === "Ходьба быстрая"
-                  || training.exercise === "Walking"
-                  || training.exercise === "Walking fast" ?
-                  <>
-                     <label htmlFor="meters-input">
-                        {currentLanguage === "ru"
-                           ? "Метры: "
-                           : "Meters: "}
-                     </label>
-                     <input type="number"
-                        id="meters-input"
-                        disabled
-                        value={training.meters}
-                     />
-                  </>
-                  :
-                  <>
-                     <label htmlFor="weight-input">
-                        {currentLanguage === "ru"
-                           ? "Вес: "
-                           : "Weight: "}
-                     </label>
-                     <input type="number"
-                        id="weight-input"
-                        disabled
-                        value={training.weight}
-                     />
-
-                     <label htmlFor="sets-input">
-                        {currentLanguage === "ru"
-                           ? "Сеты: "
-                           : "Sets: "}
-                     </label>
-                     <input type="number"
-                        id="sets-input"
-                        disabled
-                        value={training.sets}
-                     />
-
-                     <label htmlFor="repeats-input">
-                        {currentLanguage === "ru"
-                           ? "Повторения: "
-                           : "Repeats: "}
-                     </label>
-                     <input type="number"
-                        id="repeats-input"
-                        disabled
-                        value={training.repeats}
-                     />
-                  </>
-               }
-            </div>
+         {planDataComplete.map((exercise: any, index: number) => {
+            return <ExerciseItem
+               exercise={exercise}
+               index={index}
+               exerciseRemove={exerciseRemove}
+            />
          })}
 
          <div className="exercise-info-container current">
