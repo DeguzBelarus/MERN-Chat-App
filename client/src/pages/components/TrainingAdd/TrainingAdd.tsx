@@ -354,6 +354,7 @@ export const TrainingAdd: FC<Props> = ({
 
       const data: Data = formData
       data.plan = planDataComplete
+      data.id = new Date().getTime()
 
       if (!planningMode) {
          delete data.completed
@@ -480,6 +481,7 @@ export const TrainingAdd: FC<Props> = ({
                exercise={exercise}
                index={index}
                exerciseRemove={exerciseRemove}
+               key={index}
             />
          })}
 
