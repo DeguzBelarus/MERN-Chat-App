@@ -95,6 +95,10 @@
         &:first-of-type {
           background-color: rgba($color: green, $alpha: 0.7);
           color: white;
+
+          &:disabled {
+            background-color: rgba($color: grey, $alpha: 0.7);
+          }
         }
       }
     }
@@ -1171,19 +1175,19 @@
 
 @media (hover: hover) {
   .exercise-add-button {
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: rgba($color: green, $alpha: 0.7);
     }
   }
 
   .buttons-container {
     button {
-      &:hover {
+      &:hover:not(:disabled) {
         border-color: cornflowerblue;
         background-color: rgba($color: red, $alpha: 0.9);
 
         &:first-of-type {
-          &:hover {
+          &:hover:not(:disabled) {
             background-color: rgba($color: yellowgreen, $alpha: 0.9);
           }
         }

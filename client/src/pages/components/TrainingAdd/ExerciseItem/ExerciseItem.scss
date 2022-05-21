@@ -387,7 +387,7 @@
 
 @media (hover: hover) {
   .exercise-remove-button {
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: rgba($color: red, $alpha: 0.7);
     }
   }

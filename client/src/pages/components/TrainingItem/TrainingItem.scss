@@ -17,6 +17,10 @@
     background-color: yellowgreen;
   }
 
+  &.completed {
+    background-color: rgba($color: white, $alpha: 0.7);
+  }
+
   .remove-training-button {
     position: absolute;
     cursor: pointer;

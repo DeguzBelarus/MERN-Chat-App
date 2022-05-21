@@ -44,7 +44,9 @@ export const TrainingItem: FC<Props> = ({
    }
 
    return <div className={planningMode
-      ? "training-item-wrapper"
+      ? !info.completed
+         ? "training-item-wrapper"
+         : "training-item-wrapper completed"
       : removingBlock
          ? "training-item-wrapper diary"
          : "training-item-wrapper diary under-removing"

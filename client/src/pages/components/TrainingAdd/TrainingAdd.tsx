@@ -196,9 +196,9 @@ export const TrainingAdd: FC<Props> = ({
             || formData.myweight === 0) {
             myweightInput.current.style.border = "2px solid deeppink"
             if (currentLanguage === "ru") {
-               setExerciseMessage("Необходимо указать Ваш вес (расчёт калорий)")
+               setExerciseMessage("Укажите Ваш вес (для расчёта калорий)")
             } else {
-               setExerciseMessage("It is necessary to specify your weight (calorie calculation)")
+               setExerciseMessage("Specify your weight (to calculate calories")
             }
             return
          }
@@ -580,6 +580,26 @@ export const TrainingAdd: FC<Props> = ({
             <button type="button"
                className="exercise-add-button"
                onClick={exerciseAdd}
+               disabled={!planData.exercise
+                  || (!planData.meters)
+                  && (planData.exercise === "Бег быстрый"
+                     || planData.exercise === "Бег трусцой"
+                     || planData.exercise === "High-speed running"
+                     || planData.exercise === "Jogging"
+                     || planData.exercise === "Ходьба"
+                     || planData.exercise === "Ходьба быстрая"
+                     || planData.exercise === "Walking"
+                     || planData.exercise === "Walking fast")
+                  || (!planData.weight || !planData.sets || !planData.repeats)
+                  && (planData.exercise !== "Бег быстрый"
+                     && planData.exercise !== "Бег трусцой"
+                     && planData.exercise !== "High-speed running"
+                     && planData.exercise !== "Jogging"
+                     && planData.exercise !== "Ходьба"
+                     && planData.exercise !== "Ходьба быстрая"
+                     && planData.exercise !== "Walking"
+                     && planData.exercise !== "Walking fast")
+               }
             >
                +
             </button>
@@ -601,7 +621,12 @@ export const TrainingAdd: FC<Props> = ({
          />
 
          <div className="buttons-container">
-            <button type="submit">{currentLanguage === "ru" ? "Добавить " : "Add "}</button>
+            <button
+               type="submit"
+               disabled={!planDataComplete.length || !formData.date}
+            >
+               {currentLanguage === "ru" ? "Добавить " : "Add "}
+            </button>
             <button type="reset"
                onClick={planDataCompleteReset}
             >{currentLanguage === "ru" ? "Очистить " : "Clear "}</button>
