@@ -1,4 +1,4 @@
-import { useRef, FC, useState, useTransition } from "react";
+import { useRef, FC, useState, useTransition, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { selectPrivateRecipient, privateRecipientSave, messagesInChatSave, selectMessagesInChat } from "../../../app/chatSlice";
@@ -11,22 +11,24 @@ interface Props {
 }
 
 export const BottomPanel: FC<Props> = ({ socket }) => {
+   const CryptoJS = require("crypto-js");
+
    const messageInput: any = useRef(null)
    const fileInput: any = useRef(null)
    const sendFileButton: any = useRef(null)
 
-   const CryptoJS = require("crypto-js");
-
    const dispatch = useAppDispatch()
    const navigate = useNavigate()
+   const [isPending, startTransition]: any = useTransition()
+
    let messagesInChat = useAppSelector(selectMessagesInChat)
    const privateRecipient = useAppSelector(selectPrivateRecipient)
    const nickname = useAppSelector(selectUserNickname)
    const currentLanguage = useAppSelector(selectCurrentLanguage)
 
-   const [isPending, startTransition]: any = useTransition()
-
    const [sendFileMode, setSendFileMode]: any = useState(false)
+   const [message, setMessage]: any = useState("")
+   const [file, setFile]: any = useState(null)
 
    const sendFileModeSet = (event: any) => {
       sendFileButton.current.style.backgroundColor = "white"
@@ -40,7 +42,12 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
       }
    }
 
+   const messageUpdate = () => {
+      setMessage(messageInput.current.value)
+   }
+
    const selectFile = (event: any) => {
+      setFile(event.target.files[0])
       sendFileButton.current.style.backgroundColor = "yellowgreen"
       sendFileButton.current.innerText = "📎"
       messageInput.current.focus()
@@ -75,6 +82,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                }
 
                fileInput.current.value = null
+               setFile(null)
                sendFileButton.current.style.backgroundColor = "white"
                sendFileButton.current.innerText = "File"
             } else if (event.target.value && fileInput.current.files.length) {
@@ -97,6 +105,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
                event.target.value = "";
                fileInput.current.value = null
+               setFile(null)
                sendFileButton.current.style.backgroundColor = "white"
                sendFileButton.current.innerText = "File"
             }
@@ -146,6 +155,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                }
 
                fileInput.current.value = null
+               setFile(null)
                sendFileButton.current.style.backgroundColor = "white"
                sendFileButton.current.innerText = "File"
             } else if (event.target.value && fileInput.current.files.length) {
@@ -185,6 +195,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
                event.target.value = "";
                fileInput.current.value = null
+               setFile(null)
                sendFileButton.current.style.backgroundColor = "white"
                sendFileButton.current.innerText = "File"
             }
@@ -194,10 +205,10 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
    const sendMessageOnButton = () => {
       if (!privateRecipient) {
+         if (!messageInput.current.value && !fileInput.current.files.length) return;
+
          let message = messageInput.current.value;
          message = CryptoJS.AES.encrypt(message, process.env.REACT_APP_DECRYPT_WORD).toString();
-
-         if (!message && !fileInput.current.files.length) return;
 
          if (message && !fileInput.current.files.length) {
             socket.emit("user send message", nickname, message);
@@ -219,6 +230,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
             }
 
             fileInput.current.value = null
+            setFile(null)
             sendFileButton.current.style.backgroundColor = "white"
             sendFileButton.current.innerText = "File"
          } else if (message && fileInput.current.files.length) {
@@ -238,14 +250,15 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
             messageInput.current.value = "";
             fileInput.current.value = null
+            setFile(null)
             sendFileButton.current.style.backgroundColor = "white"
             sendFileButton.current.innerText = "File"
          }
       } else {
+         if (!messageInput.current.value && !fileInput.current.files.length) return;
+
          let privatemessage = messageInput.current.value;
          privatemessage = CryptoJS.AES.encrypt(privatemessage, process.env.REACT_APP_DECRYPT_WORD).toString();
-
-         if (!privatemessage && !fileInput.current.files.length) return;
 
          if (privatemessage && !fileInput.current.files.length) {
             const privateUserNick = privateRecipient[0];
@@ -289,6 +302,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
             }
 
             fileInput.current.value = null
+            setFile(null)
             sendFileButton.current.style.backgroundColor = "white"
             sendFileButton.current.innerText = "File"
          } else if (privatemessage && fileInput.current.files.length) {
@@ -325,6 +339,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
             messageInput.current.value = "";
             fileInput.current.value = null
+            setFile(null)
             sendFileButton.current.style.backgroundColor = "white"
             sendFileButton.current.innerText = "File"
          }
@@ -342,6 +357,10 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
       socket.emit("user exit", nickname)
    }
 
+   useEffect(() => {
+      setMessage(messageInput.current.value)
+   }, [messageInput.current?.value])
+
    return (
       <div className="bottom-panel">
          <div className="message-input-wrapper">
@@ -350,6 +369,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                placeholder={currentLanguage === "ru" ? "Введите сообщение..." : "Enter a message..."}
                autoComplete="off"
                onKeyPress={userSendMessage}
+               onChange={messageUpdate}
                ref={messageInput} />
             <span>{currentLanguage === "ru" ? "Введите сообщение..." : "Enter a message..."}</span>
             <div className="line"></div>
@@ -363,7 +383,6 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                         ? "выберите файл для отправки"
                         : "select the file to send"}
                      accept="image/*, video/*"
-
                      onChange={selectFile}
                      ref={fileInput} />
                </div>
@@ -381,15 +400,22 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                </div>
             )}
 
-            <button type="button"
+            <button
+               type="button"
                className="button-send-message"
+               disabled={!message && !file}
                onClick={sendMessageOnButton}
-            >{currentLanguage === "ru" ? "Отправить" : "Send"}</button>
+            >
+               {currentLanguage === "ru" ? "Отправить" : "Send"}
+            </button>
 
-            <button type="button"
+            <button
+               type="button"
                className="button-exit"
                onClick={chatExit}
-            >{currentLanguage === "ru" ? "Выйти" : "Quit"}</button>
+            >
+               {currentLanguage === "ru" ? "Выйти" : "Quit"}
+            </button>
          </div>
       </div>
    )
