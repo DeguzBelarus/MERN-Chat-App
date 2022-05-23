@@ -19,11 +19,35 @@ export const TrainingItem: FC<Props> = ({
 
    const [removingBlock, setRemovingBlock]: any = useState(true)
 
-   const date = info.date.split("-")
-   const day = date[2]
-   const month = date[1]
-   const year = date[0]
-   const correctDate = [day, month, year].join(".")
+   const weekDaysRU: string[] = [
+      "Воскресенье",
+      "Понедельник",
+      "Вторник",
+      "Среда",
+      "Четверг",
+      "Пятница",
+      "Суббота"
+   ]
+
+   const weekDaysEn: string[] = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+   ]
+
+   const dateinfo = new Date(info.date)
+   const weekDay = dateinfo.getDay()
+   const year = dateinfo.getFullYear()
+
+   let day: number | string = dateinfo.getDate()
+   if (day < 10) day = "0" + day
+
+   let month: number | string = dateinfo.getMonth() + 1
+   if (month < 10) month = "0" + month
 
    const removingBlockHandle = () => {
       if (planningMode) return
@@ -54,14 +78,22 @@ export const TrainingItem: FC<Props> = ({
       onClick={removingBlockHandle} >
       <div className="upper-container">
          <span >{currentLanguage === "ru"
-            ? `Дата: ${correctDate}`
-            : `Date: ${correctDate}`}
+            ? `Дата: ${day}.${month}.${year},`
+            : `Date: ${day}.${month}.${year},`}
          </span>
 
-         {info.myweight !== 0 && <span >{currentLanguage === "ru"
-            ? `/ Вес: ${info.myweight} кг`
-            : `/ Weight: ${info.myweight} kg`}
-         </span>}
+         <span className="week-day-span">
+            {currentLanguage === "ru"
+               ? weekDaysRU[weekDay]
+               : weekDaysEn[weekDay]
+            }
+         </span>
+
+         {info.myweight !== 0
+            && <span >{currentLanguage === "ru"
+               ? `/ Вес: ${info.myweight} кг`
+               : `/ Weight: ${info.myweight} kg`}
+            </span>}
 
          {info.completed && <div className="complete-logo">DONE!</div>}
       </div>
