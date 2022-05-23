@@ -34,6 +34,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
       sendFileButton.current.style.backgroundColor = "white"
       sendFileButton.current.innerText = "File"
       fileInput.current.value = null
+      setFile(null)
 
       if (sendFileMode) {
          setSendFileMode(false)
