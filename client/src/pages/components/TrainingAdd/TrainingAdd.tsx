@@ -432,6 +432,10 @@ export const TrainingAdd: FC<Props> = ({
          onSubmit={trainingAddSubmit}
          ref={trainingForm}
       >
+         <span className="logo-text">
+            MySN
+         </span>
+
          <div className="upper-container">
             <div className="date-input-wrapper">
                <label htmlFor="date-input">
@@ -636,9 +640,6 @@ export const TrainingAdd: FC<Props> = ({
             {currentLanguage === "ru"
                ? "* - нажмите \"+\" для добавления"
                : "* - press \"+\" to add"}
-         </span>
-         <span className="logo-text">
-            MySN
          </span>
       </form >
    </div >
