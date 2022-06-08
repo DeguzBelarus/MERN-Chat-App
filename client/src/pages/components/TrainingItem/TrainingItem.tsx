@@ -7,17 +7,20 @@ interface Props {
    info: any,
    removeTraining: any,
    planningMode: boolean,
-   trainingSetcompleted: any
+   trainingSetcompleted: any,
+   selectedTraining: any,
+   setSelectedTraining: any
 }
 
 export const TrainingItem: FC<Props> = ({
    info,
    removeTraining,
    planningMode,
-   trainingSetcompleted }) => {
+   trainingSetcompleted,
+   selectedTraining,
+   setSelectedTraining
+}) => {
    const currentLanguage = useAppSelector(selectCurrentLanguage)
-
-   const [removingBlock, setRemovingBlock]: any = useState(true)
 
    const weekDaysRU: string[] = [
       "Воскресенье",
@@ -49,16 +52,6 @@ export const TrainingItem: FC<Props> = ({
    let month: number | string = dateinfo.getMonth() + 1
    if (month < 10) month = "0" + month
 
-   const removingBlockHandle = () => {
-      if (planningMode) return
-
-      if (removingBlock) {
-         setRemovingBlock(false)
-      } else {
-         setRemovingBlock(true)
-      }
-   }
-
    const removeTrainingHandler = () => {
       removeTraining(info.id)
    }
@@ -67,15 +60,24 @@ export const TrainingItem: FC<Props> = ({
       trainingSetcompleted(info.id)
    }
 
+   const selectedTrainingHandler = () => {
+      if (selectedTraining?.id !== info.id) {
+         setSelectedTraining(info)
+      } else {
+         setSelectedTraining(null)
+      }
+   }
+
    return <div className={planningMode
       ? !info.completed
          ? "training-item-wrapper"
          : "training-item-wrapper completed"
-      : removingBlock
+      : selectedTraining?.id !== info.id
          ? "training-item-wrapper diary"
          : "training-item-wrapper diary under-removing"
    }
-      onClick={removingBlockHandle} >
+      onClick={selectedTrainingHandler}
+   >
       <div className="upper-container">
          <span >{currentLanguage === "ru"
             ? `Дата: ${day}.${month}.${year},`
@@ -171,7 +173,7 @@ export const TrainingItem: FC<Props> = ({
       }
 
       {
-         !removingBlock
+         selectedTraining?.id === info.id
             ? <button type="button"
                className="remove-training-button"
                onClick={removeTrainingHandler}
@@ -198,7 +200,7 @@ export const TrainingItem: FC<Props> = ({
          >
             {info.completed
                ? currentLanguage === "ru" ? "Выполнена" : "Completed"
-               : currentLanguage === "ru" ? "Не выполнена" : "Not completed"}
+                  : currentLanguage === "ru" ? "Ожидает" : "Waiting"}
          </button>
       }
    </div >

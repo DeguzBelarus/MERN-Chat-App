@@ -18,6 +18,7 @@ export const TrainingDiaryPage: FC = () => {
 
    const [trainingData, setTrainingData]: any[] = useState([])
    const [planningMode, setPlanningMode]: any = useState(false)
+   const [selectedTraining, setSelectedTraining]: any = useState(null)
 
    const trainingDiaryExit = () => {
       navigate(`/usersroom/${nickname}`)
@@ -79,6 +80,8 @@ export const TrainingDiaryPage: FC = () => {
                   removeTraining={removeTraining}
                   trainingSetcompleted={trainingSetcompleted}
                   planningMode={planningMode}
+                  selectedTraining={selectedTraining}
+                  setSelectedTraining={setSelectedTraining}
                   key={index}
                />
             })

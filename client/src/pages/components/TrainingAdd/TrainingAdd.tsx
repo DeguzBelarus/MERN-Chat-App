@@ -194,7 +194,6 @@ export const TrainingAdd: FC<Props> = ({
          || planData.exercise === "Walking fast") {
          if (planData.meters === 0
             || formData.myweight === 0) {
-            myweightInput.current.style.border = "2px solid deeppink"
             if (currentLanguage === "ru") {
                setExerciseMessage("Укажите Ваш вес (для расчёта калорий)")
             } else {
@@ -406,6 +405,38 @@ export const TrainingAdd: FC<Props> = ({
    }, [dateInput.current?.value])
 
    useEffect(() => {
+      if ((planData.exercise === "Бег быстрый"
+         || planData.exercise === "Бег трусцой"
+         || planData.exercise === "High-speed running"
+         || planData.exercise === "Jogging"
+         || planData.exercise === "Ходьба"
+         || planData.exercise === "Ходьба быстрая"
+         || planData.exercise === "Walking"
+         || planData.exercise === "Walking fast")
+         && Number(formData.myweight) <= 0) {
+         myweightInput.current.style.border = "2px solid red"
+      } else {
+         myweightInput.current.style.border = "2px solid #131616"
+      }
+   }, [myweightInput.current?.value])
+
+   useEffect(() => {
+      if ((planData.exercise === "Бег быстрый"
+         || planData.exercise === "Бег трусцой"
+         || planData.exercise === "High-speed running"
+         || planData.exercise === "Jogging"
+         || planData.exercise === "Ходьба"
+         || planData.exercise === "Ходьба быстрая"
+         || planData.exercise === "Walking"
+         || planData.exercise === "Walking fast")
+         && Number(formData.myweight) <= 0) {
+         myweightInput.current.style.border = "2px solid red"
+      } else {
+         myweightInput.current.style.border = "2px solid #131616"
+      }
+   }, [planData])
+
+   useEffect(() => {
       dateInput.current.value = getToday()
       setFormData({ id: 0, date: getToday(), myweight: 0, comment: "", plan: planDataComplete, completed: false })
    }, [])
@@ -461,7 +492,8 @@ export const TrainingAdd: FC<Props> = ({
                   name="myweight"
                   id="myweight-input"
                   step={0.1}
-                  min={0}
+                  min={1}
+                  max={400}
                   disabled={planDataComplete.some((exercise: any) => {
                      if (exercise.exercise === "Бег быстрый"
                         || exercise.exercise === "Бег трусцой"
@@ -585,7 +617,7 @@ export const TrainingAdd: FC<Props> = ({
                className="exercise-add-button"
                onClick={exerciseAdd}
                disabled={!planData.exercise
-                  || (!planData.meters)
+                  || (!Number(planData.meters))
                   && (planData.exercise === "Бег быстрый"
                      || planData.exercise === "Бег трусцой"
                      || planData.exercise === "High-speed running"
@@ -594,7 +626,7 @@ export const TrainingAdd: FC<Props> = ({
                      || planData.exercise === "Ходьба быстрая"
                      || planData.exercise === "Walking"
                      || planData.exercise === "Walking fast")
-                  || (!planData.weight || !planData.sets || !planData.repeats)
+                  || (!Number(planData.weight) || !Number(planData.sets) || !Number(planData.repeats))
                   && (planData.exercise !== "Бег быстрый"
                      && planData.exercise !== "Бег трусцой"
                      && planData.exercise !== "High-speed running"
@@ -627,7 +659,15 @@ export const TrainingAdd: FC<Props> = ({
          <div className="buttons-container">
             <button
                type="submit"
-               disabled={!planDataComplete.length || !formData.date}
+               disabled={
+                  !planDataComplete.length
+                  || !formData.date
+                  || planData.exercise !== ""
+                  || planData.meters !== 0
+                  || planData.weight !== 0
+                  || planData.sets !== 0
+                  || planData.repeats !== 0
+               }
             >
                {currentLanguage === "ru" ? "Добавить " : "Add "}
             </button>

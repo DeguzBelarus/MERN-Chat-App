@@ -46,9 +46,16 @@
       }
 
       #myweight-input {
-        border: none;
         border-radius: 3px;
         margin-right: 5px;
+
+        &:disabled {
+          background-color: rgba(255, 255, 255, 0.8);
+        }
+      }
+
+      .circa-span {
+        color: white;
       }
     }
 
@@ -107,6 +114,7 @@
 
       button {
         border-radius: 3px;
+        border-width: 2px;
         -ms-user-select: none;
         -webkit-user-select: none;
         user-select: none;
@@ -122,8 +130,12 @@
 
           &:disabled {
             background-color: rgba($color: grey, $alpha: 0.7);
-            color: #000;
+            color: rgba(16, 16, 16, 0.3);
           }
+        }
+
+        &:last-of-type {
+          border-color: red;
         }
       }
     }
