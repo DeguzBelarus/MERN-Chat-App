@@ -418,23 +418,7 @@ export const TrainingAdd: FC<Props> = ({
       } else {
          myweightInput.current.style.border = "2px solid #131616"
       }
-   }, [myweightInput.current?.value])
-
-   useEffect(() => {
-      if ((planData.exercise === "Бег быстрый"
-         || planData.exercise === "Бег трусцой"
-         || planData.exercise === "High-speed running"
-         || planData.exercise === "Jogging"
-         || planData.exercise === "Ходьба"
-         || planData.exercise === "Ходьба быстрая"
-         || planData.exercise === "Walking"
-         || planData.exercise === "Walking fast")
-         && Number(formData.myweight) <= 0) {
-         myweightInput.current.style.border = "2px solid red"
-      } else {
-         myweightInput.current.style.border = "2px solid #131616"
-      }
-   }, [planData])
+   }, [planData, myweightInput.current?.value])
 
    useEffect(() => {
       dateInput.current.value = getToday()
