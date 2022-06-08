@@ -108,14 +108,14 @@ export const TrainingItem: FC<Props> = ({
                {!exercise.calories
                   ? <span className="exercise-description">
                      {currentLanguage === "ru"
-                        ? `${exercise.weight} кг - ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} кг)`
-                        : `${exercise.weight} kg - ${exercise.sets} x ${exercise.repeats} (${exercise.weight * exercise.sets * exercise.repeats * exercise.q} kg)`
+                        ? `${Number(exercise.weight).toFixed(1)} кг - ${exercise.sets} x ${exercise.repeats} (${Number(exercise.weight * exercise.sets * exercise.repeats * exercise.q).toFixed(1)} кг)`
+                        : `${Number(exercise.weight).toFixed(1)} kg - ${exercise.sets} x ${exercise.repeats} (${Number(exercise.weight * exercise.sets * exercise.repeats * exercise.q).toFixed(1)} kg)`
                      }
                   </span>
                   : <span className="exercise-description">
                      {currentLanguage === "ru"
-                        ? `${exercise.meters} м - ${exercise.calories.toFixed(2)} ккал`
-                        : `${exercise.meters} m - ${exercise.calories.toFixed(2)} kcal`
+                        ? `${exercise.meters} м - ${exercise.calories.toFixed(1)} ккал`
+                        : `${exercise.meters} m - ${exercise.calories.toFixed(1)} kcal`
                      }
                   </span>
                }
@@ -137,7 +137,7 @@ export const TrainingItem: FC<Props> = ({
             <span>
                {info.plan.reduce((sum: number, exercise: any, index: number) => {
                   return sum + (exercise.weight * exercise.sets * exercise.repeats * exercise.q)
-               }, 0)}
+               }, 0).toFixed(1)}
             </span>
             {currentLanguage === "ru" ? " кг" : " kg"}
          </p>
@@ -153,8 +153,8 @@ export const TrainingItem: FC<Props> = ({
             }
             <span>
                {info.plan.reduce((sum: number, exercise: any, index: number) => {
-                  return sum + exercise.calories
-               }, 0).toFixed(2)}
+                  return sum + exercise.calorie
+               }, 0).toFixed(1)}
             </span>
             {currentLanguage === "ru" ? " ккал" : " kcal"}
          </p>
@@ -200,7 +200,7 @@ export const TrainingItem: FC<Props> = ({
          >
             {info.completed
                ? currentLanguage === "ru" ? "Выполнена" : "Completed"
-                  : currentLanguage === "ru" ? "Ожидает" : "Waiting"}
+               : currentLanguage === "ru" ? "Ожидает" : "Waiting"}
          </button>
       }
    </div >
