@@ -6,6 +6,7 @@
 
     #loggedin-input {
       appearance: none;
+      margin-right: 7px;
 
       &:checked + label {
         &::after {
