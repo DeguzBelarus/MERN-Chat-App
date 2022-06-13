@@ -1,5 +1,4 @@
 import { useEffect, FC, useTransition, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectUserNickname } from "../../app/userSlice";
 import { messagesInChatSave, usersInChatSave, selectMessagesInChat, privateRecipientSave } from "../../app/chatSlice";
@@ -8,7 +7,7 @@ import { selectCurrentLanguage } from "../../app/globalSlice";
 import { ChatMessages } from "../components/chat/ChatMessages";
 import { UsersList } from "../components/chat/UsersList";
 import { BottomPanel } from "../components/chat/BottomPanel";
-import { ImageAndVideoBox } from "../components/chat/ImageAndVideoBox";
+import { ImageBox } from "../components/chat/ImageBox";
 import "./ChatMainPage.scss";
 interface Props {
    socket: any
@@ -18,13 +17,11 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
    const CryptoJS = require("crypto-js");
    const dispatch = useAppDispatch()
    const [isPending, startTransition]: any = useTransition()
-   const navigate = useNavigate()
 
    const nickname = useAppSelector(selectUserNickname)
    const currentLanguage = useAppSelector(selectCurrentLanguage)
    let messagesInChat = useAppSelector(selectMessagesInChat)
 
-   const [typeOfFileBox, setTypeOfFileBox]: any = useState("image")
    const [fileOfFileBoxSRC, setFileOfFileBoxSRC]: any = useState(null)
    const [fileBoxIsShown, setFileBoxIsShown]: any = useState(false)
 
@@ -36,9 +33,7 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
    };
 
    const fileBoxImageOpening = (event: any) => {
-      console.log(event.target.src);
       setFileOfFileBoxSRC(event.target.src)
-      setTypeOfFileBox("image")
       setFileBoxIsShown(true)
    }
 
@@ -406,8 +401,7 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
    return (
       <div className="chat-wrapper">
          {fileBoxIsShown
-            && <ImageAndVideoBox
-               typeOfFileBox={typeOfFileBox}
+            && <ImageBox
                fileOfFileBoxSRC={fileOfFileBoxSRC}
                setFileBoxIsShown={setFileBoxIsShown}
             />}

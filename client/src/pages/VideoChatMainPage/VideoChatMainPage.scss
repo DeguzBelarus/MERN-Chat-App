@@ -1,0 +1,61 @@
+.videochat-diary-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 3px 0;
+  padding-top: 8px;
+  gap: 10px;
+  background-color: #131616;
+  color: white;
+
+  .upper-container {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+
+    .logo-header {
+      position: absolute;
+      top: 3px;
+      left: 10px;
+      opacity: 0;
+      color: #00897b;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      animation-name: manifestation;
+      animation-fill-mode: forwards;
+      animation-duration: 4.3s;
+      animation-timing-function: ease-in;
+    }
+
+    .greeting-header {
+      color: white;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .exit-button {
+      position: absolute;
+      top: 3px;
+      right: 10px;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+}
+
+@keyframes manifestation {
+  100% {
+    opacity: 1;
+  }
+}
