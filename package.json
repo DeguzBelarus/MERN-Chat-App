@@ -9,7 +9,7 @@
       "client": "yarn --cwd client run start",
       "client:install": "yarn --cwd client add react-scripts --save",
       "client:build": "yarn --cwd client run build",
-      "dev": "cross-env NODE_ENV=development concurrently \"yarn server\" \"yarn client\"",
+      "development": "cross-env NODE_ENV=development concurrently \"yarn server\" \"yarn client\"",
       "heroku-postbuild": "yarn client:install && yarn client:build"
    },
    "author": "Deguz <deguz@mail.ru>",
