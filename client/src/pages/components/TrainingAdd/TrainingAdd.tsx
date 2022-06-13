@@ -659,12 +659,6 @@ export const TrainingAdd: FC<Props> = ({
                onClick={planDataCompleteReset}
             >{currentLanguage === "ru" ? "Очистить " : "Clear "}</button>
          </div>
-
-         <span className="note">
-            {currentLanguage === "ru"
-               ? "* - нажмите \"+\" для добавления"
-               : "* - press \"+\" to add"}
-         </span>
       </form >
    </div >
 }
