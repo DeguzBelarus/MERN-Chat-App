@@ -379,8 +379,9 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
    }
 
    useEffect(() => {
-      document.title = currentLanguage === "ru" ? `MySN: ${nickname} - Чат` : `MySN: ${nickname} - Chat`
-      navigate(`/chat/${nickname}`)
+      document.title = currentLanguage === "ru"
+         ? `MySN: ${nickname} - Чат`
+         : `MySN: ${nickname} - Chat`
 
       afkTimeoutRestart()
       window.addEventListener("mousemove", afkTimeoutRestart)

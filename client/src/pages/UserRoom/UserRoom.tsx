@@ -14,15 +14,15 @@ export const UserRoom: FC = () => {
    const nickname = useAppSelector(selectUserNickname)
 
    const chatEnter = () => {
-      navigate("/chat")
-   }
-
-   const trainingDiaryEnter = () => {
-      navigate("/trainingdiary")
+      navigate(`/chat/${nickname}`)
    }
 
    const videoChatEnter = () => {
-      navigate("/videochat")
+      navigate(`/videochat/${nickname}`)
+   }
+
+   const trainingDiaryEnter = () => {
+      navigate(`/trainingdiary/${nickname}`)
    }
 
    const logout = () => {

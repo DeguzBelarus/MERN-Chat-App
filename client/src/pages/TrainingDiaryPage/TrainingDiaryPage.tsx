@@ -60,8 +60,9 @@ export const TrainingDiaryPage: FC = () => {
    }, [planningMode])
 
    useEffect(() => {
-      document.title = currentLanguage === "ru" ? `MySN: ${nickname} - Тренировки` : `MySN: ${nickname} - Training`
-      navigate(`/trainingdiary/${nickname}`)
+      document.title = currentLanguage === "ru"
+         ? `MySN: ${nickname} - Тренировки`
+         : `MySN: ${nickname} - Training`
    }, [])
 
    return <div className="training-diary-wrapper">
