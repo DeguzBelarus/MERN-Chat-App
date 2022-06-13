@@ -16,8 +16,10 @@
   color: #fff;
 
   .planning-mode-switcher-text {
+    color: gray;
     &.active {
       font-weight: bolder;
+      color: yellowgreen;
     }
   }
 
