@@ -5,7 +5,7 @@
   background-color: #131616;
 
   .exit-button {
-    cursor: pointer;
+    padding: 0 4px;
     background-color: rgba($color: grey, $alpha: 0.1);
     border-radius: 3px;
     border-color: #fff;
@@ -14,6 +14,7 @@
     user-select: none;
     box-sizing: border-box;
     color: #fff;
+    cursor: pointer;
   }
 
   h1 {
