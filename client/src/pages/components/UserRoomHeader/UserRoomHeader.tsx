@@ -8,16 +8,19 @@ interface Props {
    logout: any,
    chatEnter: any
    trainingDiaryEnter: any
+   videoChatEnter: any
 }
 
 export const UserRoomHeader: FC<Props> = ({
-   logout, chatEnter, trainingDiaryEnter
+   logout, chatEnter, trainingDiaryEnter, videoChatEnter
 }) => {
    const currentLanguage = useAppSelector(selectCurrentLanguage)
    const nickname = useAppSelector(selectUserNickname)
 
    const [servicesIsOpen, setServicesIsOpen] = useState(false)
 
+
+   //== services container spreading methods
    const servicesOpener = () => {
       if (!servicesIsOpen) {
          setServicesIsOpen(true)
@@ -33,6 +36,7 @@ export const UserRoomHeader: FC<Props> = ({
    const openServicesMouseOut = () => {
       setServicesIsOpen(false)
    }
+   //== services container spreading methods
    return <header>
       <div className="nickname-wrapper">
          <span>{nickname}</span>
@@ -51,12 +55,17 @@ export const UserRoomHeader: FC<Props> = ({
          </span>
 
          <div className={!servicesIsOpen ? "services-list" : "services-list active"}>
-            <span className="chat-link" onClick={chatEnter}>{currentLanguage === "ru"
+            <span className="service-link" onClick={chatEnter}>{currentLanguage === "ru"
                ? "Чат"
                : "Chat"}
             </span>
 
-            <span className="chat-link" onClick={trainingDiaryEnter}>{currentLanguage === "ru"
+            <span className="service-link" onClick={chatEnter}>{currentLanguage === "ru"
+               ? "Чат"
+               : "Chat"}
+            </span>
+
+            <span className="service-link" onClick={trainingDiaryEnter}>{currentLanguage === "ru"
                ? "Дневник тренировок"
                : "Training diary"}
             </span>

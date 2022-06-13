@@ -7,6 +7,7 @@ import { RegistrationPage } from "./pages/RegistrationPage/RegistrationPage"
 import { UserRoom } from "./pages/UserRoom/UserRoom";
 import { ChatMainPage } from "./pages/ChatMainPage/ChatMainPage";
 import { TrainingDiaryPage } from "./pages/TrainingDiaryPage/TrainingDiaryPage";
+import { VideoChatMainPage } from "./pages/VideoChatMainPage/VideoChatMainPage";
 
 export const useRoutes = (socket: any) => {
    const token = useAppSelector(selectToken)
@@ -16,6 +17,7 @@ export const useRoutes = (socket: any) => {
          <Route path="*" element={<UserRoom />}></Route>
          <Route path="/usersroom/*" element={<UserRoom />}></Route>
          <Route path="/chat/*" element={<ChatMainPage socket={socket} />}></Route>
+         <Route path="/videochat/*" element={<VideoChatMainPage socket={socket} />}></Route>
          <Route path="/trainingdiary/*" element={<TrainingDiaryPage />}></Route>
       </Routes >
    }

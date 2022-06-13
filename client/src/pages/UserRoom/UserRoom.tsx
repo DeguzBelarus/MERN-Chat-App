@@ -21,6 +21,10 @@ export const UserRoom: FC = () => {
       navigate("/trainingdiary")
    }
 
+   const videoChatEnter = () => {
+      navigate("/videochat")
+   }
+
    const logout = () => {
       localStorage.removeItem("saveChat")
 
@@ -40,6 +44,7 @@ export const UserRoom: FC = () => {
             logout={logout}
             chatEnter={chatEnter}
             trainingDiaryEnter={trainingDiaryEnter}
+            videoChatEnter={videoChatEnter}
          />
          <Logo />
       </div>
