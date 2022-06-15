@@ -1,0 +1,18 @@
+.broadcast-item-wrapper {
+  width: 33%;
+  height: 165px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 4px;
+  border: 1px solid white;
+
+  span {
+    color: deeppink;
+  }
+
+  img {
+    width: 100%;
+  }
+}

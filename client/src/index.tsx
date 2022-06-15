@@ -1,4 +1,5 @@
 import { io } from "socket.io-client";
+import Peer from "peerjs";
 import { createRoot } from "react-dom/client";
 import { store } from './app/store';
 import { Provider } from 'react-redux';
@@ -13,6 +14,11 @@ import App from './App';
 import './index.scss';
 
 const socket = io()
+const peer = new Peer({
+   path: "/peerjs",
+   host: "/",
+   port: 5000
+})
 
 //== firebase initializing
 const firebaseConfig = {
@@ -36,7 +42,7 @@ const root = createRoot(document.getElementById("root") as Element);
 root.render(
    <Provider store={store}>
       <BrowserRouter>
-         <App socket={socket} />
+         <App socket={socket} peer={peer} />
       </BrowserRouter>
    </Provider>
 );
