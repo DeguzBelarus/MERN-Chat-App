@@ -25,8 +25,8 @@ const socket = io()
 
 //== for production
 const peer = new Peer({
-   path: "/mysn-deguz",
-   host: "herokuapp.com",
+   path: "/peerjs",
+   host: "mysn-deguz.herokuapp.com",
    port: 443,
    secure: true,
 })
