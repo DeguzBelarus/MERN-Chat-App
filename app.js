@@ -4,11 +4,14 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 const mongoose = require("mongoose");
 const path = require("path");
+const { ExpressPeerServer } = require("peer");
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, { maxHttpBufferSize: 1e8 });
+const peerServer = ExpressPeerServer(server, { debug: true });
 
+app.use("/peerjs", peerServer);
 app.use(express.json({ extended: true }));
 app.use("/api/authorization", require("./routes/authorization.router"));
 
@@ -23,16 +26,26 @@ if (process.env.NODE_ENV === "production") {
 }
 
 let usersInRoom = [];
+let usersInVideoRoom = [];
 
 io.on("connection", (socket) => {
-  console.log(`new connection: socket ${socket.id}`);
+  console.log(`New websocket connection: socket ${socket.id}`);
   console.log(
-    `All connections: ${Array.from(io.sockets.sockets).map(
+    `All websocket connections: ${Array.from(io.sockets.sockets).map(
       (socket) => socket[0]
     )}`
   );
 
   //== chat listeners
+
+  socket.on("getting all users in chats", () => {
+    socket.emit(
+      "number of users in all chats",
+      usersInRoom.length,
+      usersInVideoRoom.length
+    );
+  });
+
   //== connection and disconnection listenings
   //== connection listening
   socket.on("user entered", (nickname) => {
@@ -46,6 +59,11 @@ io.on("connection", (socket) => {
 
     socket.emit("entered user info", enteredUser, usersInRoom);
     socket.broadcast.emit("entered user info", enteredUser, usersInRoom);
+    socket.broadcast.emit(
+      "number of users in all chats",
+      usersInRoom.length,
+      usersInVideoRoom.length
+    );
   });
   //== connection listening
 
@@ -57,7 +75,7 @@ io.on("connection", (socket) => {
       })
       .flat();
 
-    console.log("disconnection...", disconnectedUser);
+    console.log("Websocket disconnection socket id: ", socket.id);
 
     usersInRoom = usersInRoom
       .filter((user) => {
@@ -69,6 +87,11 @@ io.on("connection", (socket) => {
       "user disconnected",
       disconnectedUser[0],
       usersInRoom
+    );
+    socket.broadcast.emit(
+      "number of users in all chats",
+      usersInRoom.length,
+      usersInVideoRoom.length
     );
   });
 
@@ -84,6 +107,11 @@ io.on("connection", (socket) => {
       .sort();
 
     socket.broadcast.emit("user disconnected", nickname, usersInRoom);
+    socket.broadcast.emit(
+      "number of users in all chats",
+      usersInRoom.length,
+      usersInVideoRoom.length
+    );
   });
   //== disconnection listening
   //== connection and disconnection listenings
@@ -299,11 +327,87 @@ io.on("connection", (socket) => {
   });
   //== AFK status listenings
   //== chat listeners
+
+  //== videochat listeners
+  //== connection listening
+  peerServer.on("connection", (client) => {
+    console.log(`New peer connection: peer ${client.id}`);
+  });
+
+  socket.on("user started stream", (peerId, nickname, poster) => {
+    if (
+      usersInVideoRoom.some((user) => {
+        if (user[0] === nickname) {
+          return true;
+        }
+      })
+    ) {
+      usersInVideoRoom.map((user) => {
+        if (user[0] === nickname) {
+          user[2] = poster;
+          return user;
+        } else {
+          return;
+        }
+      });
+    } else {
+      const streamingUser = [nickname, peerId, poster];
+      usersInVideoRoom.push(streamingUser);
+    }
+
+    console.log(usersInVideoRoom);
+
+    socket.broadcast.emit(
+      "number of users in all chats",
+      usersInRoom.length,
+      usersInVideoRoom.length
+    );
+
+    socket.broadcast.emit("updated list of broadcasts", usersInVideoRoom);
+  });
+  //== connection listening
+
+  //== disconnection listening
+  peerServer.on("disconnect", (client) => {
+    usersInVideoRoom = usersInVideoRoom.filter((user) => user[1] !== client.id);
+    console.log(`Peer disconnection: peer ${client.id}`);
+    console.log(usersInVideoRoom);
+
+    socket.broadcast.emit(
+      "number of users in all chats",
+      usersInRoom.length,
+      usersInVideoRoom.length
+    );
+
+    socket.broadcast.emit("updated list of broadcasts", usersInVideoRoom);
+  });
+
+  socket.on("user is not streaming", (nickname) => {
+    usersInVideoRoom = usersInVideoRoom.filter((user) => user[0] !== nickname);
+    console.log(usersInVideoRoom);
+
+    socket.broadcast.emit(
+      "number of users in all chats",
+      usersInRoom.length,
+      usersInVideoRoom.length
+    );
+
+    socket.broadcast.emit("updated list of broadcasts", usersInVideoRoom);
+  });
+  //== disconnection listening
+
+  //== service listenings
+  socket.on("user getting list of users in videochat", () => {
+    console.log("User entered in video chat");
+    socket.emit("response of list of users in videochat", usersInVideoRoom);
+  });
+  //== service listenings
+  //== videochat listeners
 });
 
 const start = async () => {
   try {
-    await mongoose.connect(DB_URL, {
+    mongoose.connect(DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -316,5 +420,4 @@ const start = async () => {
     console.log(`Server has been started on port ${PORT}...`);
   });
 };
-
 start();

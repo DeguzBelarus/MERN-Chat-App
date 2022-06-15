@@ -14,11 +14,23 @@ import App from './App';
 import './index.scss';
 
 const socket = io()
+
+//== for development
+// const peer = new Peer({
+//    path: "/peerjs",
+//    host: "/",
+//    port: 5000
+// })
+//== for development
+
+//== for production
 const peer = new Peer({
-   path: "/peerjs",
-   host: "/",
-   port: 5000
+   path: "/mysn-deguz",
+   host: "herokuapp.com",
+   port: 443,
+   secure: true,
 })
+//== for production
 
 //== firebase initializing
 const firebaseConfig = {
