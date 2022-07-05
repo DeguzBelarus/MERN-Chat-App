@@ -68,26 +68,26 @@ export const AuthorizationForm: FC<Props> = (
       <label htmlFor="emailInput" className="input-label">
          <input type="email"
             id="emailInput"
-            placeholder={currentLanguage === "ru" ? "Введите email" : "Enter email"}
+            placeholder={currentLanguage === "ru" ? "Введите email" : "Enter your email"}
             name="email"
             required
             autoFocus
             onChange={changeHandler}
             ref={emailInput} />
-         <span>{currentLanguage === "ru" ? "Введите email" : "Enter email"}</span>
+         <span>{currentLanguage === "ru" ? "Введите email" : "Enter your email"}</span>
          <div className="line"></div>
       </label>
 
       <label htmlFor="passworInput" className="input-label">
          <input type="password"
             id="passworInput"
-            placeholder={currentLanguage === "ru" ? "Введите пароль" : "Enter the password"}
+            placeholder={currentLanguage === "ru" ? "Введите пароль" : "Enter your password"}
             name="password"
             required
             minLength={8}
             onChange={changeHandler}
             ref={passwordInput} />
-         <span>{currentLanguage === "ru" ? "Введите пароль" : "Enter the password"}</span>
+         <span>{currentLanguage === "ru" ? "Введите пароль" : "Enter your password"}</span>
          <div className="line"></div>
       </label>
 

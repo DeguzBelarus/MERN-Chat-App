@@ -73,7 +73,7 @@ export const RegistrationForm: FC<Props> = (
             maxLength={10}
             onChange={changeHandler}
             ref={nicknameInput} />
-         <span>{currentLanguage === "ru" ? "Введите никнейм" : "Enter the nickname"}</span>
+         <span>{currentLanguage === "ru" ? "Введите никнейм" : "Enter your nickname"}</span>
          <div className="line"></div>
       </label>
 
@@ -86,7 +86,7 @@ export const RegistrationForm: FC<Props> = (
             autoComplete="off"
             onChange={changeHandler}
             ref={emailInput} />
-         <span>{currentLanguage === "ru" ? "Введите email" : "Enter email"}</span>
+         <span>{currentLanguage === "ru" ? "Введите email" : "Enter your email"}</span>
          <div className="line"></div>
       </label>
 
@@ -99,7 +99,7 @@ export const RegistrationForm: FC<Props> = (
             minLength={8}
             onChange={changeHandler}
             ref={passwordInput} />
-         <span>{currentLanguage === "ru" ? "Введите пароль" : "Enter the password"}</span>
+         <span>{currentLanguage === "ru" ? "Введите пароль" : "Enter your password"}</span>
          <div className="line"></div>
       </label>
 
