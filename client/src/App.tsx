@@ -25,6 +25,10 @@ const App: FC<Props> = ({ socket, peer }) => {
       peer.on("open", (id: any) => {
          dispatch(peerIdSave(id))
       })
+
+      peer.on('connection', (connection: any) => {
+         console.log("Connection: ", connection.peer);
+      });
    }, [peer])
 
    return (

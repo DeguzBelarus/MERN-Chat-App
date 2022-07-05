@@ -19,8 +19,8 @@ export const useRoutes = (socket: any, peer: any) => {
          <Route path="usersroom/*" element={<UserRoom socket={socket} />}></Route>
          <Route path="chat/*" element={<ChatMainPage socket={socket} />}></Route>
          <Route path="videochat" >
-            <Route path="main/*" element={<VideoChatMainPage socket={socket} />} />
-            <Route path="*" element={<VideoChatMainPage socket={socket} />} />
+            <Route path="main/*" element={<VideoChatMainPage socket={socket} peer={peer} />} />
+            <Route path="*" element={<VideoChatMainPage socket={socket} peer={peer} />} />
             <Route path=":nickname" element={<VideoChatIndividualPage socket={socket} peer={peer} />} />
          </Route>
          <Route path="trainingdiary/*" element={<TrainingDiaryPage />}></Route>

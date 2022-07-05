@@ -9,10 +9,11 @@ import { BroadcastItem } from "../components/videochat/BroadcastItem/BroadcastIt
 import "./VideoChatMainPage.scss"
 
 interface Props {
-   socket: any
+   socket: any,
+   peer: any
 }
 
-export const VideoChatMainPage: FC<Props> = ({ socket }) => {
+export const VideoChatMainPage: FC<Props> = ({ socket, peer }) => {
    const navigate = useNavigate()
 
    const nickname = useAppSelector(selectUserNickname)
@@ -82,6 +83,7 @@ export const VideoChatMainPage: FC<Props> = ({ socket }) => {
                   nickname={broadcast[0]}
                   peerId={broadcast[1]}
                   poster={broadcast[2]}
+                  peer={peer}
                   key={index}
                />
             })

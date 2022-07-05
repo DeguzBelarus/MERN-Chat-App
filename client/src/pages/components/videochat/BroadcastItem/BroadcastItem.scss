@@ -7,12 +7,17 @@
   align-items: center;
   margin: 4px;
   border: 1px solid white;
+  z-index: 1;
 
   span {
     color: deeppink;
   }
 
   img {
+    width: 100%;
+  }
+
+  video {
     width: 100%;
   }
 }

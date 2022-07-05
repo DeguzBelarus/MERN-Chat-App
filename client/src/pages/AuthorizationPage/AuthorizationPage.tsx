@@ -14,6 +14,7 @@ import {
    selectAuthMessage,
    selectAuthStatus
 } from "../../app/userSlice";
+import { currentLanguageSave } from "../../app/globalSlice";
 
 import { AuthorizationForm } from "../components/AuthorizationForm/AuthorizationForm";
 import { LanguageSwitcher } from "../components/LanguageSwitcher/LanguageSwitcher"
@@ -92,6 +93,9 @@ export const AuthorizationPage: FC = () => {
 
    useEffect(() => {
       dispatch(authMessageSave(""))
+      if (navigator.language !== "ru" && navigator.language !== "ru-RU") {
+         dispatch(currentLanguageSave("en"))
+      }
    }, [])
 
    return (

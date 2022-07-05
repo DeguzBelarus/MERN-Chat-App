@@ -1,3 +1,4 @@
+import e from "express";
 import { FC, useEffect, useRef } from "react";
 
 import "./VideoChatMainBox.scss"
@@ -45,11 +46,16 @@ export const VideoChatMainBox: FC<Props> = ({
          })
          .catch((error) => console.log(error))
 
+      peer.on("call", (call: any) => {
+         call.answer(userStream)
+         console.log("call answered", userStream);
+      })
+
       return () => {
          clearInterval(updateInterval.value)
       }
    }, [])
-   return <div className="main-box-wrapper">
+   return <div className="main-box-wrapper"  >
       <video className="stream-player" controls autoPlay muted ref={streamPlayer}></video>
       <canvas ref={canvas}></canvas>
    </div>
