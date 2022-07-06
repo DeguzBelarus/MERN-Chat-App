@@ -7,7 +7,71 @@
   align-items: center;
   background-color: #131616;
 
+  .users-count-container {
+    opacity: 0;
+    margin-top: 25px;
+    animation-name: manifestation;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    animation-delay: 4.3s;
+    animation-duration: 2.5s;
+
+    .users-in-chat-patagraph {
+      font-weight: bold;
+      color: white;
+
+      span {
+        font-weight: bold;
+        color: yellowgreen;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 319px) {
   .users-in-chat-patagraph {
-    color: white;
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .users-in-chat-patagraph {
+    font-size: 11px;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .users-in-chat-patagraph {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .users-in-chat-patagraph {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .users-in-chat-patagraph {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .users-in-chat-patagraph {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .users-in-chat-patagraph {
+    font-size: 20px;
+  }
+}
+
+@keyframes manifestation {
+  100% {
+    opacity: 1;
   }
 }

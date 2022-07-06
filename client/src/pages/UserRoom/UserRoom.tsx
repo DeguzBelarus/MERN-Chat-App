@@ -61,16 +61,21 @@ export const UserRoom: FC<Props> = ({ socket }) => {
             videoChatEnter={videoChatEnter}
          />
          <Logo />
-         <p className="users-in-chat-patagraph">
-            {currentLanguage === "ru"
-               ? `Количество пользователей в чате: ${usersInChat}`
-               : `Number of users in the chat: ${usersInChat}`}
-         </p>
-         <p className="users-in-chat-patagraph">
-            {currentLanguage === "ru"
-               ? `Количество пользователей в видео чате: ${usersInVideoChat}`
-               : `Number of users in the webcam chat: ${usersInVideoChat}`}
-         </p>
+
+         <div className="users-count-container">
+            <p className="users-in-chat-patagraph">
+               {currentLanguage === "ru"
+                  ? "Количество пользователей в чате: "
+                  : "Number of users in the chat: "}
+               <span>{usersInChat}</span>
+            </p>
+            <p className="users-in-chat-patagraph">
+               {currentLanguage === "ru"
+                  ? "Количество пользователей в видео чате: "
+                  : "Number of users in the webcam chat: "}
+               <span>{usersInVideoChat}</span>
+            </p>
+         </div>
       </div>
    )
 }

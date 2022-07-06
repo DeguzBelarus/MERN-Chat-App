@@ -62,7 +62,7 @@ export const UserRoomHeader: FC<Props> = ({
 
             <span className="service-link" onClick={videoChatEnter}>{currentLanguage === "ru"
                ? "Видео чат"
-               : "Webcam chat"}
+               : "Webcam chat"} &#128296;
             </span>
 
             <span className="service-link" onClick={trainingDiaryEnter}>{currentLanguage === "ru"
