@@ -37,7 +37,7 @@
     display: block;
     position: relative;
     box-sizing: border-box;
-    border: 2px solid #00897b;
+    border: 1px solid #00897b;
 
     &:nth-of-type(1) {
       margin-bottom: 15px;
@@ -207,7 +207,7 @@
 @media screen and (max-width: 319px) {
   #registration-form {
     width: 90%;
-    height: 300px;
+    height: 308px;
 
     .registration-header {
       font-size: 25px;
@@ -215,7 +215,7 @@
 
     .input-label {
       width: 180px;
-      height: 33px;
+      height: 35px;
 
       input {
         font-size: 10px;
@@ -232,7 +232,7 @@
       }
 
       span {
-        top: 10.5px;
+        top: 11.5px;
         font-size: 10px;
       }
     }
@@ -260,7 +260,7 @@
 @media screen and (min-width: 320px) {
   #registration-form {
     width: 90%;
-    height: 305px;
+    height: 308px;
 
     .registration-header {
       font-size: 25px;
@@ -268,7 +268,7 @@
 
     .input-label {
       width: 200px;
-      height: 33px;
+      height: 35px;
 
       input {
         font-size: 10px;
@@ -285,7 +285,7 @@
       }
 
       span {
-        top: 9.5px;
+        top: 10.5px;
         font-size: 10px;
       }
     }
@@ -309,7 +309,7 @@
 @media screen and (min-width: 425px) {
   #registration-form {
     width: 350px;
-    height: 320px;
+    height: 325px;
 
     .registration-header {
       font-size: 27px;
@@ -317,7 +317,7 @@
 
     .input-label {
       width: 230px;
-      height: 36px;
+      height: 39px;
 
       input {
         font-size: 12px;
@@ -334,7 +334,7 @@
       }
 
       span {
-        top: 10.5px;
+        top: 11.5px;
         font-size: 12px;
       }
     }
@@ -358,7 +358,7 @@
 @media screen and (min-width: 768px) {
   #registration-form {
     width: 380px;
-    height: 325px;
+    height: 335px;
 
     .registration-header {
       font-size: 29px;
@@ -366,7 +366,7 @@
 
     .input-label {
       width: 260px;
-      height: 37px;
+      height: 40px;
 
       input {
         font-size: 13px;
@@ -383,7 +383,7 @@
       }
 
       span {
-        top: 9.5px;
+        top: 10.5px;
         font-size: 13px;
       }
     }
@@ -407,7 +407,7 @@
 @media screen and (min-width: 1024px) {
   #registration-form {
     width: 440px;
-    height: 340px;
+    height: 348px;
 
     .registration-header {
       font-size: 32px;
@@ -415,7 +415,7 @@
 
     .input-label {
       width: 300px;
-      height: 40px;
+      height: 42px;
 
       input {
         font-size: 14px;
@@ -432,7 +432,7 @@
       }
 
       span {
-        top: 12px;
+        top: 13px;
         font-size: 14px;
       }
     }
@@ -456,7 +456,7 @@
 @media screen and (min-width: 1440px) {
   #registration-form {
     width: 445px;
-    height: 345px;
+    height: 350px;
 
     .registration-header {
       font-size: 34px;
@@ -464,7 +464,7 @@
 
     .input-label {
       width: 320px;
-      height: 40px;
+      height: 42px;
 
       input {
         font-size: 14px;
@@ -481,7 +481,7 @@
       }
 
       span {
-        top: 12px;
+        top: 13px;
         font-size: 14px;
       }
     }
