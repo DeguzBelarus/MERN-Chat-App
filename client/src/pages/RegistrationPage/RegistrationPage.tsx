@@ -82,7 +82,7 @@ export const RegistrationPage: FC = () => {
             message={message}
             formData={formData} />
 
-         <span className="copyright">© Deguz, 2022</span>
+         <span className="copyright">© Deguz, design: Annet, 2022</span>
       </div >
    )
 }

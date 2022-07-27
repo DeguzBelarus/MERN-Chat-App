@@ -114,7 +114,7 @@ export const AuthorizationPage: FC = () => {
             isStayLoggedIn={isStayLoggedIn}
             setIsStayLoggedIn={() => dispatch(isStayLoggedInSave(true))} />
 
-         <span className="copyright">© Deguz, 2022</span>
+         <span className="copyright">© Deguz, design: Annet, 2022</span>
       </div >
    )
 }
