@@ -1,7 +1,14 @@
 import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { selectUserNickname, userTokenSave, userIdSave, userNicknameSave } from "../../app/userSlice";
+import {
+   getUserNickname,
+   setUserToken,
+   setUserId,
+   setUserNickname,
+   setIsAuth,
+   setRole
+} from "../../app/userSlice";
 import { selectCurrentLanguage } from "../../app/globalSlice";
 import { Logo } from "../components/Logo/Logo";
 
@@ -16,7 +23,7 @@ export const UserRoom: FC<Props> = ({ socket }) => {
    const dispatch = useAppDispatch()
    const navigate = useNavigate()
 
-   const nickname = useAppSelector(selectUserNickname)
+   const nickname = useAppSelector(getUserNickname)
    const currentLanguage = useAppSelector(selectCurrentLanguage)
    const [usersInChat, setUsersInChat]: any = useState(0)
    const [usersInVideoChat, setUsersInVideoChat]: any = useState(0)
@@ -33,12 +40,17 @@ export const UserRoom: FC<Props> = ({ socket }) => {
       navigate(`/trainingdiary/${nickname}`)
    }
 
-   const logout = () => {
-      localStorage.removeItem("saveChat")
+   const logOut = () => {
+      dispatch(setIsAuth(false))
+      dispatch(setUserToken(""))
+      dispatch(setRole("USER"))
+      dispatch(setUserId(""))
+      dispatch(setUserNickname(null))
+      navigate("/")
 
-      dispatch(userTokenSave(null))
-      dispatch(userIdSave(null))
-      dispatch(userNicknameSave(null))
+      if (localStorage.getItem("MySNToken")) {
+         localStorage.removeItem("MySNToken")
+      }
    }
 
    useEffect(() => {
@@ -55,7 +67,7 @@ export const UserRoom: FC<Props> = ({ socket }) => {
    return (
       <div className="user-room-wrapper">
          <UserRoomHeader
-            logout={logout}
+            logOut={logOut}
             chatEnter={chatEnter}
             trainingDiaryEnter={trainingDiaryEnter}
             videoChatEnter={videoChatEnter}

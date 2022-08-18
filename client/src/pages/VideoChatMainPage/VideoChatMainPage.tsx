@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppSelector } from "../../app/hooks";
 import { selectCurrentLanguage } from "../../app/globalSlice";
-import { selectUserNickname } from "../../app/userSlice";
+import { getUserNickname } from "../../app/userSlice";
 import { BroadcastItem } from "../components/videochat/BroadcastItem/BroadcastItem";
 
 import "./VideoChatMainPage.scss"
@@ -16,7 +16,7 @@ interface Props {
 export const VideoChatMainPage: FC<Props> = ({ socket, peer }) => {
    const navigate = useNavigate()
 
-   const nickname = useAppSelector(selectUserNickname)
+   const nickname = useAppSelector(getUserNickname)
    const currentLanguage = useAppSelector(selectCurrentLanguage)
    const [usersInVideoRoom, setUsersInVideoRoom]: any = useState([])
 

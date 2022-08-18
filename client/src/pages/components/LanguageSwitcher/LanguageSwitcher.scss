@@ -1,8 +1,11 @@
+@import "../../../variables";
+
 .language-switcher-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
+  @include flex-all-center;
+  position: absolute;
+  top: 5px;
+  right: 5px;
   border-width: 2px;
   border-style: solid;
   border-color: #00897b;
@@ -161,26 +164,26 @@
 
 @media screen and (min-width: 1024px) {
   .language-switcher-wrapper {
-    width: 60px;
-    height: 23px;
-    padding-left: 5px;
-    padding-right: 5px;
+    width: 60 * 0.93 + px;
+    height: 23 * 0.93 + px;
+    padding-left: 5 * 0.93 + px;
+    padding-right: 5 * 0.93 + px;
 
     .switcher {
-      width: 7px;
-      height: 7px;
+      width: 7 * 0.93 + px;
+      height: 7 * 0.93 + px;
 
       &.active {
-        margin-left: 15px;
+        margin-left: 15 * 0.93 + px;
       }
     }
 
     .current-language-span {
-      font-size: 16px;
-      margin-left: 10px;
+      font-size: 16 * 0.93 + px;
+      margin-left: 10 * 0.93 + px;
 
       &.active {
-        margin-left: -40px;
+        margin-left: -40 * 0.93 + px;
       }
     }
   }

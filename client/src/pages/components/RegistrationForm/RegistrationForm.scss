@@ -55,7 +55,8 @@
       padding: 10px;
       border: none;
       outline: none;
-      background-color: white;
+      background-color: transparent;
+      z-index: 1;
 
       &::placeholder {
         opacity: 0;
@@ -128,19 +129,19 @@
       left: 12px;
       font-weight: 400;
       opacity: 0.8;
-      transition: 0.6s;
+      transition: all 0.3s linear;
       color: black;
-      cursor: text;
       -ms-user-select: none;
       -webkit-user-select: none;
       user-select: none;
+      cursor: text;
     }
 
     .line {
       width: 0;
-      height: 2px;
+      height: 3px;
       position: absolute;
-      bottom: 0;
+      bottom: -1px;
       left: -1px;
       background-color: yellowgreen;
       transition: 0.3s;

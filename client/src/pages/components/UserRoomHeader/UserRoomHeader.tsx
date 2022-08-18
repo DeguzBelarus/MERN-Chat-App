@@ -1,24 +1,24 @@
 import { FC, useState } from "react";
 import { useAppSelector } from "../../../app/hooks";
-import { selectCurrentLanguage } from "../../../app/globalSlice";
-import { selectUserNickname } from "../../../app/userSlice";
 
+import mainIcon from "../../../assets/favicon.png"
+import { selectCurrentLanguage } from "../../../app/globalSlice";
+import { getUserNickname } from "../../../app/userSlice";
 import "./UserRoomHeader.scss"
 interface Props {
-   logout: any,
+   logOut: any,
    chatEnter: any
    trainingDiaryEnter: any
    videoChatEnter: any
 }
 
 export const UserRoomHeader: FC<Props> = ({
-   logout, chatEnter, trainingDiaryEnter, videoChatEnter
+   logOut, chatEnter, trainingDiaryEnter, videoChatEnter
 }) => {
    const currentLanguage = useAppSelector(selectCurrentLanguage)
-   const nickname = useAppSelector(selectUserNickname)
+   const nickname = useAppSelector(getUserNickname)
 
    const [servicesIsOpen, setServicesIsOpen] = useState(false)
-
 
    //== services container spreading methods
    const servicesOpener = () => {
@@ -39,6 +39,11 @@ export const UserRoomHeader: FC<Props> = ({
    //== services container spreading methods
    return <header>
       <div className="nickname-wrapper">
+         <img
+            className="main-logo"
+            draggable={false}
+            src={mainIcon}
+            alt={currentLanguage === "ru" ? "главный логотип" : "main logo"} />
          <span>{nickname}</span>
       </div>
 
@@ -73,7 +78,7 @@ export const UserRoomHeader: FC<Props> = ({
       </div>
 
       <div className="exit-wrapper">
-         <span onClick={logout}>{currentLanguage === "ru" ? "Выйти" : "Exit"}</span>
+         <span onClick={logOut}>{currentLanguage === "ru" ? "Выйти" : "Exit"}</span>
       </div>
    </header>
 }

@@ -2,26 +2,30 @@ require("dotenv").config();
 const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const mongoose = require("mongoose");
 const path = require("path");
 const { ExpressPeerServer } = require("peer");
+
+const sequelize = require("./sequelize");
+const dbModels = require("./models/dbModels");
+const router = require("./routes/index");
+const errorHandlingMiddleware = require("./middleware/errorHandlingMiddleware");
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, { maxHttpBufferSize: 1e8 });
 const peerServer = ExpressPeerServer(server, { debug: true });
-
+app.use(express.json());
+app.use("/api", router);
+app.use(express.static("./client/build"));
 app.use("/peerjs", peerServer);
-app.use(express.json({ extended: true }));
-app.use("/api/authorization", require("./routes/authorization.router"));
-
-const PORT = process.env.PORT || 5000;
-const DB_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@maincluster.0cb8h.mongodb.net/chatDB?retryWrites=true&w=majority`;
+app.use(errorHandlingMiddleware);
 
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(path.join(__dirname, "client", "build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  app.get("*", (request, response) => {
+    response.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
@@ -405,19 +409,18 @@ io.on("connection", (socket) => {
   //== videochat listeners
 });
 
-const start = async () => {
+(async function () {
   try {
-    mongoose.connect(DB_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  } catch (e) {
-    console.log("Server error:", e.message);
-    process.exit(1);
-  }
+    await sequelize.authenticate();
+    await sequelize.sync();
 
-  server.listen(PORT, () => {
-    console.log(`Server has been started on port ${PORT}...`);
-  });
-};
-start();
+    server.listen(PORT, () => {
+      console.log(
+        "\x1b[40m\x1b[32m\x1b[4m\x1b[1m",
+        `Server has been started on port ${PORT}...`
+      );
+    });
+  } catch (exception) {
+    console.log("\x1b[40m\x1b[31m\x1b[1m", exception.message);
+  }
+})();

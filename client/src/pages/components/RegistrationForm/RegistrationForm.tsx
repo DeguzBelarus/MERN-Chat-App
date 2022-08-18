@@ -108,7 +108,7 @@ export const RegistrationForm: FC<Props> = (
          <input type="submit" className="registration-apply-button" form="registration-form" value={loading === "loading" ? currentLanguage === "ru" ? "Регистрация..." : "Registering..." : currentLanguage === "ru" ? "Зарегистрироваться" : "Register"} disabled={loading === "loading" ? true : false} ref={registerButton} />
       </div>
 
-      {loading !== "loading" && message && <MessageBox message={message} />}
+      {/* {loading !== "loading" && message && <MessageBox message={message} />} */}
       {loading === "loading" && <Loader />}
    </form>
 }

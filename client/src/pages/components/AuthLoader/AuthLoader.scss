@@ -1,0 +1,62 @@
+@import "../../../variables";
+
+.auth-loader-wrapper {
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    to right,
+    $auth-page-auth-loader-bgcolor-start,
+    $auth-page-auth-loader-bgcolor-end
+  );
+  transition: none;
+
+  &.loading {
+    width: 100%;
+    transition-property: width;
+    transition-duration: 0.5s;
+  }
+}
+
+@media screen and (max-width: 319px) {
+  .auth-loader-wrapper {
+    height: $auth-page-loader-default-height * 0.7 + px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 424px) {
+  .auth-loader-wrapper {
+    height: $auth-page-loader-default-height * 0.75 + px;
+  }
+}
+
+@media screen and (min-width: 425px) and (max-width: 767px) {
+  .auth-loader-wrapper {
+    height: $auth-page-loader-default-height * 0.8 + px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .auth-loader-wrapper {
+    height: $auth-page-loader-default-height * 0.9 + px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+  .auth-loader-wrapper {
+    height: $auth-page-loader-default-height * 0.95 + px;
+  }
+}
+
+@media screen and (min-width: 1440px) and (max-width: 2559px) {
+  .auth-loader-wrapper {
+    height: $auth-page-loader-default-height + px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .auth-loader-wrapper {
+    height: $auth-page-loader-default-height * 1.25 + px;
+  }
+}

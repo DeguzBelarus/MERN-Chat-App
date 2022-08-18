@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useAppSelector } from "../../../app/hooks";
 import { selectUsersInChat, selectPrivateRecipient } from "../../../app/chatSlice";
-import { selectUserNickname } from "../../../app/userSlice";
+import { getUserNickname } from "../../../app/userSlice";
 import { StatusIndicatorOnline, StatusIndicatorAFK } from "../StatusIndicators/StatusIndicators"
 import { selectCurrentLanguage } from "../../../app/globalSlice";
 
@@ -12,7 +12,7 @@ interface Props {
 
 export const UsersList: FC<Props> = ({ privateModeSet }) => {
    const usersInChat = useAppSelector(selectUsersInChat);
-   const nickname = useAppSelector(selectUserNickname);
+   const nickname = useAppSelector(getUserNickname);
    const privateRecipient = useAppSelector(selectPrivateRecipient);
    const currentLanguage = useAppSelector(selectCurrentLanguage)
 

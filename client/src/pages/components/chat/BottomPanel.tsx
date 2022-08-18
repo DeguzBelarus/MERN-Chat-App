@@ -2,7 +2,7 @@ import { useRef, FC, useState, useTransition, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { selectPrivateRecipient, privateRecipientSave, messagesInChatSave, selectMessagesInChat } from "../../../app/chatSlice";
-import { selectUserNickname } from "../../../app/userSlice";
+import { getUserNickname } from "../../../app/userSlice";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
 
 import "./BottomPanel.scss"
@@ -23,7 +23,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
 
    let messagesInChat = useAppSelector(selectMessagesInChat)
    const privateRecipient = useAppSelector(selectPrivateRecipient)
-   const nickname = useAppSelector(selectUserNickname)
+   const nickname = useAppSelector(getUserNickname)
    const currentLanguage = useAppSelector(selectCurrentLanguage)
 
    const [sendFileMode, setSendFileMode]: any = useState(false)

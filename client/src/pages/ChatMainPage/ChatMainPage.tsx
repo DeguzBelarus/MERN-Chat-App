@@ -1,6 +1,6 @@
 import { useEffect, FC, useTransition, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { selectUserNickname } from "../../app/userSlice";
+import { getUserNickname } from "../../app/userSlice";
 import { messagesInChatSave, usersInChatSave, selectMessagesInChat, privateRecipientSave } from "../../app/chatSlice";
 import { selectCurrentLanguage } from "../../app/globalSlice";
 
@@ -18,7 +18,7 @@ export const ChatMainPage: FC<Props> = ({ socket }) => {
    const dispatch = useAppDispatch()
    const [isPending, startTransition]: any = useTransition()
 
-   const nickname = useAppSelector(selectUserNickname)
+   const nickname = useAppSelector(getUserNickname)
    const currentLanguage = useAppSelector(selectCurrentLanguage)
    let messagesInChat = useAppSelector(selectMessagesInChat)
 

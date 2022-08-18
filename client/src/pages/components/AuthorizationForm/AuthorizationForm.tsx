@@ -2,6 +2,7 @@ import { FC, useRef, useEffect } from "react";
 import { useAppSelector } from "../../../app/hooks";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
 
+import mainLogo from "../../../assets/mysnlogo.svg"
 import { Loader } from "../../components/Loader/Loader";
 import { StayLoggedInBox } from "../StayLoggedInBox/StayLoggedInBox";
 import { MessageBox } from "../../components/MessageBox/MessageBox"
@@ -63,8 +64,6 @@ export const AuthorizationForm: FC<Props> = (
    }, [formData])
 
    return <form id="login-form" onSubmit={loginHandler}>
-      <p className="logo-text">MySN</p>
-
       <label htmlFor="emailInput" className="input-label">
          <input type="email"
             id="emailInput"
@@ -95,11 +94,17 @@ export const AuthorizationForm: FC<Props> = (
          <input type="submit" className="login-button" form="login-form" value={loading === "loading" ? currentLanguage === "ru" ? "Входим..." : "Enter..." : currentLanguage === "ru" ? "Войти" : "Enter"} disabled={loading === "loading" ? true : false} ref={enterButton} />
          <button type="button" className="registration-page-button" disabled={loading === "loading" ? true : false} onClick={transitionToRegitrationPage}>{currentLanguage === "ru" ? "Регистрация" : "Registration"}</button>
          <StayLoggedInBox
-            setIsStayLoggedIn={setIsStayLoggedIn}
-            isStayLoggedIn={isStayLoggedIn} />
+            // setIsStayLoggedIn={setIsStayLoggedIn}
+            // isStayLoggedIn={isStayLoggedIn}
+             />
       </div>
 
-      {loading !== "loading" && message && <MessageBox message={message} />}
+      {/* {loading !== "loading" && message && <MessageBox message={message} />} */}
       {loading === "loading" && <Loader />}
+      <img
+         className="mainlogo-image"
+         src={mainLogo}
+         draggable={false}
+         alt="the main logo" />
    </form >
 }

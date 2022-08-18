@@ -1,7 +1,8 @@
 import { FC, useEffect } from "react";
-
-import { useRoutes } from './routes';
 import { useAppDispatch } from "./app/hooks";
+
+import { checkAuthorizationAsync } from "./app/userSlice";
+import { useRoutes } from './hooks/useRoutes';
 import { peerIdSave } from "./app/webcamChatSlice ";
 
 interface Props {
@@ -14,11 +15,9 @@ const App: FC<Props> = ({ socket, peer }) => {
    const dispatch = useAppDispatch()
 
    useEffect(() => {
-      //== notification of connection establishment
       socket.on("connect", () => {
          console.log("websocket connection has been established...");
       })
-      //== notification of connection establishment
    }, [socket])
 
    useEffect(() => {
@@ -31,6 +30,13 @@ const App: FC<Props> = ({ socket, peer }) => {
       });
    }, [peer])
 
+
+   useEffect(() => {
+      if (localStorage.getItem("MySNToken")) {
+         const token: string | null = localStorage.getItem("MySNToken")
+         dispatch(checkAuthorizationAsync(token || ""))
+      }
+   }, [])
    return (
       <>
          {routes}

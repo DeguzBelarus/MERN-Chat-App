@@ -7,8 +7,22 @@ export function authorization(url: string, body: any) {
             "Content-Type": "application/json"
          }
       })
-   } catch (error: any) {
-      throw error
+   } catch (exception: any) {
+      console.error("\x1b[40m\x1b[31m\x1b[1m", exception.message);
+   }
+}
+
+export function checkAuthorization(url: string, token: string) {
+   try {
+      return fetch(url, {
+         method: "GET",
+         headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+         }
+      })
+   } catch (exception: any) {
+      console.error("\x1b[40m\x1b[31m\x1b[1m", exception.message);
    }
 }
 

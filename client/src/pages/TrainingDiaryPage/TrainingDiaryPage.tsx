@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { selectCurrentLanguage } from "../../app/globalSlice";
-import { selectUserNickname } from "../../app/userSlice";
+import { getUserNickname } from "../../app/userSlice";
 import { firebaseDB } from "../..";
 import { ref, set, onValue } from "firebase/database";
 
@@ -14,7 +14,7 @@ export const TrainingDiaryPage: FC = () => {
    const navigate = useNavigate()
 
    const currentLanguage = useAppSelector(selectCurrentLanguage)
-   const nickname = useAppSelector(selectUserNickname)
+   const nickname = useAppSelector(getUserNickname)
 
    const [trainingData, setTrainingData]: any[] = useState([])
    const [planningMode, setPlanningMode]: any = useState(false)

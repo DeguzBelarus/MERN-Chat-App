@@ -4,9 +4,9 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectCurrentLanguage } from "../../app/globalSlice";
 import {
    registrationAsync,
-   authMessageSave,
-   selectAuthMessage,
-   selectAuthStatus
+   setAuthMessage,
+   getAuthMessage,
+   getAuthStatus
 } from "../../app/userSlice";
 
 import { RegistrationForm } from "../components/RegistrationForm/RegistrationForm";
@@ -18,8 +18,8 @@ export const RegistrationPage: FC = () => {
    const dispatch = useAppDispatch()
 
    const currentLanguage = useAppSelector(selectCurrentLanguage)
-   const loading = useAppSelector(selectAuthStatus)
-   const message = useAppSelector(selectAuthMessage)
+   const loading = useAppSelector(getAuthStatus)
+   const message = useAppSelector(getAuthMessage)
 
    const [formData, setFormData]: any = useState({ nickname: "", email: "", password: "", currentLanguage: currentLanguage })
    const [clearMessageTimeout, setClearMessageTimeout]: any = useState(null)
@@ -31,15 +31,15 @@ export const RegistrationPage: FC = () => {
    const registerHandler = async (event: any) => {
       event.preventDefault()
       if (formData.email.length < 8 || !formData.email.includes("@") || !formData.email.includes(".")) {
-         return dispatch(authMessageSave(currentLanguage === "ru" ? "Введите корректный email" : "Enter the correct email"))
+         return dispatch(setAuthMessage(currentLanguage === "ru" ? "Введите корректный email" : "Enter the correct email"))
       }
 
       if (formData.password.length < 8) {
-         return dispatch(authMessageSave(currentLanguage === "ru" ? "Введите корректный пароль" : "Enter the correct password"))
+         return dispatch(setAuthMessage(currentLanguage === "ru" ? "Введите корректный пароль" : "Enter the correct password"))
       }
 
       if (formData.nickname.length < 2 || formData.nickname.length > 10) {
-         return dispatch(authMessageSave(currentLanguage === "ru" ? "Введите корректный никнейм" : "Enter the correct nickname"))
+         return dispatch(setAuthMessage(currentLanguage === "ru" ? "Введите корректный никнейм" : "Enter the correct nickname"))
       }
 
       dispatch(registrationAsync(JSON.stringify({ ...formData })))
@@ -54,7 +54,7 @@ export const RegistrationPage: FC = () => {
          clearTimeout(clearMessageTimeout)
       }
 
-      const clearMessageTimeoutCurrent = setTimeout(() => dispatch(authMessageSave("")), 5000)
+      const clearMessageTimeoutCurrent = setTimeout(() => dispatch(setAuthMessage("")), 5000)
       setClearMessageTimeout(clearMessageTimeoutCurrent)
    }, [message])
 
@@ -65,7 +65,7 @@ export const RegistrationPage: FC = () => {
    }, [currentLanguage])
 
    useEffect(() => {
-      dispatch(authMessageSave(""))
+      dispatch(setAuthMessage(""))
    }, [])
 
    return (

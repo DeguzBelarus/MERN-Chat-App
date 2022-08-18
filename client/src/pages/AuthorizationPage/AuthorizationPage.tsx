@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectCurrentLanguage } from "../../app/globalSlice";
 import {
-   userTokenSave,
-   userIdSave,
-   userNicknameSave,
-   selectToken,
+   setUserToken,
+   setUserId,
+   setUserNickname,
+   getToken,
    loginAsync,
-   selectIsStayLoggedIn,
-   isStayLoggedInSave,
-   authMessageSave,
-   selectAuthMessage,
-   selectAuthStatus
+   getIsStayLoggedIn,
+   setIsStayLoggedIn,
+   setAuthMessage,
+   getAuthMessage,
+   getAuthStatus
 } from "../../app/userSlice";
 import { currentLanguageSave } from "../../app/globalSlice";
 
@@ -24,11 +24,11 @@ export const AuthorizationPage: FC = () => {
    const dispatch = useAppDispatch()
    const navigate = useNavigate()
 
-   const token = useAppSelector(selectToken)
+   const token = useAppSelector(getToken)
    const currentLanguage = useAppSelector(selectCurrentLanguage)
-   const isStayLoggedIn = useAppSelector(selectIsStayLoggedIn)
-   const loading = useAppSelector(selectAuthStatus)
-   const message = useAppSelector(selectAuthMessage)
+   const isStayLoggedIn = useAppSelector(getIsStayLoggedIn)
+   const loading = useAppSelector(getAuthStatus)
+   const message = useAppSelector(getAuthMessage)
 
    const [formData, setFormData]: any = useState({ email: "", password: "", currentLanguage: currentLanguage })
    const [clearMessageTimeout, setClearMessageTimeout]: any = useState(null)
@@ -40,11 +40,11 @@ export const AuthorizationPage: FC = () => {
    const loginHandler = async (event: any) => {
       event.preventDefault()
       if (formData.email.length < 8 || !formData.email.includes("@") || !formData.email.includes(".")) {
-         return dispatch(authMessageSave(currentLanguage === "ru" ? "Введите корректный email" : "Enter the correct email"))
+         return dispatch(setAuthMessage(currentLanguage === "ru" ? "Введите корректный email" : "Enter the correct email"))
       }
 
       if (formData.password.length < 8) {
-         return dispatch(authMessageSave(currentLanguage === "ru" ? "Введите корректный пароль" : "Enter the correct password"))
+         return dispatch(setAuthMessage(currentLanguage === "ru" ? "Введите корректный пароль" : "Enter the correct password"))
       }
 
       dispatch(loginAsync(JSON.stringify({ ...formData })))
@@ -59,14 +59,14 @@ export const AuthorizationPage: FC = () => {
          let save: any = localStorage.getItem('saveChat')
          if (save) {
             save = JSON.parse(save)
-            dispatch(userTokenSave(save.token))
-            dispatch(userIdSave(save.userId))
-            dispatch(userNicknameSave(save.nickname))
+            dispatch(setUserToken(save.token))
+            dispatch(setUserId(save.userId))
+            dispatch(setUserNickname(save.nickname))
 
             if (currentLanguage === "ru") {
-               dispatch(authMessageSave(`${save.nickname}, Вы успешно вошли в систему!`))
+               dispatch(setAuthMessage(`${save.nickname}, Вы успешно вошли в систему!`))
             } else {
-               dispatch(authMessageSave(`${save.nickname}, You have successfully logged in!`))
+               dispatch(setAuthMessage(`${save.nickname}, You have successfully logged in!`))
             }
 
             navigate(`/usersroom/${save.nickname}`)
@@ -81,7 +81,7 @@ export const AuthorizationPage: FC = () => {
          clearTimeout(clearMessageTimeout)
       }
 
-      const clearMessageTimeoutCurrent = setTimeout(() => dispatch(authMessageSave("")), 5000)
+      const clearMessageTimeoutCurrent = setTimeout(() => dispatch(setAuthMessage("")), 5000)
       setClearMessageTimeout(clearMessageTimeoutCurrent)
    }, [message])
 
@@ -92,7 +92,7 @@ export const AuthorizationPage: FC = () => {
    }, [currentLanguage])
 
    useEffect(() => {
-      dispatch(authMessageSave(""))
+      dispatch(setAuthMessage(""))
       if (navigator.language !== "ru" && navigator.language !== "ru-RU") {
          dispatch(currentLanguageSave("en"))
       }
@@ -112,7 +112,7 @@ export const AuthorizationPage: FC = () => {
             changeHandler={changeHandler}
             formData={formData}
             isStayLoggedIn={isStayLoggedIn}
-            setIsStayLoggedIn={() => dispatch(isStayLoggedInSave(true))} />
+            setIsStayLoggedIn={() => dispatch(setIsStayLoggedIn(true))} />
 
          <span className="copyright">© Deguz, design: Annet, 2022</span>
       </div >

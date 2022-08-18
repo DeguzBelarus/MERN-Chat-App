@@ -1,7 +1,7 @@
 import { FC, useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
-import { selectUserNickname } from "../../../app/userSlice";
+import { getUserNickname } from "../../../app/userSlice";
 import { firebaseDB } from "../../..";
 import { ref, set } from "firebase/database";
 
@@ -41,7 +41,7 @@ export const TrainingAdd: FC<Props> = ({
    //== planData inputs
 
    const currentLanguage = useSelector(selectCurrentLanguage)
-   const nickname = useSelector(selectUserNickname)
+   const nickname = useSelector(getUserNickname)
 
    const [exerciseMessage, setExerciseMessage]: any = useState(null)
    const [planData, setPlanData] = useState({ id: 0, exercise: "", weight: 0, sets: 0, repeats: 0, q: 1, meters: 0, calories: 0 })

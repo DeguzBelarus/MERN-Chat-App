@@ -1,0 +1,753 @@
+@import "../../../variables";
+
+.auth-form {
+  @include user-select-none;
+  background-color: #fff;
+  transition-property: margin;
+  transition-timing-function: linear;
+  transition-duration: 0.7s;
+
+  &.registration {
+  }
+
+  .form-core-login {
+  }
+
+  .form-core-reg {
+  }
+
+  .form-core-login,
+  .form-core-reg {
+    opacity: 0;
+    animation-name: manifestation;
+    animation-duration: 0.35s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    .form-header {
+      font-family: "Mariupol Regular";
+    }
+
+    label,
+    .label-password-confirm {
+      background-color: #fff;
+      transition-property: border-color;
+      transition-timing-function: linear;
+      transition-duration: 0.7s;
+
+      &.invalid {
+      }
+
+      &.valid {
+      }
+
+      &:last-of-type {
+      }
+
+      input {
+        font-family: "Mariupol Regular";
+
+        &::placeholder {
+          transition-property: opacity;
+          transition-duration: 0.5s;
+        }
+
+        &:focus {
+          outline: none;
+
+          &::placeholder {
+            opacity: 0;
+          }
+        }
+      }
+    }
+
+    .label-password-confirm {
+    }
+
+    .buttons {
+      .exit-button {
+        background-color: #fff;
+        font-family: "Mariupol Regular";
+        color: #000;
+        cursor: pointer;
+      }
+
+      .login-button,
+      .register-button {
+        font-family: "Mariupol Regular";
+        background-color: $auth-page-auth-form-loginAndRegButtons-bgcolor;
+        color: #fff;
+        transition-property: background-color;
+        transition-duration: 0.7s;
+        transition-timing-function: linear;
+        cursor: pointer;
+
+        &:disabled {
+          background-color: #888;
+        }
+      }
+
+      .exit-button,
+      .login-button,
+      .register-button {
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+@keyframes manifestation {
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 319px) {
+}
+
+@media screen and (min-width: 320px) {
+}
+
+@media screen and (min-width: 425px) {
+  .auth-form {
+    width: $auth-page-auth-form-default-width * 0.43 + px;
+    height: $auth-page-auth-form-default-height * 0.5 + px;
+    @include flex-column-line-center-vertical-top;
+    position: relative;
+    padding: 56 * 0.1 + px 88 * 0.4 + px;
+    margin-top: calc(
+      (
+        #{($auth-page-auth-form-default-height * 0.5 * -0.5 + px)} - #{(
+            $auth-page-info-box-default-height * 0.5 * -0.5 + px
+          )}
+      )
+    );
+    margin-left: $auth-page-info-box-default-width * 0.5 -
+      $auth-page-auth-form-default-width * 0.66 -
+      $auth-page-info-box-default-width * 0.7 * 0.0325 * 2 + px;
+    overflow: hidden;
+
+    &.registration {
+      margin-left: 0;
+    }
+
+    .form-core-login {
+      height: $auth-page-auth-form-core-login-default-height * 0.6 + px;
+    }
+
+    .form-core-reg {
+      height: $auth-page-auth-form-core-reg-default-height * 0.6 + px;
+    }
+
+    .form-core-login,
+    .form-core-reg {
+      width: $auth-page-auth-form-core-default-width * 0.5 + px;
+      @include flex-column-all-center;
+
+      .form-header {
+        font-size: 40 * 0.6 + px;
+        margin-bottom: 20 * 0.6 + px;
+      }
+
+      label,
+      .label-password-confirm {
+        width: 100%;
+        height: $auth-page-auth-form-inputs-default-height * 0.58 + px;
+        position: relative;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        margin-bottom: 19 * 0.4 + px;
+
+        &.invalid {
+          border: 1px solid red;
+        }
+
+        &.valid {
+          border: 1px solid yellowgreen;
+        }
+
+        &:last-of-type {
+          margin-bottom: 55 * 0.3 + px;
+        }
+
+        input {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          padding-left: $auth-page-auth-form-inputs-default-leftPadding * 0.6 +
+            px;
+          font-size: $default-fontSize * 0.6 + px;
+          border: none;
+          border-radius: 5px;
+
+          &::placeholder {
+          }
+
+          &:focus {
+            &::placeholder {
+            }
+          }
+        }
+      }
+
+      .label-password-confirm {
+        margin-top: -9 * 0.6 + px;
+      }
+
+      .buttons {
+        width: 100%;
+        @include flex-line-end-vertical-center;
+        position: relative;
+        gap: 10 * 0.6 + px;
+
+        .exit-button {
+          width: $auth-page-auth-form-defaultPageButton-default-width * 0.6 + px;
+          height: $auth-page-auth-form-loginAndRegButtons-default-height * 0.6 +
+            px;
+          @include flex-all-center;
+          border: 1px solid $auth-page-auth-form-defaultPageButton-bcolor;
+          font-size: $default-fontSize * 0.6 + px;
+          border-radius: 5px;
+        }
+
+        .login-button,
+        .register-button {
+          width: $auth-page-auth-form-loginAndRegButtons-default-width * 0.6 +
+            px;
+          height: $auth-page-auth-form-loginAndRegButtons-default-height * 0.6 +
+            px;
+          @include flex-all-center;
+          border: none;
+          font-size: $default-fontSize * 0.6 + px;
+          border-radius: 5px;
+        }
+
+        .exit-button,
+        .login-button,
+        .register-button {
+          &:focus {
+            border: 1px solid yellowgreen;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .auth-form {
+    width: $auth-page-auth-form-default-width * 0.76 + px;
+    height: $auth-page-auth-form-default-height * 0.76 + px;
+    @include flex-column-line-center-vertical-top;
+    position: relative;
+    padding: 56 * 0.76 + px 88 * 0.76 + px;
+    margin-top: calc(
+      (
+        #{($auth-page-auth-form-default-height * 0.76 * -0.5 + px)} - #{(
+            $auth-page-info-box-default-height * 0.76 * -0.5 + px
+          )}
+      )
+    );
+    margin-left: $auth-page-info-box-default-width * 0.66 -
+      $auth-page-auth-form-default-width * 0.76 -
+      $auth-page-info-box-default-width * 0.66 * 0.0325 * 2 + px;
+    overflow: hidden;
+
+    &.registration {
+      margin-left: 0;
+    }
+
+    .form-core-login {
+      height: $auth-page-auth-form-core-login-default-height * 0.76 + px;
+    }
+
+    .form-core-reg {
+      height: $auth-page-auth-form-core-reg-default-height * 0.76 + px;
+    }
+
+    .form-core-login,
+    .form-core-reg {
+      width: $auth-page-auth-form-core-default-width * 0.76 + px;
+      @include flex-column-all-center;
+
+      .form-header {
+        font-size: 40 * 0.76 + px;
+        margin-bottom: 20 * 0.76 + px;
+      }
+
+      label,
+      .label-password-confirm {
+        width: 100%;
+        height: $auth-page-auth-form-inputs-default-height * 0.76 + px;
+        position: relative;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        margin-bottom: 19 * 0.76 + px;
+
+        &.invalid {
+          border: 1px solid red;
+        }
+
+        &.valid {
+          border: 1px solid yellowgreen;
+        }
+
+        &:last-of-type {
+          margin-bottom: 55 * 0.76 + px;
+        }
+
+        input {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          padding-left: $auth-page-auth-form-inputs-default-leftPadding * 0.76 +
+            px;
+          font-size: $default-fontSize * 0.76 + px;
+          line-height: 22.4 * 0.76 + px;
+          border: none;
+          border-radius: 5px;
+
+          &::placeholder {
+          }
+
+          &:focus {
+            &::placeholder {
+            }
+          }
+        }
+      }
+
+      .label-password-confirm {
+        margin-top: -9 * 0.76 + px;
+      }
+
+      .buttons {
+        width: 100%;
+        @include flex-line-end-vertical-center;
+        position: relative;
+        gap: 10 * 0.76 + px;
+
+        .exit-button {
+          width: $auth-page-auth-form-defaultPageButton-default-width * 0.76 +
+            px;
+          height: $auth-page-auth-form-loginAndRegButtons-default-height * 0.76 +
+            px;
+          @include flex-all-center;
+          border: 1px solid $auth-page-auth-form-defaultPageButton-bcolor;
+          font-size: $default-fontSize * 0.76 + px;
+          line-height: 22.4 * 0.76 + px;
+          border-radius: 5px;
+        }
+
+        .login-button,
+        .register-button {
+          width: $auth-page-auth-form-loginAndRegButtons-default-width * 0.76 +
+            px;
+          height: $auth-page-auth-form-loginAndRegButtons-default-height * 0.76 +
+            px;
+          @include flex-all-center;
+          border: none;
+          font-size: $default-fontSize * 0.76 + px;
+          line-height: 22.4 * 0.76 + px;
+          border-radius: 5px;
+        }
+
+        .exit-button,
+        .login-button,
+        .register-button {
+          &:focus {
+            border: 1px solid yellowgreen;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .auth-form {
+    width: $auth-page-auth-form-default-width * 0.88 + px;
+    height: $auth-page-auth-form-default-height * 0.88 + px;
+    @include flex-column-line-center-vertical-top;
+    position: relative;
+    padding: 56 * 0.88 + px 88 * 0.88 + px;
+    margin-top: calc(
+      (
+        #{($auth-page-auth-form-default-height * 0.88 * -0.5 + px)} - #{(
+            $auth-page-info-box-default-height * 0.88 * -0.5 + px
+          )}
+      )
+    );
+    margin-left: $auth-page-info-box-default-width * 0.88 -
+      $auth-page-auth-form-default-width * 0.88 -
+      $auth-page-info-box-default-width * 0.88 * 0.0325 * 2 + px;
+    overflow: hidden;
+
+    &.registration {
+      margin-left: 0;
+    }
+
+    .form-core-login {
+      height: $auth-page-auth-form-core-login-default-height * 0.88 + px;
+    }
+
+    .form-core-reg {
+      height: $auth-page-auth-form-core-reg-default-height * 0.88 + px;
+    }
+
+    .form-core-login,
+    .form-core-reg {
+      width: $auth-page-auth-form-core-default-width * 0.88 + px;
+      @include flex-column-all-center;
+
+      .form-header {
+        font-size: 40 * 0.88 + px;
+        margin-bottom: 20 * 0.88 + px;
+      }
+
+      label,
+      .label-password-confirm {
+        width: 100%;
+        height: $auth-page-auth-form-inputs-default-height * 0.88 + px;
+        position: relative;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        margin-bottom: 19 * 0.88 + px;
+
+        &.invalid {
+          border: 1px solid red;
+        }
+
+        &.valid {
+          border: 1px solid yellowgreen;
+        }
+
+        &:last-of-type {
+          margin-bottom: 55 * 0.88 + px;
+        }
+
+        input {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          padding-left: $auth-page-auth-form-inputs-default-leftPadding * 0.88 +
+            px;
+          font-size: $default-fontSize * 0.88 + px;
+          line-height: 22.4 * 0.88 + px;
+          border: none;
+          border-radius: 5px;
+
+          &::placeholder {
+          }
+
+          &:focus {
+            &::placeholder {
+            }
+          }
+        }
+      }
+
+      .label-password-confirm {
+        margin-top: -9 * 0.88 + px;
+      }
+
+      .buttons {
+        width: 100%;
+        @include flex-line-end-vertical-center;
+        position: relative;
+        gap: 10 * 0.88 + px;
+
+        .exit-button {
+          width: $auth-page-auth-form-defaultPageButton-default-width * 0.88 +
+            px;
+          height: $auth-page-auth-form-loginAndRegButtons-default-height * 0.88 +
+            px;
+          @include flex-all-center;
+          border: 1px solid $auth-page-auth-form-defaultPageButton-bcolor;
+          font-size: $default-fontSize * 0.88 + px;
+          line-height: 22.4 * 0.88 + px;
+          border-radius: 5px;
+        }
+
+        .login-button,
+        .register-button {
+          width: $auth-page-auth-form-loginAndRegButtons-default-width * 0.88 +
+            px;
+          height: $auth-page-auth-form-loginAndRegButtons-default-height * 0.88 +
+            px;
+          @include flex-all-center;
+          border: none;
+          font-size: $default-fontSize * 0.88 + px;
+          line-height: 22.4 * 0.88 + px;
+          border-radius: 5px;
+        }
+
+        .exit-button,
+        .login-button,
+        .register-button {
+          &:focus {
+            border: 1px solid yellowgreen;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .auth-form {
+    width: $auth-page-auth-form-default-width + px;
+    height: $auth-page-auth-form-default-height + px;
+    @include flex-column-line-center-vertical-top;
+    position: relative;
+    padding: 56px 88px;
+    margin-top: calc(
+      (
+        #{($auth-page-auth-form-default-height * -0.5 + px)} - #{(
+            $auth-page-info-box-default-height * -0.5 + px
+          )}
+      )
+    );
+    margin-left: $auth-page-info-box-default-width -
+      $auth-page-auth-form-default-width - $auth-page-info-box-default-width *
+      0.0325 * 2 + px;
+    overflow: hidden;
+
+    &.registration {
+      margin-left: 0;
+    }
+
+    .form-core-login {
+      height: $auth-page-auth-form-core-login-default-height + px;
+    }
+
+    .form-core-reg {
+      height: $auth-page-auth-form-core-reg-default-height + px;
+    }
+
+    .form-core-login,
+    .form-core-reg {
+      width: $auth-page-auth-form-core-default-width + px;
+      @include flex-column-all-center;
+
+      .form-header {
+        font-size: 40px;
+        margin-bottom: 20px;
+      }
+
+      label,
+      .label-password-confirm {
+        width: 100%;
+        height: $auth-page-auth-form-inputs-default-height + px;
+        position: relative;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        margin-bottom: 19px;
+
+        &.invalid {
+          border: 1px solid red;
+        }
+
+        &.valid {
+          border: 1px solid yellowgreen;
+        }
+
+        &:last-of-type {
+          margin-bottom: 55px;
+        }
+
+        input {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          padding-left: $auth-page-auth-form-inputs-default-leftPadding + px;
+          font-size: $default-fontSize + px;
+          line-height: 22.4px;
+          border: none;
+          border-radius: 5px;
+
+          &::placeholder {
+          }
+
+          &:focus {
+            &::placeholder {
+            }
+          }
+        }
+      }
+
+      .label-password-confirm {
+        margin-top: -9px;
+      }
+
+      .buttons {
+        width: 100%;
+        @include flex-line-end-vertical-center;
+        position: relative;
+        gap: 10px;
+
+        .exit-button {
+          width: $auth-page-auth-form-defaultPageButton-default-width + px;
+          height: $auth-page-auth-form-loginAndRegButtons-default-height + px;
+          @include flex-all-center;
+          border: 1px solid $auth-page-auth-form-defaultPageButton-bcolor;
+          font-size: $default-fontSize + px;
+          line-height: 22.4px;
+          border-radius: 5px;
+        }
+
+        .login-button,
+        .register-button {
+          width: $auth-page-auth-form-loginAndRegButtons-default-width + px;
+          height: $auth-page-auth-form-loginAndRegButtons-default-height + px;
+          @include flex-all-center;
+          border: none;
+          font-size: $default-fontSize + px;
+          line-height: 22.4px;
+          border-radius: 5px;
+        }
+
+        .exit-button,
+        .login-button,
+        .register-button {
+          &:focus {
+            border: 1px solid yellowgreen;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .auth-form {
+    width: $auth-page-auth-form-default-width * 1.25 + px;
+    height: $auth-page-auth-form-default-height * 1.25 + px;
+    @include flex-column-line-center-vertical-top;
+    position: relative;
+    padding: 56 * 1.25 + px 88 * 1.25 + px;
+    margin-top: calc(
+      (
+        #{($auth-page-auth-form-default-height * 1.25 * -0.5 + px)} - #{(
+            $auth-page-info-box-default-height * 1.25 * -0.5 + px
+          )}
+      )
+    );
+    margin-left: $auth-page-info-box-default-width * 1.25 -
+      $auth-page-auth-form-default-width * 1.25 -
+      $auth-page-info-box-default-width * 1.25 * 0.0325 * 2 + px;
+    overflow: hidden;
+
+    &.registration {
+      margin-left: 0;
+    }
+
+    .form-core-login {
+      height: $auth-page-auth-form-core-login-default-height * 1.25 + px;
+    }
+
+    .form-core-reg {
+      height: $auth-page-auth-form-core-reg-default-height * 1.25 + px;
+    }
+
+    .form-core-login,
+    .form-core-reg {
+      width: $auth-page-auth-form-core-default-width * 1.25 + px;
+      @include flex-column-all-center;
+
+      .form-header {
+        font-size: 40 * 1.25 + px;
+        margin-bottom: 20 * 1.25 + px;
+      }
+
+      label,
+      .label-password-confirm {
+        width: 100%;
+        height: $auth-page-auth-form-inputs-default-height * 1.25 + px;
+        position: relative;
+        border: 2px solid #000000;
+        border-radius: 5 * 1.25 + px;
+        margin-bottom: 19 * 1.25 + px;
+
+        &.invalid {
+          border: 2px solid red;
+        }
+
+        &.valid {
+          border: 2px solid yellowgreen;
+        }
+
+        &:last-of-type {
+          margin-bottom: 55 * 1.25 + px;
+        }
+
+        input {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          padding-left: $auth-page-auth-form-inputs-default-leftPadding * 1.25 +
+            px;
+          font-size: $default-fontSize * 1.25 + px;
+          line-height: 22.4 * 1.25 + px;
+          border: none;
+          border-radius: 5 * 1.25 + px;
+
+          &::placeholder {
+          }
+
+          &:focus {
+            &::placeholder {
+            }
+          }
+        }
+      }
+
+      .label-password-confirm {
+        margin-top: -9px;
+      }
+
+      .buttons {
+        width: 100%;
+        @include flex-line-end-vertical-center;
+        position: relative;
+        gap: 10 * 1.25 + px;
+
+        .exit-button {
+          width: $auth-page-auth-form-defaultPageButton-default-width * 1.25 +
+            px;
+          height: $auth-page-auth-form-loginAndRegButtons-default-height * 1.25 +
+            px;
+          @include flex-all-center;
+          border: 2px solid $auth-page-auth-form-defaultPageButton-bcolor;
+          font-size: $default-fontSize * 1.25 + px;
+          line-height: 22.4 * 1.25 + px;
+          border-radius: 5 * 1.25 + px;
+        }
+
+        .login-button,
+        .register-button {
+          width: $auth-page-auth-form-loginAndRegButtons-default-width * 1.25 +
+            px;
+          height: $auth-page-auth-form-loginAndRegButtons-default-height * 1.25 +
+            px;
+          @include flex-all-center;
+          border: none;
+          font-size: $default-fontSize * 1.25 + px;
+          line-height: 22.4 * 1.25 + px;
+          border-radius: 5 * 1.25 + px;
+        }
+
+        .exit-button,
+        .login-button,
+        .register-button {
+          &:focus {
+            border: 2px solid yellowgreen;
+          }
+        }
+      }
+    }
+  }
+}

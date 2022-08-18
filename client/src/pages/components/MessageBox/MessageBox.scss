@@ -1,33 +1,35 @@
+@import "../../../variables";
+
 .message-box {
   width: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-all-center;
   position: absolute;
-  bottom: 0;
-  right: 5px;
+  top: 0;
+  right: 0;
   padding: 5px;
+  transform: translateY(-$auth-page-message-box-default-height + px);
   animation-name: message-dropdown;
   animation-duration: 0.4s;
-  animation-delay: 0s;
   animation-fill-mode: forwards;
   animation-timing-function: linear;
-  box-sizing: border-box;
+  background-color: rgba($color: #eee, $alpha: 0.7);
 
   span {
+    font-family: "Mariupol Regular";
     color: green;
   }
 }
 
 @keyframes message-dropdown {
   100% {
-    transform: translateY(-20px);
+    transform: none;
   }
 }
 
 @media screen and (max-width: 319px) {
   .message-box {
+    height: $auth-page-message-box-default-height * 0.75 + px;
+
     span {
       font-size: 10px;
     }
@@ -36,6 +38,8 @@
 
 @media screen and (min-width: 320px) {
   .message-box {
+    height: $auth-page-message-box-default-height * 0.8 + px;
+
     span {
       font-size: 11px;
     }
@@ -44,6 +48,8 @@
 
 @media screen and (min-width: 425px) {
   .message-box {
+    height: $auth-page-message-box-default-height * 0.85 + px;
+
     span {
       font-size: 12px;
     }
@@ -52,6 +58,8 @@
 
 @media screen and (min-width: 768px) {
   .message-box {
+    height: $auth-page-message-box-default-height * 0.9 + px;
+
     span {
       font-size: 14px;
     }
@@ -60,14 +68,28 @@
 
 @media screen and (min-width: 1024px) {
   .message-box {
+    height: $auth-page-message-box-default-height * 0.95 + px;
+
     span {
       font-size: 15px;
     }
   }
 }
 
+@media screen and (min-width: 1440px) {
+  .message-box {
+    height: $auth-page-message-box-default-height + px;
+
+    span {
+      font-size: 16px;
+    }
+  }
+}
+
 @media screen and (min-width: 2560px) {
   .message-box {
+    height: $auth-page-message-box-default-height * 1.25 + px;
+
     span {
       font-size: 20px;
     }

@@ -1,5 +1,12 @@
+@import "../../../variables";
+
 .stay-loggedin-box {
   position: absolute;
+  opacity: 0;
+  animation-name: manifestation;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-duration: 0.7s;
 
   .checkbox {
     position: relative;
@@ -8,19 +15,19 @@
       appearance: none;
       margin-right: 7px;
 
-      &:checked + label {
+      &:checked + .stay-logged-in-label {
         &::after {
           opacity: 1;
         }
       }
     }
 
-    label {
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      color: #00897b;
+    .stay-logged-in-label {
+      @include user-select-none;
       font-weight: bold;
+      font-family: "Mariupol Regular";
+      color: #00897b;
+      border: none;
 
       &::before {
         content: "";
@@ -46,12 +53,18 @@
   }
 }
 
+@keyframes manifestation {
+  100% {
+    opacity: 1;
+  }
+}
+
 @media screen and (max-width: 319px) {
   .stay-loggedin-box {
     bottom: -22px;
 
     .checkbox {
-      label {
+      .stay-logged-in-label {
         padding-left: 5px;
         font-size: 10px;
 
@@ -74,10 +87,10 @@
 
 @media screen and (min-width: 320px) {
   .stay-loggedin-box {
-    bottom: -22px;
+    bottom: -30px;
 
     .checkbox {
-      label {
+      .stay-logged-in-label {
         padding-left: 6px;
         font-size: 11px;
 
@@ -100,22 +113,24 @@
 
 @media screen and (min-width: 425px) {
   .stay-loggedin-box {
+    bottom: -20px;
+
     .checkbox {
-      label {
+      .stay-logged-in-label {
         padding-left: 7px;
-        font-size: 12px;
+        font-size: 11px;
 
         &::before {
-          width: 12px;
-          height: 12px;
-          top: 4px;
-          left: 0;
+          width: 11px;
+          height: 11px;
+          top: 0px;
+          left: -7px;
         }
 
         &::after {
-          top: 2px;
-          left: 1.6px;
-          font-size: 12px;
+          top: -1px;
+          left: -5px;
+          font-size: 10px;
         }
       }
     }
@@ -125,20 +140,20 @@
 @media screen and (min-width: 768px) {
   .stay-loggedin-box {
     .checkbox {
-      label {
+      .stay-logged-in-label {
         padding-left: 10px;
         font-size: 14px;
 
         &::before {
           width: 14px;
           height: 14px;
-          top: 2px;
-          left: 0;
+          top: 0px;
+          left: -7px;
         }
 
         &::after {
-          top: 0;
-          left: 1.7px;
+          top: -2px;
+          left: -5.5px;
           font-size: 14px;
         }
       }
@@ -149,21 +164,45 @@
 @media screen and (min-width: 1024px) {
   .stay-loggedin-box {
     .checkbox {
-      label {
+      .stay-logged-in-label {
         padding-left: 11px;
         font-size: 15px;
 
         &::before {
           width: 15px;
           height: 15px;
-          top: 2px;
-          left: 0;
+          top: 0;
+          left: -8px;
         }
 
         &::after {
-          top: 0;
-          left: 1.8px;
+          top: -2px;
+          left: -6px;
           font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .stay-loggedin-box {
+    .checkbox {
+      .stay-logged-in-label {
+        padding-left: 12px;
+        font-size: 16px;
+
+        &::before {
+          width: 16px;
+          height: 16px;
+          top: 0;
+          left: -8px;
+        }
+
+        &::after {
+          top: -2px;
+          left: -6px;
+          font-size: 16px;
         }
       }
     }
@@ -172,23 +211,23 @@
 
 @media screen and (min-width: 2560px) {
   .stay-loggedin-box {
-    bottom: -30px;
+    bottom: -40px;
 
     .checkbox {
-      label {
+      .stay-logged-in-label {
         padding-left: 18px;
         font-size: 20px;
 
         &::before {
           width: 20px;
           height: 20px;
-          top: 2px;
-          left: 0;
+          top: 0;
+          left: -8px;
         }
 
         &::after {
           top: -2px;
-          left: 2.2px;
+          left: -6px;
           font-size: 20px;
         }
       }

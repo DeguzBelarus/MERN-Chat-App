@@ -1,21 +1,21 @@
 import { FC } from "react";
-import { useAppSelector } from "../../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../../app/hooks";
+
+import { getIsStayLoggedIn, setIsStayLoggedIn } from "../../../app/userSlice";
 import { selectCurrentLanguage } from "../../../app/globalSlice";
-
 import "./StayLoggedInBox.scss"
-interface Props {
-   setIsStayLoggedIn: any,
-   isStayLoggedIn: boolean
-}
 
-export const StayLoggedInBox: FC<Props> = ({ setIsStayLoggedIn, isStayLoggedIn }) => {
+export const StayLoggedInBox: FC = () => {
+   const dispatch = useAppDispatch()
+
    const currentLanguage = useAppSelector(selectCurrentLanguage)
+   const isStayLoggedIn: boolean = useAppSelector(getIsStayLoggedIn)
 
    const isStayLoggedInHandle = () => {
       if (isStayLoggedIn) {
-         setIsStayLoggedIn(false)
+         dispatch(setIsStayLoggedIn(false))
       } else {
-         setIsStayLoggedIn(true)
+         dispatch(setIsStayLoggedIn(true))
       }
    }
 
@@ -29,12 +29,11 @@ export const StayLoggedInBox: FC<Props> = ({ setIsStayLoggedIn, isStayLoggedIn }
             checked={isStayLoggedIn}
             onChange={isStayLoggedInHandle} />
 
-         <label htmlFor="loggedin-input">
+         <label htmlFor="loggedin-input" className="stay-logged-in-label">
             {currentLanguage === "ru"
                ? "Оставаться в системе"
                : "Stay logged in"}
          </label>
-
       </div>
    </div>
 }

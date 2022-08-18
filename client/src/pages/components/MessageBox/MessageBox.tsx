@@ -1,10 +1,16 @@
-import { FC } from "react";
+import { FC } from "react"
+import { useAppSelector } from "../../../app/hooks"
 
+import { getAuthMessage } from "../../../app/userSlice"
 import "./MessageBox.scss"
-interface Props {
-   message: string
-}
 
-export const MessageBox: FC<Props> = ({ message }) => {
-   return <div className="message-box"><span>{message}</span></div>
+export const MessageBox: FC = () => {
+   const authMessage: string = useAppSelector(getAuthMessage)
+
+   return <div
+      className="message-box">
+      <span>
+         {authMessage}
+      </span>
+   </div>
 }
