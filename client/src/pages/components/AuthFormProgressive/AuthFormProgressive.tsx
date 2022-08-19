@@ -424,8 +424,12 @@ export const AuthFormProgressive: FC<Props> = ({ type, loginAndRegistrationSwitc
             <input
                type="password"
                id="password-reg-input"
-               placeholder={currentLanguage === "ru" ? "Пароль" : "Password"}
-               title={currentLanguage === "ru" ? "Пароль" : "Password"}
+               placeholder={currentLanguage === "ru"
+                  ? "Пароль (8+ символов)"
+                  : "Password (8+ characters)"}
+               title={currentLanguage === "ru"
+                  ? "Пароль (8+ символов)"
+                  : "Password (8+ characters)"}
                minLength={8}
                maxLength={255}
                required
