@@ -61,7 +61,7 @@
 
 @media screen and (max-width: 319px) {
   .stay-loggedin-box {
-    bottom: -22px;
+    bottom: -16px;
 
     .checkbox {
       .stay-logged-in-label {
@@ -87,7 +87,7 @@
 
 @media screen and (min-width: 320px) {
   .stay-loggedin-box {
-    bottom: -30px;
+    bottom: -18px;
 
     .checkbox {
       .stay-logged-in-label {
@@ -139,6 +139,8 @@
 
 @media screen and (min-width: 768px) {
   .stay-loggedin-box {
+    bottom: -30px;
+
     .checkbox {
       .stay-logged-in-label {
         padding-left: 10px;
