@@ -251,8 +251,13 @@ export const AuthFormProgressive: FC<Props> = ({ type, loginAndRegistrationSwitc
                case document.activeElement === passwordLoginInput.current:
                   loginExitButton.current?.focus()
                   break
-               case document.activeElement === loginExitButton.current:
+               case document.activeElement === loginExitButton.current
+                  && !loginButton.current?.disabled:
                   loginButton.current?.focus()
+                  break
+               case document.activeElement === loginExitButton.current
+                  && loginButton.current?.disabled:
+                  loginAndRegistrationSwitchButton.current?.focus()
                   break
                case document.activeElement === loginButton.current:
                   loginAndRegistrationSwitchButton.current?.focus()
@@ -277,8 +282,13 @@ export const AuthFormProgressive: FC<Props> = ({ type, loginAndRegistrationSwitc
                case document.activeElement === passwordConfirmInput.current:
                   registerExitButton.current?.focus()
                   break
-               case document.activeElement === registerExitButton.current:
+               case document.activeElement === registerExitButton.current
+                  && !registerButton.current?.disabled:
                   registerButton.current?.focus()
+                  break
+               case document.activeElement === registerExitButton.current
+                  && registerButton.current?.disabled:
+                  loginAndRegistrationSwitchButton.current?.focus()
                   break
                case document.activeElement === registerButton.current:
                   loginAndRegistrationSwitchButton.current?.focus()
