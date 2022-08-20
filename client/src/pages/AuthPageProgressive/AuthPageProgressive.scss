@@ -390,7 +390,7 @@
             width: $auth-page-auth-form-loginAndRegButtons-default-width * 0.5 +
               px;
             height: $auth-page-auth-form-loginAndRegButtons-default-height *
-              0.55 + px;
+              0.58 + px;
             @include flex-all-center;
             font-size: $default-fontSize * 0.6 + px;
             border: 1px solid #fff;
@@ -399,7 +399,7 @@
             &.login {
               width: $auth-page-auth-form-loginShortButton-default-width * 0.5 +
                 px;
-              transform: translateX(600 * 0.445 + px) translateY(40 * 0.01 + px);
+              transform: translateX(600 * 0.41 + px) translateY(40 * 0.01 + px);
             }
 
             &:focus {
@@ -408,12 +408,12 @@
         }
 
         .login-info-box {
-          left: $auth-page-info-box-header-register-default-leftPosition * 0.1 +
+          left: $auth-page-info-box-header-register-default-leftPosition * 0.25 +
             px;
         }
 
         .register-info-box {
-          right: $auth-page-info-box-header-login-default-rightPostition * 0.01 -
+          right: $auth-page-info-box-header-login-default-rightPostition * 0.11 -
             14 + px;
         }
       }

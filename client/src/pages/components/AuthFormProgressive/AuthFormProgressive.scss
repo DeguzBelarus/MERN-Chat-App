@@ -113,7 +113,7 @@
 
 @media screen and (min-width: 425px) {
   .auth-form {
-    width: $auth-page-auth-form-default-width * 0.43 + px;
+    width: $auth-page-auth-form-default-width * 0.4 + px;
     height: $auth-page-auth-form-default-height * 0.5 + px;
     @include flex-column-line-center-vertical-top;
     position: relative;
@@ -127,7 +127,7 @@
     );
     margin-left: $auth-page-info-box-default-width * 0.5 -
       $auth-page-auth-form-default-width * 0.66 -
-      $auth-page-info-box-default-width * 0.7 * 0.0325 * 2 + px;
+      $auth-page-info-box-default-width * 0.465 * 0.0325 * 2 + px;
     overflow: hidden;
 
     &.registration {
@@ -135,21 +135,21 @@
     }
 
     .form-core-login {
-      height: $auth-page-auth-form-core-login-default-height * 0.6 + px;
+      height: $auth-page-auth-form-core-login-default-height * 0.7 + px;
     }
 
     .form-core-reg {
-      height: $auth-page-auth-form-core-reg-default-height * 0.6 + px;
+      height: $auth-page-auth-form-core-reg-default-height * 0.7 + px;
     }
 
     .form-core-login,
     .form-core-reg {
-      width: $auth-page-auth-form-core-default-width * 0.5 + px;
+      width: $auth-page-auth-form-core-default-width * 0.4 + px;
       @include flex-column-all-center;
 
       .form-header {
-        font-size: 40 * 0.6 + px;
-        margin-bottom: 20 * 0.6 + px;
+        font-size: 40 * 0.5 + px;
+        margin-bottom: 20 * 0.5 + px;
       }
 
       label,
@@ -159,7 +159,7 @@
         position: relative;
         border: 1px solid #000000;
         border-radius: 5px;
-        margin-bottom: 19 * 0.4 + px;
+        margin-bottom: 19 * 0.5 + px;
 
         &.invalid {
           border: 1px solid red;
@@ -170,14 +170,14 @@
         }
 
         &:last-of-type {
-          margin-bottom: 55 * 0.3 + px;
+          margin-bottom: 55 * 0.45 + px;
         }
 
         input {
           width: 100%;
           height: 100%;
           position: absolute;
-          padding-left: $auth-page-auth-form-inputs-default-leftPadding * 0.6 +
+          padding-left: $auth-page-auth-form-inputs-default-leftPadding * 0.5 +
             px;
           font-size: $default-fontSize * 0.6 + px;
           border: none;
@@ -194,7 +194,7 @@
       }
 
       .label-password-confirm {
-        margin-top: -9 * 0.6 + px;
+        margin-top: -9 * 0.5 + px;
       }
 
       .buttons {
@@ -205,7 +205,7 @@
 
         .exit-button {
           width: $auth-page-auth-form-defaultPageButton-default-width * 0.6 + px;
-          height: $auth-page-auth-form-loginAndRegButtons-default-height * 0.6 +
+          height: $auth-page-auth-form-loginAndRegButtons-default-height * 0.58 +
             px;
           @include flex-all-center;
           border: 1px solid $auth-page-auth-form-defaultPageButton-bcolor;
@@ -217,7 +217,7 @@
         .register-button {
           width: $auth-page-auth-form-loginAndRegButtons-default-width * 0.6 +
             px;
-          height: $auth-page-auth-form-loginAndRegButtons-default-height * 0.6 +
+          height: $auth-page-auth-form-loginAndRegButtons-default-height * 0.58 +
             px;
           @include flex-all-center;
           border: none;
