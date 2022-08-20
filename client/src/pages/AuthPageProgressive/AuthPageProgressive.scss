@@ -221,7 +221,7 @@
 
 @keyframes rising-1440 {
   100% {
-    transform: translateY($auth-page-next-button-default-height + px);
+    transform: translateY($auth-page-next-button-default-height - 1 + px);
   }
 }
 
@@ -292,7 +292,7 @@
           display: block;
           position: absolute;
           bottom: -$auth-page-main-logo-separating-line-default-height * 0.46 +
-            px;
+            1 + px;
           left: -1px;
           z-index: 1;
         }
@@ -464,7 +464,7 @@
           display: block;
           position: absolute;
           bottom: -$auth-page-main-logo-separating-line-default-height * 0.52 +
-            px;
+            1 + px;
           left: -1px;
           z-index: 1;
         }
@@ -631,10 +631,11 @@
 
         &::after {
           width: 0;
-          height: $auth-page-main-logo-separating-line-default-height + px;
+          height: $auth-page-main-logo-separating-line-default-height * 0.9 + px;
           display: block;
           position: absolute;
-          bottom: -$auth-page-main-logo-separating-line-default-height + px;
+          bottom: -$auth-page-main-logo-separating-line-default-height * 0.9 + 1 +
+            px;
           left: -1px;
           z-index: 1;
         }
@@ -666,12 +667,13 @@
 
         .next-button {
           width: 100%;
-          height: $auth-page-next-button-default-height + px;
+          height: $auth-page-next-button-default-height * 0.9 + px;
           @include flex-all-center;
           position: absolute;
-          bottom: 0;
+          bottom: $auth-page-next-button-default-height * 0.09 + px;
           left: 0;
-          padding-top: $auth-page-main-logo-separating-line-default-height + px;
+          padding-top: $auth-page-main-logo-separating-line-default-height * 0.9 +
+            px;
 
           &:focus {
           }
@@ -802,10 +804,12 @@
 
         &::after {
           width: 0;
-          height: $auth-page-main-logo-separating-line-default-height + px;
+          height: $auth-page-main-logo-separating-line-default-height * 0.95 +
+            px;
           display: block;
           position: absolute;
-          bottom: -$auth-page-main-logo-separating-line-default-height + px;
+          bottom: -$auth-page-main-logo-separating-line-default-height * 0.95 +
+            1 + px;
           left: -1px;
           z-index: 1;
         }
@@ -837,12 +841,13 @@
 
         .next-button {
           width: 100%;
-          height: $auth-page-next-button-default-height + px;
+          height: $auth-page-next-button-default-height * 0.95 + px;
           @include flex-all-center;
           position: absolute;
-          bottom: 0;
+          bottom: $auth-page-next-button-default-height * 0.095 - 3 + px;
           left: 0;
-          padding-top: $auth-page-main-logo-separating-line-default-height + px;
+          padding-top: $auth-page-main-logo-separating-line-default-height *
+            0.95 + px;
 
           &:focus {
           }
@@ -976,7 +981,7 @@
           height: $auth-page-main-logo-separating-line-default-height + px;
           display: block;
           position: absolute;
-          bottom: -$auth-page-main-logo-separating-line-default-height + px;
+          bottom: -$auth-page-main-logo-separating-line-default-height + 1 + px;
           left: -1px;
           z-index: 1;
         }
@@ -1011,7 +1016,7 @@
           height: $auth-page-next-button-default-height + px;
           @include flex-all-center;
           position: absolute;
-          bottom: 0;
+          bottom: $auth-page-next-button-default-height * 0.1 - 5 + px;
           left: 0;
           padding-top: $auth-page-main-logo-separating-line-default-height + px;
 
@@ -1139,10 +1144,12 @@
 
         &::after {
           width: 0;
-          height: $auth-page-main-logo-separating-line-default-height + px;
+          height: $auth-page-main-logo-separating-line-default-height * 1.25 +
+            px;
           display: block;
           position: absolute;
-          bottom: -$auth-page-main-logo-separating-line-default-height + px;
+          bottom: -$auth-page-main-logo-separating-line-default-height * 1.25 +
+            1 + px;
           left: -1px;
           z-index: 1;
         }
@@ -1174,12 +1181,13 @@
 
         .next-button {
           width: 100%;
-          height: $auth-page-next-button-default-height + px;
+          height: $auth-page-next-button-default-height * 1.25 + px;
           @include flex-all-center;
           position: absolute;
-          bottom: 0;
+          bottom: $auth-page-next-button-default-height * 0.125 - 18 + px;
           left: 0;
-          padding-top: $auth-page-main-logo-separating-line-default-height + px;
+          padding-top: $auth-page-main-logo-separating-line-default-height *
+            1.25 + px;
 
           &:focus {
           }
