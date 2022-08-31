@@ -60,6 +60,10 @@ export const AuthPageProgressive: FC<Props> = ({ type }) => {
    }
 
    useEffect(() => {
+      if (window.location.href !== "/") {
+         navigate("/")
+      }
+
       if (navigator.language !== "ru" && navigator.language !== "ru-RU") {
          dispatch(currentLanguageSave("en"))
       }
