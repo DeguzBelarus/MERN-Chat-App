@@ -355,7 +355,6 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
       dispatch(messagesInChatSave([]));
       dispatch(privateRecipientSave(null));
       navigate(`/usersroom/${nickname}`)
-      socket.emit("user exit", nickname)
    }
 
    useEffect(() => {
