@@ -15,22 +15,11 @@ import './index.scss';
 
 const socket = io()
 
-//== for development
 const peer = new Peer({
    path: "/peerjs",
    host: "/",
    port: 5000
 })
-//== for development
-
-//== for production
-// const peer = new Peer({
-//    path: "/peerjs",
-//    host: "mysn-deguz.herokuapp.com",
-//    port: 443,
-//    secure: true,
-// })
-//== for production
 
 //== firebase initializing
 const firebaseConfig = {
@@ -51,12 +40,12 @@ export const firebaseAnalytics = getAnalytics(app)
 //== firebase initializing
 
 const root = createRoot(document.getElementById("root") as Element);
-root.render(
+const appCore =
    <Provider store={store}>
       <BrowserRouter>
          <App socket={socket} peer={peer} />
       </BrowserRouter>
    </Provider>
-);
+root.render(appCore);
 
 serviceWorker.unregister();

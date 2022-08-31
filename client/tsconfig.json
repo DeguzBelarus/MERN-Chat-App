@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "reserve/pages/AuthorizationPage", "reserve/pages/RegistrationPage", "reserve/components/AuthorizationForm", "reserve/components/RegistrationForm"  ]
 }

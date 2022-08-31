@@ -19,6 +19,7 @@ const peerServer = ExpressPeerServer(server, { debug: true });
 app.use(express.json());
 app.use("/api", router);
 app.use(express.static("./client/build"));
+app.use(express.static(path.resolve(__dirname, "static")));
 app.use("/peerjs", peerServer);
 app.use(errorHandlingMiddleware);
 
@@ -41,7 +42,6 @@ io.on("connection", (socket) => {
   );
 
   //== chat listeners
-
   socket.on("getting all users in chats", () => {
     socket.emit(
       "number of users in all chats",

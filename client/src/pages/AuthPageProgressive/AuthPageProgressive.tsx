@@ -64,6 +64,10 @@ export const AuthPageProgressive: FC<Props> = ({ type }) => {
          dispatch(currentLanguageSave("en"))
       }
 
+      if (authMessage !== "") {
+         dispatch(setAuthMessage(""))
+      }
+
       setTimeout(() => {
          setNextButtonIsActive(true)
       }, 6500)
