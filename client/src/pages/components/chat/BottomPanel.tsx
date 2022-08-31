@@ -414,7 +414,7 @@ export const BottomPanel: FC<Props> = ({ socket }) => {
                className="button-exit"
                onClick={chatExit}
             >
-               {currentLanguage === "ru" ? "Выйти" : "Quit"}
+               {currentLanguage === "ru" ? "Выйти и очистить" : "Exit and clear"}
             </button>
          </div>
       </div>
