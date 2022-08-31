@@ -60,7 +60,7 @@ export const AuthPageProgressive: FC<Props> = ({ type }) => {
    }
 
    useEffect(() => {
-      if (window.location.href !== "/") {
+      if (window.location.pathname !== "/") {
          navigate("/")
       }
 
