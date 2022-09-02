@@ -305,7 +305,7 @@
         .main-logo-network {
           width: $auth-page-main-logo-network-default-width * 0.46 + px;
           position: absolute;
-          top: $auth-page-main-logo-default-width * 0.9 * 0.4 - 32.25 + px;
+          top: $auth-page-main-logo-default-width * 0.9 * 0.4 - 30 + px;
           right: -$auth-page-main-logo-network-default-width * 0.46 + px;
         }
 
@@ -477,7 +477,7 @@
         .main-logo-network {
           width: $auth-page-main-logo-network-default-width * 0.52 + px;
           position: absolute;
-          top: $auth-page-main-logo-default-width * 0.9 * 0.4 - 32.25 + px;
+          top: $auth-page-main-logo-default-width * 0.9 * 0.4 - 28 + px;
           right: -$auth-page-main-logo-network-default-width * 0.52 + px;
         }
 
@@ -648,15 +648,15 @@
         .main-logo-network {
           width: $auth-page-main-logo-network-default-width * 0.9 + px;
           position: absolute;
-          top: $auth-page-main-logo-default-width * 0.9 * 0.5 - 32.25 + px;
+          top: $auth-page-main-logo-default-width * 0.9 * 0.5 - 26 + px;
           right: -$auth-page-main-logo-network-default-width * 0.9 + px;
         }
 
         .main-logo-my {
-          width: $auth-page-main-logo-my-default-width * 0.9 - 0.4 + px;
+          width: $auth-page-main-logo-my-default-width * 0.9 + px;
           position: absolute;
           top: -141 * 0.9 + px;
-          left: -11.7 * 0.9 + px;
+          left: -11.7 * 0.9 + 0.17 + px;
         }
 
         .next-button {
@@ -822,15 +822,15 @@
         .main-logo-network {
           width: $auth-page-main-logo-network-default-width * 0.95 + px;
           position: absolute;
-          top: $auth-page-main-logo-default-width * 0.95 * 0.5 - 32.25 + px;
+          top: $auth-page-main-logo-default-width * 0.95 * 0.5 - 30 + px;
           right: -$auth-page-main-logo-network-default-width * 0.95 + px;
         }
 
         .main-logo-my {
-          width: $auth-page-main-logo-my-default-width * 0.95 - 0.4 + px;
+          width: $auth-page-main-logo-my-default-width * 0.95 + px;
           position: absolute;
           top: -141 * 0.95 + px;
-          left: -11.7 * 0.95 + px;
+          left: -11.7 * 0.95 + 0.42 + px;
         }
 
         .next-button {
@@ -1130,19 +1130,19 @@
       }
 
       .main-logo {
-        width: $auth-page-main-logo-default-width * 1.25 + px;
-        height: $auth-page-main-logo-default-width * 1.25 + px;
+        width: $auth-page-main-logo-default-width * 1.35 + px;
+        height: $auth-page-main-logo-default-width * 1.35 + px;
         @include flex-all-center;
         position: relative;
         z-index: 1;
 
         &::after {
           width: 0;
-          height: $auth-page-main-logo-separating-line-default-height * 1.25 +
+          height: $auth-page-main-logo-separating-line-default-height * 1.35 +
             px;
           display: block;
           position: absolute;
-          bottom: -$auth-page-main-logo-separating-line-default-height * 1.25 +
+          bottom: -$auth-page-main-logo-separating-line-default-height * 1.35 +
             1 + px;
           left: -1px;
           z-index: 1;
@@ -1153,35 +1153,35 @@
         }
 
         .main-logo-social {
-          width: $auth-page-main-logo-social-default-width * 1.25 + px;
+          width: $auth-page-main-logo-social-default-width * 1.35 + px;
           position: absolute;
-          top: -63 * 1.25 + px;
-          left: -125 * 1.25 + px;
+          top: -63 * 1.35 + px;
+          left: -125 * 1.35 + px;
         }
 
         .main-logo-network {
-          width: $auth-page-main-logo-network-default-width * 1.25 + px;
+          width: $auth-page-main-logo-network-default-width * 1.35 + px;
           position: absolute;
-          top: $auth-page-main-logo-default-width * 1.25 * 0.5 - 32.25 + px;
-          right: -$auth-page-main-logo-network-default-width * 1.25 + px;
+          top: $auth-page-main-logo-default-width * 1.35 * 0.5 - 40 + px;
+          right: -$auth-page-main-logo-network-default-width * 1.35 + px;
         }
 
         .main-logo-my {
-          width: $auth-page-main-logo-my-default-width * 1.25 - 0.4 + px;
+          width: $auth-page-main-logo-my-default-width * 1.35 - 0.4 + px;
           position: absolute;
-          top: -141 * 1.25 + px;
-          left: -11.7 * 1.25 + px;
+          top: -141 * 1.35 + px;
+          left: -11.7 * 1.35 + px;
         }
 
         .next-button {
           width: 100%;
-          height: $auth-page-next-button-default-height * 1.25 + px;
+          height: $auth-page-next-button-default-height * 1.35 + px;
           @include flex-all-center;
           position: absolute;
-          bottom: $auth-page-next-button-default-height * 0.125 - 18 + px;
+          bottom: $auth-page-next-button-default-height * 0.135 - 24 + px;
           left: 0;
           padding-top: $auth-page-main-logo-separating-line-default-height *
-            1.25 + px;
+            1.35 + px;
 
           &:focus {
           }
@@ -1217,41 +1217,41 @@
       }
 
       .info-box {
-        width: $auth-page-info-box-default-width * 1.25 + px;
-        height: $auth-page-info-box-default-height * 1.25 + px;
+        width: $auth-page-info-box-default-width * 1.35 + px;
+        height: $auth-page-info-box-default-height * 1.35 + px;
         position: relative;
-        padding: 0 $auth-page-info-box-default-width * 1.25 * 0.0325 + px;
+        padding: 0 $auth-page-info-box-default-width * 1.35 * 0.0325 + px;
 
         .login-info-box,
         .register-info-box {
-          width: 366 * 1.25 + px;
+          width: 366 * 1.35 + px;
           position: absolute;
-          top: $auth-page-info-box-header-default-topPosition * 1.25 + px;
+          top: $auth-page-info-box-header-default-topPosition * 1.35 + px;
 
           .login-header,
           .register-header {
-            margin-bottom: 60 * 1.25 + px;
-            font-size: 30 * 1.25 + px;
-            line-height: 140% * 1.25;
+            margin-bottom: 60 * 1.35 + px;
+            font-size: 30 * 1.35 + px;
+            line-height: 140% * 1.35;
 
             &.hidden {
             }
           }
 
           .registration-button {
-            width: $auth-page-auth-form-loginAndRegButtons-default-width * 1.25 +
+            width: $auth-page-auth-form-loginAndRegButtons-default-width * 1.35 +
               px;
             height: $auth-page-auth-form-loginAndRegButtons-default-height *
-              1.25 + px;
+              1.35 + px;
             @include flex-all-center;
-            font-size: $default-fontSize * 1.25 + px;
-            line-height: 22.4 * 1.25 + px;
+            font-size: $default-fontSize * 1.35 + px;
+            line-height: 22.4 * 1.35 + px;
             border: 2px solid #fff;
-            border-radius: 5 * 1.25 + px;
+            border-radius: 5 * 1.35 + px;
 
             &.login {
               width: $auth-page-auth-form-loginShortButton-default-width + px;
-              transform: translateX(600 * 1.25 + px) translateY(40 * 1.25 + px);
+              transform: translateX(600 * 1.35 + px) translateY(40 * 0.04 + px);
             }
 
             &:focus {
@@ -1260,12 +1260,12 @@
         }
 
         .login-info-box {
-          left: $auth-page-info-box-header-register-default-leftPosition * 1.25 +
+          left: $auth-page-info-box-header-register-default-leftPosition * 1.35 +
             px;
         }
 
         .register-info-box {
-          right: $auth-page-info-box-header-login-default-rightPostition * 1.25 +
+          right: $auth-page-info-box-header-login-default-rightPostition * 1.35 +
             px;
         }
       }
