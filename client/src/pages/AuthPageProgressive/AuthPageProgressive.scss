@@ -225,12 +225,6 @@
   }
 }
 
-@keyframes rising-425 {
-  100% {
-    transform: translateY($auth-page-next-button-default-height * 0.52 + px);
-  }
-}
-
 @keyframes appearing {
   100% {
     transform: none;
