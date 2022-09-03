@@ -1040,7 +1040,7 @@
           width: $auth-page-main-logo-my-default-width * 0.9 + px;
           position: absolute;
           top: -141 * 0.9 + px;
-          left: -11.7 * 0.9 + 0.17 + px;
+          left: -11.7 * 0.9 + px;
         }
 
         .next-button {
@@ -1222,7 +1222,7 @@
           width: $auth-page-main-logo-my-default-width * 0.95 + px;
           position: absolute;
           top: -141 * 0.95 + px;
-          left: -11.7 * 0.95 + 0.42 + px;
+          left: -11.7 * 0.95 + px;
         }
 
         .next-button {
@@ -1399,7 +1399,7 @@
         }
 
         .main-logo-my {
-          width: $auth-page-main-logo-my-default-width - 0.4 + px;
+          width: $auth-page-main-logo-my-default-width + px;
           position: absolute;
           top: -141px;
           left: -11.7px;
@@ -1575,7 +1575,7 @@
         }
 
         .main-logo-my {
-          width: $auth-page-main-logo-my-default-width * 1.35 - 0.4 + px;
+          width: $auth-page-main-logo-my-default-width * 1.35 + px;
           position: absolute;
           top: -141 * 1.35 + px;
           left: -11.7 * 1.35 + px;
