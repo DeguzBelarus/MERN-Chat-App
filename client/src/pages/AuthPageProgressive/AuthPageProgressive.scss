@@ -138,7 +138,8 @@
       .register-info-box {
         .login-header,
         .register-header {
-          font-family: "Mariupol Regular";
+          font-family: "Montserrat";
+          font-weight: 700;
           color: #fff;
           transition-property: opacity;
           transition-duration: 0.35s;
@@ -156,6 +157,7 @@
           transition-duration: 0.7s;
           transition-timing-function: linear;
           cursor: pointer;
+          z-index: 1;
 
           &.login {
           }
@@ -360,40 +362,36 @@
       }
 
       .info-box {
-        width: $auth-page-info-box-default-width * 0.325 + px;
-        height: $auth-page-info-box-default-height * 0.5 + px;
+        width: $auth-page-info-box-mobile-default-width;
+        height: $auth-page-info-box-mobile-default-height + px;
+        @include flex-column-line-center-vertical-bottom;
         position: relative;
-        padding: 0 $auth-page-info-box-default-width * 0.35 * 0.0325 + px;
 
         .login-info-box,
         .register-info-box {
-          width: 366 * 0.35 + px;
-          position: absolute;
-          top: $auth-page-info-box-header-default-topPosition * 0.5 + px;
-
           .login-header,
           .register-header {
-            margin-bottom: 60 * 0.48 + px;
-            font-size: 30 * 0.48 + px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15 + px;
+            font-size: 30 + px;
 
             &.hidden {
             }
           }
 
           .registration-button {
-            width: $auth-page-auth-form-loginAndRegButtons-default-width * 0.48 +
+            width: $auth-page-auth-form-loginAndRegButtons-mobile-default-width +
               px;
-            height: $auth-page-auth-form-loginAndRegButtons-default-height *
-              0.54 + px;
+            height: $auth-page-auth-form-loginAndRegButtons-default-height + px;
             @include flex-all-center;
-            font-size: $default-fontSize * 0.58 + px;
+            font-size: $default-fontSize + px;
             border: 1px solid #fff;
             border-radius: 5px;
 
             &.login {
-              width: $auth-page-auth-form-loginShortButton-default-width * 0.48 +
-                px;
-              transform: translateX(600 * 0.377 + px) translateY(40 * 0.01 + px);
+              width: $auth-page-auth-form-loginShortButton-default-width + px;
+              transform: translateY(320 + px);
             }
 
             &:focus {
@@ -402,13 +400,21 @@
         }
 
         .login-info-box {
-          left: $auth-page-info-box-header-register-default-leftPosition * 0.15 +
-            px;
+          width: 269 + px;
+          height: 141 + px;
+          position: absolute;
+          @include flex-column-line-center-vertical-top;
+          top: $auth-page-info-box-mobile-default-topPadding - 20 + px;
+          left: 53 + px;
         }
 
         .register-info-box {
-          right: $auth-page-info-box-header-login-default-rightPostition * 0.17 -
-            14 + px;
+          width: 281 + px;
+          height: 99 + px;
+          @include flex-column-line-center-vertical-top;
+          position: absolute;
+          bottom: $auth-page-info-box-mobile-default-bottomPadding - 20 + px;
+          left: 47 + px;
         }
       }
     }
