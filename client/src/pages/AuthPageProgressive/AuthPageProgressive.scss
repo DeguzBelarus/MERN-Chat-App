@@ -371,13 +371,20 @@
         .register-info-box {
           .login-header,
           .register-header {
-            width: 100%;
             text-align: center;
             margin-bottom: 15 + px;
             font-size: 30 + px;
 
             &.hidden {
             }
+          }
+
+          .login-header {
+            width: 269px;
+          }
+
+          .register-header {
+            width: 295px;
           }
 
           .registration-button {
@@ -400,21 +407,21 @@
         }
 
         .login-info-box {
-          width: 269 + px;
+          width: 100%;
           height: 141 + px;
           position: absolute;
           @include flex-column-line-center-vertical-top;
           top: $auth-page-info-box-mobile-default-topPadding - 20 + px;
-          left: 53 + px;
+          left: 0;
         }
 
         .register-info-box {
-          width: 281 + px;
+          width: 100%;
           height: 99 + px;
           @include flex-column-line-center-vertical-top;
           position: absolute;
           bottom: $auth-page-info-box-mobile-default-bottomPadding - 20 + px;
-          left: 47 + px;
+          left: 0;
         }
       }
     }

@@ -171,7 +171,7 @@ export const AuthPageProgressive: FC<Props> = ({ type }) => {
                   ? "register-header"
                   : "register-header hidden"}>
                   {currentLanguage === "ru"
-                     ? "У вас есть учетная запись?"
+                     ? "Есть учетная запись?"
                      : "Have an account?"}
                </h1>
             </div>

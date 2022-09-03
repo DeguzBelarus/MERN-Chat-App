@@ -111,26 +111,26 @@
   }
 }
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 375px) and (max-width: 424px) {
   .stay-loggedin-box {
-    bottom: -18px;
+    bottom: -20px;
 
     .checkbox {
       .stay-logged-in-label {
-        padding-left: 4px;
-        font-size: 8.5px;
+        padding-left: 5px;
+        font-size: 10px;
 
         &::before {
-          width: 8.5px;
-          height: 8.5px;
+          width: 10px;
+          height: 10px;
           top: 0px;
           left: -7px;
         }
 
         &::after {
           top: -1px;
-          left: -5.6px;
-          font-size: 7.5px;
+          left: -5.8px;
+          font-size: 9.5px;
         }
       }
     }
