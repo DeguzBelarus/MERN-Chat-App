@@ -75,7 +75,7 @@
       .next-button {
         @include user-select-none;
         background-color: $auth-page-main-logo-color;
-        animation-name: rising-1440;
+        animation-name: rising;
         animation-duration: 1s;
         animation-delay: 4.5s;
         animation-fill-mode: forwards;
@@ -99,7 +99,7 @@
           }
 
           &:not(:hover) {
-            animation-name: rising-1440;
+            animation-name: rising;
             animation-iteration-count: 1, infinite;
             animation-delay: 4.5s, 0s;
           }
@@ -221,7 +221,7 @@
   }
 }
 
-@keyframes rising-1440 {
+@keyframes rising {
   100% {
     transform: translateY($auth-page-next-button-default-height - 1 + px);
   }
@@ -240,9 +240,369 @@
 }
 
 @media screen and (max-width: 319px) {
+  .authorization-page-wrapper {
+    width: 100%;
+    height: 100vh;
+    @include flex-all-center;
+    position: relative;
+    overflow: hidden;
+
+    .copyright-span {
+      @include user-select-none;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      font-size: $default-fontSize * 0.5 + px;
+
+      a {
+      }
+    }
+
+    .default-page {
+      width: 100%;
+      height: 100vh;
+      @include flex-all-center;
+      margin-right: 55%;
+
+      &.hidden {
+        margin-left: -155%;
+      }
+
+      .main-logo {
+        width: $auth-page-main-logo-default-width * 0.46 + px;
+        height: $auth-page-main-logo-default-width * 0.46 + px;
+        @include flex-all-center;
+        position: relative;
+        z-index: 1;
+
+        &::after {
+          width: 0;
+          height: $auth-page-main-logo-separating-line-default-height * 0.46 +
+            px;
+          display: block;
+          position: absolute;
+          bottom: -$auth-page-main-logo-separating-line-default-height * 0.46 +
+            1 + px;
+          left: -1px;
+          z-index: 1;
+        }
+
+        .main-logo-spiral {
+          z-index: 1;
+        }
+
+        .main-logo-social {
+          width: $auth-page-main-logo-social-default-width * 0.46 + px;
+          position: absolute;
+          top: -63 * 0.46 + px;
+          left: -125 * 0.46 + px;
+        }
+
+        .main-logo-network {
+          width: $auth-page-main-logo-network-default-width * 0.46 + px;
+          position: absolute;
+          top: $auth-page-main-logo-default-width * 0.9 * 0.4 - 30 + px;
+          right: -$auth-page-main-logo-network-default-width * 0.46 + px;
+        }
+
+        .main-logo-my {
+          width: $auth-page-main-logo-my-default-width * 0.46 + px;
+          position: absolute;
+          top: -141 * 0.46 + px;
+          left: -11.7 * 0.46 + px;
+        }
+
+        .next-button {
+          width: 100%;
+          height: $auth-page-next-button-default-height * 0.46 + px;
+          @include flex-all-center;
+          position: absolute;
+          bottom: $auth-page-next-button-default-height * 0.46 + 4 + px;
+          left: 0;
+          padding-top: $auth-page-main-logo-separating-line-default-height *
+            0.46 + px;
+
+          &:focus {
+          }
+
+          &.active {
+            &:focus {
+            }
+
+            &:not(:hover) {
+            }
+          }
+
+          &.hidden {
+          }
+
+          .arrow-icon {
+            width: 50%;
+
+            &.active {
+            }
+          }
+        }
+      }
+    }
+
+    .authorization-page {
+      width: 100%;
+      height: 100vh;
+      @include flex-all-center;
+
+      &.hidden {
+        margin-right: -155%;
+      }
+
+      .info-box {
+        width: $auth-page-info-box-mobile-default-width;
+        height: $auth-page-info-box-mobile-default-height + px;
+        @include flex-column-line-center-vertical-bottom;
+        position: relative;
+
+        .login-info-box,
+        .register-info-box {
+          .login-header,
+          .register-header {
+            text-align: center;
+            margin-bottom: 15 + px;
+            font-size: 30 + px;
+
+            &.hidden {
+            }
+          }
+
+          .login-header {
+            width: 269px;
+          }
+
+          .register-header {
+            width: 100%;
+          }
+
+          .registration-button {
+            width: $auth-page-auth-form-loginAndRegButtons-mobile-default-width +
+              px;
+            height: $auth-page-auth-form-loginAndRegButtons-default-height + px;
+            @include flex-all-center;
+            font-size: $default-fontSize + px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+
+            &.login {
+              width: $auth-page-auth-form-loginShortButton-default-width + px;
+              transform: translateY(320 + px);
+            }
+
+            &:focus {
+            }
+          }
+        }
+
+        .login-info-box {
+          width: 100%;
+          height: 141 + px;
+          position: absolute;
+          @include flex-column-line-center-vertical-top;
+          top: $auth-page-info-box-mobile-default-topPadding - 20 + px;
+          left: 0;
+        }
+
+        .register-info-box {
+          width: 100%;
+          height: 99 + px;
+          @include flex-column-line-center-vertical-top;
+          position: absolute;
+          bottom: $auth-page-info-box-mobile-default-bottomPadding - 20 + px;
+          left: 0;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 374px) {
+  .authorization-page-wrapper {
+    width: 100%;
+    height: 100vh;
+    @include flex-all-center;
+    position: relative;
+    overflow: hidden;
+
+    .copyright-span {
+      @include user-select-none;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      font-size: $default-fontSize * 0.5 + px;
+
+      a {
+      }
+    }
+
+    .default-page {
+      width: 100%;
+      height: 100vh;
+      @include flex-all-center;
+      margin-right: 55%;
+
+      &.hidden {
+        margin-left: -155%;
+      }
+
+      .main-logo {
+        width: $auth-page-main-logo-default-width * 0.46 + px;
+        height: $auth-page-main-logo-default-width * 0.46 + px;
+        @include flex-all-center;
+        position: relative;
+        z-index: 1;
+
+        &::after {
+          width: 0;
+          height: $auth-page-main-logo-separating-line-default-height * 0.46 +
+            px;
+          display: block;
+          position: absolute;
+          bottom: -$auth-page-main-logo-separating-line-default-height * 0.46 +
+            1 + px;
+          left: -1px;
+          z-index: 1;
+        }
+
+        .main-logo-spiral {
+          z-index: 1;
+        }
+
+        .main-logo-social {
+          width: $auth-page-main-logo-social-default-width * 0.46 + px;
+          position: absolute;
+          top: -63 * 0.46 + px;
+          left: -125 * 0.46 + px;
+        }
+
+        .main-logo-network {
+          width: $auth-page-main-logo-network-default-width * 0.46 + px;
+          position: absolute;
+          top: $auth-page-main-logo-default-width * 0.9 * 0.4 - 30 + px;
+          right: -$auth-page-main-logo-network-default-width * 0.46 + px;
+        }
+
+        .main-logo-my {
+          width: $auth-page-main-logo-my-default-width * 0.46 + px;
+          position: absolute;
+          top: -141 * 0.46 + px;
+          left: -11.7 * 0.46 + px;
+        }
+
+        .next-button {
+          width: 100%;
+          height: $auth-page-next-button-default-height * 0.46 + px;
+          @include flex-all-center;
+          position: absolute;
+          bottom: $auth-page-next-button-default-height * 0.46 + 4 + px;
+          left: 0;
+          padding-top: $auth-page-main-logo-separating-line-default-height *
+            0.46 + px;
+
+          &:focus {
+          }
+
+          &.active {
+            &:focus {
+            }
+
+            &:not(:hover) {
+            }
+          }
+
+          &.hidden {
+          }
+
+          .arrow-icon {
+            width: 50%;
+
+            &.active {
+            }
+          }
+        }
+      }
+    }
+
+    .authorization-page {
+      width: 100%;
+      height: 100vh;
+      @include flex-all-center;
+
+      &.hidden {
+        margin-right: -155%;
+      }
+
+      .info-box {
+        width: $auth-page-info-box-mobile-default-width;
+        height: $auth-page-info-box-mobile-default-height + px;
+        @include flex-column-line-center-vertical-bottom;
+        position: relative;
+
+        .login-info-box,
+        .register-info-box {
+          .login-header,
+          .register-header {
+            text-align: center;
+            margin-bottom: 15 + px;
+            font-size: 30 + px;
+
+            &.hidden {
+            }
+          }
+
+          .login-header {
+            width: 269px;
+          }
+
+          .register-header {
+            width: 100%;
+          }
+
+          .registration-button {
+            width: $auth-page-auth-form-loginAndRegButtons-mobile-default-width +
+              px;
+            height: $auth-page-auth-form-loginAndRegButtons-default-height + px;
+            @include flex-all-center;
+            font-size: $default-fontSize + px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+
+            &.login {
+              width: $auth-page-auth-form-loginShortButton-default-width + px;
+              transform: translateY(320 + px);
+            }
+
+            &:focus {
+            }
+          }
+        }
+
+        .login-info-box {
+          width: 100%;
+          height: 141 + px;
+          position: absolute;
+          @include flex-column-line-center-vertical-top;
+          top: $auth-page-info-box-mobile-default-topPadding - 20 + px;
+          left: 0;
+        }
+
+        .register-info-box {
+          width: 100%;
+          height: 99 + px;
+          @include flex-column-line-center-vertical-top;
+          position: absolute;
+          bottom: $auth-page-info-box-mobile-default-bottomPadding - 20 + px;
+          left: 0;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 375px) and (max-width: 424px) {
@@ -545,40 +905,43 @@
       }
 
       .info-box {
-        width: $auth-page-info-box-default-width * 0.36 + px;
-        height: $auth-page-info-box-default-height * 0.5 + px;
+        width: $auth-page-info-box-mobile-default-width;
+        height: $auth-page-info-box-mobile-default-height + px;
+        @include flex-column-line-center-vertical-bottom;
         position: relative;
-        padding: 0 $auth-page-info-box-default-width * 0.39 * 0.0325 + px;
 
         .login-info-box,
         .register-info-box {
-          width: 366 * 0.4 + px;
-          position: absolute;
-          top: $auth-page-info-box-header-default-topPosition * 0.5 + px;
-
           .login-header,
           .register-header {
-            margin-bottom: 60 * 0.5 + px;
-            font-size: 30 * 0.5 + px;
+            text-align: center;
+            margin-bottom: 15 + px;
+            font-size: 30 + px;
 
             &.hidden {
             }
           }
 
+          .login-header {
+            width: 269px;
+          }
+
+          .register-header {
+            width: 100%;
+          }
+
           .registration-button {
-            width: $auth-page-auth-form-loginAndRegButtons-default-width * 0.5 +
+            width: $auth-page-auth-form-loginAndRegButtons-mobile-default-width +
               px;
-            height: $auth-page-auth-form-loginAndRegButtons-default-height *
-              0.56 + px;
+            height: $auth-page-auth-form-loginAndRegButtons-default-height + px;
             @include flex-all-center;
-            font-size: $default-fontSize * 0.6 + px;
+            font-size: $default-fontSize + px;
             border: 1px solid #fff;
             border-radius: 5px;
 
             &.login {
-              width: $auth-page-auth-form-loginShortButton-default-width * 0.5 +
-                px;
-              transform: translateX(600 * 0.41 + px) translateY(40 * 0.01 + px);
+              width: $auth-page-auth-form-loginShortButton-default-width + px;
+              transform: translateY(320 + px);
             }
 
             &:focus {
@@ -587,13 +950,21 @@
         }
 
         .login-info-box {
-          left: $auth-page-info-box-header-register-default-leftPosition * 0.25 +
-            px;
+          width: 100%;
+          height: 141 + px;
+          position: absolute;
+          @include flex-column-line-center-vertical-top;
+          top: $auth-page-info-box-mobile-default-topPadding - 20 + px;
+          left: 0;
         }
 
         .register-info-box {
-          right: $auth-page-info-box-header-login-default-rightPostition * 0.11 -
-            14 + px;
+          width: 100%;
+          height: 99 + px;
+          @include flex-column-line-center-vertical-top;
+          position: absolute;
+          bottom: $auth-page-info-box-mobile-default-bottomPadding - 20 + px;
+          left: 0;
         }
       }
     }
@@ -723,7 +1094,7 @@
 
         .login-info-box,
         .register-info-box {
-          width: 366 * 0.64 + px;
+          width: 366 * 0.69 + px;
           position: absolute;
           top: $auth-page-info-box-header-default-topPosition * 0.76 + px;
 
@@ -735,6 +1106,14 @@
 
             &.hidden {
             }
+          }
+
+          .login-header {
+            width: 320 * 0.76 + px;
+          }
+
+          .register-header {
+            width: 349 * 0.76 + px;
           }
 
           .registration-button {
@@ -751,7 +1130,7 @@
             &.login {
               width: $auth-page-auth-form-loginShortButton-default-width * 0.76 +
                 px;
-              transform: translateX(600 * 0.76 + px) translateY(40 * 0.01 + px);
+              transform: translateX(600 * 0.73 + px) translateY(-40 * 0.62 + px);
             }
 
             &:focus {
@@ -911,6 +1290,14 @@
             }
           }
 
+          .login-header {
+            width: 320 * 0.88 + px;
+          }
+
+          .register-header {
+            width: 349 * 0.88 + px;
+          }
+
           .registration-button {
             width: $auth-page-auth-form-loginAndRegButtons-default-width * 0.88 +
               px;
@@ -925,7 +1312,7 @@
             &.login {
               width: $auth-page-auth-form-loginShortButton-default-width * 0.88 +
                 px;
-              transform: translateX(600 * 0.88 + px) translateY(40 * 0.76 + px);
+              transform: translateX(600 * 0.88 + px) translateY(-40 * 0.88 + px);
             }
 
             &:focus {
@@ -1082,6 +1469,14 @@
             }
           }
 
+          .login-header {
+            width: 320px;
+          }
+
+          .register-header {
+            width: 349px;
+          }
+
           .registration-button {
             width: $auth-page-auth-form-loginAndRegButtons-default-width + px;
             height: $auth-page-auth-form-loginAndRegButtons-default-height + px;
@@ -1093,7 +1488,7 @@
 
             &.login {
               width: $auth-page-auth-form-loginShortButton-default-width + px;
-              transform: translateX(600px) translateY(40px);
+              transform: translateX(600px) translateY(-40px);
             }
 
             &:focus {
@@ -1245,10 +1640,18 @@
           .register-header {
             margin-bottom: 60 * 1.35 + px;
             font-size: 30 * 1.35 + px;
-            line-height: 140% * 1.35;
+            line-height: 140% * 1.2;
 
             &.hidden {
             }
+          }
+
+          .login-header {
+            width: 320 * 1.35 + px;
+          }
+
+          .register-header {
+            width: 349 * 1.35 + px;
           }
 
           .registration-button {
@@ -1264,7 +1667,7 @@
 
             &.login {
               width: $auth-page-auth-form-loginShortButton-default-width + px;
-              transform: translateX(600 * 1.35 + px) translateY(40 * 0.04 + px);
+              transform: translateX(600 * 1.35 + px) translateY(-40 * 1.6 + px);
             }
 
             &:focus {
