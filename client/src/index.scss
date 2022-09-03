@@ -5,6 +5,14 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Regular.ttf"), url("./fonts/Montserrat-Bold.ttf"),
+    url("./fonts/Montserrat-ExtraBold.ttf");
+  font-style: normal;
+  font-weight: normal, bold, bolder;
+}
+
 * {
   margin: 0;
   padding: 0;
